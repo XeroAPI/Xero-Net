@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6E24F214-40CC-4891-8028-A068CD7CD4BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoreTests</RootNamespace>
+    <AssemblyName>CoreTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Resources\images\connect_xero_button_blue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Resources\cert\public_privatekey.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Integration\Accounts\Find.cs" />
+    <Compile Include="Integration\BankTransactions\BankTransactionTest.cs" />
+    <Compile Include="Integration\BankTransactions\Create.cs" />
+    <Compile Include="Integration\BankTransactions\Find.cs" />
+    <Compile Include="Integration\BankTransactions\Update.cs" />
+    <Compile Include="Integration\BankTransfers\BankTransfersTest.cs" />
+    <Compile Include="Integration\BankTransfers\Create.cs" />
+    <Compile Include="Integration\BankTransfers\Find.cs" />
+    <Compile Include="Integration\Contacts\ContactsTest.cs" />
+    <Compile Include="Integration\Contacts\Create.cs" />
+    <Compile Include="Integration\Contacts\Find.cs" />
+    <Compile Include="Integration\Contacts\Update.cs" />
+    <Compile Include="Integration\CreditNotes\Create.cs" />
+    <Compile Include="Integration\CreditNotes\CreditNotesTest.cs" />
+    <Compile Include="Integration\CreditNotes\Find.cs" />
+    <Compile Include="Integration\CreditNotes\Update.cs" />
+    <Compile Include="Integration\ExpenseClaims\ExpenseClaimTest.cs" />
+    <Compile Include="Integration\ExpenseClaims\Create.cs" />
+    <Compile Include="Integration\ExpenseClaims\Update.cs" />
+    <Compile Include="Integration\Invoices\Find.cs" />
+    <Compile Include="Integration\Invoices\InvoicesTest.cs" />
+    <Compile Include="Integration\Items\Create.cs" />
+    <Compile Include="Integration\Items\Update.cs" />
+    <Compile Include="Integration\Journals\Find.cs" />
+    <Compile Include="Integration\ManualJournals\Create.cs" />
+    <Compile Include="Integration\ManualJournals\Find.cs" />
+    <Compile Include="Integration\ManualJournals\ManualJournalsTest.cs" />
+    <Compile Include="Integration\ManualJournals\Update.cs" />
+    <Compile Include="Integration\Payments\Create.cs" />
+    <Compile Include="Integration\Payments\CreateForeignCurrency.cs" />
+    <Compile Include="Integration\Payments\Find.cs" />
+    <Compile Include="Integration\Payments\PaymentsTest.cs" />
+    <Compile Include="Integration\Receipts\Create.cs" />
+    <Compile Include="Integration\Receipts\Update.cs" />
+    <Compile Include="Integration\Receipts\ReceiptTest.cs" />
+    <Compile Include="Integration\Reports\Find.cs" />
+    <Compile Include="Integration\TaxRates\Update.cs" />
+    <Compile Include="Integration\TaxRates\TaxRateTest.cs" />
+    <Compile Include="Random.cs" />
+    <Compile Include="Integration\Invoices\Create.cs" />
+    <Compile Include="Integration\Accounts\Create.cs" />
+    <Compile Include="Integration\General\FindingAllItems.cs" />
+    <Compile Include="Integration\Attachments\Attachments.cs" />
+    <Compile Include="Integration\General\Errors.cs" />
+    <Compile Include="Integration\TaxRates\Create.cs" />
+    <Compile Include="Unit\Contacts.cs" />
+    <Compile Include="Unit\FourDecimalPlaces.cs" />
+    <Compile Include="Unit\QueryStrings.cs" />
+    <Compile Include="ApiWrapperTest.cs" />
+    <Compile Include="Integration\General\QueryStrings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xero.Api.Example.Applications\Xero.Api.Example.Applications.csproj">
+      <Project>{d799e8cc-0917-465d-80df-f8355201d13f}</Project>
+      <Name>Xero.Api.Example.Applications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xero.Api\Xero.Api.csproj">
+      <Project>{2EB9F8BA-CCFF-4B43-99A0-5130D368C78F}</Project>
+      <Name>Xero.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

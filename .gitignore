@@ -1,5 +1,16 @@
-*.p12
-*.pem
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/packages
+*/bin/Debug
+*/obj/Debug
+*/bin
+_ReSharper*
+*.user
+*.suo
 *.pfx
+*.pem
 *.cer
+
 
