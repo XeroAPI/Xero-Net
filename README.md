@@ -135,7 +135,7 @@ A partner application will need to also populate
 
 ##Authenticators
 
-The application classes all use implementations of IAuthenticator. See [PrivateAuthenticator](https://github.com/XeroAPI/Xero-Net/blob/master/Xero.Api.Example.Applications/Private/PrivateAuthenticator.cs) namespace for the implementations. The authenticators are used by the base infrastructure to do the heavy lifting of the Xero API authentication.
+The application classes all use implementations of IAuthenticator. See [PrivateAuthenticator](https://github.com/XeroAPI/Xero-Net/blob/master/Xero.Api.Example.Applications/Private/PrivateAuthenticator.cs) for an example. The authenticators are used by the base infrastructure to do the heavy lifting of the Xero API authentication.
 
 ###PrivateAuthenticator
 Uses RSA-SHA1 and a public/private certificate. There are no tokens and each request has to be signed.
