@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Xero.Api.Example.Applications")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Fujitsu")]
+[assembly: AssemblyCompany("Xero")]
 [assembly: AssemblyProduct("Xero.Api.Example.Applications")]
-[assembly: AssemblyCopyright("Copyright © Fujitsu 2014")]
+[assembly: AssemblyCopyright("Copyright © Xero 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
