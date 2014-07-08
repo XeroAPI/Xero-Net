@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("PayrollTests.US")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Fujitsu")]
+[assembly: AssemblyCompany("Xero")]
 [assembly: AssemblyProduct("PayrollTests.US")]
-[assembly: AssemblyCopyright("Copyright © Fujitsu 2014")]
+[assembly: AssemblyCopyright("Copyright © Xero 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
