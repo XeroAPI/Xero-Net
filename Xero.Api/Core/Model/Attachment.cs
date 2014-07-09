@@ -43,6 +43,9 @@ namespace Xero.Api.Core.Model
         public int ContentLength { get; set; }
 
         [DataMember]
+        public bool IncludeOnline { get; set; }
+
+        [DataMember]
         public byte[] Content
         {
             get

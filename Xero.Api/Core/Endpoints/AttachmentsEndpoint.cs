@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using Xero.Api.Common;
 using Xero.Api.Core.Model;
@@ -30,13 +31,23 @@ namespace Xero.Api.Core.Endpoints
             return new Attachment(data.Stream, fileName, data.ContentType, data.ContentLength);
         }
 
-        public Attachment AddOrReplace(Attachment attachment, AttachmentEndpointType type, Guid parent)
+        public Attachment AddOrReplace(Attachment attachment, AttachmentEndpointType type, Guid parent, bool includeOnline = false)
         {
             var mimeType = MimeTypes.GetMimeType(attachment.FileName);
 
-            return Client.Post<Attachment, AttachmentsResponse>(string.Format("/api.xro/2.0/{0}/{1}/Attachments/{2}",
-                type, parent.ToString("D"), attachment.FileName),
-                attachment.Content, mimeType).FirstOrDefault();
+            var url = string.Format("/api.xro/2.0/{0}/{1}/Attachments/{2}", type, parent.ToString("D"), attachment.FileName);
+
+            if (SupportsOnline(type))
+            {
+                Client.Parameters = new NameValueCollection { { "IncludeOnline", "true" } };
+            }
+
+            return Client.Post<Attachment, AttachmentsResponse>(url, attachment.Content, mimeType).FirstOrDefault();
+        }
+
+        private static bool SupportsOnline(AttachmentEndpointType type)
+        {
+            return type == AttachmentEndpointType.Invoices || type == AttachmentEndpointType.CreditNotes;
         }
     }
 }

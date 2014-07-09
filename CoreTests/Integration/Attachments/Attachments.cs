@@ -15,22 +15,18 @@ namespace CoreTests.Integration.Attachments
         [Test]
         public void adding_attachment_to_invoice()
         {
-            var invoiceId = Given_invoice_with_no_attachments();
-
-            var newAttachment = new Attachment(new FileInfo(ImagePath));
-            var attachment = Api.Attachments.AddOrReplace(newAttachment, AttachmentEndpointType.Invoices, invoiceId);
-
+            var attachment = Given_attachment_on_invoice();
+            
             Assert.IsTrue(attachment.Id != Guid.Empty);
         }
 
         [Test]
         public void listing_attachments()
         {
-            var invoiceId = Given_invoice_with_no_attachments();
+            var id = Given_invoice_with_no_attachments();
+            CreateAttachment(id, AttachmentEndpointType.Invoices);
 
-            Api.Attachments.AddOrReplace(new Attachment(new FileInfo(ImagePath)), AttachmentEndpointType.Invoices, invoiceId);
-
-            var attachments = Api.Attachments.List(AttachmentEndpointType.Invoices, invoiceId).ToList();
+            var attachments = Api.Attachments.List(AttachmentEndpointType.Invoices, id).ToList();
 
             Assert.IsTrue(attachments.Any());
             Assert.IsTrue(attachments.First().Id != Guid.Empty);
@@ -39,10 +35,10 @@ namespace CoreTests.Integration.Attachments
         [Test]
         public void getting_attachment()
         {
-            var invoiceId = Given_invoice_with_no_attachments();
+            var id = Given_invoice_with_no_attachments();
             var sourceFile = new FileInfo(ImagePath);
-            var newAttachment = Api.Attachments.AddOrReplace(new Attachment(sourceFile), AttachmentEndpointType.Invoices, invoiceId);
-            var attachment = Api.Attachments.Get(AttachmentEndpointType.Invoices, invoiceId, newAttachment.FileName);
+
+            var attachment = CreateAttachment(id, AttachmentEndpointType.Invoices, sourceFile);
 
             Assert.AreEqual(attachment.ContentLength, sourceFile.Length);
             Assert.AreEqual(attachment.FileName, sourceFile.Name);
@@ -51,18 +47,66 @@ namespace CoreTests.Integration.Attachments
         [Test]
         public void saving_attachments()
         {
-            var invoiceId = Given_invoice_with_no_attachments();
-
             var sourceFile = new FileInfo(ImagePath);
-            var newAttachment = Api.Attachments.AddOrReplace(new Attachment(sourceFile), AttachmentEndpointType.Invoices, invoiceId);
-            var attachment = Api.Attachments.Get(AttachmentEndpointType.Invoices, invoiceId, newAttachment.FileName);
+
+            var id = Given_invoice_with_no_attachments();
+            var attachment = CreateAttachment(id, AttachmentEndpointType.Invoices);
+
+            attachment = GetAttachment(id, AttachmentEndpointType.Invoices, attachment.FileName);
+            
             var path = Path.GetTempFileName();
-
             attachment.Save(path);
-
+            
             var targetFile = new FileInfo(path);
 
             Assert.AreEqual(sourceFile.Length, targetFile.Length);
+
+            // Clean up after yourself!
+            File.Delete(path);
+        }
+
+        [Test]
+        public void saving_attachment_online_invoice()
+        {
+            var attachment = Given_attachment_on_invoice(true);
+            
+            //update when we go live
+            Assert.AreEqual(false, attachment.IncludeOnline);
+        }
+
+        [Test]
+        public void saving_attachment_online_credit_note()
+        {
+            var attachment = Given_attachment_on_credit_note(true);
+
+            //update when we go live
+            Assert.AreEqual(false, attachment.IncludeOnline);
+        }
+
+        private Attachment Given_attachment_on_invoice(bool includeOnline = false)
+        {
+            return CreateAttachment(Given_invoice_with_no_attachments(), AttachmentEndpointType.Invoices, includeOnline);
+        }
+
+        private Attachment Given_attachment_on_credit_note(bool includeOnline = false)
+        {
+            return CreateAttachment(Given_credit_note_with_no_attachments(), AttachmentEndpointType.CreditNotes, includeOnline);
+        }
+
+
+        private Attachment CreateAttachment(Guid id, AttachmentEndpointType type, bool includeOnline = false)
+        {
+            return CreateAttachment(id, type, new FileInfo(ImagePath), includeOnline);
+        }
+
+        private Attachment CreateAttachment(Guid id, AttachmentEndpointType type, FileInfo sourceFile, bool includeOnline = false)
+        {
+            return Api.Attachments.AddOrReplace(new Attachment(sourceFile), type, id, includeOnline);            
+        }
+
+        private Attachment GetAttachment(Guid id, AttachmentEndpointType type, string fileName)
+        {
+            return Api.Attachments.Get(type, id, fileName);
         }
 
         private Guid Given_invoice_with_no_attachments()
@@ -76,6 +120,25 @@ namespace CoreTests.Integration.Attachments
                     {
                         Description = "Nothing to see",
                         LineAmount = 100.0m
+                    }
+                }
+            }).Id;
+        }
+
+        private Guid Given_credit_note_with_no_attachments()
+        {
+            return Api.CreditNotes.Create(new CreditNote
+            {
+                Contact = new Contact {Name = "Apple Computers Ltd"},
+                Type = CreditNoteType.AccountsReceivable,
+                LineAmountTypes = LineAmountType.Exclusive,
+                LineItems = new List<LineItem>
+                {
+                    new LineItem
+                    {
+                        AccountCode = "720",
+                        Description = "MacBook - White",
+                        UnitAmount = 1995.00m
                     }
                 }
             }).Id;
