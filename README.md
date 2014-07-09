@@ -34,6 +34,7 @@ A skinny wrapper of the Xero API. Supports Payroll. All third party libraries ar
 * Receipts - Create, Find and Update
 * Repeating Invoices - Find
 * Reports - Find
+* Setup - Create and Update
 * Tax Rates - Create, Find and Update
 * Tracking Categories - Find
 * Users - Find

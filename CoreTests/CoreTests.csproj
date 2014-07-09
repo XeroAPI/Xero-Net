@@ -95,6 +95,7 @@
     <Compile Include="Integration\Receipts\Update.cs" />
     <Compile Include="Integration\Receipts\ReceiptTest.cs" />
     <Compile Include="Integration\Reports\Find.cs" />
+    <Compile Include="Integration\Setup\Create.cs" />
     <Compile Include="Integration\TaxRates\Update.cs" />
     <Compile Include="Integration\TaxRates\TaxRateTest.cs" />
     <Compile Include="Random.cs" />

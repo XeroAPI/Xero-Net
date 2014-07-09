@@ -134,7 +134,7 @@ namespace CoreTests.Integration.Invoices
                 },                
             }).ToList();
 
-            Assert.AreEqual(25.6591, invoices.First().Items.First().UnitAmount);
+            Assert.AreEqual(25.6591m, invoices.First().Items.First().UnitAmount);
         }
     }
 }

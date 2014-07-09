@@ -3,8 +3,10 @@ using System.Linq;
 using Xero.Api.Common;
 using Xero.Api.Core.Endpoints;
 using Xero.Api.Core.Model;
+using Xero.Api.Core.Model.Setup;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Serialization;
+using Organisation = Xero.Api.Core.Model.Organisation;
 
 namespace Xero.Api.Core
 {
@@ -54,6 +56,7 @@ namespace Xero.Api.Core
         public ReceiptsEndpoint Receipts { get; private set; }
         public RepeatingInvoicesEndpoint RepeatingInvoices { get; private set; }
         public ReportsEndpoint Reports { get; private set; }
+        public SetupEndpoint Setup { get; private set; }
         public TaxRatesEndpoint TaxRates { get; private set; }
         public TrackingCategoriesEndpoint TrackingCategories { get; private set; }
         public UsersEndpoint Users { get; private set; }
@@ -80,6 +83,7 @@ namespace Xero.Api.Core
             Receipts = new ReceiptsEndpoint(Client);
             RepeatingInvoices = new RepeatingInvoicesEndpoint(Client);
             Reports = new ReportsEndpoint(Client);
+            Setup = new SetupEndpoint(Client);
             TaxRates = new TaxRatesEndpoint(Client);
             TrackingCategories = new TrackingCategoriesEndpoint(Client);
             Users = new UsersEndpoint(Client);
@@ -223,6 +227,11 @@ namespace Xero.Api.Core
             return BankTransfers.Create(item);
         }
 
+        public ImportSummary Create(Setup item)
+        {
+            return Setup.Create(item);
+        }
+
         public Invoice Update(Invoice item)
         {
             return Invoices.Update(item);
@@ -277,5 +286,10 @@ namespace Xero.Api.Core
         {
             return TaxRates.Update(item);
         }
+
+        public ImportSummary Update(Setup item)
+        {
+            return Setup.Update(item);
+        }        
     }
 }

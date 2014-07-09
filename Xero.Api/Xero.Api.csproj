@@ -44,10 +44,21 @@
   <ItemGroup>
     <Compile Include="Common\QueryGenerator.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
+    <Compile Include="Core\Endpoints\SetupEndpoint.cs" />
+    <Compile Include="Core\Model\Setup\AccountImportResult.cs" />
+    <Compile Include="Core\Model\Setup\ContactImportResult.cs" />
+    <Compile Include="Core\Model\Setup\ConversionBalance.cs" />
+    <Compile Include="Core\Model\Setup\ConversionDate.cs" />
+    <Compile Include="Core\Model\Setup\ConversionDetails.cs" />
+    <Compile Include="Core\Model\Setup\ImportSummary.cs" />
+    <Compile Include="Core\Model\Setup\OrganisationImportResult.cs" />
+    <Compile Include="Core\Model\Setup\Setup.cs" />
     <Compile Include="Core\Model\Status\AccountStatus.cs" />
     <Compile Include="Core\Model\Status\ReceiptStatus.cs" />
     <Compile Include="Core\Model\Types\OrganisationVersion.cs" />
     <Compile Include="Core\Model\Status\OrganisationStatus.cs" />
+    <Compile Include="Core\Request\SetupRequest.cs" />
+    <Compile Include="Core\Response\SetupResponse.cs" />
     <Compile Include="Infrastructure\Exceptions\RateExceededException.cs" />
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />
     <Compile Include="Infrastructure\Interfaces\IAuthenticationToken.cs" />
