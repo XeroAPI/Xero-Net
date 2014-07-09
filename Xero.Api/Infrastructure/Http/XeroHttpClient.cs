@@ -62,7 +62,7 @@ namespace Xero.Api.Infrastructure.Http
         internal IEnumerable<TResult> Post<TResult, TResponse>(string endpoint, byte[] data, string mimeType)
             where TResponse : IXeroResponse<TResult>, new()
         {
-            return Read<TResult, TResponse>(Client.Post(endpoint, data, mimeType));
+            return Read<TResult, TResponse>(Client.Post(endpoint, data, mimeType, new QueryGenerator(null, null, Parameters).UrlEncodedQueryString));
         }
 
         public IEnumerable<TResult> Post<TResult, TResponse>(string endPoint, object data)
