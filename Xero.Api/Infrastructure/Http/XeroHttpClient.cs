@@ -14,26 +14,26 @@ namespace Xero.Api.Infrastructure.Http
     // This knows nothing about the types being passed to and fro. (Except for the constraint in the generic type)
     public class XeroHttpClient
     {
-        private readonly IJsonObjectMapper _jsonMapper;
-        private readonly IXmlObjectMapper _xmlMapper;
-        private readonly HttpClient _client;
+        internal readonly IJsonObjectMapper JsonMapper;
+        internal readonly IXmlObjectMapper XmlMapper;
+        internal readonly HttpClient Client;
 
         private XeroHttpClient(IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
         {
-            _jsonMapper = jsonMapper;
-            _xmlMapper = xmlMapper;
+            JsonMapper = jsonMapper;
+            XmlMapper = xmlMapper;
         }
 
         public XeroHttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
             : this(jsonMapper, xmlMapper)
         {
-            _client = new HttpClient(baseUri, auth, consumer, user);
+            Client = new HttpClient(baseUri, auth, consumer, user);
         }
 
         public XeroHttpClient(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
             : this(jsonMapper, xmlMapper)
         {
-            _client = new HttpClient(baseUri, auth, consumer, user);
+            Client = new HttpClient(baseUri, auth, consumer, user);
         }
 
         public DateTime? ModifiedSince { get; set; }
@@ -44,8 +44,8 @@ namespace Xero.Api.Infrastructure.Http
 
         public string UserAgent
         {
-            get { return _client.UserAgent; }
-            set { _client.UserAgent = value; }
+            get { return Client.UserAgent; }
+            set { Client.UserAgent = value; }
         }
 
         public IEnumerable<TResult> Get<TResult, TResponse>(string endPoint)
@@ -53,53 +53,60 @@ namespace Xero.Api.Infrastructure.Http
         {
             if (ModifiedSince.HasValue)
             {
-                _client.ModifiedSince = ModifiedSince.Value;
+                Client.ModifiedSince = ModifiedSince.Value;
             }
 
-            return Read<TResult, TResponse>(_client.Get(endPoint, new QueryGenerator(Where, Order, Parameters).UrlEncodedQueryString));
+            return Read<TResult, TResponse>(Client.Get(endPoint, new QueryGenerator(Where, Order, Parameters).UrlEncodedQueryString));
         }
 
         internal IEnumerable<TResult> Post<TResult, TResponse>(string endpoint, byte[] data, string mimeType)
             where TResponse : IXeroResponse<TResult>, new()
         {
-            return Read<TResult, TResponse>(_client.Post(endpoint, data, mimeType));
+            return Read<TResult, TResponse>(Client.Post(endpoint, data, mimeType));
         }
 
         public IEnumerable<TResult> Post<TResult, TResponse>(string endPoint, object data)
             where TResponse : IXeroResponse<TResult>, new()
         {
-            return Read<TResult, TResponse>(_client.Post(endPoint, _xmlMapper.To(data), query: new QueryGenerator(null, null, Parameters).UrlEncodedQueryString));
+            return Read<TResult, TResponse>(Client.Post(endPoint, XmlMapper.To(data), query: new QueryGenerator(null, null, Parameters).UrlEncodedQueryString));
         }
 
         public IEnumerable<TResult> Put<TResult, TResponse>(string endPoint, object data)
             where TResponse : IXeroResponse<TResult>, new()
         {
-            return Read<TResult, TResponse>(_client.Put(endPoint, _xmlMapper.To(data), query: new QueryGenerator(null, null, Parameters).UrlEncodedQueryString));
+            return Read<TResult, TResponse>(Client.Put(endPoint, XmlMapper.To(data), query: new QueryGenerator(null, null, Parameters).UrlEncodedQueryString));
         }
 
         public IEnumerable<TResult> Delete<TResult, TResponse>(string endPoint)
             where TResponse : IXeroResponse<TResult>, new()
         {
-            return Read<TResult, TResponse>(_client.Delete(endPoint));
+            return Read<TResult, TResponse>(Client.Delete(endPoint));
         }
 
         internal Response Get(string endpoint, string mimeType)
         {
-            return _client.Get(endpoint, null);
+            return Client.Get(endpoint, null);
         }
 
-        private IEnumerable<TResult> Read<TResult, TResponse>(Response response)
+        internal IEnumerable<TResult> Read<TResult, TResponse>(Response response)
             where TResponse : IXeroResponse<TResult>, new()
         {
             // this is the 'happy path'
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                return _jsonMapper.From<TResponse>(response.Body).Values;
+                return JsonMapper.From<TResponse>(response.Body).Values;
             }
+            
+            HandleErrors(response);
+            
+            return null;
+        }
 
+        internal void HandleErrors(Response response)
+        {
             if (response.StatusCode == HttpStatusCode.BadRequest)
             {
-                var data = _jsonMapper.From<ApiException>(response.Body);
+                var data = JsonMapper.From<ApiException>(response.Body);
 
                 if (data.Elements != null && data.Elements.Any())
                 {
@@ -131,10 +138,10 @@ namespace Xero.Api.Infrastructure.Http
                     throw new RateExceededException(response.Body);
                 }
 
-                throw new NotAvailableException(response.Body);                
+                throw new NotAvailableException(response.Body);
             }
 
             throw new XeroApiException(response.StatusCode, response.Body);
-        }            
+        }
     }
 }
