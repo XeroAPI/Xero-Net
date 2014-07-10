@@ -45,6 +45,8 @@
     <Compile Include="Common\QueryGenerator.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
     <Compile Include="Core\Endpoints\SetupEndpoint.cs" />
+    <Compile Include="Core\Model\Types\SalesTaxPeriodType.cs" />
+    <Compile Include="Core\Model\Types\SalesTaxBasisType.cs" />
     <Compile Include="Core\Model\Setup\AccountImportResult.cs" />
     <Compile Include="Core\Model\Setup\ContactImportResult.cs" />
     <Compile Include="Core\Model\Setup\ConversionBalance.cs" />
