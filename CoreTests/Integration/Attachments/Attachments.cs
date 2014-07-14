@@ -81,6 +81,14 @@ namespace CoreTests.Integration.Attachments
             Assert.AreEqual(true, attachment.IncludeOnline);
         }
 
+        [Test]
+        public void saving_attachment_credit_note()
+        {
+            var attachment = Given_attachment_on_credit_note();
+
+            Assert.AreEqual(false, attachment.IncludeOnline);
+        }
+
         private Attachment Given_attachment_on_invoice(bool includeOnline = false)
         {
             return CreateAttachment(Given_invoice_with_no_attachments(), AttachmentEndpointType.Invoices, includeOnline);
