@@ -37,7 +37,7 @@ namespace Xero.Api.Core.Endpoints
 
             var url = string.Format("/api.xro/2.0/{0}/{1}/Attachments/{2}", type, parent.ToString("D"), attachment.FileName);
 
-            if (SupportsOnline(type))
+            if (SupportsOnline(type) && includeOnline)
             {
                 Client.Parameters = new NameValueCollection { { "IncludeOnline", "true" } };
             }
