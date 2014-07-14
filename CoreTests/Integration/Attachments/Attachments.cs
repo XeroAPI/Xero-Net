@@ -70,8 +70,7 @@ namespace CoreTests.Integration.Attachments
         {
             var attachment = Given_attachment_on_invoice(true);
             
-            //update when we go live
-            Assert.AreEqual(false, attachment.IncludeOnline);
+            Assert.AreEqual(true, attachment.IncludeOnline);
         }
 
         [Test]
@@ -79,8 +78,7 @@ namespace CoreTests.Integration.Attachments
         {
             var attachment = Given_attachment_on_credit_note(true);
 
-            //update when we go live
-            Assert.AreEqual(false, attachment.IncludeOnline);
+            Assert.AreEqual(true, attachment.IncludeOnline);
         }
 
         private Attachment Given_attachment_on_invoice(bool includeOnline = false)
