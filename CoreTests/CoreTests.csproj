@@ -87,6 +87,7 @@
     <Compile Include="Integration\ManualJournals\Find.cs" />
     <Compile Include="Integration\ManualJournals\ManualJournalsTest.cs" />
     <Compile Include="Integration\ManualJournals\Update.cs" />
+    <Compile Include="Integration\Organisation\Find.cs" />
     <Compile Include="Integration\Payments\Create.cs" />
     <Compile Include="Integration\Payments\CreateForeignCurrency.cs" />
     <Compile Include="Integration\Payments\Find.cs" />
@@ -110,6 +111,8 @@
     <Compile Include="Unit\QueryStrings.cs" />
     <Compile Include="ApiWrapperTest.cs" />
     <Compile Include="Integration\General\QueryStrings.cs" />
+    <Compile Include="Unit\SalesTaxBasisTypeTest.cs" />
+    <Compile Include="Unit\SalesTaxPeriodTypeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xero.Api.Example.Applications\Xero.Api.Example.Applications.csproj">

@@ -9,6 +9,11 @@ using Xero.Api.Payroll.America.Model.Types;
 using Xero.Api.Payroll.Australia.Model.Status;
 using Xero.Api.Payroll.Australia.Model.Types;
 using Xero.Api.Payroll.Common.Model.Status;
+using AccountType = Xero.Api.Core.Model.Types.AccountType;
+using EmploymentBasisType = Xero.Api.Payroll.America.Model.Types.EmploymentBasisType;
+using RateType = Xero.Api.Payroll.America.Model.Types.RateType;
+using State = Xero.Api.Payroll.America.Model.Types.State;
+using UnitType = Xero.Api.Core.Model.Types.UnitType;
 
 namespace Xero.Api.Serialization
 {
@@ -73,7 +78,7 @@ namespace Xero.Api.Serialization
             JsConfig<TrackingCategoryStatus>.DeSerializeFn = EnumDeserializer<TrackingCategoryStatus>;
 
             JsConfig<AccountClassType>.DeSerializeFn = EnumDeserializer<AccountClassType>;
-            JsConfig<Core.Model.Types.AccountType>.DeSerializeFn = EnumDeserializer<Core.Model.Types.AccountType>;
+            JsConfig<AccountType>.DeSerializeFn = EnumDeserializer<AccountType>;
             JsConfig<AddressType>.DeSerializeFn = EnumDeserializer<AddressType>;
             JsConfig<BankTransactionType>.DeSerializeFn = EnumDeserializer<BankTransactionType>;
             JsConfig<CreditNoteType>.DeSerializeFn = EnumDeserializer<CreditNoteType>;
@@ -84,8 +89,10 @@ namespace Xero.Api.Serialization
             JsConfig<PaymentType>.DeSerializeFn = EnumDeserializer<PaymentType>;
             JsConfig<PhoneType>.DeSerializeFn = EnumDeserializer<PhoneType>;
             JsConfig<ReportTaxType>.DeSerializeFn = EnumDeserializer<ReportTaxType>;
+            JsConfig<SalesTaxBasisType>.DeSerializeFn = SalesTaxBasis;
+            JsConfig<SalesTaxPeriodType>.DeSerializeFn = SalesTaxPeriod;
             JsConfig<SystemAccountType>.DeSerializeFn = EnumDeserializer<SystemAccountType>;
-            JsConfig<Core.Model.Types.UnitType>.DeSerializeFn = EnumDeserializer<Core.Model.Types.UnitType>;
+            JsConfig<UnitType>.DeSerializeFn = EnumDeserializer<UnitType>;
             JsConfig<UserRole>.DeSerializeFn = EnumDeserializer<UserRole>;
         }
 
@@ -96,10 +103,10 @@ namespace Xero.Api.Serialization
             JsConfig<CalculationType>.DeSerializeFn = EnumDeserializer<CalculationType>;
             JsConfig<DeductionCategoryType>.DeSerializeFn = EnumDeserializer<DeductionCategoryType>;
             JsConfig<EarningsCategoryType>.DeSerializeFn = EnumDeserializer<EarningsCategoryType>;
-            JsConfig<Payroll.America.Model.Types.EmploymentBasisType>.DeSerializeFn = EnumDeserializer<Payroll.America.Model.Types.EmploymentBasisType>;
+            JsConfig<EmploymentBasisType>.DeSerializeFn = EnumDeserializer<EmploymentBasisType>;
             JsConfig<PaymentMethodType>.DeSerializeFn = EnumDeserializer<PaymentMethodType>;
-            JsConfig<Payroll.America.Model.Types.RateType>.DeSerializeFn = EnumDeserializer<Payroll.America.Model.Types.RateType>;
-            JsConfig<Payroll.America.Model.Types.State>.DeSerializeFn = EnumDeserializer<Payroll.America.Model.Types.State>;
+            JsConfig<RateType>.DeSerializeFn = EnumDeserializer<RateType>;
+            JsConfig<State>.DeSerializeFn = EnumDeserializer<State>;
             JsConfig<SalaryWagesType>.DeSerializeFn = EnumDeserializer<SalaryWagesType>;
             JsConfig<ScheduleType>.DeSerializeFn = EnumDeserializer<ScheduleType>;
             JsConfig<TimeOffCategoryType>.DeSerializeFn = EnumDeserializer<TimeOffCategoryType>;
@@ -127,7 +134,7 @@ namespace Xero.Api.Serialization
             JsConfig<TaxFileNumberExemptionType>.DeSerializeFn = EnumDeserializer<TaxFileNumberExemptionType>;
         }
 
-        private TEnum EnumDeserializer<TEnum>(string s)
+        private static TEnum EnumDeserializer<TEnum>(string s)
             where TEnum : struct
         {
             TEnum t;
@@ -135,17 +142,72 @@ namespace Xero.Api.Serialization
             // If all goes well then we are done
             if (Enum.TryParse(s, out t))
                 return t;
-            
+
             // get the EnumMember attribute and see if the Value attribute matches the string
             foreach (var p in t.GetType().GetMembers())
             {
-                var attributes = p.GetCustomAttributes(typeof (EnumMemberAttribute), false).Cast<EnumMemberAttribute>();
+                var attributes = p.GetCustomAttributes(typeof(EnumMemberAttribute), false).Cast<EnumMemberAttribute>();
                 if (attributes.All(a => String.Compare(a.Value, s, StringComparison.OrdinalIgnoreCase) != 0))
                     continue;
                 Enum.TryParse(p.Name, out t);
             }
 
             return t;
-        }        
-    }    
+        }
+
+        private static SalesTaxBasisType SalesTaxBasis(string s)
+        {
+            switch (s.ToUpper())
+            {
+                case "ACCURAL":
+                case "ACCURALS":
+                {
+                    return SalesTaxBasisType.Accural;
+                }
+
+                default:
+                {
+                    return EnumDeserializer<SalesTaxBasisType>(s);
+                }
+            }
+        }
+
+        private static SalesTaxPeriodType SalesTaxPeriod(string s)
+        {
+            switch (s.ToUpper())
+            {
+                case "MONTHLY":
+                case "ONEMONTHS":
+                case "1MONTHLY":
+                {
+                    return SalesTaxPeriodType.Monthly;
+                }
+                case "TWOMONTHS":
+                case "2MONTHLY":
+                {
+                    return SalesTaxPeriodType.TwoMonths;
+                }
+                case "3MONTHLY":
+                case "QUARTERLY":
+                {
+                    return SalesTaxPeriodType.Quarterly;
+                }
+                case "SIXMONTHS":
+                case "6MONTHLY":
+                {
+                    return SalesTaxPeriodType.SixMonths;
+                }
+                case "ANNUALLY":
+                case "YEARLY":
+                {
+                    return SalesTaxPeriodType.Annually;
+                }
+                
+                default:
+                {
+                    return EnumDeserializer<SalesTaxPeriodType>(s);
+                }                    
+            }
+        }
+    }
 }
