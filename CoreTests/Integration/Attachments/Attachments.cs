@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Configuration;
 using NUnit.Framework;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Types;
@@ -66,11 +67,19 @@ namespace CoreTests.Integration.Attachments
         }
 
         [Test]
-        public void saving_attachment_online_invoice()
+        public void saving_attachment_online_invoice_accrec()
         {
             var attachment = Given_attachment_on_invoice(true);
             
             Assert.AreEqual(true, attachment.IncludeOnline);
+        }
+
+        [Test]
+        public void saving_attachment_online_invoice_accpay()
+        {
+            var attachment = Given_attachment_on_invoice();
+
+            Assert.AreEqual(false, attachment.IncludeOnline);
         }
 
         [Test]
@@ -91,7 +100,7 @@ namespace CoreTests.Integration.Attachments
 
         private Attachment Given_attachment_on_invoice(bool includeOnline = false)
         {
-            return CreateAttachment(Given_invoice_with_no_attachments(), AttachmentEndpointType.Invoices, includeOnline);
+            return CreateAttachment(Given_invoice_with_no_attachments(includeOnline), AttachmentEndpointType.Invoices, includeOnline);
         }
 
         private Attachment Given_attachment_on_credit_note(bool includeOnline = false)
@@ -115,11 +124,12 @@ namespace CoreTests.Integration.Attachments
             return Api.Attachments.Get(type, id, fileName);
         }
 
-        private Guid Given_invoice_with_no_attachments()
+        private Guid Given_invoice_with_no_attachments(bool accRec = false)
         {
             return Api.Create(new Invoice
             {
                 Contact = new Contact { Name = "Richard" },
+                Type = accRec ? InvoiceType.AccountsReceivable : InvoiceType.AccountsPayable,
                 Items = new List<LineItem>
                 {
                     new LineItem
