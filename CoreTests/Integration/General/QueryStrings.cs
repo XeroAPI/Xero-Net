@@ -15,8 +15,8 @@ namespace CoreTests.Integration.General
         [Test]
         public void complex_query_string_is_as_expected()
         {
-            var startDate = DateTime.UtcNow.AddDays(-30).Date.ToString("d");
-            var endDate = DateTime.UtcNow.Date.ToString("d");
+            var startDate = DateTime.UtcNow.AddDays(-30).Date.ToString("yyyy-MM-dd");
+            var endDate = DateTime.UtcNow.Date.ToString("yyyy-MM-dd");
 
             Assert.DoesNotThrow(() => Api.Invoices.Where("Status == \"ACTIVE\"")
                 .And(string.Format("DueDate >= DateTime.Parse(\"{0}\")", startDate))
