@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net;
-using System.Web;
 using Xero.Api.Infrastructure.Http;
 using Xero.Api.Infrastructure.Interfaces;
+using HttpUtility = Xero.Api.Infrastructure.ThirdParty.HttpUtility.HttpUtility;
 
 namespace Xero.Api.Infrastructure.OAuth
 {
