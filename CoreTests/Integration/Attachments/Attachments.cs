@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Configuration;
 using NUnit.Framework;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Types;

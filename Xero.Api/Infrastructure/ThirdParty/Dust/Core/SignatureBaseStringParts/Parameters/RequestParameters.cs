@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Web;
+using HttpUtility = Xero.Api.Infrastructure.ThirdParty.HttpUtility.HttpUtility;
 
 namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.Parameters
 {
@@ -13,7 +13,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 
     	public RequestParameters(Request request)
         {
-            _values = HttpUtility.ParseQueryString(request.Url.Query);
+            _values = HttpUtility.HttpUtility.ParseQueryString(request.Url.Query);
 
         	_parameters = new Parameters(MapAll());
         }
