@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,12 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +175,8 @@
     <Compile Include="Infrastructure\Interfaces\ITokenStore.cs" />
     <Compile Include="Infrastructure\Exceptions\XeroApiException.cs" />
     <Compile Include="Core\Endpoints\BrandingThemesEndpoint.cs" />
+    <Compile Include="Infrastructure\ThirdParty\HttpUtility\HttpEncoder.cs" />
+    <Compile Include="Infrastructure\ThirdParty\HttpUtility\HttpUtility.cs" />
     <Compile Include="Payroll\America\Model\Types\State.cs" />
     <Compile Include="Payroll\America\Response\SettingsResponse.cs" />
     <Compile Include="Payroll\Australia\Model\Settings.cs" />
