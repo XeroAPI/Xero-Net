@@ -42,7 +42,10 @@
   <ItemGroup>
     <Compile Include="Common\QueryGenerator.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
+    <Compile Include="Core\Endpoints\PdfEndpoint.cs" />
     <Compile Include="Core\Endpoints\SetupEndpoint.cs" />
+    <Compile Include="Core\File\BinaryFile.cs" />
+    <Compile Include="Core\Model\Types\PdfEndpointType.cs" />
     <Compile Include="Core\Model\Types\SalesTaxPeriodType.cs" />
     <Compile Include="Core\Model\Types\SalesTaxBasisType.cs" />
     <Compile Include="Core\Model\Setup\AccountImportResult.cs" />

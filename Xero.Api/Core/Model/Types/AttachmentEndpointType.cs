@@ -10,6 +10,6 @@
         Invoices,
         ManualJournals,
         Receipts,
-        RepeatingInvoices        
+        RepeatingInvoices
     }
 }

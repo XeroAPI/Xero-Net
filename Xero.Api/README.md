@@ -21,11 +21,11 @@ A skinny wrapper of the Xero API. Supports Payroll. All third party libraries ar
 * Bank Transfers - Create, Find and Update
 * Branding Themes - Find
 * Contacts - Create, Find and Update
-* Credit Notes - Create, Find and Update
+* Credit Notes - Create, Find, Update and as PDF
 * Currencies - Find
 * Employees - Create, Find and Update
 * Expense Claims - Create, Find and Update
-* Invoices - Create, Find and Update
+* Invoices - Create, Find, Update and as PDF
 * Items - Create, Find and Update
 * Journals - Find
 * Manual Journals - Create, Find and Update
