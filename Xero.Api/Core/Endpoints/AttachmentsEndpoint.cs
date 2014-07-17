@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Net;
 using Xero.Api.Common;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Types;
@@ -26,9 +27,17 @@ namespace Xero.Api.Core.Endpoints
 
         public Attachment Get(AttachmentEndpointType type, Guid parent, string fileName)
         {
+
             var mimeType = MimeTypes.GetMimeType(fileName);
             var data = Client.Get(string.Format("/api.xro/2.0/{0}/{1}/Attachments/{2}", type, parent.ToString("D"), fileName), mimeType);
-            return new Attachment(data.Stream, fileName, data.ContentType, data.ContentLength);
+
+            if (data.StatusCode == HttpStatusCode.OK)
+            {
+                return new Attachment(data.Stream, fileName, data.ContentType, data.ContentLength);
+            }
+
+            Client.HandleErrors(data);
+            return null;
         }
 
         public Attachment AddOrReplace(Attachment attachment, AttachmentEndpointType type, Guid parent, bool includeOnline = false)

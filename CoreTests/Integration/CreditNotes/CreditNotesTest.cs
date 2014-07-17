@@ -5,7 +5,6 @@ using Xero.Api.Core.Model.Types;
 
 namespace CoreTests.Integration.CreditNotes
 {
-    
     public class CreditNotesTest : ApiWrapperTest
     {
         public CreditNote Given_a_creditnote(CreditNoteType type = CreditNoteType.AccountsPayable)

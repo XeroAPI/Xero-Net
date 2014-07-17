@@ -25,6 +25,6 @@ namespace Xero.Api.Core.Endpoints
         {
             base.ClearQueryString();
             Page(1);
-        }
+        }        
     }
 }
