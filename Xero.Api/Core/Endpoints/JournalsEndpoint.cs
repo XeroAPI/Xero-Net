@@ -15,7 +15,7 @@ namespace Xero.Api.Core.Endpoints
 
         public JournalsEndpoint Offset(int offset)
         {
-            Parameter("offset", offset);
+            AddParameter("offset", offset);
             return this;
         }
     }

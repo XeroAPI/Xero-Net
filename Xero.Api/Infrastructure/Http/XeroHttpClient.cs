@@ -39,7 +39,6 @@ namespace Xero.Api.Infrastructure.Http
         public DateTime? ModifiedSince { get; set; }
         public string Where { get; set; }
         public string Order { get; set; }
-        public bool Use4DecimalPlaces { get; set; }
         public NameValueCollection Parameters { get; set; }
 
         public string UserAgent

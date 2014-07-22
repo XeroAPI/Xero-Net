@@ -14,12 +14,11 @@ namespace Xero.Api.Common
         private DateTime? _modifiedSince;
         private string _query;
         private string _orderBy;
-        private NameValueCollection _parameters;
+        
+        protected NameValueCollection Parameters { get; private set; }
 
         protected string ApiEndpointUrl { get; private set; }
         public XeroHttpClient Client { get; private set; }
-
-        protected bool UseFourDp { get; private set; }
 
         protected XeroReadEndpoint(XeroHttpClient client, string apiEndpointUrl)
         {
@@ -65,12 +64,7 @@ namespace Xero.Api.Common
 
         public T UseFourDecimalPlaces(bool use4Dp)
         {
-            UseFourDp = use4Dp;
-
-            if (_parameters != null && !use4Dp)
-            {
-                _parameters.Remove("unitdp");
-            }
+            Apply4Dp(use4Dp);
 
             return (T)this;
         }
@@ -89,90 +83,100 @@ namespace Xero.Api.Common
         {
             return Get(ApiEndpointUrl, "/" + child).FirstOrDefault();
         }
-        
+
         public virtual void ClearQueryString()
         {
-            UseFourDp = false;
             _orderBy = null;
             _query = null;
             _modifiedSince = null;
-            _parameters = null;
+            Parameters = null;
+        }
+
+        protected void Apply4Dp(bool use4Dp)
+        {
+            const string name = "unitdp";
+
+            if (use4Dp)
+            {
+                AddParameter(name, 4);
+            }
+            else
+            {
+                RemoveParameter(name);
+            }
         }
 
         public string QueryString
         {
             get
             {
-                AddFourDecimalPlaces();
-                return new QueryGenerator(_query, _orderBy, _parameters).QueryString;
+                return new QueryGenerator(_query, _orderBy, Parameters).QueryString;
             }
         }
 
-        internal protected T Parameter(string name, int value)
+        internal protected T AddParameter(string name, int value)
         {
-            return Parameter(name, value.ToString("D"));
+            return AddParameter(name, value.ToString("D"));
         }
 
-        internal protected T Parameter(string name, bool value)
+        internal protected T AddParameter(string name, bool value)
         {
-            return Parameter(name, value.ToString().ToLower());
+            return AddParameter(name, value.ToString().ToLower());
         }
 
-        internal protected T Parameter(string name, string value)
+        internal void RemoveParameter(string name)
         {
-            if (_parameters == null)
+            if (Parameters != null)
             {
-                _parameters = new NameValueCollection();
+                Parameters.Remove(name);
+            }
+        }
+
+        internal protected T AddParameter(string name, string value)
+        {
+            if (Parameters == null)
+            {
+                Parameters = new NameValueCollection();
             }
 
-            _parameters[name] = value;
+            Parameters[name] = value;
 
             return (T)this;
         }
 
-        internal protected T Parameters(NameValueCollection parameters)
+        internal protected T AddParameters(NameValueCollection parameters)
         {
-            if (_parameters == null)
+            if (Parameters == null)
             {
-                _parameters = parameters;
+                Parameters = parameters;
             }
             else
             {
-                _parameters.Add(parameters);
+                Parameters.Add(parameters);
             }
 
             return (T)this;
-        }
-
-        private void AddFourDecimalPlaces()
-        {
-            if (UseFourDp)
-            {
-                Parameter("unitdp", 4);
-            }
         }
 
         private IEnumerable<TResult> Get(string endpoint, string child)
         {
             try
             {
-                if (_parameters == null)
+                if (Parameters == null)
                 {
-                    _parameters = new NameValueCollection();
+                    Parameters = new NameValueCollection();
                 }
-
-                AddFourDecimalPlaces();
 
                 Client.Where = _query;
                 Client.Order = _orderBy;
                 Client.ModifiedSince = _modifiedSince;
-                Client.Parameters = _parameters;
+                Client.Parameters = Parameters;
 
                 return Client.Get<TResult, TResponse>(endpoint + (child ?? string.Empty));
             }
             finally
             {
-                ClearQueryString();                
+                ClearQueryString();
             }
         }
     }

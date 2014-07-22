@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Integration\Accounts\Find.cs" />
+    <Compile Include="Integration\Allocations\Add.cs" />
     <Compile Include="Integration\BankTransactions\BankTransactionTest.cs" />
     <Compile Include="Integration\BankTransactions\Create.cs" />
     <Compile Include="Integration\BankTransactions\Find.cs" />
