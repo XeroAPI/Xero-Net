@@ -60,6 +60,12 @@ namespace Xero.Api.Core.Model
 
         [DataMember(EmitDefaultValue = false)]
         public bool? HasAttachments { get; set; }
+        
+        [DataMember(EmitDefaultValue = false)]
+        public Guid? BrandingThemeID { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public string Url { get; set; }
 
         [DataMember(Name = "LineItems", EmitDefaultValue = false)]
         public List<LineItem> Items { get; set; }
