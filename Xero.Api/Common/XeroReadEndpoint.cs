@@ -20,8 +20,6 @@ namespace Xero.Api.Common
         protected string ApiEndpointUrl { get; private set; }
         public XeroHttpClient Client { get; private set; }
 
-        protected bool UseFourDp { get; private set; }
-
         protected XeroReadEndpoint(XeroHttpClient client, string apiEndpointUrl)
         {
             Client = client;
@@ -88,7 +86,6 @@ namespace Xero.Api.Common
 
         public virtual void ClearQueryString()
         {
-            UseFourDp = false;
             _orderBy = null;
             _query = null;
             _modifiedSince = null;
