@@ -49,7 +49,7 @@ namespace Xero.Api.Core.Endpoints
 
             parameters.AddYear("reportYear", year);
 
-            Parameters(parameters);
+           AddParameters(parameters);
 
             return Find(NamedReportType.TenNinetyNine.ToString());
         }
@@ -78,7 +78,7 @@ namespace Xero.Api.Core.Endpoints
             parameters.Add("trackingOptionID2", tracking2);
             parameters.Add("standardLayout", standardLayout);
 
-            Parameters(parameters);
+            AddParameters(parameters);
 
             return Find(NamedReportType.BalanceSheet.ToString());
         }
@@ -91,7 +91,7 @@ namespace Xero.Api.Core.Endpoints
             parameters.Add("fromDate", from);
             parameters.Add("toDate", to);
 
-            Parameters(parameters);
+            AddParameters(parameters);
 
             return Find(NamedReportType.BankStatement.ToString());
         }
@@ -103,7 +103,7 @@ namespace Xero.Api.Core.Endpoints
             parameters.Add("fromDate", from);
             parameters.Add("toDate", to);
 
-            Parameters(parameters);
+            AddParameters(parameters);
 
             return Find(NamedReportType.BankSummary.ToString());
         }
@@ -116,7 +116,7 @@ namespace Xero.Api.Core.Endpoints
             parameters.Add("periods", periods);
             parameters.Add("timeframe", (int?)timeFrame);
 
-            Parameters(parameters);
+            AddParameters(parameters);
 
             return Find(NamedReportType.BudgetSummary.ToString());
         }
@@ -127,7 +127,7 @@ namespace Xero.Api.Core.Endpoints
 
             parameters.Add("date", date);
 
-            Parameters(parameters);
+            AddParameters(parameters);
 
             return Find(NamedReportType.ExecutiveSummary.ToString());
         }
@@ -144,7 +144,7 @@ namespace Xero.Api.Core.Endpoints
             parameters.Add("trackingOptionID", trackingOption);
             parameters.Add("standardLayout", standardLayout);
 
-            Parameters(parameters);
+            AddParameters(parameters);
 
             return Find(NamedReportType.ProfitAndLoss.ToString());
         }
@@ -156,7 +156,7 @@ namespace Xero.Api.Core.Endpoints
             parameters.Add("date", date);
             parameters.Add("paymentsOnly", paymentsOnly);
 
-            Parameters(parameters);
+            AddParameters(parameters);
 
             return Find(NamedReportType.TrialBalance.ToString());
         }
@@ -174,7 +174,7 @@ namespace Xero.Api.Core.Endpoints
             parameters.Add("fromDate", from);
             parameters.Add("toDate", to);
 
-            Parameters(parameters);
+            AddParameters(parameters);
         }
     }
 

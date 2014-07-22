@@ -33,11 +33,7 @@ namespace Xero.Api.Core.Endpoints.Base
 
         protected IEnumerable<TResult> Put(TRequest data)
         {
-            if (UseFourDp)
-            {
-                Client.Parameters = new NameValueCollection { { "unitdp", "4" } };
-            }
-
+            Client.Parameters = Parameters;
             return Client.Put<TResult, TResponse>(ApiEndpointUrl, data);
         }        
     }

@@ -11,13 +11,13 @@ namespace CoreTests.Unit
         [Test]
         public void explict_four_decimal_places_invoices()
         {
-            ExplictUse4Dp(Api.Invoices, "page=1&unitdp=4");
+            ExplictUse4Dp(Api.Invoices, "unitdp=4&page=1");
         }
 
         [Test]
         public void implict_four_decimal_places_invoice()
         {
-            ImplicitUse4Dp(Api.Invoices, "page=1&unitdp=4");
+            ImplicitUse4Dp(Api.Invoices, "unitdp=4&page=1");
         }
 
         [Test]

@@ -11,7 +11,7 @@ namespace CoreTests.Integration.CreditNotes
         {
             const CreditNoteType expected = CreditNoteType.AccountsReceivable;
 
-            var type = Given_a_creditnote(expected).Type;
+            var type = Given_a_creditnote(type: expected).Type;
 
             Assert.AreEqual(expected, type);
         }

@@ -17,7 +17,7 @@ namespace CoreTests.Unit
         {
             var date = DateTime.UtcNow.Date.ToString("d");
 
-            var expected = string.Format("where=Status == \"ACTIVE\" AND DueDate <= DateTime.Parse(\"{0}\")&page=1&unitdp=4", date);
+            var expected = string.Format("where=Status == \"ACTIVE\" AND DueDate <= DateTime.Parse(\"{0}\")&unitdp=4&page=1", date);
 
             var query = Api.Invoices.Where("Status == \"ACTIVE\"")
                 .And(string.Format("DueDate <= DateTime.Parse(\"{0}\")", date))
@@ -32,7 +32,7 @@ namespace CoreTests.Unit
             var startDate = DateTime.UtcNow.AddDays(-30).Date.ToString("d");
             var endDate = DateTime.UtcNow.Date.ToString("d");
 
-            var expected = string.Format("where={0}&order=DueDate DESC&page=1&unitdp=4",
+            var expected = string.Format("where={0}&order=DueDate DESC&unitdp=4&page=1",
                 string.Format("Status == \"ACTIVE\" AND DueDate >= DateTime.Parse(\"{0}\") AND DueDate <= DateTime.Parse(\"{1}\")", startDate, endDate));
 
             var query = Api.Invoices.Where("Status == \"ACTIVE\"")

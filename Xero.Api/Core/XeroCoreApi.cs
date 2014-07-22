@@ -39,6 +39,7 @@ namespace Xero.Api.Core
         }
 
         public AccountsEndpoint Accounts { get; private set; }
+        public AllocationsEndpoint Allocations { get; private set; }
         public AttachmentsEndpoint Attachments { get; private set; }
         public BankTransactionsEndpoint BankTransactions { get; private set; }
         public BankTransfersEndpoint BankTransfers { get; private set; }
@@ -61,12 +62,14 @@ namespace Xero.Api.Core
         public TaxRatesEndpoint TaxRates { get; private set; }
         public TrackingCategoriesEndpoint TrackingCategories { get; private set; }
         public UsersEndpoint Users { get; private set; }
+        
 
         private void Connect()
         {
             OrganisationEndpoint = new OrganisationEndpoint(Client);
 
             Accounts = new AccountsEndpoint(Client);
+            Allocations = new AllocationsEndpoint(Client);
             Attachments = new AttachmentsEndpoint(Client);
             BankTransactions = new BankTransactionsEndpoint(Client);
             BankTransfers = new BankTransfersEndpoint(Client);

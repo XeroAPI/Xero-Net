@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\QueryGenerator.cs" />
+    <Compile Include="Core\Endpoints\AllocationEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
     <Compile Include="Core\Endpoints\PdfEndpoint.cs" />
     <Compile Include="Core\Endpoints\SetupEndpoint.cs" />
