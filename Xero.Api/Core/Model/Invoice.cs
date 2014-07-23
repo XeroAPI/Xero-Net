@@ -61,7 +61,7 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public bool? HasAttachments { get; set; }
 
-        [DataMember(EmitDefaultValue = false, Name = "BrandingThemeId")]
+        [DataMember(EmitDefaultValue = false, Name = "BrandingThemeID")]
         public Guid? BrandingThemeId { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
