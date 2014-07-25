@@ -66,6 +66,12 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public bool? HasAttachments { get; set; }
 
+        [DataMember(EmitDefaultValue = false, Name = "PurchasesDefaultAccountCode")]
+        public string PurchaseAccountCode { get; set; }
+
+        [DataMember(EmitDefaultValue = false, Name = "SalesDefaultAccountCode")]
+        public string SalesAccountCode { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
         public BrandingTheme BrandingTheme { get; set; }
 
