@@ -113,6 +113,7 @@
     <Compile Include="Integration\General\QueryStrings.cs" />
     <Compile Include="Unit\SalesTaxBasisTypeTest.cs" />
     <Compile Include="Unit\SalesTaxPeriodTypeTest.cs" />
+    <Compile Include="Unit\TrackingCategories.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xero.Api.Example.Applications\Xero.Api.Example.Applications.csproj">
