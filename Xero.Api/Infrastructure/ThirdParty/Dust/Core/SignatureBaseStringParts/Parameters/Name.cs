@@ -11,6 +11,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
         internal static Name Timestamp = new Name("timestamp");
         internal static Name Verifier = new Name("verifier");
         internal static Name Session = new Name("session_handle");
+        internal static Name CallBack = new Name("callback");
         public static Name Nonce = new Name("nonce");
 		internal static Name Signature = new Name("signature");
 
