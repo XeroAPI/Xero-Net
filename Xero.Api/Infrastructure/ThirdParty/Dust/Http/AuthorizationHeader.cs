@@ -26,7 +26,8 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Http {
 					Timestamp,
 					Nonce,
 					Version,
-                    Verifier
+                    Verifier,
+                    Callback
 				);
 			}
 		}
@@ -50,6 +51,11 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Http {
 		private string Signature {
 			get { return ToString(_oAuthParameters.Signature); }
 		}
+
+        private string Callback
+        {
+            get { return ToString(_oAuthParameters.Callback); }
+        }
 
 		private string SignatureMethod {
 			get { return ToString(_oAuthParameters.SignatureMethod); }

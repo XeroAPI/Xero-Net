@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth.Signing;
+using Xero.Api.Infrastructure.ThirdParty.Dust;
 
 namespace Xero.Api.Example.Applications.Public
 {
@@ -27,9 +28,9 @@ namespace Xero.Api.Example.Applications.Public
             return string.Empty;
         }
 
-        protected override string CreateSignature(IToken token, string verb, Uri uri, string verifier)
+        protected override string CreateSignature(IToken token, string verb, Uri uri, string verifier, string callback)
         {
-            return new HmacSha1Signer().CreateSignature(token, uri, verb, verifier);
-        }        
+            return new HmacSha1Signer().CreateSignature(token, uri, verb, verifier, callback);
+        }
     }   
 }
