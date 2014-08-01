@@ -46,6 +46,8 @@
     <Compile Include="Core\Endpoints\PdfEndpoint.cs" />
     <Compile Include="Core\Endpoints\SetupEndpoint.cs" />
     <Compile Include="Core\File\BinaryFile.cs" />
+    <Compile Include="Core\Model\ItemTracking.cs" />
+    <Compile Include="Core\Model\ItemTrackingCategory.cs" />
     <Compile Include="Core\Model\Types\PdfEndpointType.cs" />
     <Compile Include="Core\Model\Types\SalesTaxPeriodType.cs" />
     <Compile Include="Core\Model\Types\SalesTaxBasisType.cs" />
