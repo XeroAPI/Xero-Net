@@ -237,9 +237,11 @@ namespace CoreTests.Integration.Invoices
         [Test]
         public void lineitems_without_account_code()
         {
-// ReSharper disable ReplaceWithSingleCallToFirstOrDefault
-            var item = Api.Items.Where("Code.StartsWith(\"Woo-hoo\")").And("Description != null") .Find().FirstOrDefault();
-// ReSharper restore ReplaceWithSingleCallToFirstOrDefault
+            var item = Api.Items
+                .Where("Code.StartsWith(\"Woo-hoo\")")
+                .And("Description != null")
+                .Find()
+                .FirstOrDefault();
 
             if (item == null)
             {
