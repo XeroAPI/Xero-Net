@@ -95,10 +95,11 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Http {
 	    }
 	    
 		private bool HasRealm {
-			get { return _realm != null; }
+			get { return !string.IsNullOrWhiteSpace(_realm); }
 		}
 
 		private string ToString(Parameter parameter) {
+            if (string.IsNullOrWhiteSpace(parameter.Value)) return string.Empty;
 			return string.Format(
 				"{0}=\"{1}\"", 
 				parameter.Name, 
