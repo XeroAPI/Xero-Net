@@ -28,8 +28,7 @@ namespace CoreTests.Integration.Items
                 {
                     AccountCode = "200",
                     UnitPrice = 25.00m
-                }
-                
+                }                
             });
 
             Assert.IsTrue(Guid.Empty != updated_item.Id);

@@ -46,6 +46,8 @@
     <Compile Include="Core\Endpoints\PdfEndpoint.cs" />
     <Compile Include="Core\Endpoints\SetupEndpoint.cs" />
     <Compile Include="Core\File\BinaryFile.cs" />
+    <Compile Include="Core\Model\ItemTracking.cs" />
+    <Compile Include="Core\Model\ItemTrackingCategory.cs" />
     <Compile Include="Core\Model\Types\PdfEndpointType.cs" />
     <Compile Include="Core\Model\Types\SalesTaxPeriodType.cs" />
     <Compile Include="Core\Model\Types\SalesTaxBasisType.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Payroll\America\Response\SettingsResponse.cs" />
     <Compile Include="Payroll\Australia\Model\Settings.cs" />
     <Compile Include="Payroll\Australia\Response\SettingsResponse.cs" />
+    <Compile Include="Payroll\Common\Model\NumberOfUnits.cs" />
     <Compile Include="Serialization\DefaultMapper.cs" />
     <Compile Include="Core\Endpoints\UsersEndpoint.cs" />
     <Compile Include="Core\Model\Types\AddressType.cs" />

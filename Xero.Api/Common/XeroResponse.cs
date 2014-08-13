@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq;
+using System.Linq;
 using System.Runtime.Serialization;
 using Xero.Api.Infrastructure.Interfaces;
 
@@ -8,7 +9,7 @@ namespace Xero.Api.Common
 {
     public abstract class XeroResponse<T> : XeroResponse, IXeroResponse<T>
     {
-        public abstract IList<T> Values { get; }
+        public abstract IList<T> Values { get; }        
     }
 
     [DataContract(Namespace = "")]
@@ -24,6 +25,8 @@ namespace Xero.Api.Common
         public string ProviderName { get; set; }
 
         [DataMember(Name = "DateTimeUTC")]
-        public DateTime DateTime { get; set; }        
+        public DateTime DateTime { get; set; }
+       
+
     }
 }

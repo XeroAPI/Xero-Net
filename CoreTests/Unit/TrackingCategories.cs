@@ -3,14 +3,14 @@ using NUnit.Framework;
 namespace CoreTests.Unit
 {
     [TestFixture]
-    public class Contacts : ApiWrapperTest
+    public class TrackingCategories : ApiWrapperTest
     {
         [Test]
         public void include_archived()
         {
             const string expected = "page=1&includeArchived=true";
 
-            var query = Api.Contacts.IncludeArchived(true)
+            var query = Api.TrackingCategories.IncludeArchived(true)
                 .QueryString;
 
             Assert.AreEqual(expected, query);
@@ -21,7 +21,7 @@ namespace CoreTests.Unit
         {
             const string expected = "page=1";
 
-            var query = Api.Contacts.IncludeArchived(false)
+            var query = Api.TrackingCategories.IncludeArchived(false)
                 .QueryString;
 
             Assert.AreEqual(expected, query);
@@ -32,7 +32,7 @@ namespace CoreTests.Unit
         {
             const string expected = "page=1";
 
-            var query = Api.Contacts.QueryString;
+            var query = Api.TrackingCategories.QueryString;
 
             Assert.AreEqual(expected, query);
         }
