@@ -179,6 +179,7 @@
     <Compile Include="Infrastructure\Interfaces\ITokenStore.cs" />
     <Compile Include="Infrastructure\Exceptions\XeroApiException.cs" />
     <Compile Include="Core\Endpoints\BrandingThemesEndpoint.cs" />
+    <Compile Include="Infrastructure\ThirdParty\HttpUtility\UrlEncoder.cs" />
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\HttpEncoder.cs" />
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\HttpUtility.cs" />
     <Compile Include="Payroll\America\Model\Types\State.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using Xero.Api.Infrastructure.ThirdParty.HttpUtility;
 
 namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.Parameters
 {
@@ -6,7 +7,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
     {
         internal string Escape(string what)
         {
-            return Uri.EscapeDataString(what ?? "");
+            return UrlEncoder.UrlEncode(what ?? string.Empty);
         }
     }
 }

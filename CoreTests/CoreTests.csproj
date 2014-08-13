@@ -106,6 +106,7 @@
     <Compile Include="Integration\Attachments\Attachments.cs" />
     <Compile Include="Integration\General\Errors.cs" />
     <Compile Include="Integration\TaxRates\Create.cs" />
+    <Compile Include="Unit\UrlEncoder.cs" />
     <Compile Include="Unit\Contacts.cs" />
     <Compile Include="Unit\FourDecimalPlaces.cs" />
     <Compile Include="Unit\QueryStrings.cs" />
