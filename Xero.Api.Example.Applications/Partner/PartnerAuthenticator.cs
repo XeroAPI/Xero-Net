@@ -34,7 +34,7 @@ namespace Xero.Api.Example.Applications.Partner
 
         protected override string AuthorizeUser(IToken token)
         {
-            if (CallBackUri != "oob")
+            if (CallBackUri.Equals("oob"))
             {
                 Process.Start(new UriBuilder(Tokens.AuthorizeUri)
                 {
