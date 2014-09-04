@@ -38,6 +38,9 @@ namespace Xero.Api.Core.Model
         public DateTime? ExpectedPaymentDate { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
+        public DateTime? PlannedPaymentDate { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public decimal? SubTotal { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
