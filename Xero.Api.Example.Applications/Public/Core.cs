@@ -15,6 +15,7 @@ namespace Xero.Api.Example.Applications.Public
                 new PublicAuthenticator(
                     ApplicationSettings.Uri,
                     ApplicationSettings.Uri,
+                    ApplicationSettings.Uri,
                     ApplicationSettings.CallBackUri,                    
                     store),
                 new Consumer(

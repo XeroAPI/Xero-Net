@@ -12,10 +12,17 @@ namespace Xero.Api.Example.Counts
             var user = new ApiUser { Name = Environment.MachineName };
             var tokenStore = new SqliteTokenStore();
 
-            var api = new Applications.Public.Core(tokenStore, user)
+            // Partner 
+            var api = new Applications.Partner.Core(tokenStore, user)
             {
                 UserAgent = "Xero Api - Listing example"
             };
+
+            // Public
+            //var api = new Applications.Public.Core(tokenStore, user)
+            //{
+            //    UserAgent = "Xero Api - Listing example"
+            //};
 
             new Lister(api).List();            
         }

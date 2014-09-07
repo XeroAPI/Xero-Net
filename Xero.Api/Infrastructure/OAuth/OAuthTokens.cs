@@ -49,31 +49,31 @@ namespace Xero.Api.Infrastructure.OAuth
             }
         }
 
-        public IToken GetRequestToken(IConsumer consumer, string header)
+        public IToken GetRequestToken(IConsumer consumer, string header, ICertificateAuthenticator authenticator = null)
         {
-            return GetToken(_tokenUri,  new Token { ConsumerKey = consumer.ConsumerKey, ConsumerSecret = consumer.ConsumerSecret }, XeroRequestUri, header);
+            return GetToken(_tokenUri,  new Token { ConsumerKey = consumer.ConsumerKey, ConsumerSecret = consumer.ConsumerSecret }, XeroRequestUri, header, authenticator);
         }
 
-        public IToken GetAccessToken(IToken token, string header)
+        public IToken GetAccessToken(IToken token, string header, ICertificateAuthenticator authenticator = null)
         {
-            return GetToken(_tokenUri, token, XeroAccessTokenUri, header);
+            return GetToken(_tokenUri, token, XeroAccessTokenUri, header, authenticator);
         }
 
-        public IToken RenewAccessToken(IToken token, string header)
+        public IToken RenewAccessToken(IToken token, string header, ICertificateAuthenticator authenticator = null)
         {
-            return GetToken(_tokenUri, token, XeroAccessTokenUri, header);
+            return GetToken(_tokenUri, token, XeroAccessTokenUri, header, authenticator);
         }
 
-        public IToken GetToken(string baseUri, IToken consumer, string endPoint, string header)
+        public IToken GetToken(string baseUri, IToken consumer, string endPoint, string header, ICertificateAuthenticator authenticator)
         {
-            var req = new HttpClient(baseUri)
+            var req = new HttpClient(baseUri, authenticator, null, null )
             {
                 UserAgent = "Xero Api wrapper - " + consumer.ConsumerKey
             };
-
+            
             req.AddHeader("Authorization", header);
 
-            var response = req.Post(endPoint, string.Empty);
+            var response = req.Post(endPoint, string.Empty, "application/xml", null, true);
 
             if (response.StatusCode != HttpStatusCode.OK)
             {

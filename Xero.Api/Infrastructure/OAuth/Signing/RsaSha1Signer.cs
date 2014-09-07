@@ -12,11 +12,11 @@ namespace Xero.Api.Infrastructure.OAuth.Signing
 {
     public class RsaSha1Signer
     {
-        public string CreateSignature(X509Certificate2 certificate, IToken token, Uri uri, string verb, string verifier = null, string callback = null)
+        public string CreateSignature(X509Certificate2 certificate, IToken token, Uri uri, string verb, string verifier = null, string callback = null, bool renewToken = false)
         {
-            var oAuthParameters = new OAuthParameters(
+            OAuthParameters oAuthParameters = new OAuthParameters(
                 new ConsumerKey(token.ConsumerKey),
-                new TokenKey(token.ConsumerKey),
+                new TokenKey(token.TokenKey),
                 "RSA-SHA1",
                 new DefaultTimestampSequence(),
                 new DefaultNonceSequence(),
@@ -24,7 +24,8 @@ namespace Xero.Api.Infrastructure.OAuth.Signing
                 "1.0",
                 verifier,
                 token.Session,
-                callback);
+                callback,
+                renewToken);
 
             var signatureBaseString =
                 new SignatureBaseString(
@@ -39,7 +40,11 @@ namespace Xero.Api.Infrastructure.OAuth.Signing
 
             oAuthParameters.SetSignature(signature);
 
-            return new AuthorizationHeader(oAuthParameters, string.Empty).Value; ;
+            if (renewToken)
+            {
+                return new AuthorizationHeader(oAuthParameters, string.Empty).ValueWithSession;
+            }
+            return new AuthorizationHeader(oAuthParameters, string.Empty).Value;
         }
     }
 }

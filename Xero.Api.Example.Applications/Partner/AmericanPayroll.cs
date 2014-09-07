@@ -13,6 +13,7 @@ namespace Xero.Api.Example.Applications.Partner
             base(ApplicationSettings.Uri,
                 new PartnerAuthenticator(
                     ApplicationSettings.Uri,
+                    ApplicationSettings.Uri,
                     ApplicationSettings.AuthorizeUri,
                     ApplicationSettings.CallBackUri,
                     store,

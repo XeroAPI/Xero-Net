@@ -15,6 +15,11 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Http {
 			get { return Prefix + Parameters; }
 		}
 
+        public string ValueWithSession
+        {
+            get { return Prefix + Join(Parameters, Session); }
+        }
+
 		protected string Parameters {
 			get {
 				return Join(
@@ -55,6 +60,11 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Http {
         private string Callback
         {
             get { return ToString(_oAuthParameters.Callback); }
+        }
+
+        private string Session
+        {
+            get { return ToString(_oAuthParameters.Session); }
         }
 
 		private string SignatureMethod {

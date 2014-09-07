@@ -52,16 +52,16 @@ namespace Xero.Api.Infrastructure.Http
             get; set;
         }
 
-        public Response Post(string endpoint, string data, string contentType = "application/xml", string query = null)
+        public Response Post(string endpoint, string data, string contentType = "application/xml", string query = null, bool authInProgress = false)
         {
-            return Post(endpoint, Encoding.UTF8.GetBytes(data), contentType, query);
+            return Post(endpoint, Encoding.UTF8.GetBytes(data), contentType, query, authInProgress);
         }
 
-        public Response Post(string endpoint, byte[] data, string contentType = "application/xml", string query = null)
+        public Response Post(string endpoint, byte[] data, string contentType = "application/xml", string query = null, bool authInProgress = false)
         {
             try
             {
-                return WriteToServer(endpoint, data, "POST", contentType, query);
+                return WriteToServer(endpoint, data, "POST", contentType, query, authInProgress);
             }
             catch (WebException we)
             {
@@ -113,7 +113,7 @@ namespace Xero.Api.Infrastructure.Http
             return new Response((HttpWebResponse)request.GetResponse());
         }
 
-        private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null)
+        private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null, bool authInProgress = false)
         {
             var uri = new UriBuilder(_baseUri)
             {
@@ -137,7 +137,7 @@ namespace Xero.Api.Infrastructure.Http
                 request.IfModifiedSince = ModifiedSince.Value;
             }
 
-            if (_auth != null)
+            if ((_auth != null) && (!authInProgress))
             {
                 var oauthSignature = _auth.GetSignature(Consumer, User, request.RequestUri, method, Consumer);
 
@@ -181,9 +181,9 @@ namespace Xero.Api.Infrastructure.Http
             }
         }
 
-        private Response WriteToServer(string endpoint, byte[] data, string method, string contentType = "application/xml", string query = null)
+        private Response WriteToServer(string endpoint, byte[] data, string method, string contentType = "application/xml", string query = null, bool authInProgress = false)
         {
-            var request = CreateRequest(endpoint, method, query: query);
+            var request = CreateRequest(endpoint, method, query: query, authInProgress: authInProgress);
             WriteData(data, request, contentType);
             return new Response((HttpWebResponse)request.GetResponse());
         }        
