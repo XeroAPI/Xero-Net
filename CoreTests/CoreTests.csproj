@@ -38,15 +38,13 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Resources\cert\public_privatekey.txt" />
     <Content Include="Resources\images\connect_xero_button_blue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Resources\cert\public_privatekey.pfx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
@@ -66,6 +64,8 @@
     <Compile Include="Integration\BankTransfers\BankTransfersTest.cs" />
     <Compile Include="Integration\BankTransfers\Create.cs" />
     <Compile Include="Integration\BankTransfers\Find.cs" />
+    <Compile Include="Integration\ContactGroups\ContactGroupsTest.cs" />
+    <Compile Include="Integration\ContactGroups\Create.cs" />
     <Compile Include="Integration\Contacts\ContactsTest.cs" />
     <Compile Include="Integration\Contacts\Create.cs" />
     <Compile Include="Integration\Contacts\Find.cs" />

@@ -43,6 +43,7 @@
     <Compile Include="Common\QueryGenerator.cs" />
     <Compile Include="Core\Endpoints\AllocationEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
+    <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
     <Compile Include="Core\Endpoints\PdfEndpoint.cs" />
     <Compile Include="Core\Endpoints\SetupEndpoint.cs" />
     <Compile Include="Core\File\BinaryFile.cs" />
@@ -63,7 +64,9 @@
     <Compile Include="Core\Model\Status\ReceiptStatus.cs" />
     <Compile Include="Core\Model\Types\OrganisationVersion.cs" />
     <Compile Include="Core\Model\Status\OrganisationStatus.cs" />
+    <Compile Include="Core\Request\ContactGroupsRequest.cs" />
     <Compile Include="Core\Request\SetupRequest.cs" />
+    <Compile Include="Core\Response\ContactGroupsResponse.cs" />
     <Compile Include="Core\Response\SetupResponse.cs" />
     <Compile Include="Infrastructure\Exceptions\RateExceededException.cs" />
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />

@@ -45,6 +45,7 @@ namespace Xero.Api.Core
         public BankTransfersEndpoint BankTransfers { get; private set; }
         public BrandingThemesEndpoint BrandingThemes { get; private set; }
         public ContactsEndpoint Contacts { get; private set; }
+        public ContactGroupsEndpoint ContactGroups { get; private set;}
         public CreditNotesEndpoint CreditNotes { get; private set; }
         public CurrenciesEndpoint Currencies { get; set; }
         public EmployeesEndpoint Employees { get; private set; }
@@ -75,6 +76,7 @@ namespace Xero.Api.Core
             BankTransfers = new BankTransfersEndpoint(Client);
             BrandingThemes = new BrandingThemesEndpoint(Client);
             Contacts = new ContactsEndpoint(Client);
+            ContactGroups = new ContactGroupsEndpoint(Client);
             CreditNotes = new CreditNotesEndpoint(Client);
             Currencies = new CurrenciesEndpoint(Client);
             Employees = new EmployeesEndpoint(Client);
@@ -111,7 +113,7 @@ namespace Xero.Api.Core
         {
             return Contacts.Create(items);
         }
-
+        
         public IEnumerable<Account> Create(IEnumerable<Account> items)
         {
             return Accounts.Create(items);
@@ -246,7 +248,7 @@ namespace Xero.Api.Core
         {
             return Contacts.Update(item);
         }
-
+        
         public Employee Update(Employee item)
         {
             return Employees.Update(item);
