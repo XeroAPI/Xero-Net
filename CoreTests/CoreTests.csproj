@@ -38,7 +38,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Resources\cert\public_privatekey.txt" />
+    <None Include="Resources\cert\public_privatekey.pfx" />
     <Content Include="Resources\images\connect_xero_button_blue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -64,8 +64,11 @@
     <Compile Include="Integration\BankTransfers\BankTransfersTest.cs" />
     <Compile Include="Integration\BankTransfers\Create.cs" />
     <Compile Include="Integration\BankTransfers\Find.cs" />
+    <Compile Include="Integration\ContactGroups\Assign.cs" />
     <Compile Include="Integration\ContactGroups\ContactGroupsTest.cs" />
     <Compile Include="Integration\ContactGroups\Create.cs" />
+    <Compile Include="Integration\ContactGroups\Delete.cs" />
+    <Compile Include="Integration\ContactGroups\Update.cs" />
     <Compile Include="Integration\Contacts\ContactsTest.cs" />
     <Compile Include="Integration\Contacts\Create.cs" />
     <Compile Include="Integration\Contacts\Find.cs" />

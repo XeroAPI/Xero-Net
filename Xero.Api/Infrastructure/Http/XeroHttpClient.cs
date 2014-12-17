@@ -140,6 +140,11 @@ namespace Xero.Api.Infrastructure.Http
                 throw new NotAvailableException(response.Body);
             }
 
+            if (response.StatusCode == HttpStatusCode.NoContent)
+            {
+                return;
+            }
+
             throw new XeroApiException(response.StatusCode, response.Body);
         }
     }

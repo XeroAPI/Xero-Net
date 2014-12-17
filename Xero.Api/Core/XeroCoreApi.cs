@@ -248,7 +248,12 @@ namespace Xero.Api.Core
         {
             return Contacts.Update(item);
         }
-        
+
+        public ContactGroup Update(ContactGroup item)
+        {
+            return ContactGroups.Update(item);
+        }
+
         public Employee Update(Employee item)
         {
             return Employees.Update(item);
@@ -297,6 +302,11 @@ namespace Xero.Api.Core
         public ImportSummary Update(Setup item)
         {
             return Setup.Update(item);
-        }        
+        }
+
+        public ContactGroup Assign(ContactGroup contactgroup, List<Contact> contacts)
+        {
+            return ContactGroups.AssignContacts(contactgroup, contacts);
+        }
     }
 }
