@@ -34,9 +34,9 @@ namespace CoreTests.Integration.ContactGroups
             contacts.Add(Given_a_contact());
             contacts.Add(Given_a_contact());
 
-            Api.Assign(contactgroup, contacts);
+            Api.ContactGroups[contactgroup.Id].AddRange(contacts);
 
-            Api.ContactGroups.EmptyGroup(contactgroup);
+            Api.ContactGroups[contactgroup.Id].Clear();
         }
     }
 }

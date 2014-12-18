@@ -304,9 +304,5 @@ namespace Xero.Api.Core
             return Setup.Update(item);
         }
 
-        public ContactGroup Assign(ContactGroup contactgroup, List<Contact> contacts)
-        {
-            return ContactGroups.AssignContacts(contactgroup, contacts);
-        }
-    }
+      }
 }

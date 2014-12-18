@@ -31,7 +31,7 @@ namespace CoreTests.Integration.ContactGroups
 
             assign_1_contacts.Add(Given_a_contact());
 
-            Api.Assign(contactgroup, assign_1_contacts);
+            Api.ContactGroups[contactgroup.Id].AddRange(assign_1_contacts);
 
             List<Contact> assign_4_more_contacts = new List<Contact>();
             assign_4_more_contacts.Add(Given_a_contact());
@@ -39,8 +39,7 @@ namespace CoreTests.Integration.ContactGroups
             assign_4_more_contacts.Add(Given_a_contact());
             assign_4_more_contacts.Add(Given_a_contact());
 
-            Api.Assign(contactgroup, assign_4_more_contacts);
-
+            Api.ContactGroups[contactgroup.Id].AddRange(assign_4_more_contacts);
             
         }
     }
