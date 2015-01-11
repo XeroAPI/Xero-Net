@@ -12,7 +12,6 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 	    private string _signature;
     	private readonly string _version;
         private readonly string _nonce, _timestamp, _verifier, _session;
-        private string _callback;
 
 	    public static OAuthParameters Empty = new OAuthParameters(
 	        new ConsumerKey(string.Empty), 
@@ -21,8 +20,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 	        new DefaultTimestampSequence(), 
 	        new DefaultNonceSequence(), 
 	        string.Empty, 
-	        null,
-            string.Empty
+	        null            
         );
 
 	    public OAuthParameters(
@@ -34,8 +32,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 			string signature, 
 			string version,
             string verifier = null,
-            string session = null,
-            string callback = null
+            string session = null
 		)
         {
     	    _key = key;
@@ -48,7 +45,6 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 
     	    _nonce = nonces.Next();
     	    _timestamp = timestamps.Next();
-            _callback = callback;
         }
 
 	    internal Parameters List() {
@@ -74,10 +70,6 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
                     {
                         it.Add(Session);
                     }
-                    if (!string.IsNullOrWhiteSpace(_callback))
-                    {
-                        it.Add(Callback);
-                    }
                 });
     	}
 
@@ -96,11 +88,6 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 		public void SetSignature(string what) {
 			_signature = what;
 		}
-
-        public void SetCallBackUrl(string url)
-        {
-            _callback = url;
-        }
 
 		internal Parameter Signature {
     		get { return new Parameter(Name.Signature, _signature); }
@@ -126,11 +113,6 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
         internal Parameter Session
         {
             get { return new Parameter(Name.Session, _session); }
-        }
-
-        internal Parameter Callback
-        {
-            get { return new Parameter(Name.CallBack, _callback); }
         }
     }
 }
