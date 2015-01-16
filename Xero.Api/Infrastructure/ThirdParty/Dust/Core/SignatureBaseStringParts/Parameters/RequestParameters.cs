@@ -24,11 +24,11 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 
     	private IEnumerable<Parameter> Map(string key)
         {
-    		return ValueFor(key).Split(',').Select(v => new Parameter(key, v));
+    		return ValuesFor(key).Select(v => new Parameter(key, v));
         }
 
-    	private string ValueFor(string key) {
-    		return _values[key];
+    	private string[] ValuesFor(string key) {
+    		return _values.GetValues(key);
     	}
 
     	#region Implementation of IEnumerable
