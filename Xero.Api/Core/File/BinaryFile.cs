@@ -25,7 +25,10 @@ namespace Xero.Api.Core.File
                 throw new FileNotFoundException("The file could not be found", fileInfo.FullName);
             }
 
-            CopyData(fileInfo.OpenRead(), fileInfo.Name, MimeTypes.GetMimeType(fileInfo), (int)fileInfo.Length);
+            using (FileStream fileStream = fileInfo.OpenRead())
+            {
+                CopyData(fileStream, fileInfo.Name, MimeTypes.GetMimeType(fileInfo), (int)fileInfo.Length);
+            }
         }
 
         public BinaryFile(Stream content, string filename, string contentType, int length)
