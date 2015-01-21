@@ -45,13 +45,13 @@ namespace Xero.Api.Core.Endpoints
             }
         }
 
-        public FolderResponse Inbox
+        public InboxResponse Inbox
         {
             get
             {
                 var endpoint = string.Format("files.xro/1.0/Inbox");
 
-                var folder = HandleFolderResponse(Client
+                var folder = HandleInboxResponse(Client
                     .Client
                     .Get(endpoint, null));
 
@@ -143,6 +143,22 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
-    }
 
+        private InboxResponse HandleInboxResponse(Infrastructure.Http.Response response)
+        {
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var json = response.Body;
+
+                var result = Client.JsonMapper.From<InboxResponse>(json);
+
+                return result;
+            }
+
+            Client.HandleErrors(response);
+
+            return null;
+        }
+
+    }
 }
