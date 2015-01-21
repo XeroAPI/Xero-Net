@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Request;
@@ -28,10 +29,9 @@ namespace Xero.Api.Core.Endpoints
 
                     return folder;
                 }
-
         }
 
-        public FolderResponse[] Folders
+        public FoldersResponse[] Folders
         {
             get
             {
@@ -65,30 +65,6 @@ namespace Xero.Api.Core.Endpoints
             AddParameter("page", page);
             return this;
         }
-
-        public FilesEndpoint Organisation(Guid organisationId)
-        {
-            AddParameter("OrganisationId", organisationId.ToString() );
-            return this;
-        }
-
-        public FilesEndpoint User(Guid userId)
-        {
-            AddParameter("UserId", userId.ToString());
-            return this;
-        }
-
-        public FilesResponse AddFile(Model.File file, byte[] data)
-        {
-            Client.Client.AddHeader("OrganisationId", Guid.NewGuid().ToString());
-            Client.Client.AddHeader("UserId", Guid.NewGuid().ToString());
-
-            var response = HandleFileResponse(Client
-                .Client
-                .PostMultipartForm("files.xro/1.0/Files", Guid.NewGuid().ToString(),Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), file.Name,file.Name, data));
-
-            return response;
-        }
         
         public IList<Model.File> All()
         {
@@ -110,17 +86,16 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
-        
-        private FolderResponse[] HandleFoldersResponse(Infrastructure.Http.Response response)
+
+        private FoldersResponse[] HandleFoldersResponse(Infrastructure.Http.Response response)
         {
             if (response.StatusCode == HttpStatusCode.OK)
             {
-
                 var json = response.Body;
 
-                var result = Client.JsonMapper.From<FolderResponse[]>(json);
+                var result = Client.JsonMapper.From<FoldersResponse[]>(json);
 
-                return result;
+                return result ;
             }
 
             Client.HandleErrors(response);

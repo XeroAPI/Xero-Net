@@ -45,6 +45,7 @@
     <Compile Include="Core\Endpoints\AllocationEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
+    <Compile Include="Core\Response\FoldersResponse.cs" />
     <Compile Include="Core\Response\InboxResponse.cs" />
     <Compile Include="Core\Response\FilesResponse.cs" />
     <Compile Include="Core\Request\FilesRequest.cs" />
