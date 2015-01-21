@@ -38,6 +38,22 @@ namespace Xero.Api.Core.Endpoints
 
         }
 
+        public FolderResponse Inbox
+        {
+            get
+            {
+                var endpoint = string.Format("files.xro/1.0/Inbox");
+
+                var folder = HandleFolderResponse(Client
+                    .Client
+                    .Get(endpoint, null));
+
+                return folder;
+            }
+            
+
+        }
+
         public FilesEndpoint Page(int page)
         {
             AddParameter("page", page);

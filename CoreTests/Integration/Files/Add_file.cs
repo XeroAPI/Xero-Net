@@ -46,6 +46,17 @@ namespace CoreTests.Integration.Files
 
         }
 
+        [Test]
+        public void can_get_the_inbox_like_this()
+        {
+            var inbox = Api.Files.Inbox;
+
+            Assert.IsTrue(inbox.Name == "Inbox");
+
+            Assert.IsTrue(inbox.IsInbox);
+        }
+
+
         private void for_example()
         {
             var result = Api.Files.All();
