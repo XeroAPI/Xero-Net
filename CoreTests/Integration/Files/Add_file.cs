@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Text;
+﻿using System.Linq;
 using NUnit.Framework;
-using Xero.Api.Core.Model;
-using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text;
-using File = System.IO.File;
 
 namespace CoreTests.Integration.Files
 {
@@ -43,6 +34,21 @@ namespace CoreTests.Integration.Files
             //Assert.IsTrue(folder.IsInbox );
             
             Assert.IsTrue(folder.Name == "Inbox");
+
+        }
+
+
+        [Test]
+        public void can_get_all_folders_like_this()
+        {
+
+            var allFolders = Api.Files.Folders;
+
+            Assert.True(allFolders.Count()==2);
+
+            Assert.True(allFolders[0].Name =="Inbox");
+
+            Assert.True(allFolders[1].Name == "Contracts");
 
         }
 

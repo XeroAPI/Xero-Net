@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Dynamic;
 using System.Net;
-using System.Net.Http;
-using System.Net.Mime;
 using Xero.Api.Core.Endpoints.Base;
-using Xero.Api.Core.Model;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Http;
-using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text;
 
 namespace Xero.Api.Core.Endpoints
 {
@@ -21,7 +15,6 @@ namespace Xero.Api.Core.Endpoints
         {
             Page(1);
         }
-
 
         public FolderResponse this[string guid]
         {
@@ -38,6 +31,20 @@ namespace Xero.Api.Core.Endpoints
 
         }
 
+        public FolderResponse[] Folders
+        {
+            get
+            {
+                var endpoint = string.Format("files.xro/1.0/Folders");
+
+                var folder = HandleFoldersResponse(Client
+                    .Client
+                    .Get(endpoint, null));
+
+                return folder;
+            }
+        }
+
         public FolderResponse Inbox
         {
             get
@@ -50,7 +57,6 @@ namespace Xero.Api.Core.Endpoints
 
                 return folder;
             }
-            
 
         }
 
@@ -72,8 +78,6 @@ namespace Xero.Api.Core.Endpoints
             return this;
         }
 
-
-
         public FilesResponse AddFile(Model.File file, byte[] data)
         {
             Client.Client.AddHeader("OrganisationId", Guid.NewGuid().ToString());
@@ -83,12 +87,9 @@ namespace Xero.Api.Core.Endpoints
                 .Client
                 .PostMultipartForm("files.xro/1.0/Files", Guid.NewGuid().ToString(),Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), file.Name,file.Name, data));
 
-
             return response;
         }
-
-
-
+        
         public IList<Model.File> All()
         {
             var response = HandleFileResponse(Client
@@ -96,7 +97,6 @@ namespace Xero.Api.Core.Endpoints
 
             return response.Items;
         }
-
 
         private FilesResponse HandleFileResponse(Infrastructure.Http.Response response)
         {
@@ -110,12 +110,29 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
+        
+        private FolderResponse[] HandleFoldersResponse(Infrastructure.Http.Response response)
+        {
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+
+                var json = response.Body;
+
+                var result = Client.JsonMapper.From<FolderResponse[]>(json);
+
+                return result;
+            }
+
+            Client.HandleErrors(response);
+
+            return null;
+        }
 
         private FolderResponse HandleFolderResponse(Infrastructure.Http.Response response)
         {
             if (response.StatusCode == HttpStatusCode.OK)
             {
-               var json = response.Body;
+                var json = response.Body;
 
                var result = Client.JsonMapper.From<FolderResponse>(json);
                
@@ -127,6 +144,4 @@ namespace Xero.Api.Core.Endpoints
             return null;
         }
     }
-
-
 }
