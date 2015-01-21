@@ -5,6 +5,7 @@ using System.Linq;
 using NUnit.Framework;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Types;
+using File = System.IO.File;
 
 namespace CoreTests.Integration.Attachments
 {

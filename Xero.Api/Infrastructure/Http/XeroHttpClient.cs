@@ -87,6 +87,8 @@ namespace Xero.Api.Infrastructure.Http
             return Client.Get(endpoint, null);
         }
 
+        
+
         internal IEnumerable<TResult> Read<TResult, TResponse>(Response response)
             where TResponse : IXeroResponse<TResult>, new()
         {

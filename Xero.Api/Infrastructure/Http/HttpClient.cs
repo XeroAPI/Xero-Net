@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using Xero.Api.Infrastructure.Interfaces;
 
@@ -52,11 +55,12 @@ namespace Xero.Api.Infrastructure.Http
             get; set;
         }
 
+
         public Response Post(string endpoint, string data, string contentType = "application/xml", string query = null)
         {
             return Post(endpoint, Encoding.UTF8.GetBytes(data), contentType, query);
         }
-
+        
         public Response Post(string endpoint, byte[] data, string contentType = "application/xml", string query = null)
         {
             try
@@ -68,6 +72,28 @@ namespace Xero.Api.Infrastructure.Http
                 return new Response((HttpWebResponse)we.Response);
             }
         }
+            
+        public Response PostMultipartForm(string endpoint, string organisationId, string userId, string folderId, string name, string filename, byte[] payload)
+        {   
+            var formData = new MultipartFormDataContent();
+            
+            formData.Add(new ByteArrayContent(payload),name,filename);
+
+            var client = new System.Net.Http.HttpClient();
+
+            client.DefaultRequestHeaders.Add("OrganisationId", organisationId);
+            client.DefaultRequestHeaders.Add("UserId", userId);
+
+                
+            var url = "http://api.web/" + endpoint;
+
+            var asynResponse = client.PostAsync(url, formData).Result;
+
+            return null;
+
+        }
+
+        
 
         public Response Put(string endpoint, string data, string contentType = "application/xml", string query = null)
         {

@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.XML" />
   </ItemGroup>
@@ -44,8 +45,12 @@
     <Compile Include="Core\Endpoints\AllocationEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
+    <Compile Include="Core\Response\FilesResponse.cs" />
+    <Compile Include="Core\Request\FilesRequest.cs" />
+    <Compile Include="Core\Model\File.cs" />
     <Compile Include="Core\Endpoints\PdfEndpoint.cs" />
     <Compile Include="Core\Endpoints\SetupEndpoint.cs" />
+    <Compile Include="Core\Endpoints\FilesEndpoint.cs" />
     <Compile Include="Core\File\BinaryFile.cs" />
     <Compile Include="Core\Model\ItemTracking.cs" />
     <Compile Include="Core\Model\ItemTrackingCategory.cs" />

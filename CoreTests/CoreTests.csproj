@@ -81,6 +81,7 @@
     <Compile Include="Integration\ExpenseClaims\ExpenseClaimTest.cs" />
     <Compile Include="Integration\ExpenseClaims\Create.cs" />
     <Compile Include="Integration\ExpenseClaims\Update.cs" />
+    <Compile Include="Integration\Files\Add_file.cs" />
     <Compile Include="Integration\Invoices\Find.cs" />
     <Compile Include="Integration\Invoices\InvoicesTest.cs" />
     <Compile Include="Integration\Items\Create.cs" />
