@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace CoreTests.Integration.Files
@@ -21,12 +22,24 @@ namespace CoreTests.Integration.Files
         }
 
         [Test]
-        public void can_get_single_file_like_this()
+        public void can_get_the_content_of_a_file_like_this()
         {
             for_example();
 
             var folder = Api.Files[folderId];
 
+            var file = folder[Id];
+
+        }
+
+
+        [Test]
+        public void can_get_single_file_like_this()
+        {
+            for_example();
+
+            var folder = Api.Files[folderId];
+            
             var file = folder[Id];
 
             Assert.IsTrue(file.Name == "10322846_10154310023545529_6907991459304884147_n.jpg");

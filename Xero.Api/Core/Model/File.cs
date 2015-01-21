@@ -29,7 +29,9 @@ namespace Xero.Api.Core.Model
         public DateTime UpdatedDateUtc { get; set; }
 
         public Model.FilesUser User { get; set; }
-   }
+        
+        public byte[] Content { get; set; }
+    }
 
     [DataContract(Namespace = "")]
     public class Folder
