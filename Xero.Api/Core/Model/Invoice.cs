@@ -78,5 +78,9 @@ namespace Xero.Api.Core.Model
 
         [DataMember(Name = "LineItems", EmitDefaultValue = false)]
         public List<LineItem> Items { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public bool? SentToContact { get; set; }
+
     }
 }
