@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using Xero.Api.Infrastructure.Interfaces;
+using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text;
 
 namespace Xero.Api.Infrastructure.Http
 {
@@ -73,27 +75,11 @@ namespace Xero.Api.Infrastructure.Http
             }
         }
             
-        public Response PostMultipartForm(string endpoint, string organisationId, string userId, string folderId, string name, string filename, byte[] payload)
-        {   
-            var formData = new MultipartFormDataContent();
-            
-            formData.Add(new ByteArrayContent(payload),name,filename);
+        public Response PostMultipartForm(string endpoint, string folderId, string name, string filename, byte[] payload)
+        {
 
-            var client = new System.Net.Http.HttpClient();
-
-            client.DefaultRequestHeaders.Add("OrganisationId", organisationId);
-            client.DefaultRequestHeaders.Add("UserId", userId);
-
-                
-            var url = "http://api.web/" + endpoint;
-
-            var asynResponse = client.PostAsync(url, formData).Result;
-
-            return null;
-
+            return WriteToServerWithMultipart(endpoint, payload);
         }
-
-        
 
         public Response Put(string endpoint, string data, string contentType = "application/xml", string query = null)
         {
@@ -205,6 +191,48 @@ namespace Xero.Api.Infrastructure.Http
                 dataStream.Write(bytes, 0, bytes.Length);
                 dataStream.Close();
             }
+        }
+
+        private Response WriteToServerWithMultipart(string endpoint, byte[] payload)
+        {
+
+            var request = CreateRequest(endpoint, "POST", "application/xml", "");
+
+            Debug.WriteLine(request.RequestUri);
+
+            WriteMultipartData(payload, request);
+            
+            return new Response((HttpWebResponse)request.GetResponse());
+
+        }
+
+        private void WriteMultipartData(byte[] bytes, HttpWebRequest request)
+        {
+            var boundary = Guid.NewGuid();
+
+            byte[] header = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\nContent-Disposition: form-data; name=xero; FileName=myfile.png\r\nContent-Type: image/png\r\n\r\n");
+
+            byte[] trailer = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
+
+            request.ContentType = "multipart/form-data;"; //"boundary=" + boundary;
+
+            Debug.WriteLine(request.ContentType);
+            
+            var contentLength = bytes.Length + header.Length + trailer.Length;
+            
+            request.ContentLength = contentLength;
+
+            var dataStream = request.GetRequestStream();
+            
+            dataStream.Write(header, 0, header.Length);
+                
+            dataStream.Write(bytes, 0, bytes.Length);
+
+            dataStream.Write(trailer, 0, trailer.Length);
+
+            dataStream.Close();
+
+
         }
 
         private Response WriteToServer(string endpoint, byte[] data, string method, string contentType = "application/xml", string query = null)

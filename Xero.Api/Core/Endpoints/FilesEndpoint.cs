@@ -135,5 +135,14 @@ namespace Xero.Api.Core.Endpoints
             return null;
         }
 
+        public FilesResponse Add(Model.File file, byte[] data)
+        {
+           
+            var response = HandleFileResponse(Client
+                .Client
+                .PostMultipartForm("files.xro/1.0/Files", Guid.NewGuid().ToString(), file.Name, file.Name, data));
+
+            return response;
+        }
     }
 }

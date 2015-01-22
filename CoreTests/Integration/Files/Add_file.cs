@@ -1,13 +1,16 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
+using Xero.Api.Core.Model;
+using File = System.IO.File;
 
 namespace CoreTests.Integration.Files
 {
     [TestFixture]
     public class Add_file : ApiWrapperTest
     {
-        private const string ImagePath = @"resources\images\connect_xero_button_blue.png";
+        private const string ImagePath = @"connect_xero_button_blue.png";
         
         public string Id;
         
@@ -86,39 +89,93 @@ namespace CoreTests.Integration.Files
         }
 
 
-        //[Test]
-        //public void Can_add_a_file_like_this()
-        //{
-        //    // get a file
-        //    var myfile = File.Open(ImagePath, FileMode.Open);
-
-        //    byte[] data = new byte[10000];
+        [Test]
+        public void Can_add_a_file_like_this()
+        {
+            var data = GetFileBytes("xero",ImagePath);
 
 
-        //    for (int i = 0; i < myfile.Length; i++)
-        //    {
-        //        if (data[i] != myfile.ReadByte())
-        //        {
-        //            break;
-        //        }
-        //    }
+            var result = Api.Files.Add(new Xero.Api.Core.Model.File()
+            {
+                Name = "test",
+                User = new FilesUser()
+                {
+                    FirstName = "David",
+                    LastName = "Norden",
+                    FullName = "David Norden",
+                    Name = "David@gmail.com"
 
-           
+                }
+            }, data);
+        }
 
-        //    var result =  Api.Files.AddFile(new Xero.Api.Core.Model.File()
-        //    {
-        //        Name = "test",
-        //        User = new FilesUser()
-        //        {
-        //            FirstName ="David",
-        //            LastName ="Norden",
-        //            FullName = "David Norden",
-        //            Name = "David@gmail.com"
+      
 
-        //        }
-        //    } ,   data);
-            
-           
-        //}
+        protected static byte[] GetFileBytes(string name, string fileName)
+        {
+            var file = new FileInfo(new DiskFile(name, fileName).Path);
+
+            var data = new DataItem(file);
+            byte[] bytes;
+
+            using (var ms = new MemoryStream())
+            {
+                data.Content.CopyTo(ms);
+                bytes = ms.ToArray();
+            }
+
+            return bytes;
+        }
+    }
+
+    public class DiskFile : File
+    {
+        public string Name { get; private set; }
+        public string Path { get; private set; }
+        public int ContentLength { get; private set; }
+
+        public DiskFile(string name)
+            : this(name, name)
+        { }
+
+        public DiskFile(string name, string path)
+        {
+            Name = name;
+            Path = string.Format("resources\\images\\{0}", path);
+            ContentLength = (int)new FileInfo(Path).Length;
+        }
+    }
+    
+    public interface File
+    {
+        string Name { get; }
+        string Path { get; }
+        int ContentLength { get; }
+    }
+
+    public class DataItem : IDisposable
+    {
+        public String ContentType { get; set; }
+        public Stream Content { get; private set; }
+
+        public DataItem(FileInfo file, String contentType = "unknown")
+        {
+            Content = file.OpenRead();
+            ContentType = contentType;
+        }
+
+        public DataItem(Byte[] data, String contentType = "unknown")
+        {
+            ContentType = contentType;
+            Content = new MemoryStream(data);
+        }
+
+        public void Dispose()
+        {
+            if (Content != null)
+            {
+                Content.Close();
+            }
+        }
     }
 }
