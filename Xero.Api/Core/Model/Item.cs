@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Xero.Api.Common;
 
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public sealed class Item
+    public sealed class Item : IHasId
     {
         [DataMember(Name = "ItemID", EmitDefaultValue = false)]
         public Guid Id { get; set; }

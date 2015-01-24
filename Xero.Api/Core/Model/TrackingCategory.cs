@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Xero.Api.Common;
 using Xero.Api.Core.Model.Status;
 
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class TrackingCategory
+    public class TrackingCategory : IHasId
     {
         [DataMember(Name = "TrackingCategoryID")]
         public Guid Id { get; set; }
