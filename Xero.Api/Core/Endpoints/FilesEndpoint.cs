@@ -76,7 +76,7 @@ namespace Xero.Api.Core.Endpoints
 
         private FilesResponse HandleFileResponse(Infrastructure.Http.Response response)
         {
-            if (response.StatusCode == HttpStatusCode.OK)
+            if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
             {
                 var result = Client.JsonMapper.From<FilesResponse>(response.Body);
                 return result;
@@ -135,14 +135,19 @@ namespace Xero.Api.Core.Endpoints
             return null;
         }
 
-        public FilesResponse Add(Model.File file, byte[] data)
+        public FilesResponse Add(Guid folderId,string contentType,Model.File file, byte[] data)
         {
            
             var response = HandleFileResponse(Client
                 .Client
-                .PostMultipartForm("files.xro/1.0/Files", Guid.NewGuid().ToString(), file.Name, file.Name, data));
+                .PostMultipartForm("files.xro/1.0/Files", folderId,contentType,  file.Name, file.Name, data));
 
             return response;
+        }
+
+        public void Remove(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
