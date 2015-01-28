@@ -147,6 +147,7 @@ namespace Xero.Api.Infrastructure.Http
                 return;
             }
 
+            
             throw new XeroApiException(response.StatusCode, response.Body);
         }
     }

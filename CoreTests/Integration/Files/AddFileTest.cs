@@ -1,40 +1,21 @@
-﻿using System.Linq;
+﻿using System;
 using NUnit.Framework;
-using Xero.Api.Core.Model;
 using Xero.Api.Core.Response;
+using Xero.Api.Infrastructure.Exceptions;
 
 namespace CoreTests.Integration.Files
 {
     [TestFixture]
     public class AddFileTest : FilesTest
     {
-        private const string ImagePath = @"connect_xero_button_blue.png";
+        public Guid id;
 
-        public string Id;
-
-        public string inboxFolderId;
-
-       
-
-        public AddFileTest()
-        {
-            exampleFile = GetFileBytes("xero", ImagePath);
-
-        }
-
-        private void for_example()
-        {
-            var result = Api.Files.All();
-
-            inboxFolderId = result[0].FolderId;
-
-            Id = result[0].Id;
-        }
-
+        public Guid inboxFolderId;
+        
         [Test]
         public void can_get_all_files_like_this()
         {
-            var result = Api.Files.All();
+            var result = Api.Files.Find();
 
             Assert.True(result != null);
         }
@@ -42,78 +23,33 @@ namespace CoreTests.Integration.Files
         [Test]
         public void can_get_the_content_of_a_file_like_this()
         {
-            for_example();
 
-            var folder = Api.Files[inboxFolderId];
+            var filename = "My Test File " + Guid.NewGuid();
 
-            var file = folder[Id];
+            var inboxId = Api.Inbox.InboxFolder.Id;
 
-        }
+            var id = Given_a_file_in(inboxId, filename);
 
+            var resultingFile = Api.Files[id];
 
-        [Test]
-        public void can_get_single_file_like_this()
-        {
-            for_example();
-
-            var files = Api.Files[inboxFolderId];
-
-            var file = files[Id];
-
-            Assert.IsTrue(file.Name == "test");
-
-            Assert.IsTrue(files.Name == "Inbox");
-        }
-
-        [Test]
-        public void can_get_all_folders_like_this()
-        {
-
-            var allFolders = Api.Files.Folders;
-
-            Assert.True(allFolders.Count() == 2);
-
-            Assert.True(allFolders[0].Name == "Inbox");
-
-            Assert.True(allFolders[1].Name == "Contracts");
-
-        }
-
-        [Test]
-        public void can_get_the_inbox_like_this()
-        {
-            var inbox = Api.Files.Inbox;
-
-            Assert.IsTrue(inbox.Name == "Inbox");
-
-            Assert.IsTrue(inbox.IsInbox);
-        }
-
-
-        [Test]
-        public void Can_add_a_file_to_inbox_like_this()
-        {
-
-            var inbox = Api.Files.Inbox;
-
-            var result = Given_a_file(inbox);
-
-            Assert.IsTrue(result != null);
-        }
-
-       
-
-        [Test]
-        public void can_remove_a_file_like_this()
-        {
-            var inbox = Api.Files.Inbox;
-
-            var result = Given_a_file(inbox);
-
-            Api.Files.Remove(result.Id);
+            Assert.IsTrue(resultingFile.Name == filename);
 
         }
         
+       [Test]
+        public void can_remove_a_file_like_this()
+        {
+            var inboxId = Api.Inbox.InboxFolder.Id;
+
+            var result = Given_a_file_in(inboxId, "Test " + Guid.NewGuid());
+
+            Api.Files.Remove(result);
+
+            var notfound= Api.Files[result];  
+
+            Assert.IsNull(notfound);
+
+        }
     }
 
 }

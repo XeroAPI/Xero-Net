@@ -81,6 +81,8 @@
     <Compile Include="Integration\ExpenseClaims\ExpenseClaimTest.cs" />
     <Compile Include="Integration\ExpenseClaims\Create.cs" />
     <Compile Include="Integration\ExpenseClaims\Update.cs" />
+    <Compile Include="Integration\Files\AddFolderTest.cs" />
+    <Compile Include="Integration\Files\InboxTest.cs" />
     <Compile Include="Integration\Files\Support\DataItem.cs" />
     <Compile Include="Integration\Files\Support\DiskFile.cs" />
     <Compile Include="Integration\Files\Support\File.cs" />

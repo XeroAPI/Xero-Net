@@ -11,6 +11,7 @@ namespace Xero.Api.Core.Response
 
         public bool IsInbox { get; set; }
 
+        public int FileCount { get; set; }
 
         public List<Folder> Folders { get; set; }
 

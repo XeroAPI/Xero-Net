@@ -1,30 +1,61 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Net.Configuration;
+using System.Runtime.CompilerServices;
 using CoreTests.Integration.Files.Support;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Response;
+using File = Xero.Api.Core.Model.File;
 
 namespace CoreTests.Integration.Files
 {
     public class FilesTest : ApiWrapperTest
     {
         protected byte[] exampleFile;
+        private const string ImagePath = @"connect_xero_button_blue.png";
 
-        protected FilesResponse Given_a_file(InboxResponse inbox)
+        public FilesTest()
         {
-            var result = Api.Files.Add(inbox.Id, "image/jpg", new Xero.Api.Core.Model.File()
+            exampleFile = GetFileBytes("xero", ImagePath);
+        }
+        
+        private File create_file_with_name(string filename)
+        {
+            return new Xero.Api.Core.Model.File()
             {
-                Name = "test",
+                Name = filename,
                 User = new FilesUser()
                 {
-                    FirstName = "David",
-                    LastName = "Norden",
-                    FullName = "David Norden",
-                    Name = "David@gmail.com"
+                    FirstName = "Bart",
+                    LastName = "Simpson",
+                    FullName = "Bart Simpson",
+                    Name = "Bart@gmail.com"
                 }
-            }, exampleFile);
-            return result;
+            };
         }
 
+        protected Guid Given_a_file_in(Guid folderId, string filename)
+        {
+            var file = create_file_with_name(filename);
+
+            return Given_a_file_in(folderId, file);
+
+        }
+
+        protected Guid Given_a_file_in(Guid folderId)
+        {
+            var filename = "Test" + Guid.NewGuid();
+
+            return Given_a_file_in(folderId, create_file_with_name(filename));    
+        }
+
+        protected Guid Given_a_file_in(Guid folderId,File file )
+        {
+            var result = Api.Files.Add(folderId, "image/jpg", file, exampleFile);
+
+            return result.Id ;
+        }
+        
         internal static byte[] GetFileBytes(string name, string fileName)
         {
             var file = new FileInfo(new DiskFile(name, fileName).Path);

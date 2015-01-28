@@ -11,10 +11,10 @@ namespace Xero.Api.Core.Model
         public string Name { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public string FolderId { get; set; }
+        public Guid FolderId { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public string Mimetype { get; set; }
@@ -42,13 +42,15 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public Guid Id { get; set; }
 
-        [DataMember(EmitDefaultValue = false)]
-        public FilePage Files { get; set; }
+        //[DataMember(EmitDefaultValue = false)]
+        //public FilePage Files { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public bool IsInbox { get; set; }
         
-
+        [DataMember(EmitDefaultValue = false)]
+        public int FileCount { get; set; }
+        
     }
 
     [DataContract(Namespace = "")]

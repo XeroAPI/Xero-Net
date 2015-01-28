@@ -18,7 +18,7 @@ namespace Xero.Api.Core.Response
     }
 
 
-    public class FolderResponse : XeroResponse<Model.FilePage>
+    public class FilePageResponse : XeroResponse<Model.FilePage>
     {
         public string Name { get; set; }
 
@@ -32,7 +32,7 @@ namespace Xero.Api.Core.Response
         }
 
 
-        public Model.File this [string guid]
+        public Model.File this [Guid guid]
         {
             get
             {

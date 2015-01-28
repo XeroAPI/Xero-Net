@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xero.Api.Common;
 
@@ -18,7 +19,7 @@ namespace Xero.Api.Core.Response
         }
 
 
-        public Model.File this[string guid]
+        public Model.File this[Guid guid]
         {
             get
             {
@@ -27,5 +28,6 @@ namespace Xero.Api.Core.Response
             }
         }
 
+        
     }
 }
