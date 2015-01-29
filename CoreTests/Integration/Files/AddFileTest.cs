@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Net;
-using CoreTests.Integration.BankTransactions;
 using NUnit.Framework;
 using Xero.Api.Core.Model;
-using Xero.Api.Core.Response;
-using Xero.Api.Infrastructure.Exceptions;
 
 namespace CoreTests.Integration.Files
 {
@@ -68,9 +65,24 @@ namespace CoreTests.Integration.Files
            Assert.IsTrue(updateResult.Name == NewName);
 
        }
+
+       [Test]
+       public void can_move_a_file_like_this()
+       {
+           var inboxId = Api.Inbox.InboxFolder.Id;
+
+           var result = Given_a_file_in(inboxId, "Test " + Guid.NewGuid());
+
+           var newFolder = Api.Folders.Add("stuff");
+
+           var updateResult = Api.Files.Move(result, newFolder.Id);
+
+           Assert.IsTrue(updateResult.FolderId == newFolder.Id);
+
+       }
         
        [Test]
-       public void Cannt_add_a_file_with_bad_filename_charactors()
+       public void Cannot_add_a_file_with_bad_filename_charactors()
        {
            var inboxId = Api.Inbox.InboxFolder.Id;
 

@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Net;
 using Xero.Api.Core.Endpoints.Base;
-using Xero.Api.Core.Model;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Http;
-using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text;
 
 namespace Xero.Api.Core.Endpoints
 {
@@ -50,6 +47,15 @@ namespace Xero.Api.Core.Endpoints
         {
             var response = HandleFileResponse(Client
                 .Client.Put("files.xro/1.0/Files/" + id, "{\"Name\":\"" + name + "\"}","application/json"));
+
+
+            return response;
+        }
+
+        public Model.File Move(Guid id, Guid newFolder)
+        {
+            var response = HandleFileResponse(Client
+                .Client.Put("files.xro/1.0/Files/" + id, "{\"FolderId\":\"" + newFolder + "\"}", "application/json"));
 
 
             return response;
