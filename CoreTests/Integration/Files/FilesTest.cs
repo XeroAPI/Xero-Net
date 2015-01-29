@@ -25,6 +25,7 @@ namespace CoreTests.Integration.Files
             {
                 Name = filename,
                 FileName = filename,
+                Mimetype = "image/png",
                 User = new FilesUser()
                 {
                     FirstName = "Bart",

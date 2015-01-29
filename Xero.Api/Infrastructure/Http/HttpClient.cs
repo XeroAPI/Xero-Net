@@ -124,8 +124,15 @@ namespace Xero.Api.Infrastructure.Http
 
         public Response Delete(string endpoint)
         {
-            var request = CreateRequest(endpoint, "DELETE");
-            return new Response((HttpWebResponse)request.GetResponse());
+            try
+            {
+                var request = CreateRequest(endpoint, "DELETE");
+                return new Response((HttpWebResponse)request.GetResponse());
+            }
+            catch (WebException we)
+            {
+                return new Response((HttpWebResponse)we.Response);
+            }
         }
 
         private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null)
@@ -200,7 +207,7 @@ namespace Xero.Api.Infrastructure.Http
 
         private Response WriteToServerWithMultipart(string endpoint,string contentType, string name, string filename ,byte[] payload)
         {
-            var request = CreateRequest(endpoint, "POST", "application/json", "");
+            var request = CreateRequest(endpoint, "POST");
 
             WriteMultipartData(payload, request, contentType,name, filename);
             

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Net;
 using NUnit.Framework;
 using Xero.Api.Core.Model;
+using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text;
 
 namespace CoreTests.Integration.Files
 {
@@ -21,17 +23,15 @@ namespace CoreTests.Integration.Files
         [Test]
         public void can_get_the_content_of_a_file_like_this()
         {
-
             var filename = "My Test File " + Guid.NewGuid();
 
             var inboxId = Api.Inbox.InboxFolder.Id;
 
             var id = Given_a_file_in(inboxId, filename);
 
-            var resultingFile = Api.Files[id];
-
-            Assert.IsTrue(resultingFile.Name == filename);
-
+            var content = Api.Files.GetContent(id,"image/png");
+            
+            Assert.IsTrue(StructuralComparisons.StructuralEqualityComparer.Equals(content,exampleFile));
         }
         
        [Test]
@@ -82,7 +82,7 @@ namespace CoreTests.Integration.Files
        }
         
        [Test]
-       public void Cannot_add_a_file_with_bad_filename_charactors()
+       public void cannot_add_a_file_with_bad_filename_charactors()
        {
            var inboxId = Api.Inbox.InboxFolder.Id;
 

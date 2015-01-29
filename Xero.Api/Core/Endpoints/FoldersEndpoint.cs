@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -38,6 +39,16 @@ namespace Xero.Api.Core.Endpoints
                         select new Folder(){Id = i.Id,Name = i.Name,IsInbox = i.IsInbox,FileCount = i.FileCount};
 
             return resultingFolders.ToList();
+        }
+
+        public void Remove(Guid id)
+        {
+
+            var response = HandleFolderResponse(Client
+                .Client
+                .Delete("files.xro/1.0/Folders/" + id.ToString()));
+
+
         }
 
         private FilePageResponse HandleFolderResponse(Infrastructure.Http.Response response)
@@ -85,7 +96,6 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
-
     }
 
     public class FolderResponse : XeroResponse<Model.Folder>

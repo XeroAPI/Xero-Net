@@ -22,7 +22,7 @@ namespace CoreTests.Integration.Files
         }
 
         [Test]
-        public void Can_add_a_file_to_inbox_like_this()
+        public void can_add_a_file_to_inbox_like_this()
         {
             var filename = "Inbox file " + Guid.NewGuid();
 

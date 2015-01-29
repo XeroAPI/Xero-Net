@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Http;
+using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text;
 
 namespace Xero.Api.Core.Endpoints
 {
@@ -80,6 +83,19 @@ namespace Xero.Api.Core.Endpoints
             return response;
         }
 
+        public byte[] GetContent(Guid id,string contentType)
+        {
+            var response = Client.Client.GetRaw("files.xro/1.0/Files/" + id + "/Content", contentType, "");
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                response.Stream.CopyTo(ms);
+
+                return ms.ToArray();
+            }
+           
+        }
+
         private Model.File HandleFileResponse(Infrastructure.Http.Response response)
         {
             if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
@@ -111,5 +127,6 @@ namespace Xero.Api.Core.Endpoints
         }
 
 
+       
     }
 }
