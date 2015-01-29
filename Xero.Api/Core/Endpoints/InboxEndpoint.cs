@@ -33,12 +33,41 @@ namespace Xero.Api.Core.Endpoints
 
         }
 
-        public FilesResponse Add(string contentType, Model.File file, byte[] data)
+        public Model.File this[Guid id]
+        {
+            get
+            {
+                var result = Find(id);
+                return result;
+            }
+        }
+
+        public Model.File Find(Guid fileId)
+        {
+            var response = HandleFileResponse(Client
+                .Client.Get("files.xro/1.0/Files", ""));
+
+            return response.Items.SingleOrDefault(i => i.Id == fileId);
+        }
+
+        public FilesResponse Add(Model.File file, byte[] data)
         {
 
             var response = HandleFileResponse(Client
                 .Client
-                .PostMultipartForm("files.xro/1.0/Files", Inbox, contentType, file.Name, file.Name, data));
+                .PostMultipartForm("files.xro/1.0/Files/" + Inbox, file.Mimetype , file.Name, file.Name, data));
+
+            return response;
+        }
+
+
+     
+
+        public FilesResponse Remove(Guid fileid)
+        {
+            var response = HandleFileResponse(Client
+                .Client
+                .Delete("files.xro/1.0/Files/" + fileid.ToString()));
 
             return response;
         }
@@ -71,33 +100,7 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
-        //public IList<Model.Folder> Find()
-        //{
-        //    var response = HandleFoldersResponse(Client
-        //        .Client.Get("files.xro/1.0/Inbox", ""));
-
-
-        //    var resultingFolders = from i  in response
-        //        select new Folder(){Id = i.Id,Name = i.Name,IsInbox = i.IsInbox,FileCount = i.FileCount};
-
-        //    return resultingFolders.ToList();
-        //}
-
-       
-
-        //public FoldersResponse[] Folders
-        //{
-        //    get
-        //    {
-        //        var endpoint = string.Format("files.xro/1.0/Inbox");
-
-        //        var folder = HandleFoldersResponse(Client
-        //            .Client
-        //            .Get(endpoint, null));
-
-        //        return folder;
-        //    }
-        //}
+      
 
         public Folder InboxFolder
         {

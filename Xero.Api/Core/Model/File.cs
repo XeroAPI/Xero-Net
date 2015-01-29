@@ -11,6 +11,9 @@ namespace Xero.Api.Core.Model
         public string Name { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
+        public string FileName { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public Guid Id { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
@@ -24,12 +27,12 @@ namespace Xero.Api.Core.Model
 
         [DataMember(EmitDefaultValue = false)]
         public DateTime CreatedDateUtc { get; set; }
-        
+
         [DataMember(EmitDefaultValue = false)]
         public DateTime UpdatedDateUtc { get; set; }
 
         public Model.FilesUser User { get; set; }
-        
+
         public byte[] Content { get; set; }
     }
 

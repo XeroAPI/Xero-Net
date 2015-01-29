@@ -8,6 +8,7 @@ using Xero.Api.Core.Model;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Http;
+using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text;
 
 namespace Xero.Api.Core.Endpoints
 {
@@ -17,27 +18,21 @@ namespace Xero.Api.Core.Endpoints
         internal FilesEndpoint(XeroHttpClient client)
             : base(client, "files.xro/1.0/Files")
         {
-            Page(1);
+            
         }
-
-
+        
         public Model.File this[Guid id]
         {
-            get { return Find(id); }
-        }
-
-
-       
-
-        public FilesEndpoint Page(int page)
-        {
-            AddParameter("page", page);
-            return this;
+            get
+            {
+                var result = Find(id);
+                return result; 
+            }
         }
         
         public IList<Model.File> Find()
         {
-            var response = HandleFileResponse(Client
+            var response = HandleFilesResponse(Client
                 .Client.Get("files.xro/1.0/Files","" ));
 
             return response.Items;
@@ -45,43 +40,32 @@ namespace Xero.Api.Core.Endpoints
 
         public Model.File Find(Guid fileId)
         {
-            var response = HandleFileResponse(Client
+            var response = HandleFilesResponse(Client
                 .Client.Get("files.xro/1.0/Files", ""));
 
             return response.Items.SingleOrDefault(i=>i.Id == fileId) ;
         }
 
-        private FilesResponse HandleFileResponse(Infrastructure.Http.Response response)
+        public Model.File Rename(Guid id, string name)
         {
-            if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
-            {
-                var result = Client.JsonMapper.From<FilesResponse>(response.Body);
-                return result;
-            }
-
-            Client.HandleErrors(response);
-
-            return null;
-        }
-
-        
-      
-
-       
-
-      
-
-        public FilesResponse Add(Guid folderId,string contentType,Model.File file, byte[] data)
-        {
-           
             var response = HandleFileResponse(Client
-                .Client
-                .PostMultipartForm("files.xro/1.0/Files", folderId,contentType,  file.Name, file.Name, data));
+                .Client.Put("files.xro/1.0/Files/" + id, "{\"Name\":\"" + name + "\"}","application/json"));
+
 
             return response;
         }
 
-        public FilesResponse Remove(Guid fileid)
+        public Model.File Add(Guid folderId, Model.File file, byte[] data)
+        {
+           
+            var response = HandleFileResponse(Client
+                .Client
+                .PostMultipartForm("files.xro/1.0/Files/"+ folderId, file.Mimetype,  file.Name, file.FileName, data));
+
+            return response;
+        }
+
+        public Model.File Remove(Guid fileid)
         {
             var response = HandleFileResponse(Client
                 .Client
@@ -90,15 +74,13 @@ namespace Xero.Api.Core.Endpoints
             return response;
         }
 
-
-        private FilePageResponse HandleFilePageResponse(Infrastructure.Http.Response response)
+        private Model.File HandleFileResponse(Infrastructure.Http.Response response)
         {
             if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
             {
-                var json = response.Body;
+                var body = response.Body;
 
-                var result = Client.JsonMapper.From<FilePageResponse>(json);
-
+                var result = Client.JsonMapper.From<Model.File>(body);
                 return result;
             }
 
@@ -106,6 +88,22 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
+
+        private FilesResponse HandleFilesResponse(Infrastructure.Http.Response response)
+        {
+            if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
+            {
+                var body = response.Body;
+
+                var result = Client.JsonMapper.From<FilesResponse>(body);
+                return result;
+            }
+
+            Client.HandleErrors(response);
+
+            return null;
+        }
+
 
     }
 }

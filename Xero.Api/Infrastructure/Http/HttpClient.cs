@@ -76,16 +76,18 @@ namespace Xero.Api.Infrastructure.Http
             }
         }
             
-        public Response PostMultipartForm(string endpoint, Guid folderId,string contentType, string name, string filename, byte[] payload)
+        public Response PostMultipartForm(string endpoint, string contentType, string name, string filename, byte[] payload)
         {
 
-            return WriteToServerWithMultipart(endpoint, folderId,contentType, name,filename, payload);
+            return WriteToServerWithMultipart(endpoint, contentType, name,filename, payload);
         }
 
         public Response Put(string endpoint, string data, string contentType = "application/xml", string query = null)
         {
             try
             {
+                data.PrintDump();
+
                 return WriteToServer(endpoint, Encoding.UTF8.GetBytes(data), "PUT", contentType, query);
             }
             catch (WebException we)
@@ -192,24 +194,26 @@ namespace Xero.Api.Infrastructure.Http
                 dataStream.Write(bytes, 0, bytes.Length);
                 dataStream.Close();
             }
+
+          
         }
 
-        private Response WriteToServerWithMultipart(string endpoint, Guid folderId,string contentType, string name, string filename ,byte[] payload)
+        private Response WriteToServerWithMultipart(string endpoint,string contentType, string name, string filename ,byte[] payload)
         {
             var request = CreateRequest(endpoint, "POST", "application/json", "");
 
-            WriteMultipartData(payload, request, folderId, contentType,name, filename);
+            WriteMultipartData(payload, request, contentType,name, filename);
             
             return new Response((HttpWebResponse)request.GetResponse());
 
         }
 
-        private void WriteMultipartData(byte[] bytes, HttpWebRequest request, Guid folderId,string contentType, string name, string filename)
+        private void WriteMultipartData(byte[] bytes, HttpWebRequest request, string contentType, string name, string filename)
         {
             var boundary = Guid.NewGuid();
 
             byte[] header = Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\nContent-Disposition: form-data; name=" + name + "; FileName=" + filename + " \r\nContent-Type: " + contentType + "\r\n\r\n");
-
+            
             byte[] trailer = Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
 
             request.ContentType = "multipart/form-data; boundary=" + boundary;
@@ -236,6 +240,9 @@ namespace Xero.Api.Infrastructure.Http
         {
             var request = CreateRequest(endpoint, method, query: query);
             WriteData(data, request, contentType);
+
+
+
             return new Response((HttpWebResponse)request.GetResponse());
         }        
     }

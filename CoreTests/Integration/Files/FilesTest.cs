@@ -24,6 +24,7 @@ namespace CoreTests.Integration.Files
             return new Xero.Api.Core.Model.File()
             {
                 Name = filename,
+                FileName = filename,
                 User = new FilesUser()
                 {
                     FirstName = "Bart",
@@ -44,14 +45,14 @@ namespace CoreTests.Integration.Files
 
         protected Guid Given_a_file_in(Guid folderId)
         {
-            var filename = "Test" + Guid.NewGuid();
+            var filename = "Test" + Guid.NewGuid() + ".png";
 
             return Given_a_file_in(folderId, create_file_with_name(filename));    
         }
 
         protected Guid Given_a_file_in(Guid folderId,File file )
         {
-            var result = Api.Files.Add(folderId, "image/jpg", file, exampleFile);
+            var result = Api.Files.Add(folderId, file, exampleFile);
 
             return result.Id ;
         }

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Net;
+using CoreTests.Integration.BankTransactions;
 using NUnit.Framework;
+using Xero.Api.Core.Model;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Exceptions;
 
@@ -8,9 +11,7 @@ namespace CoreTests.Integration.Files
     [TestFixture]
     public class AddFileTest : FilesTest
     {
-        public Guid id;
-
-        public Guid inboxFolderId;
+      
         
         [Test]
         public void can_get_all_files_like_this()
@@ -50,6 +51,55 @@ namespace CoreTests.Integration.Files
             Assert.IsNull(notfound);
 
         }
+
+       [Test]
+       public void can_rename_a_file_like_this()
+       {
+           var inboxId = Api.Inbox.InboxFolder.Id;
+
+           var result = Given_a_file_in(inboxId, "Test " + Guid.NewGuid());
+
+           var copy = Api.Files[result];
+
+           var NewName = "someother name";
+
+           var updateResult = Api.Files.Rename(copy.Id, NewName);
+
+           Assert.IsTrue(updateResult.Name == NewName);
+
+       }
+        
+       [Test]
+       public void Cannt_add_a_file_with_bad_filename_charactors()
+       {
+           var inboxId = Api.Inbox.InboxFolder.Id;
+
+           char[] badchar = System.IO.Path.GetInvalidFileNameChars();
+
+           var filename = "Inbox file " + badchar[0] + badchar[3] + badchar[2];
+
+           Assert.Throws<WebException>(() =>
+           {
+               Api.Files.Add( inboxId, create_file_with_name(filename), exampleFile);
+           });
+       }
+
+       private File create_file_with_name(string filename)
+       {
+           return new Xero.Api.Core.Model.File()
+           {
+               Name = filename,
+               FileName = filename,
+               Mimetype = "image/png",
+               User = new FilesUser()
+               {
+                   FirstName = "Bart",
+                   LastName = "Simpson",
+                   FullName = "Bart Simpson",
+                   Name = "Bart@gmail.com"
+               }
+           };
+       }
     }
 
 }
