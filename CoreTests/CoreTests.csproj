@@ -81,13 +81,13 @@
     <Compile Include="Integration\ExpenseClaims\ExpenseClaimTest.cs" />
     <Compile Include="Integration\ExpenseClaims\Create.cs" />
     <Compile Include="Integration\ExpenseClaims\Update.cs" />
-    <Compile Include="Integration\Files\AddFolderTest.cs" />
-    <Compile Include="Integration\Files\InboxTest.cs" />
+    <Compile Include="Integration\Files\Folders\AddFolderTest.cs" />
+    <Compile Include="Integration\Files\Inbox\InboxTest.cs" />
     <Compile Include="Integration\Files\Support\DataItem.cs" />
     <Compile Include="Integration\Files\Support\DiskFile.cs" />
     <Compile Include="Integration\Files\Support\File.cs" />
-    <Compile Include="Integration\Files\FilesTest.cs" />
-    <Compile Include="Integration\Files\AddFileTest.cs" />
+    <Compile Include="Integration\Files\Support\FilesTest.cs" />
+    <Compile Include="Integration\Files\Files\AddFileTest.cs" />
     <Compile Include="Integration\Invoices\Find.cs" />
     <Compile Include="Integration\Invoices\InvoicesTest.cs" />
     <Compile Include="Integration\Items\Create.cs" />

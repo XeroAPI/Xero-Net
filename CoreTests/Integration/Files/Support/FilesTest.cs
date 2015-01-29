@@ -1,13 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Net.Configuration;
-using System.Runtime.CompilerServices;
-using CoreTests.Integration.Files.Support;
 using Xero.Api.Core.Model;
-using Xero.Api.Core.Response;
-using File = Xero.Api.Core.Model.File;
 
-namespace CoreTests.Integration.Files
+namespace CoreTests.Integration.Files.Support
 {
     public class FilesTest : ApiWrapperTest
     {
@@ -19,7 +14,7 @@ namespace CoreTests.Integration.Files
             exampleFile = GetFileBytes("xero", ImagePath);
         }
         
-        private File create_file_with_name(string filename)
+        private Xero.Api.Core.Model.File create_file_with_name(string filename)
         {
             return new Xero.Api.Core.Model.File()
             {
@@ -51,7 +46,7 @@ namespace CoreTests.Integration.Files
             return Given_a_file_in(folderId, create_file_with_name(filename));    
         }
 
-        protected Guid Given_a_file_in(Guid folderId,File file )
+        protected Guid Given_a_file_in(Guid folderId,Xero.Api.Core.Model.File file )
         {
             var result = Api.Files.Add(folderId, file, exampleFile);
 

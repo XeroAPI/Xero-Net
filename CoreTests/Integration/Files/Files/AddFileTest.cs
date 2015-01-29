@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Net;
+using CoreTests.Integration.Files.Support;
 using NUnit.Framework;
 using Xero.Api.Core.Model;
-using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text;
+using File = Xero.Api.Core.Model.File;
 
-namespace CoreTests.Integration.Files
+namespace CoreTests.Integration.Files.Files
 {
     [TestFixture]
     public class AddFileTest : FilesTest

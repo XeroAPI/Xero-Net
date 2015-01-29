@@ -1,12 +1,8 @@
 using System;
-using System.Linq;
-using System.Net;
+using CoreTests.Integration.Files.Support;
 using NUnit.Framework;
-using Xero.Api.Core.Model;
-using Xero.Api.Core.Response;
-using Xero.Api.Infrastructure.Exceptions;
 
-namespace CoreTests.Integration.Files
+namespace CoreTests.Integration.Files.Folders
 {
     public class AddFolderTest : FilesTest
     {

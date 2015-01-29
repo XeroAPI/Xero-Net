@@ -1,11 +1,10 @@
 using System;
-using System.Linq;
-using System.Net;
-using System.Runtime.Remoting;
+using CoreTests.Integration.Files.Support;
 using NUnit.Framework;
 using Xero.Api.Core.Model;
+using File = Xero.Api.Core.Model.File;
 
-namespace CoreTests.Integration.Files
+namespace CoreTests.Integration.Files.Inbox
 {
     [TestFixture]
     public class InboxTest : FilesTest
