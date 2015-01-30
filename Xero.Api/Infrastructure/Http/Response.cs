@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 
 namespace Xero.Api.Infrastructure.Http
@@ -27,7 +28,11 @@ namespace Xero.Api.Infrastructure.Http
             {
                 using (var rdr = new StreamReader(Stream))
                 {
-                    return rdr.ReadToEnd();
+                    var result = rdr.ReadToEnd();
+
+                    Stream.Seek(0, SeekOrigin.Begin);
+                        
+                    return result;
                 }
             }
         }

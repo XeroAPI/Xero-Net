@@ -50,6 +50,9 @@ namespace Xero.Api.Core
         public CurrenciesEndpoint Currencies { get; set; }
         public EmployeesEndpoint Employees { get; private set; }
         public ExpenseClaimsEndpoint ExpenseClaims { get; private set; }
+        public FilesEndpoint Files { get; private set; }
+        public FoldersEndpoint Folders { get; private set; }
+        public InboxEndpoint Inbox { get; private set; }
         public InvoicesEndpoint Invoices { get; private set; }
         public ItemsEndpoint Items { get; private set; }
         public JournalsEndpoint Journals { get; private set; }
@@ -81,6 +84,9 @@ namespace Xero.Api.Core
             Currencies = new CurrenciesEndpoint(Client);
             Employees = new EmployeesEndpoint(Client);
             ExpenseClaims = new ExpenseClaimsEndpoint(Client);
+            Files = new FilesEndpoint(Client);
+            Folders = new FoldersEndpoint(Client);
+            Inbox = new InboxEndpoint(Client);
             Invoices = new InvoicesEndpoint(Client);
             Items = new ItemsEndpoint(Client);
             Journals = new JournalsEndpoint(Client);

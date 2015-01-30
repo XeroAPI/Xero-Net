@@ -48,9 +48,9 @@ namespace Xero.Api.Example.Applications.Partner
             return string.Empty;
         }
 
-        protected override string CreateSignature(IToken token, string verb, Uri uri, string verifier, string callback)
+        protected override string CreateSignature(IToken token, string verb, Uri uri, string verifier)
         {
-            return new RsaSha1Signer().CreateSignature(_signingCertificate, token, uri, verb, verifier, callback);
+            return new RsaSha1Signer().CreateSignature(_signingCertificate, token, uri, verb, verifier);
         }
     }
 }

@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
+using Xero.Api.Core.Model;
 using Xero.Api.Infrastructure.Interfaces;
+using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text;
 
 namespace Xero.Api.Infrastructure.Http
 {
@@ -52,11 +58,12 @@ namespace Xero.Api.Infrastructure.Http
             get; set;
         }
 
+
         public Response Post(string endpoint, string data, string contentType = "application/xml", string query = null)
         {
             return Post(endpoint, Encoding.UTF8.GetBytes(data), contentType, query);
         }
-
+        
         public Response Post(string endpoint, byte[] data, string contentType = "application/xml", string query = null)
         {
             try
@@ -68,11 +75,19 @@ namespace Xero.Api.Infrastructure.Http
                 return new Response((HttpWebResponse)we.Response);
             }
         }
+            
+        public Response PostMultipartForm(string endpoint, string contentType, string name, string filename, byte[] payload)
+        {
+
+            return WriteToServerWithMultipart(endpoint, contentType, name,filename, payload);
+        }
 
         public Response Put(string endpoint, string data, string contentType = "application/xml", string query = null)
         {
             try
             {
+                data.PrintDump();
+
                 return WriteToServer(endpoint, Encoding.UTF8.GetBytes(data), "PUT", contentType, query);
             }
             catch (WebException we)
@@ -109,8 +124,15 @@ namespace Xero.Api.Infrastructure.Http
 
         public Response Delete(string endpoint)
         {
-            var request = CreateRequest(endpoint, "DELETE");
-            return new Response((HttpWebResponse)request.GetResponse());
+            try
+            {
+                var request = CreateRequest(endpoint, "DELETE");
+                return new Response((HttpWebResponse)request.GetResponse());
+            }
+            catch (WebException we)
+            {
+                return new Response((HttpWebResponse)we.Response);
+            }
         }
 
         private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null)
@@ -179,12 +201,55 @@ namespace Xero.Api.Infrastructure.Http
                 dataStream.Write(bytes, 0, bytes.Length);
                 dataStream.Close();
             }
+
+          
+        }
+
+        private Response WriteToServerWithMultipart(string endpoint,string contentType, string name, string filename ,byte[] payload)
+        {
+            var request = CreateRequest(endpoint, "POST");
+
+            WriteMultipartData(payload, request, contentType,name, filename);
+            
+            return new Response((HttpWebResponse)request.GetResponse());
+
+        }
+
+        private void WriteMultipartData(byte[] bytes, HttpWebRequest request, string contentType, string name, string filename)
+        {
+            var boundary = Guid.NewGuid();
+
+            byte[] header = Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\nContent-Disposition: form-data; name=" + name + "; FileName=" + filename + " \r\nContent-Type: " + contentType + "\r\n\r\n");
+            
+            byte[] trailer = Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
+
+            request.ContentType = "multipart/form-data; boundary=" + boundary;
+
+            request.KeepAlive = false;
+            
+            var contentLength = bytes.Length + header.Length + trailer.Length;
+            
+            request.ContentLength = contentLength;
+
+            var dataStream = request.GetRequestStream();
+            
+            dataStream.Write(header, 0, header.Length);
+                
+            dataStream.Write(bytes, 0, bytes.Length);
+
+            dataStream.Write(trailer, 0, trailer.Length);
+
+            dataStream.Close();
+
         }
 
         private Response WriteToServer(string endpoint, byte[] data, string method, string contentType = "application/xml", string query = null)
         {
             var request = CreateRequest(endpoint, method, query: query);
             WriteData(data, request, contentType);
+
+
+
             return new Response((HttpWebResponse)request.GetResponse());
         }        
     }
