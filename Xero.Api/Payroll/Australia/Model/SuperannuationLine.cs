@@ -20,10 +20,10 @@ namespace Xero.Api.Payroll.Australia.Model
         public decimal MinimumMonthlyEarnings { get; set; }
 
         [DataMember]
-        public int ExpenseAccountCode { get; set; }
+        public string ExpenseAccountCode { get; set; }
 
         [DataMember]
-        public int LiabilityAccountCode { get; set; }
+        public string LiabilityAccountCode { get; set; }
 
         [DataMember]
         public DateTime? PaymentDateForThisPeriod { get; set; }
