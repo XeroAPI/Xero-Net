@@ -12,6 +12,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 	    private string _signature;
     	private readonly string _version;
         private readonly string _nonce, _timestamp, _verifier, _session;
+        private string _callback;
 
 	    public static OAuthParameters Empty = new OAuthParameters(
 	        new ConsumerKey(string.Empty), 
@@ -20,7 +21,8 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 	        new DefaultTimestampSequence(), 
 	        new DefaultNonceSequence(), 
 	        string.Empty, 
-	        null            
+	        null,
+            null
         );
 
 	    public OAuthParameters(
@@ -32,7 +34,8 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 			string signature, 
 			string version,
             string verifier = null,
-            string session = null
+            string session = null,
+            string callback = null
 		)
         {
     	    _key = key;
@@ -40,6 +43,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
             _signatureMethod = signatureMethod;
     	    _signature = signature;
 	        _session = session;
+	        _callback = callback;
 	        _verifier = verifier;
 	        _version = version ?? "1.0";
 
@@ -69,6 +73,11 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
                     if (!string.IsNullOrWhiteSpace(_session))
                     {
                         it.Add(Session);
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(_callback))
+                    {
+                        it.Add(Callback);
                     }
                 });
     	}
@@ -113,6 +122,11 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
         internal Parameter Session
         {
             get { return new Parameter(Name.Session, _session); }
+        }
+
+        internal Parameter Callback
+        {
+            get { return new Parameter(Name.CallBack, _callback); }
         }
     }
 }
