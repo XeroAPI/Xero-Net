@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Infrastructure.Http;
 using Xero.Api.Infrastructure.Interfaces;
 using HttpUtility = Xero.Api.Infrastructure.ThirdParty.HttpUtility.HttpUtility;
@@ -10,14 +11,16 @@ namespace Xero.Api.Infrastructure.OAuth
     {
         private readonly string _authorizeUri;
         private readonly string _tokenUri;
+        private readonly X509Certificate2 _clientCertificate;
         private const string XeroRequestUri = "oauth/RequestToken";
         private const string XeroAccessTokenUri = "oauth/AccessToken";
         private const string XeroAuthorizeUri = "oauth/Authorize";
 
-        public OAuthTokens(string authorizeUri, string tokenUri)
+        public OAuthTokens(string authorizeUri, string tokenUri, X509Certificate2 clientCertificate = null)
         {
             _authorizeUri = authorizeUri;
-            _tokenUri = tokenUri;            
+            _tokenUri = tokenUri;
+            _clientCertificate = clientCertificate;
         }
 
         public string AuthorizeUri
@@ -71,6 +74,9 @@ namespace Xero.Api.Infrastructure.OAuth
                 UserAgent = "Xero Api wrapper - " + consumer.ConsumerKey
             };
 
+            if (_clientCertificate != null)
+                req.ClientCertificate = _clientCertificate;
+            
             req.AddHeader("Authorization", header);
 
             var response = req.Post(endPoint, string.Empty);
