@@ -6,7 +6,7 @@ using Xero.Api.Infrastructure.OAuth.Signing;
 
 namespace Xero.Api.Example.Applications.Private
 {
-    public class PrivateAuthenticator : ICertificateAuthenticator
+    public class PrivateAuthenticator : IAuthenticator
     {
         private readonly X509Certificate2 _certificate;
 
