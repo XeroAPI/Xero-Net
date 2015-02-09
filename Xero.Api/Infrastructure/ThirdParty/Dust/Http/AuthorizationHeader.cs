@@ -27,6 +27,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Http {
 					Nonce,
 					Version,
                     Verifier
+                    //Callback
 				);
 			}
 		}
@@ -108,5 +109,10 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Http {
 		private string Prefix {
 			get { return "OAuth "; }
 		}
+
+//        private string Callback
+//        {
+//            get { return ToString(_oAuthParameters.Callback); }
+//        }
 	}
 }

@@ -14,7 +14,11 @@ namespace Xero.Api.Infrastructure.OAuth.Signing
     {
         public string CreateSignature(X509Certificate2 certificate, IToken token, Uri uri, string verb, string verifier = null, string callback = null)
         {
-            callback = "localhost";
+            callback = null;
+//            if (uri.AbsoluteUri.Contains("Organisation"))
+//            {
+//                callback = "localhost";
+//            }
 
             var oAuthParameters = new OAuthParameters(
                 new ConsumerKey(token.ConsumerKey),

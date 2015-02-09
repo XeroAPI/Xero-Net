@@ -70,10 +70,10 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
                         it.Add(Verifier);
                     }
 
-                    if (!string.IsNullOrWhiteSpace(_session))
-                    {
-                        it.Add(Session);
-                    }
+//                    if (!string.IsNullOrWhiteSpace(_session))
+//                    {
+//                        it.Add(Session);
+//                    }
 
                     if (!string.IsNullOrWhiteSpace(_callback))
                     {
