@@ -59,7 +59,7 @@ namespace Xero.Api.Infrastructure.Http
             get; set;
         }
 
-        public X509Certificate2 ClientCertificate
+        public X509Certificate ClientCertificate
         {
             get;
             set;
