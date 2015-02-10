@@ -14,15 +14,15 @@ namespace Xero.Api.Example.Applications
         protected ITokenStore Store { get; set; }
 
         private OAuthTokens _tokens;
+
         protected OAuthTokens Tokens 
         {
             get 
             {
                 if (_tokens == null)
                 {
-                    _tokens = new OAuthTokens(BaseUri, _tokenUri, GetClientCertificate());      
+                    _tokens = new OAuthTokens(_tokenUri, BaseUri, GetClientCertificate());      
                 }
-
                 return _tokens;
             } 
         }
