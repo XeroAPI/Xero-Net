@@ -49,26 +49,27 @@ namespace Xero.Api.Example.Applications
         {
             IToken token;
 
-            if (HasStore)
+            if (!HasStore)
+                return GetToken(consumer);
+
+            var sessionToken = Store.Find(user.Name);
+
+            if (sessionToken == null)
             {
-                IToken sessionToken = Store.Find(user.Name);
+                sessionToken = GetToken(consumer);
+                sessionToken.UserId = user.Name;
 
-                if (sessionToken == null || sessionToken.HasExpired)
-                {
-                    sessionToken = GetToken(consumer);
-                    sessionToken.UserId = user.Name;
+                Store.Add(sessionToken);
 
-                    Store.Add(sessionToken);
-                }
-
-                token = sessionToken;
-            }
-            else
-            {
-                token = GetToken(consumer);
+                return sessionToken;
             }
 
-            return token;
+            if (!sessionToken.HasExpired)
+                return sessionToken;
+
+            // TODO: renew
+
+            Store.Delete(sessionToken);
         }
 
         public bool HasStore
