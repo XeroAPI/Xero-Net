@@ -30,6 +30,11 @@ namespace Xero.Api.Example.Applications.Public
         protected override string CreateSignature(IToken token, string verb, Uri uri, string verifier)
         {
             return new HmacSha1Signer().CreateSignature(token, uri, verb, verifier);
-        }        
+        }
+
+        protected override IToken RenewToken(IToken sessionToken, IConsumer consumer)
+        {
+            return GetToken(consumer);
+        }
     }   
 }

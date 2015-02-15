@@ -47,8 +47,6 @@ namespace Xero.Api.Example.Applications
 
         public IToken GetToken(IConsumer consumer, IUser user)
         {
-            IToken token;
-
             if (!HasStore)
                 return GetToken(consumer);
 
@@ -66,10 +64,15 @@ namespace Xero.Api.Example.Applications
 
             if (!sessionToken.HasExpired)
                 return sessionToken;
-
-            // TODO: renew
-
+            
             Store.Delete(sessionToken);
+
+            sessionToken = RenewToken(sessionToken, consumer);
+            sessionToken.UserId = user.Name;
+            
+            Store.Add(sessionToken);
+
+            return sessionToken;
         }
 
         public bool HasStore
@@ -81,8 +84,9 @@ namespace Xero.Api.Example.Applications
 
         protected abstract string AuthorizeUser(IToken oauthToken);
         protected abstract string CreateSignature(IToken token, string verb, Uri uri, string verifier);
+        protected abstract IToken RenewToken(IToken sessionToken, IConsumer consumer);
 
-        private IToken GetToken(IConsumer consumer)
+        protected IToken GetToken(IConsumer consumer)
         {
             var oauthToken = Tokens.GetRequestToken(consumer, GetAuthorization(new Token
             {

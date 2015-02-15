@@ -5,14 +5,16 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Http {
 	public class AuthorizationHeader {
 		private readonly OAuthParameters _oAuthParameters;
 		private readonly string _realm;
+	    private readonly bool _includeSession;
 
-		public AuthorizationHeader(OAuthParameters oAuthParameters, string realm) {
+	    public AuthorizationHeader(OAuthParameters oAuthParameters, string realm, bool includeSession = false) {
 			_oAuthParameters = oAuthParameters;
 			_realm = realm;
+		    _includeSession = includeSession;
 		}
 
 		public string Value {
-			get { return Prefix + Parameters; }
+			get { return _includeSession ? Prefix + Join(Parameters, Session) : Prefix + Parameters; }
 		}
 
 		protected string Parameters {
@@ -73,6 +75,11 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Http {
 				return HasRealm ? string.Format("realm=\"{0}\"", _realm) : string.Empty; 
 			}
 		}
+
+        private string Session
+        {
+            get { return ToString(_oAuthParameters.Session); }
+        }
 
         public bool HasVerifier
         {
