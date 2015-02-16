@@ -27,7 +27,8 @@ namespace Xero.Api.Example.Applications.Public
             return string.Empty;
         }
 
-        protected override string CreateSignature(IToken token, string verb, Uri uri, string verifier)
+        protected override string CreateSignature(IToken token, string verb, Uri uri, string verifier, 
+            bool renewToken = false)
         {
             return new HmacSha1Signer().CreateSignature(token, uri, verb, verifier);
         }

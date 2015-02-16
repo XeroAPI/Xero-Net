@@ -48,14 +48,17 @@ namespace Xero.Api.Example.Applications.Partner
             return string.Empty;
         }
 
-        protected override string CreateSignature(IToken token, string verb, Uri uri, string verifier)
+        protected override string CreateSignature(IToken token, string verb, Uri uri, 
+            string verifier, bool renewToken = false)
         {
-            return new RsaSha1Signer().CreateSignature(_signingCertificate, token, uri, verb, verifier);
+            return new RsaSha1Signer().CreateSignature(_signingCertificate, token, uri, verb, verifier, renewToken);
         }
 
         protected override IToken RenewToken(IToken sessionToken, IConsumer consumer)
         {
-            throw new NotImplementedException();
+            var authHeader = GetAuthorization(sessionToken, "POST", Tokens.AccessUri, null, null, true);
+
+            return Tokens.GetAccessToken(sessionToken, authHeader);
         }
 
         protected override X509Certificate2 GetClientCertificate()
