@@ -34,6 +34,7 @@ namespace Xero.Api.Infrastructure.Http
             : this(jsonMapper, xmlMapper)
         {
             Client = new HttpClient(baseUri, auth, consumer, user);
+            Client.ClientCertificate = auth.Certificate;
         }
 
         public DateTime? ModifiedSince { get; set; }

@@ -12,6 +12,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 	    private string _signature;
     	private readonly string _version;
         private readonly string _nonce, _timestamp, _verifier, _session;
+        private bool _renewToken;
 
 	    public static OAuthParameters Empty = new OAuthParameters(
 	        new ConsumerKey(string.Empty), 
@@ -32,7 +33,8 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 			string signature, 
 			string version,
             string verifier = null,
-            string session = null
+            string session = null,
+            bool renewToken = false
 		)
         {
     	    _key = key;
@@ -45,6 +47,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 
     	    _nonce = nonces.Next();
     	    _timestamp = timestamps.Next();
+	        _renewToken = renewToken;
         }
 
 	    internal Parameters List() {
@@ -66,7 +69,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
                         it.Add(Verifier);
                     }
 
-                    if (!string.IsNullOrWhiteSpace(_session))
+                    if (_renewToken && (!string.IsNullOrWhiteSpace(_session)))
                     {
                         it.Add(Session);
                     }
