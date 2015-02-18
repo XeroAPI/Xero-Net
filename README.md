@@ -65,7 +65,7 @@ A skinny wrapper of the Xero API. Supports Payroll. All third party libraries ar
 * Invoices and Contacts support pagination. In the RESTful API these are off by default. For the wrapper, they are always on and default to page 1. See the Counts or Creation code examples for how to use the Page method to get all items.
 * Contacts support including archived contacts. Like the RESTful API, this if off by default. Use IncluceArchived(true) to include them.
 * Four decimal places are supported and are always on.
-* You will need an instance of the API per user. The user is stored as part of the API instance.
+* You will need an instance of the API per organisation / connection. The connection is stored as part of the API instance.
 
 ## Samples
 There are samples for each of the API endpoints. These have been done as console application and also a collection of NUnit tests. See the README for each of the executable and test assemblies.
