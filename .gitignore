@@ -33,3 +33,4 @@ _ReSharper*/
 [Pp]ackages/
 out/
 
+*.nupkg
