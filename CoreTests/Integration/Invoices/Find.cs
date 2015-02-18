@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using Xero.Api.Core.Model.Types;
 
@@ -38,6 +39,20 @@ namespace CoreTests.Integration.Invoices
             Assert.True(invoices.All(p => p.Type == InvoiceType.AccountsReceivable));            
         }
 
+        [Test]
+        public void find_by_due_date()
+        {
+            Given_an_invoice();
+
+            var today = DateTime.UtcNow;
+
+            var invoices = Api.Invoices
+                .Where(string.Format("DueDate > DateTime({0},{1},{2})", today.Year, today.Month, today.Day ))
+                .Find()
+                .ToList();
+
+            Assert.True(invoices.Any());           
+        }
 
         [Test]
         public void order_by_type()
