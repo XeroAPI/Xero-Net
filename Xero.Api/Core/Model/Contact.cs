@@ -94,6 +94,9 @@ namespace Xero.Api.Core.Model
         public List<Phone> Phones { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public List<ContactGroup> ContactGroups { get; set; }               
+        public List<ContactGroup> ContactGroups { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public string AccountNumber { get; set; } 
     }
 }
