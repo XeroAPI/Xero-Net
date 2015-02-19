@@ -2,6 +2,7 @@
 ========
 A skinny wrapper of the Xero API. Supports Payroll. All third party libraries are included as source code.
 
+* [Installation] (#installation)
 * [What is supported?] (#what-is-supported)
 * [Things to note] (#things-to-note)
 * [Samples] (#samples)
@@ -10,8 +11,16 @@ A skinny wrapper of the Xero API. Supports Payroll. All third party libraries ar
 * [Authenticators] (#authenticators)
 * [Token Stores] (#token-stores)
 * [Serialization] (#serialization)
+* [Usage] (#usage)
 * [Acknowledgements] (#acknowledgements)
 * [License] (#license)
+
+## Installation
+
+There are 2 ways to install this library:
+
+1. Download the source code from github and compile yourself: **https://github.com/XeroAPI/Xero-Net**
+2. Download directly into Visual Studio using the NuGet powershell command: **PM&gt; Install-Package Xero.API.SDK**
 
 ## What is supported?
 ### Core
@@ -172,6 +181,45 @@ The examples are
 ##Serialization
 
 All communication with the [Xero API](http://deverloper.xero.com) is compressed at source. Writing to the API is done with XML. The data model classes have be attributed to give a small XML payload. All communication back from the API is JSON. These details are transparent to the user of the class library.
+
+##Usage
+To get going quickly:
+
+1. Follow this getting started guide: http://developer.xero.com/documentation/getting-started/getting-started-guide/
+2. Create a console project and download the following package using the NuGet powershell command: PM> Install-Package Xero.API.SDK 
+3. Use the snippets below depending on the type of application, modifying keys and certificate paths.
+
+Note, remember to implement your own custom token store before going live. The examples provided in the library Xero.Api.Example.TokenStores.dll
+are for development only.
+
+        static void Main(string[] args)
+        {
+			// Private Application Sample
+			var private_app_api = new XeroCoreApi("https://api.xero.com", new PrivateAuthenticator(@"C:\Dev\your_public_privatekey.pfx"),
+                new Consumer("your-consumer-key", "your-consumer-secret"), null,
+                new DefaultMapper(), new DefaultMapper());
+				
+			var org = private_app_api.Organisation;
+			
+			var user = new ApiUser { Name = Environment.MachineName };
+
+			// Public Application Sample
+            var public_app_api = new XeroCoreApi("https://api.xero.com", new PublicAuthenticator("https://api.xero.com", "https://api.xero.com", "oob", 
+				new MemoryTokenStore()),
+                new Consumer("your-consumer-key", "your-consumer-secret"), user,
+                new DefaultMapper(), new DefaultMapper());
+
+            var public_contacts = public_app_api.Contacts.Find().ToList();
+			
+			// Partner Application Sample
+			var partner_app_api = new XeroCoreApi("https://api-partner.network.xero.com", new PartnerAuthenticator("https://api-partner.network.xero.com",
+                "https://api.xero.com", "oob", new MemoryTokenStore(),
+                @"C:\Dev\your_public_privatekey.pfx", @"C:\Dev\your_entrust_cert.p12", "your_entrust_cert_password"),
+                 new Consumer("your-consumer-key", "your-consumer-secret"), user,
+                 new DefaultMapper(), new DefaultMapper());
+				
+			var partner_contacts = partner_app_api.Contacts.Find().ToList();			
+        }
 
 ##Acknowledgements
 Thanks for the following Open Source libraries for making the wrapper and samples easier
