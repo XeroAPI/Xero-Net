@@ -135,12 +135,13 @@ namespace Xero.Api.Infrastructure.Http
 
             if (response.StatusCode == HttpStatusCode.ServiceUnavailable)
             {
-                if (response.Body.Contains("oauth_problem"))
+                var body = response.Body;
+                if (body.Contains("oauth_problem"))
                 {
-                    throw new RateExceededException(response.Body);
+                    throw new RateExceededException(body);
                 }
 
-                throw new NotAvailableException(response.Body);
+                throw new NotAvailableException(body);
             }
 
             if (response.StatusCode == HttpStatusCode.NoContent)
