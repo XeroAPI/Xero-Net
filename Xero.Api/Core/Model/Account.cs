@@ -33,7 +33,7 @@ namespace Xero.Api.Core.Model
         public AccountClassType Class { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public SystemAccountType SystemAccount { get; set; }
+        public SystemAccountType? SystemAccount { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public bool? EnablePaymentsToAccount { get; set; }
