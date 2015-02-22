@@ -11,7 +11,7 @@ namespace Xero.Api.Infrastructure.OAuth.Signing
 {
     public class HmacSha1Signer
     {
-        public string CreateSignature(IToken token, Uri uri, string verb, string verifier = null)
+        public string CreateSignature(IToken token, Uri uri, string verb, string verifier = null, string callback = null)
         {
             var oAuthParameters = new OAuthParameters(
                 new ConsumerKey(token.ConsumerKey),
@@ -22,7 +22,7 @@ namespace Xero.Api.Infrastructure.OAuth.Signing
                 string.Empty,
                 "1.0",
                 verifier,
-                token.Session);
+                token.Session, false, callback);
 
             var signatureBaseString =
                 new SignatureBaseString(

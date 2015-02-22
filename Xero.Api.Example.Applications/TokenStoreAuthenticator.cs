@@ -82,8 +82,8 @@ namespace Xero.Api.Example.Applications
         public IUser User { get; set; }
 
         protected abstract string AuthorizeUser(IToken oauthToken);
-        protected abstract string CreateSignature(IToken token, string verb, Uri uri, string verifier, 
-            bool renewToken = false);
+        protected abstract string CreateSignature(IToken token, string verb, Uri uri, string verifier,
+            bool renewToken = false, string callback = null);
 
         protected abstract IToken RenewToken(IToken sessionToken, IConsumer consumer);
 
