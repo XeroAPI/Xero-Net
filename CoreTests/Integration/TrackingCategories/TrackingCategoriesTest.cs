@@ -11,7 +11,7 @@ namespace CoreTests.Integration.TrackingCategories
     {
         public TrackingCategory Given_a_TrackingCategory()
         {
-            return Api.Create(new TrackingCategory
+            return Api.TrackingCategories.Add(new TrackingCategory
             {
                 Id = new Guid(),
                 Name = "TheJoker " + Guid.NewGuid(),

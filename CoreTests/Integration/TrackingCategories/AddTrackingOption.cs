@@ -10,17 +10,12 @@ namespace CoreTests.Integration.TrackingCategories
     public class AddTrackingOption : TrackingCategoriesTest
     {
         [Test]
-        public void Can_add_Tracking_options()
+        public void Can_add_tracking_options()
         {
             var category = Given_a_TrackingCategory();
 
-            var trackingOptions = Given_TrackingOptions();
+            Api.TrackingCategories[category.Id].Add(new Option(){Id = Guid.NewGuid(),Name="Test"});
 
-            //var result = Can_Add_TrackingOptions_to_Category(category, trackingOptions);
-
-            //Assert.IsTrue(result.Name.StartsWith("TheJoker"));
-            //Assert.IsTrue(result.Options.First().Name == trackingOptions.First().Name);
-            //Assert.IsTrue(result.Options.ElementAt(1).Id == trackingOptions.ElementAt(1).Id);
         }
     }
 }

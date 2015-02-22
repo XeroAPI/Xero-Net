@@ -31,6 +31,18 @@ namespace Xero.Api.Core.Endpoints
             return this;
         }
 
+        public List<Option> this[Guid id]
+        {
+            get
+            {
+                var endpoint = string.Format("/api.xro/2.0/TrackingCategories/{0}", id);
+
+                var options = Client.Client.Get(endpoint, null);
+
+                return null;
+            }
+        }
+
         public TrackingCategory Add(TrackingCategory trackingCategory)
         {
             var endpoint = string.Format("/api.xro/2.0/TrackingCategories");

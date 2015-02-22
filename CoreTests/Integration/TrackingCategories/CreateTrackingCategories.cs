@@ -11,17 +11,11 @@ namespace CoreTests.Integration.TrackingCategories
         [Test]
         public void Can_create_a_Tracking_Category()
         {
-            var category = Api.Create(new TrackingCategory
-            {
-                Id = new Guid(),
-                Name = "TheJoker " + Guid.NewGuid(),
-                Status = TrackingCategoryStatus.Active
-            });
+            var category = Given_a_TrackingCategory();
 
             Assert.IsTrue(category.Name.StartsWith("TheJoker"));
+            
             Assert.IsTrue(category.Status == TrackingCategoryStatus.Active);
-
-//            Archieve_a_TrackingCategoy(category);
         }
 
     }
