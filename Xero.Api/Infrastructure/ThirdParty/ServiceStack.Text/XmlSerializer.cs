@@ -36,7 +36,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text
             {
 #if WINDOWS_PHONE
                 StringReader stringReader = new StringReader(xml);
-                using (var reader = XmlDictionaryReader.Create(stringReader))
+                using (var reader = XmlDictionaryReader.Add(stringReader))
                 {
                     var serializer = new DataContractSerializer(type);
                     return serializer.ReadObject(reader);
@@ -115,7 +115,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text
 #if !SILVERLIGHT
 				using (var xw = new XmlTextWriter(writer))
 #else
-                using (var xw = XmlWriter.Create(writer))
+                using (var xw = XmlWriter.Add(writer))
 #endif
                 {
                     var serializer = new DataContractSerializer(value.GetType());
@@ -133,7 +133,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text
 #if !SILVERLIGHT
             using (var xw = new XmlTextWriter(stream, Encoding.UTF8))
 #else
-            using (var xw = XmlWriter.Create(stream))
+            using (var xw = XmlWriter.Add(stream))
 #endif
             {
                 var serializer = new DataContractSerializer(obj.GetType());
