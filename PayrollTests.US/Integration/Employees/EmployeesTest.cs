@@ -54,7 +54,7 @@ namespace PayrollTests.US.Integration.Employees
         //    }
         //    else
         //    {
-        //        return Api.Create(new SuperFund
+        //        return Api.Add(new SuperFund
         //        {
         //            Type = SuperfundType.Regulated,
         //            Abn = 78984178687,

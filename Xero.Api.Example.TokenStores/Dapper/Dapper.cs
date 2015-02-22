@@ -471,7 +471,7 @@ namespace Xero.Api.Example.TokenStores.Dapper
                 return new Identity(sql, commandType, connectionString, primaryType, parametersType, otherTypes, gridIndex);
             }
             /// <summary>
-            /// Create an identity for use with DynamicParameters, internal use only
+            /// Add an identity for use with DynamicParameters, internal use only
             /// </summary>
             /// <param name="type"></param>
             /// <returns></returns>
@@ -3202,7 +3202,7 @@ string name, object value = null, DbType? dbType = null, ParameterDirection? dir
     sealed partial class DbString : Dapper.SqlMapper.ICustomQueryParameter
     {
         /// <summary>
-        /// Create a new DbString
+        /// Add a new DbString
         /// </summary>
         public DbString() { Length = -1; }
         /// <summary>
