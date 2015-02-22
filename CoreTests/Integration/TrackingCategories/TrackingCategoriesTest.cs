@@ -19,42 +19,7 @@ namespace CoreTests.Integration.TrackingCategories
             });
         }
 
-        public List<Option> Given_TrackingOptions()
-        {
-            List<Option> options = new List<Option>();
 
-            options.Add(new Option()
-            {
-                Id = Guid.NewGuid(),
-                Name = Guid.NewGuid().ToString()
-            });
-
-            options.Add(new Option()
-            {
-                Id = Guid.NewGuid(),
-                Name = Guid.NewGuid().ToString()
-            });
-
-            return options;
-        }
-
-        public TrackingCategory Can_Add_TrackingOptions_to_Category(TrackingCategory category, List<Option> options )
-        {
-//            foreach (var option in options)
-//            {
-//                category.Options.Add(option);
-//            }
-
-            return Api.Update(category, options);
-        }
-
-
-//        public TrackingCategory Archieve_a_TrackingCategoy(TrackingCategory input)
-//        {
-//            input.Status = TrackingCategoryStatus.Archived;
-//
-//            return Api.Update(input);
-//        }
-
+  
     }
 }

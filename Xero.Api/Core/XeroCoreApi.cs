@@ -320,6 +320,6 @@ namespace Xero.Api.Core
             return TrackingCategories.Update(item);
         }
 
-        public 
+        
     }
 }
