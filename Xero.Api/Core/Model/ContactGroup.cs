@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Xero.Api.Common;
 
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class ContactGroup
+    public class ContactGroup : IHasId
     {
         [DataMember(Name = "ContactGroupID", EmitDefaultValue = false)]
         public Guid Id { get; set; }

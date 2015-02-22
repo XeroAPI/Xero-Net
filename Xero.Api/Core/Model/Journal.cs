@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Xero.Api.Common;
 
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class Journal
+    public class Journal : IHasId
     {
         [DataMember(Name = "JournalID", EmitDefaultValue = false)]
         public Guid Id { get; set; }
