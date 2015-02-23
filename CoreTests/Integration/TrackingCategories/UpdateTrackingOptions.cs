@@ -9,10 +9,10 @@ using Xero.Api.Core.Model.Status;
 namespace CoreTests.Integration.TrackingCategories
 {
     [TestFixture]
-    public class AddTrackingOption : TrackingCategoriesTest
+    public class UpdateTrackingOption : TrackingCategoriesTest
     {
         [Test]
-        public void Can_add_tracking_option()
+        public void Can_update_tracking_options()
         {
             var category = Given_a_TrackingCategory();
 
@@ -25,18 +25,5 @@ namespace CoreTests.Integration.TrackingCategories
             Assert.True(result._trackingCat.Options.FirstOrDefault().Name == option.Name);
         }
 
-        [Test]
-        public void Can_add_tracking_options()
-        {
-            var category = Given_a_TrackingCategory();
-
-            var options = Given_a_tracking_options();
-
-            Api.TrackingCategories[category.Id].Add(options);
-
-            var result = Api.TrackingCategories[category.Id];
-
-            Assert.True(result._trackingCat.Options.FirstOrDefault().Name == options.FirstOrDefault().Name || result._trackingCat.Options.ElementAt(1).Name == options.FirstOrDefault().Name);
-        }
     }
 }

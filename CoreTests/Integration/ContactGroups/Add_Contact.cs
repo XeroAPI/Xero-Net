@@ -13,6 +13,7 @@ namespace CoreTests.Integration.ContactGroups
             var contactgroup = Given_a_contactgroup();
 
             Api.ContactGroups[contactgroup.Id].Add(Given_a_contact());
+
         }
 
         [Test]
