@@ -13,18 +13,13 @@ namespace Xero.Api.Example.Applications.Public
 
         protected override string AuthorizeUser(IToken token)
         {
-            if (CallBackUri.Equals("oob"))
-            {
-                Process.Start(new UriBuilder(Tokens.AuthorizeUri)
-                {                     
-                    Query = "oauth_token=" + token.TokenKey
-                }.Uri.ToString());
+            var authorizeUrl = GetAuthorizeUrl(token);
 
-                Console.WriteLine("Enter the PIN given on the web page");
-                return Console.ReadLine();
-            }
+            Process.Start(authorizeUrl);
 
-            return string.Empty;
+            Console.WriteLine("Enter the PIN given on the web page");
+
+            return Console.ReadLine();
         }
 
         protected override string CreateSignature(IToken token, string verb, Uri uri, string verifier,
