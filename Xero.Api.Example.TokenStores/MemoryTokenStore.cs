@@ -6,7 +6,7 @@ namespace Xero.Api.Example.TokenStores
 {
     public class MemoryTokenStore : ITokenStore
     {
-        private readonly IDictionary<string, IToken> _tokens = new ConcurrentDictionary<string, IToken>();
+        private static readonly IDictionary<string, IToken> _tokens = new ConcurrentDictionary<string, IToken>();
 
         public IToken Find(string userId)
         {
