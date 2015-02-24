@@ -87,22 +87,35 @@ namespace Xero.Api.Example.Applications
 
         protected abstract IToken RenewToken(IToken sessionToken, IConsumer consumer);
 
-        protected IToken GetToken(IConsumer consumer)
+        protected virtual IToken GetToken(IConsumer consumer)
         {
-            var token = new Token
-                {
-                    ConsumerKey = consumer.ConsumerKey,
-                    ConsumerSecret = consumer.ConsumerSecret
-                };
-
-            var requestTokenOAuthHeader = GetAuthorization(token, "POST", Tokens.RequestUri, callback: CallBackUri);
-
-            var requestToken = Tokens.GetRequestToken(consumer, requestTokenOAuthHeader);
-
+            var requestToken = GetRequestToken(consumer);
+   
             var verifier = AuthorizeUser(requestToken);
 
             return Tokens.GetAccessToken(requestToken,
                 GetAuthorization(requestToken, "POST", Tokens.AccessUri, null, verifier));
+        }
+
+        protected string GetAuthorizeUrl(IToken token)
+        {
+            return new UriBuilder(Tokens.AuthorizeUri)
+            {
+                Query = "oauth_token=" + token.TokenKey
+            }.Uri.ToString();
+        }
+
+        protected IToken GetRequestToken(IConsumer consumer)
+        {
+            var token = new Token
+            {
+                ConsumerKey = consumer.ConsumerKey,
+                ConsumerSecret = consumer.ConsumerSecret
+            };
+            
+            var requestTokenOAuthHeader = GetAuthorization(token, "POST", Tokens.RequestUri, callback: CallBackUri);
+
+            return Tokens.GetRequestToken(consumer, requestTokenOAuthHeader);
         }
 
         protected string GetAuthorization(IToken token, string verb, string endpoint, string query = null,
