@@ -7,7 +7,8 @@ namespace Xero.Api.Example.Applications.Public
 {
     public class PublicAuthenticator : TokenStoreAuthenticator
     {
-        public PublicAuthenticator(string baseUri, string tokenUri, string callBackUrl, ITokenStore store) : base(baseUri, tokenUri, callBackUrl, store)
+        public PublicAuthenticator(string baseUri, string tokenUri, string callBackUrl, ITokenStore store) 
+            : base(baseUri, tokenUri, callBackUrl, store)
         {            
         }
 
