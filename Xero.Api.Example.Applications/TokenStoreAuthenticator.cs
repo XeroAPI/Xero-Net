@@ -82,27 +82,44 @@ namespace Xero.Api.Example.Applications
         public IUser User { get; set; }
 
         protected abstract string AuthorizeUser(IToken oauthToken);
-        protected abstract string CreateSignature(IToken token, string verb, Uri uri, string verifier, 
-            bool renewToken = false);
+        protected abstract string CreateSignature(IToken token, string verb, Uri uri, string verifier,
+            bool renewToken = false, string callback = null);
 
         protected abstract IToken RenewToken(IToken sessionToken, IConsumer consumer);
 
-        protected IToken GetToken(IConsumer consumer)
+        protected virtual IToken GetToken(IConsumer consumer)
         {
-            var oauthToken = Tokens.GetRequestToken(consumer, GetAuthorization(new Token
+            var requestToken = GetRequestToken(consumer);
+   
+            var verifier = AuthorizeUser(requestToken);
+
+            return Tokens.GetAccessToken(requestToken,
+                GetAuthorization(requestToken, "POST", Tokens.AccessUri, null, verifier));
+        }
+
+        protected string GetAuthorizeUrl(IToken token)
+        {
+            return new UriBuilder(Tokens.AuthorizeUri)
+            {
+                Query = "oauth_token=" + token.TokenKey
+            }.Uri.ToString();
+        }
+
+        protected IToken GetRequestToken(IConsumer consumer)
+        {
+            var token = new Token
             {
                 ConsumerKey = consumer.ConsumerKey,
                 ConsumerSecret = consumer.ConsumerSecret
-            }, "POST", Tokens.RequestUri));
+            };
+            
+            var requestTokenOAuthHeader = GetAuthorization(token, "POST", Tokens.RequestUri, callback: CallBackUri);
 
-            var verifier = AuthorizeUser(oauthToken);
-
-            return Tokens.GetAccessToken(oauthToken,
-                GetAuthorization(oauthToken, "POST", Tokens.AccessUri, null, verifier));
+            return Tokens.GetRequestToken(consumer, requestTokenOAuthHeader);
         }
 
-        protected string GetAuthorization(IToken token, string verb, string endpoint, string query = null, 
-            string verifier = null, bool renewToken = false)
+        protected string GetAuthorization(IToken token, string verb, string endpoint, string query = null,
+            string verifier = null, bool renewToken = false, string callback = null)
         {
             var uri = new UriBuilder(BaseUri)
             {
@@ -114,7 +131,7 @@ namespace Xero.Api.Example.Applications
                 uri.Query = query.TrimStart('?');
             }
 
-            return CreateSignature(token, verb, uri.Uri, verifier, renewToken);
+            return CreateSignature(token, verb, uri.Uri, verifier, renewToken, callback);
         }
     }
 }
