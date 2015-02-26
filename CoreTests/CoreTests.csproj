@@ -111,6 +111,7 @@
     <Compile Include="Integration\TaxRates\Update.cs" />
     <Compile Include="Integration\TaxRates\TaxRateTest.cs" />
     <Compile Include="Integration\TrackingCategories\GetTrackingCategoriesIncludingArchieved.cs" />
+    <Compile Include="Integration\TrackingCategories\ArchiveTrackingCategory.cs" />
     <Compile Include="Integration\TrackingCategories\UpdateTrackingOptions.cs" />
     <Compile Include="Integration\TrackingCategories\GetTrackingCategories.cs" />
     <Compile Include="Integration\TrackingCategories\UpdateTrackingCategory.cs" />

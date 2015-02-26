@@ -22,5 +22,17 @@ namespace CoreTests.Integration.TrackingCategories
 
             Assert.True(result.Name == "The Penguin");
         }
+
+        [Test]
+        public void Can_update_tracking_category_with_options_name()
+        {
+            var category = Given_a_TrackingCategory_with_Options();
+
+            category.Name = "The Joker";
+
+            var result = Api.Update(category);
+
+            Assert.True(result.Name == "The Joker");
+        }
     }
 }

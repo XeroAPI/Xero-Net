@@ -50,7 +50,7 @@ namespace Xero.Api.Core.Endpoints
         {
             var endpoint = string.Format("/api.xro/2.0/TrackingCategories");
 
-            List<TrackingCategory> trackingCats = HandleResponse(Client.Client.Get(endpoint, null)).TrackingCategories.ToList();
+            List<TrackingCategory> trackingCats = HandleResponse(Client.Client.Get(endpoint, QueryString)).TrackingCategories.ToList();
 
             return trackingCats;
         } 
@@ -69,7 +69,9 @@ namespace Xero.Api.Core.Endpoints
 
         public TrackingCategory Update(TrackingCategory trackingCategory)
         {
-            var endpoint = string.Format("/api.xro/2.0/TrackingCategories");
+            var endpoint = string.Format("/api.xro/2.0/TrackingCategories/{0}", trackingCategory.Id.ToString());
+
+            trackingCategory.Options = null;
 
             var groups = HandleResponse(Client
                 .Client

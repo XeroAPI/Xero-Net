@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Status;
 using System.Collections.Generic;
+using Xero.Api.Core.Model.Types;
 
 namespace CoreTests.Integration.TrackingCategories
 {
@@ -13,17 +14,21 @@ namespace CoreTests.Integration.TrackingCategories
         [Test]
         public void Can_get_Tracking_Category_including_archieved()
         {
-            var category1 = Given_a_TrackingCategory_with_Options();
+            var category = Given_a_TrackingCategory_with_Options();
 
-            category1.Status = TrackingCategoryStatus.Archived;
+            Given_a_invoice_with_tracking_option_assigned_that_is_APPROVED(category);
 
-            Api.TrackingCategories.Update(category1);
+            category.Status = TrackingCategoryStatus.Archived;
 
+            Api.Update(category);
 
-//            List<TrackingCategory> result = Api.TrackingCategories.GetAll();
+            var api = Api.TrackingCategories.IncludeArchived(true);
 
-//            Assert.IsTrue(result.First().Name == category1.Name);
-//            Assert.IsTrue(result.ElementAt(1).Name == category2.Name);
+            List<TrackingCategory> result = api.GetAll();
+
+            var actualTracking = result.SingleOrDefault(i => i.Id == category.Id);
+
+            Assert.IsTrue(actualTracking != null);
         }
     }
 }
