@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,10 +40,12 @@ namespace CoreTests.Integration.TrackingCategories
 
         public Option Given_a_tracking_option()
         {
+            var guid = Guid.NewGuid();
+
             return new Option()
             {
-                Id = Guid.NewGuid(),
-                Name = Guid.NewGuid().ToString()
+                Id = guid,
+                Name = guid.ToString()
             };
         }
 
