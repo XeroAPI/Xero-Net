@@ -28,10 +28,12 @@ namespace CoreTests.Integration.TrackingCategories
 
         public TrackingCategory Given_a_TrackingCategory()
         {
+            var guid = Guid.NewGuid();
+
             var trackingCategory = Api.TrackingCategories.Add(new TrackingCategory
             {
-                Id = new Guid(),
-                Name = "TheJoker " + Guid.NewGuid(),
+                Id = guid,
+                Name = "TheJoker " + guid,
                 Status = TrackingCategoryStatus.Active
             });
 

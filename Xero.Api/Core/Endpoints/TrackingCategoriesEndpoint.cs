@@ -147,5 +147,16 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
+
+        public TrackingCategory UpdateOption(Option option)
+        {
+            var endpoint = string.Format("/api.xro/2.0/trackingcategories/{0}/options/{1}", _trackingCat.Id, option.Id);
+
+            option.Id = Guid.Empty;
+
+            return HandleResponse(_client
+                 .Client
+                 .Post(endpoint, _client.XmlMapper.To(option))).TrackingCategories.FirstOrDefault();
+        }
     }
 }

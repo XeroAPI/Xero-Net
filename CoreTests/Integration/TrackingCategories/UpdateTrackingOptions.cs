@@ -20,9 +20,11 @@ namespace CoreTests.Integration.TrackingCategories
 
             Api.TrackingCategories[category.Id].Add(option);
 
-            var result = Api.TrackingCategories[category.Id];
+            option.Name = "Two Face";
 
-            Assert.True(result._trackingCat.Options.FirstOrDefault().Name == option.Name);
+            var result = Api.TrackingCategories[category.Id].UpdateOption(option);
+
+            Assert.True(result.Options.FirstOrDefault().Name == option.Name);
         }
 
     }
