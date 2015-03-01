@@ -48,6 +48,7 @@
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
+    <Compile Include="Core\Model\Status\TrackingOptionStatus.cs" />
     <Compile Include="Core\Request\TrackingCategoriesRequest.cs" />
     <Compile Include="Core\Response\FoldersResponse.cs" />
     <Compile Include="Core\Response\InboxResponse.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Core\Request\SetupRequest.cs" />
     <Compile Include="Core\Response\ContactGroupsResponse.cs" />
     <Compile Include="Core\Response\SetupResponse.cs" />
+    <Compile Include="Core\Response\OptionsResponse.cs" />
     <Compile Include="Infrastructure\Exceptions\RateExceededException.cs" />
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />
     <Compile Include="Infrastructure\Interfaces\IAuthenticationToken.cs" />

@@ -36,7 +36,8 @@ namespace CoreTests.Integration.TrackingCategories
 
             var result = Api.TrackingCategories[category.Id];
 
-            Assert.True(result._trackingCat.Options.FirstOrDefault().Name == options.FirstOrDefault().Name || result._trackingCat.Options.ElementAt(1).Name == options.FirstOrDefault().Name);
+            Assert.True(result._trackingCat.Options.Any(i=>i.Name == options.FirstOrDefault().Name));
+            Assert.True(result._trackingCat.Options.Any(i=>i.Name == options.Last().Name));
         }
     }
 }

@@ -16,7 +16,7 @@ namespace CoreTests.Integration.TrackingCategories
         {
             var category = Given_a_TrackingCategory_with_Options();
 
-            var invoice = Given_a_invoice_with_tracking_option_assigned_that_is_APPROVED(category);
+            var invoice = Given_approved_invoice_with_tracking_option(category);
 
             category.Status = TrackingCategoryStatus.Archived;
 

@@ -46,6 +46,15 @@ namespace Xero.Api.Core.Endpoints
             }
         }
 
+        public TrackingCategory GetByID(Guid id)
+        {
+            var endpoint = string.Format("/api.xro/2.0/TrackingCategories/{0}", id);
+
+            var trackingCat = HandleResponse(Client.Client.Get(endpoint, null)).TrackingCategories.FirstOrDefault();
+
+            return trackingCat;
+        }
+
         public List<TrackingCategory> GetAll()
         {
             var endpoint = string.Format("/api.xro/2.0/TrackingCategories");
@@ -108,38 +117,36 @@ namespace Xero.Api.Core.Endpoints
             _client = client;
         }
 
-        public TrackingCategory Add(Option option)
+        public List<Option> Add(Option option)
         {
             List<Option> options = new List<Option>();
  
             options.Add(option);
 
-            AssignOptions(_trackingCat, options);
-
-            return _trackingCat;
+            return AssignOptions(_trackingCat, options); ;
         }
 
-        public TrackingCategory Add(List<Option> options)
+        public List<Option> Add(List<Option> options)
         {
-            AssignOptions(_trackingCat, options);
-
-            return _trackingCat;
+            return AssignOptions(_trackingCat, options);
         }
 
-        private void AssignOptions(TrackingCategory category, List<Option> options)
+        private List<Option> AssignOptions(TrackingCategory category, List<Option> options)
         {
             var endpoint = string.Format("/api.xro/2.0/trackingcategories/{0}/options", category.Id);
 
-            HandleResponse(_client
+            var result = HandleResponse(_client
                  .Client
-                 .Put(endpoint, _client.XmlMapper.To(options)));
+                 .Put(endpoint, _client.XmlMapper.To(options))).Values.ToList();
+
+            return result;
         }
 
-        private TrackingCategoriesResponse HandleResponse(Infrastructure.Http.Response response)
+        private OptionsResponse HandleResponse(Infrastructure.Http.Response response)
         {
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                var result = Client.JsonMapper.From<TrackingCategoriesResponse>(response.Body);
+                var result = Client.JsonMapper.From<OptionsResponse>(response.Body);
                 return result;
             }
 
@@ -148,15 +155,19 @@ namespace Xero.Api.Core.Endpoints
             return null;
         }
 
-        public TrackingCategory UpdateOption(Option option)
+        public Option UpdateOption(Option option)
         {
             var endpoint = string.Format("/api.xro/2.0/trackingcategories/{0}/options/{1}", _trackingCat.Id, option.Id);
 
-            option.Id = Guid.Empty;
 
-            return HandleResponse(_client
+            List<Option> Options = new List<Option>();
+            Options.Add(option);
+            
+            var result = HandleResponse(_client
                  .Client
-                 .Post(endpoint, _client.XmlMapper.To(option))).TrackingCategories.FirstOrDefault();
+                 .Post(endpoint, _client.XmlMapper.To(Options))).Options.FirstOrDefault();
+
+            return result;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace CoreTests.Integration.TrackingCategories
             List<TrackingCategory> result = Api.TrackingCategories.GetAll();
 
             Assert.IsTrue(result.First().Name == category1.Name);
-            Assert.IsTrue(result.ElementAt(1).Name == category2.Name);
+            Assert.IsTrue(result.Last().Name == category2.Name);
         }
     }
 }

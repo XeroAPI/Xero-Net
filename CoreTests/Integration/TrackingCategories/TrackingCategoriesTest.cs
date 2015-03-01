@@ -21,19 +21,18 @@ namespace CoreTests.Integration.TrackingCategories
             var option2 = Given_a_tracking_option();
 
             Api.TrackingCategories[trackingCategory.Id].Add(option1);
-            var result = Api.TrackingCategories[trackingCategory.Id].Add(option2);
+            Api.TrackingCategories[trackingCategory.Id].Add(option2);
+
+            var result = Api.TrackingCategories.GetByID(trackingCategory.Id);
 
             return result;
         }
 
         public TrackingCategory Given_a_TrackingCategory()
         {
-            var guid = Guid.NewGuid();
-
             var trackingCategory = Api.TrackingCategories.Add(new TrackingCategory
             {
-                Id = guid,
-                Name = "TheJoker " + guid,
+                Name = "TheJoker " + Guid.NewGuid(),
                 Status = TrackingCategoryStatus.Active
             });
 
@@ -42,12 +41,13 @@ namespace CoreTests.Integration.TrackingCategories
 
         public Option Given_a_tracking_option()
         {
-            var guid = Guid.NewGuid();
+             
 
             return new Option()
             {
-                Id = guid,
-                Name = guid.ToString()
+                Id = Guid.Empty,
+                Name = "Option " + Guid.NewGuid(),
+                Status = TrackingOptionStatus.Active
             };
         }
 
@@ -61,7 +61,7 @@ namespace CoreTests.Integration.TrackingCategories
             return options;
         }
 
-        public Invoice Given_a_invoice_with_tracking_option_assigned_that_is_APPROVED(TrackingCategory ct, InvoiceType type = InvoiceType.AccountsPayable, InvoiceStatus status = InvoiceStatus.Draft)
+        public Invoice Given_approved_invoice_with_tracking_option(TrackingCategory ct, InvoiceType type = InvoiceType.AccountsPayable, InvoiceStatus status = InvoiceStatus.Draft)
         {
             Guid category = ct.Id;
             string name = ct.Name;
