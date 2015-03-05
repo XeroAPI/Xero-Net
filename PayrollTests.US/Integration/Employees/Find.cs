@@ -14,6 +14,13 @@ namespace PayrollTests.US.Integration.Employees
         }
 
         [Test]
+        public void find_by_page()
+        {
+            var emp = Api.Employees.Page(1).Find();
+            Assert.Greater(emp.Count(), 0);
+        }
+
+        [Test]
         public void find_by_id()
         {
             var expected = Given_an_employee().Id;
