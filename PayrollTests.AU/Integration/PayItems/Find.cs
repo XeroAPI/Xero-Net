@@ -11,5 +11,12 @@ namespace PayrollTests.AU.Integration.PayItems
             var items = Api.PayItems.Find();
             Assert.IsNotNull(items);
         }
+
+        [Test]
+        public void find_paged()
+        {
+            var items = Api.PayItems.Page(1).Find();
+            Assert.IsNotNull(items);
+        }
     }
 }

@@ -44,5 +44,12 @@ namespace Xero.Api.Payroll.Common
         {
             return Client.Post<TResult, TResponse>(ApiEndpointUrl, data);
         }
+
+        public PayrollEndpoint<T, TResult, TRequest, TResponse> Page(int page)
+        {
+            AddParameter("page", page);
+            return this;
+        }
+
     }
 }

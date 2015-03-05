@@ -37,5 +37,13 @@ namespace PayrollTests.AU.Integration.LeaveApplications
             Assert.IsEmpty(la);
 
         }
+
+        [Test]
+        public void find_paged()
+        {
+            Given_a_leave_application();
+            var la = Api.LeaveApplications.Page(1).Find();
+            Assert.IsTrue(la.FirstOrDefault().Id != Guid.Empty);
+        }
     }
 }
