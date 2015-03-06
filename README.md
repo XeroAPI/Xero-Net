@@ -70,7 +70,7 @@ There are 2 ways to install this library:
 
 ##Things to note
 * The library tries to do as little as possible and provides a basis to be extended. There are examples of TokenStores, Authenticators and Application types. These examples provide enough to get you going, but are not a complete solution to all your needs. You will need to adapt them for your own use and situation. Private application will work out of the box, as they do not have to deal with tokens and OAuth.
-* The HTTP verbs are not used in the public part of the API. Create, Update and Find are used instead. This seperates the inplmentation from the the intent.
+* The HTTP verbs are not used in the public part of the API. Create, Update and Find are used instead. This seperates the implementation from the the intent.
 * Invoices and Contacts support pagination. In the RESTful API these are off by default. For the wrapper, they are always on and default to page 1. See the Counts or Creation code examples for how to use the Page method to get all items.
 * Contacts support including archived contacts. Like the RESTful API, this if off by default. Use IncluceArchived(true) to include them.
 * Four decimal places are supported and are always on.
