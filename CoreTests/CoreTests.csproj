@@ -103,6 +103,7 @@
     <Compile Include="Integration\Payments\Find.cs" />
     <Compile Include="Integration\Payments\PaymentsTest.cs" />
     <Compile Include="Integration\Pdf\Get.cs" />
+    <Compile Include="Integration\Prepayments\Find.cs" />
     <Compile Include="Integration\Receipts\Create.cs" />
     <Compile Include="Integration\Receipts\Update.cs" />
     <Compile Include="Integration\Receipts\ReceiptTest.cs" />

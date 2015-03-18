@@ -59,6 +59,7 @@ namespace Xero.Api.Core
         public ManualJournalsEndpoint ManualJournals { get; private set; }
         public PaymentsEndpoint Payments { get; private set; }
         public PdfEndpoint PdfFiles { get; private set; }
+        public PrepaymentsEndpoint Prepayments { get; private set; }
         public ReceiptsEndpoint Receipts { get; private set; }
         public RepeatingInvoicesEndpoint RepeatingInvoices { get; private set; }
         public ReportsEndpoint Reports { get; private set; }
@@ -93,6 +94,7 @@ namespace Xero.Api.Core
             ManualJournals = new ManualJournalsEndpoint(Client);
             Payments = new PaymentsEndpoint(Client);
             PdfFiles = new PdfEndpoint(Client);
+            Prepayments = new PrepaymentsEndpoint(Client);
             Receipts = new ReceiptsEndpoint(Client);
             RepeatingInvoices = new RepeatingInvoicesEndpoint(Client);
             Reports = new ReportsEndpoint(Client);
