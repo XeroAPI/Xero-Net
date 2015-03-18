@@ -48,7 +48,12 @@
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
+    <Compile Include="Core\Endpoints\OverpaymentsEndpoint.cs" />
     <Compile Include="Core\Endpoints\PrepaymentsEndpoint.cs" />
+    <Compile Include="Core\Model\Overpayment.cs" />
+    <Compile Include="Core\Model\Status\OverpaymentStatus.cs" />
+    <Compile Include="Core\Model\Types\OverpaymentType.cs" />
+    <Compile Include="Core\Response\OverpaymentsResponse.cs" />
     <Compile Include="Core\Response\PrepaymentsResponse.cs" />
     <Compile Include="Core\Model\Prepayment.cs" />
     <Compile Include="Core\Model\Status\PrepaymentStatus.cs" />
