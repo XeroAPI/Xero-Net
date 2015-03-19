@@ -3,22 +3,9 @@ using System.Runtime.Serialization;
 
 namespace Xero.Api.Core.Model
 {
+    [Obsolete("Use CreditNoteAllocation")]
     [DataContract(Namespace = "")]
-    public class Allocation
+    public class Allocation : CreditNoteAllocation
     {
-        [DataMember(EmitDefaultValue = false)]
-        public decimal AppliedAmount { get; set; }
-
-        [DataMember(EmitDefaultValue = false)]
-        public DateTime Date { get; set; }
-
-        [DataMember(EmitDefaultValue = false)]
-        public Invoice Invoice { get; set; }
-
-        [DataMember(EmitDefaultValue = false)]
-        public decimal Amount { get; set; }
-
-        [DataMember(EmitDefaultValue = false)]
-        public CreditNote CreditNote { get; set; }
-    }    
+    }
 }
