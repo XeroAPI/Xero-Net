@@ -22,7 +22,7 @@ namespace CoreTests.Integration.Invoices
         {
             return Api.Create(new Invoice
             {
-                Contact = new Contact { Name = "ABC Limited" },
+                Contact = new Contact { Name = "ABC Bank" },
                 Type = type,
                 Date = DateTime.UtcNow,
                 DueDate = DateTime.UtcNow.AddDays(90),

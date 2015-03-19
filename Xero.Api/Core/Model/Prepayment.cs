@@ -51,5 +51,8 @@ namespace Xero.Api.Core.Model
 
         [DataMember(EmitDefaultValue = false)]
         public bool? HasAttachments { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public List<PrepaymentAllocation> Allocations { get; set; }
     }
 }

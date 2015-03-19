@@ -85,5 +85,14 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public bool? SentToContact { get; set; }
 
+        [DataMember(EmitDefaultValue = false)]
+        public List<CreditNote> CreditNotes { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public List<Prepayment> Prepayments { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public List<Overpayment> Overpayments { get; set; }
+
     }
 }

@@ -22,19 +22,36 @@ namespace Xero.Api.Core.Endpoints
         {
             var endpoint = string.Format("/api.xro/2.0/CreditNotes/{0}/Allocations", allocation.CreditNote.Id);
 
-            var allocations = HandleResponse(_client
-                .Client
-                .Put(endpoint, _client.XmlMapper.To(new List<Allocation>{allocation} )))
-                .Allocations;
-
-            return allocations.FirstOrDefault();
+            return (Allocation)Add(allocation, endpoint);
         }
 
-        private AllocationsResponse HandleResponse(Infrastructure.Http.Response response)
+        public CreditNoteAllocation Add(CreditNoteAllocation allocation)
+        {
+            var endpoint = string.Format("/api.xro/2.0/CreditNotes/{0}/Allocations", allocation.CreditNote.Id);
+
+            return (CreditNoteAllocation)Add(allocation, endpoint);
+        }
+
+        public PrepaymentAllocation Add(PrepaymentAllocation allocation)
+        {
+            var endpoint = string.Format("/api.xro/2.0/Prepayments/{0}/Allocations", allocation.Prepayment.Id);
+
+            return (PrepaymentAllocation)Add(allocation, endpoint);
+        }
+
+        public OverpaymentAllocation Add(OverpaymentAllocation allocation)
+        {
+            var endpoint = string.Format("/api.xro/2.0/Overpayments/{0}/Allocations", allocation.Overpayment.Id);
+
+            return (OverpaymentAllocation)Add(allocation, endpoint);
+        }
+
+        private AllocationsResponse<T> HandleResponse<T>(Infrastructure.Http.Response response)
+            where T : AllocationBase
         {
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                var result = _client.JsonMapper.From<AllocationsResponse>(response.Body);
+                var result = _client.JsonMapper.From<AllocationsResponse<T>>(response.Body);
                 return result;
             }
 
@@ -42,13 +59,24 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
+
+        public AllocationBase Add<T>(T allocation, string endpoint)
+            where T : AllocationBase
+        {
+            var allocations = HandleResponse<T>(_client
+                .Client
+                .Put(endpoint, _client.XmlMapper.To(new List<T> { allocation })))
+                .Allocations;
+
+            return allocations.FirstOrDefault();
+        }
     }
 
-    public class AllocationsResponse : XeroResponse<Allocation>
+    public class AllocationsResponse<T> : XeroResponse<T>
     {
-        public List<Allocation> Allocations { get; set; }
+        public List<T> Allocations { get; set; }
 
-        public override IList<Allocation> Values
+        public override IList<T> Values
         {
             get { return Allocations; }
         }

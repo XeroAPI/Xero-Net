@@ -50,7 +50,11 @@
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
     <Compile Include="Core\Endpoints\OverpaymentsEndpoint.cs" />
     <Compile Include="Core\Endpoints\PrepaymentsEndpoint.cs" />
+    <Compile Include="Core\Model\AllocationBase.cs" />
+    <Compile Include="Core\Model\CreditNoteAllocation.cs" />
     <Compile Include="Core\Model\Overpayment.cs" />
+    <Compile Include="Core\Model\OverpaymentAllocation.cs" />
+    <Compile Include="Core\Model\PrepaymentAllocation.cs" />
     <Compile Include="Core\Model\Status\OverpaymentStatus.cs" />
     <Compile Include="Core\Model\Types\OverpaymentType.cs" />
     <Compile Include="Core\Response\OverpaymentsResponse.cs" />
