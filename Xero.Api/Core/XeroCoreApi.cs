@@ -45,16 +45,22 @@ namespace Xero.Api.Core
         public BankTransfersEndpoint BankTransfers { get; private set; }
         public BrandingThemesEndpoint BrandingThemes { get; private set; }
         public ContactsEndpoint Contacts { get; private set; }
+        public ContactGroupsEndpoint ContactGroups { get; private set;}
         public CreditNotesEndpoint CreditNotes { get; private set; }
         public CurrenciesEndpoint Currencies { get; set; }
         public EmployeesEndpoint Employees { get; private set; }
         public ExpenseClaimsEndpoint ExpenseClaims { get; private set; }
+        public FilesEndpoint Files { get; private set; }
+        public FoldersEndpoint Folders { get; private set; }
+        public InboxEndpoint Inbox { get; private set; }
         public InvoicesEndpoint Invoices { get; private set; }
         public ItemsEndpoint Items { get; private set; }
         public JournalsEndpoint Journals { get; private set; }
         public ManualJournalsEndpoint ManualJournals { get; private set; }
+        public OverpaymentsEndpoint Overpayments { get; private set; }
         public PaymentsEndpoint Payments { get; private set; }
         public PdfEndpoint PdfFiles { get; private set; }
+        public PrepaymentsEndpoint Prepayments { get; private set; }
         public ReceiptsEndpoint Receipts { get; private set; }
         public RepeatingInvoicesEndpoint RepeatingInvoices { get; private set; }
         public ReportsEndpoint Reports { get; private set; }
@@ -75,16 +81,22 @@ namespace Xero.Api.Core
             BankTransfers = new BankTransfersEndpoint(Client);
             BrandingThemes = new BrandingThemesEndpoint(Client);
             Contacts = new ContactsEndpoint(Client);
+            ContactGroups = new ContactGroupsEndpoint(Client);
             CreditNotes = new CreditNotesEndpoint(Client);
             Currencies = new CurrenciesEndpoint(Client);
             Employees = new EmployeesEndpoint(Client);
             ExpenseClaims = new ExpenseClaimsEndpoint(Client);
+            Files = new FilesEndpoint(Client);
+            Folders = new FoldersEndpoint(Client);
+            Inbox = new InboxEndpoint(Client);
             Invoices = new InvoicesEndpoint(Client);
             Items = new ItemsEndpoint(Client);
             Journals = new JournalsEndpoint(Client);
             ManualJournals = new ManualJournalsEndpoint(Client);
+            Overpayments = new OverpaymentsEndpoint(Client);
             Payments = new PaymentsEndpoint(Client);
             PdfFiles = new PdfEndpoint(Client);
+            Prepayments = new PrepaymentsEndpoint(Client);
             Receipts = new ReceiptsEndpoint(Client);
             RepeatingInvoices = new RepeatingInvoicesEndpoint(Client);
             Reports = new ReportsEndpoint(Client);
@@ -111,7 +123,7 @@ namespace Xero.Api.Core
         {
             return Contacts.Create(items);
         }
-
+        
         public IEnumerable<Account> Create(IEnumerable<Account> items)
         {
             return Accounts.Create(items);
@@ -247,6 +259,11 @@ namespace Xero.Api.Core
             return Contacts.Update(item);
         }
 
+        public ContactGroup Update(ContactGroup item)
+        {
+            return ContactGroups.Update(item);
+        }
+
         public Employee Update(Employee item)
         {
             return Employees.Update(item);
@@ -295,6 +312,7 @@ namespace Xero.Api.Core
         public ImportSummary Update(Setup item)
         {
             return Setup.Update(item);
-        }        
-    }
+        }
+
+      }
 }

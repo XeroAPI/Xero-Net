@@ -38,15 +38,13 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <None Include="Resources\cert\public_privatekey.pfx" />
     <Content Include="Resources\images\connect_xero_button_blue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Resources\cert\public_privatekey.pfx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
@@ -66,6 +64,12 @@
     <Compile Include="Integration\BankTransfers\BankTransfersTest.cs" />
     <Compile Include="Integration\BankTransfers\Create.cs" />
     <Compile Include="Integration\BankTransfers\Find.cs" />
+    <Compile Include="Integration\ContactGroups\Add_Contact.cs" />
+    <Compile Include="Integration\ContactGroups\ContactGroupsTest.cs" />
+    <Compile Include="Integration\ContactGroups\Create.cs" />
+    <Compile Include="Integration\ContactGroups\Delete.cs" />
+    <Compile Include="Integration\ContactGroups\Remove_Contact.cs" />
+    <Compile Include="Integration\ContactGroups\Update.cs" />
     <Compile Include="Integration\Contacts\ContactsTest.cs" />
     <Compile Include="Integration\Contacts\Create.cs" />
     <Compile Include="Integration\Contacts\Find.cs" />
@@ -77,6 +81,13 @@
     <Compile Include="Integration\ExpenseClaims\ExpenseClaimTest.cs" />
     <Compile Include="Integration\ExpenseClaims\Create.cs" />
     <Compile Include="Integration\ExpenseClaims\Update.cs" />
+    <Compile Include="Integration\Files\Folders\AddFolderTest.cs" />
+    <Compile Include="Integration\Files\Inbox\InboxTest.cs" />
+    <Compile Include="Integration\Files\Support\DataItem.cs" />
+    <Compile Include="Integration\Files\Support\DiskFile.cs" />
+    <Compile Include="Integration\Files\Support\File.cs" />
+    <Compile Include="Integration\Files\Support\FilesTest.cs" />
+    <Compile Include="Integration\Files\Files\AddFileTest.cs" />
     <Compile Include="Integration\Invoices\Find.cs" />
     <Compile Include="Integration\Invoices\InvoicesTest.cs" />
     <Compile Include="Integration\Items\Create.cs" />
@@ -92,6 +103,8 @@
     <Compile Include="Integration\Payments\Find.cs" />
     <Compile Include="Integration\Payments\PaymentsTest.cs" />
     <Compile Include="Integration\Pdf\Get.cs" />
+    <Compile Include="Integration\Overpayments\Find.cs" />
+    <Compile Include="Integration\Prepayments\Find.cs" />
     <Compile Include="Integration\Receipts\Create.cs" />
     <Compile Include="Integration\Receipts\Update.cs" />
     <Compile Include="Integration\Receipts\ReceiptTest.cs" />
@@ -106,6 +119,7 @@
     <Compile Include="Integration\Attachments\Attachments.cs" />
     <Compile Include="Integration\General\Errors.cs" />
     <Compile Include="Integration\TaxRates\Create.cs" />
+    <Compile Include="Unit\UrlEncoder.cs" />
     <Compile Include="Unit\Contacts.cs" />
     <Compile Include="Unit\FourDecimalPlaces.cs" />
     <Compile Include="Unit\QueryStrings.cs" />

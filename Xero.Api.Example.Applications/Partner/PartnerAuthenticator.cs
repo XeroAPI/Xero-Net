@@ -34,23 +34,31 @@ namespace Xero.Api.Example.Applications.Partner
 
         protected override string AuthorizeUser(IToken token)
         {
-            if (CallBackUri != "oob")
-            {
-                Process.Start(new UriBuilder(Tokens.AuthorizeUri)
-                {
-                    Query = "oauth_token=" + token.TokenKey
-                }.Uri.ToString());
+            var authorizeUrl = GetAuthorizeUrl(token);
 
-                Console.WriteLine("Enter the PIN given on the web page");
-                return Console.ReadLine();
-            }
+            Process.Start(authorizeUrl);
 
-            return string.Empty;
+            Console.WriteLine("Enter the PIN given on the web page");
+
+            return Console.ReadLine();
         }
 
-        protected override string CreateSignature(IToken token, string verb, Uri uri, string verifier)
+        protected override string CreateSignature(IToken token, string verb, Uri uri,
+            string verifier, bool renewToken = false, string callback = null)
         {
-            return new RsaSha1Signer().CreateSignature(_signingCertificate, token, uri, verb, verifier);
+            return new RsaSha1Signer().CreateSignature(_signingCertificate, token, uri, verb, verifier, renewToken, callback);
+        }
+
+        protected override IToken RenewToken(IToken sessionToken, IConsumer consumer)
+        {
+            var authHeader = GetAuthorization(sessionToken, "POST", Tokens.AccessUri, null, null, true);
+
+            return Tokens.GetAccessToken(sessionToken, authHeader);
+        }
+
+        protected override X509Certificate2 GetClientCertificate()
+        {
+            return _certificate;
         }
     }
 }

@@ -2,6 +2,7 @@
 ========
 A skinny wrapper of the Xero API. Supports Payroll. All third party libraries are included as source code.
 
+* [Installation] (#installation)
 * [What is supported?] (#what-is-supported)
 * [Things to note] (#things-to-note)
 * [Samples] (#samples)
@@ -10,8 +11,16 @@ A skinny wrapper of the Xero API. Supports Payroll. All third party libraries ar
 * [Authenticators] (#authenticators)
 * [Token Stores] (#token-stores)
 * [Serialization] (#serialization)
+* [Usage] (#usage)
 * [Acknowledgements] (#acknowledgements)
 * [License] (#license)
+
+## Installation
+
+There are 2 ways to install this library:
+
+1. Download the source code from github and compile yourself: **https://github.com/XeroAPI/Xero-Net**
+2. Download directly into Visual Studio using the NuGet powershell command: **PM&gt; Install-Package Xero.API.SDK**
 
 ## What is supported?
 ### Core
@@ -61,11 +70,12 @@ A skinny wrapper of the Xero API. Supports Payroll. All third party libraries ar
 
 ##Things to note
 * The library tries to do as little as possible and provides a basis to be extended. There are examples of TokenStores, Authenticators and Application types. These examples provide enough to get you going, but are not a complete solution to all your needs. You will need to adapt them for your own use and situation. Private application will work out of the box, as they do not have to deal with tokens and OAuth.
-* The HTTP verbs are not used in the public part of the API. Create, Update and Find are used instead. This seperates the inplmentation from the the intent.
+* The HTTP verbs are not used in the public part of the API. Create, Update and Find are used instead. This seperates the implementation from the the intent.
 * Invoices and Contacts support pagination. In the RESTful API these are off by default. For the wrapper, they are always on and default to page 1. See the Counts or Creation code examples for how to use the Page method to get all items.
 * Contacts support including archived contacts. Like the RESTful API, this if off by default. Use IncluceArchived(true) to include them.
+* Payroll supports paging on all endpoints.
 * Four decimal places are supported and are always on.
-* You will need an instance of the API per user. The user is stored as part of the API instance.
+* You will need an instance of the API per organisation / connection. The connection is stored as part of the API instance.
 
 ## Samples
 There are samples for each of the API endpoints. These have been done as console application and also a collection of NUnit tests. See the README for each of the executable and test assemblies.
@@ -136,7 +146,7 @@ A partner application will need to also populate
 
 ##Authenticators
 
-The application classes all use implementations of IAuthenticator. See [Xero.Api.Infrastructure.OAuth.Authenticator](https://github.com/XeroAPI/Xero-Net/tree/master/source/Xero.Api/Infrastructure/OAuth/Authenticator) namespace for the implementations. The authenticators are used by the base infrastructure to do the heavy lifting of the Xero API authentication.
+The application classes all use implementations of IAuthenticator. See [PrivateAuthenticator](https://github.com/XeroAPI/Xero-Net/blob/master/Xero.Api.Example.Applications/Private/PrivateAuthenticator.cs) for an example. The authenticators are used by the base infrastructure to do the heavy lifting of the Xero API authentication.
 
 ###PrivateAuthenticator
 Uses RSA-SHA1 and a public/private certificate. There are no tokens and each request has to be signed.
@@ -172,6 +182,45 @@ The examples are
 ##Serialization
 
 All communication with the [Xero API](http://deverloper.xero.com) is compressed at source. Writing to the API is done with XML. The data model classes have be attributed to give a small XML payload. All communication back from the API is JSON. These details are transparent to the user of the class library.
+
+##Usage
+To get going quickly:
+
+1. Follow this getting started guide: http://developer.xero.com/documentation/getting-started/getting-started-guide/
+2. Create a console project and download the following package using the NuGet powershell command: PM> Install-Package Xero.API.SDK 
+3. Use the snippets below depending on the type of application, modifying keys and certificate paths.
+
+Note, remember to implement your own custom token store before going live. The examples provided in the library Xero.Api.Example.TokenStores.dll
+are for development only.
+
+        static void Main(string[] args)
+        {
+			// Private Application Sample
+			var private_app_api = new XeroCoreApi("https://api.xero.com", new PrivateAuthenticator(@"C:\Dev\your_public_privatekey.pfx"),
+                new Consumer("your-consumer-key", "your-consumer-secret"), null,
+                new DefaultMapper(), new DefaultMapper());
+				
+			var org = private_app_api.Organisation;
+			
+			var user = new ApiUser { Name = Environment.MachineName };
+
+			// Public Application Sample
+            var public_app_api = new XeroCoreApi("https://api.xero.com", new PublicAuthenticator("https://api.xero.com", "https://api.xero.com", "oob", 
+				new MemoryTokenStore()),
+                new Consumer("your-consumer-key", "your-consumer-secret"), user,
+                new DefaultMapper(), new DefaultMapper());
+
+            var public_contacts = public_app_api.Contacts.Find().ToList();
+			
+			// Partner Application Sample
+			var partner_app_api = new XeroCoreApi("https://api-partner.network.xero.com", new PartnerAuthenticator("https://api-partner.network.xero.com",
+                "https://api.xero.com", "oob", new MemoryTokenStore(),
+                @"C:\Dev\your_public_privatekey.pfx", @"C:\Dev\your_entrust_cert.p12", "your_entrust_cert_password"),
+                 new Consumer("your-consumer-key", "your-consumer-secret"), user,
+                 new DefaultMapper(), new DefaultMapper());
+				
+			var partner_contacts = partner_app_api.Contacts.Find().ToList();			
+        }
 
 ##Acknowledgements
 Thanks for the following Open Source libraries for making the wrapper and samples easier

@@ -52,6 +52,8 @@ namespace CoreTests.Integration.Contacts
                 FirstName = "Ben",
                 LastName = "Bowden",
                 EmailAddress = "ben.bowden@24locks.com",
+                AccountNumber = "AccountNumber",
+
                 ContactPersons = new List<ContactPerson>
                 {
                     new ContactPerson
@@ -66,6 +68,7 @@ namespace CoreTests.Integration.Contacts
 
             Assert.AreEqual("Ben", contact.FirstName);
             Assert.AreEqual("John", contact.ContactPersons[0].FirstName);
+            Assert.AreEqual("AccountNumber", contact.AccountNumber);
         }
     }
 }

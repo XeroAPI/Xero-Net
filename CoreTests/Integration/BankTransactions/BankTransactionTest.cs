@@ -10,9 +10,14 @@ namespace CoreTests.Integration.BankTransactions
     {
         public BankTransaction Given_a_bank_transaction()
         {
+            return Given_a_bank_transaction(BankTransactionType.Spend);
+        }
+
+        public BankTransaction Given_a_bank_transaction(BankTransactionType type)
+        {
             return Api.Create(new BankTransaction
             {
-                Type = BankTransactionType.Spend,
+                Type = type,
                 Contact = new Contact { Name = "ABC Bank" },
                 LineItems = new List<LineItem>
                 {
@@ -22,6 +27,26 @@ namespace CoreTests.Integration.BankTransactions
                         Quantity = 1m,
                         UnitAmount = 20.00m,
                         AccountCode = "404"
+                    }
+                },
+                BankAccount = new Account { Id = FindBankAccountGuid() }
+            });
+        }
+
+        public BankTransaction Given_an_overpayment(BankTransactionType type)
+        {
+            return Api.Create(new BankTransaction
+            {
+                Type = type,
+                Contact = new Contact { Name = "ABC Bank" },
+                LineAmountTypes = LineAmountType.NoTax,
+                LineItems = new List<LineItem>
+                {
+                    new LineItem
+                    {
+                        Description = "Yearly Bank Account Fee",
+                        UnitAmount = 20.00m,
+                        AccountCode = "800"
                     }
                 },
                 BankAccount = new Account { Id = FindBankAccountGuid() }

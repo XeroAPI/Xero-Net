@@ -33,5 +33,12 @@ namespace PayrollTests.AU.Integration.Employees
                 .Select(p => p.Id)
                 .Any(p => p == terminated.Id));            
         }
+
+        [Test]
+        public void find_all_employees_paged()
+        {
+            var emp = Api.Employees.Page(1).Find();
+            Assert.Greater(emp.Count(), 0);
+        }
     }
 }

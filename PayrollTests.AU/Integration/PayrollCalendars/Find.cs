@@ -14,5 +14,13 @@ namespace PayrollTests.AU.Integration.PayrollCalendars
             Assert.True(prc.Any());
             Assert.True(prc.FirstOrDefault().Id != Guid.Empty);
         }
+
+        [Test]
+        public void find_paged()
+        {
+            var prc = Api.PayrollCalendars.Page(1).Find();
+            Assert.True(prc.Any());
+            Assert.True(prc.FirstOrDefault().Id != Guid.Empty);
+        }
     }
 }

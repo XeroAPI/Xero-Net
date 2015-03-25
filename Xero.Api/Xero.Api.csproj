@@ -36,15 +36,40 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\IHasId.cs" />
     <Compile Include="Common\QueryGenerator.cs" />
     <Compile Include="Core\Endpoints\AllocationEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
+    <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
+    <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
+    <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
+    <Compile Include="Core\Endpoints\OverpaymentsEndpoint.cs" />
+    <Compile Include="Core\Endpoints\PrepaymentsEndpoint.cs" />
+    <Compile Include="Core\Model\AllocationBase.cs" />
+    <Compile Include="Core\Model\CreditNoteAllocation.cs" />
+    <Compile Include="Core\Model\Overpayment.cs" />
+    <Compile Include="Core\Model\OverpaymentAllocation.cs" />
+    <Compile Include="Core\Model\PrepaymentAllocation.cs" />
+    <Compile Include="Core\Model\Status\OverpaymentStatus.cs" />
+    <Compile Include="Core\Model\Types\OverpaymentType.cs" />
+    <Compile Include="Core\Response\OverpaymentsResponse.cs" />
+    <Compile Include="Core\Response\PrepaymentsResponse.cs" />
+    <Compile Include="Core\Model\Prepayment.cs" />
+    <Compile Include="Core\Model\Status\PrepaymentStatus.cs" />
+    <Compile Include="Core\Model\Types\PrepaymentType.cs" />
+    <Compile Include="Core\Response\FoldersResponse.cs" />
+    <Compile Include="Core\Response\InboxResponse.cs" />
+    <Compile Include="Core\Response\FilesResponse.cs" />
+    <Compile Include="Core\Request\FilesRequest.cs" />
+    <Compile Include="Core\Model\File.cs" />
     <Compile Include="Core\Endpoints\PdfEndpoint.cs" />
     <Compile Include="Core\Endpoints\SetupEndpoint.cs" />
+    <Compile Include="Core\Endpoints\FilesEndpoint.cs" />
     <Compile Include="Core\File\BinaryFile.cs" />
     <Compile Include="Core\Model\ItemTracking.cs" />
     <Compile Include="Core\Model\ItemTrackingCategory.cs" />
@@ -63,7 +88,9 @@
     <Compile Include="Core\Model\Status\ReceiptStatus.cs" />
     <Compile Include="Core\Model\Types\OrganisationVersion.cs" />
     <Compile Include="Core\Model\Status\OrganisationStatus.cs" />
+    <Compile Include="Core\Request\ContactGroupsRequest.cs" />
     <Compile Include="Core\Request\SetupRequest.cs" />
+    <Compile Include="Core\Response\ContactGroupsResponse.cs" />
     <Compile Include="Core\Response\SetupResponse.cs" />
     <Compile Include="Infrastructure\Exceptions\RateExceededException.cs" />
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />
@@ -181,6 +208,7 @@
     <Compile Include="Infrastructure\Interfaces\ITokenStore.cs" />
     <Compile Include="Infrastructure\Exceptions\XeroApiException.cs" />
     <Compile Include="Core\Endpoints\BrandingThemesEndpoint.cs" />
+    <Compile Include="Infrastructure\ThirdParty\HttpUtility\UrlEncoder.cs" />
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\HttpEncoder.cs" />
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\HttpUtility.cs" />
     <Compile Include="Payroll\America\Model\Types\State.cs" />

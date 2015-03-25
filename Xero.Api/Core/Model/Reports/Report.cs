@@ -15,7 +15,7 @@ namespace Xero.Api.Core.Model.Reports
         public string ReportName { get; set; }
 
         [DataMember]
-        public ReportRowType ReportType { get; set; }
+        public NamedReportType ReportType { get; set; }
 
         [DataMember]
         public List<string> ReportTitles { get; set; }

@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Runtime.Hosting;
 using NUnit.Framework;
+using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Types;
 
 namespace CoreTests.Integration.Accounts
@@ -26,10 +29,26 @@ namespace CoreTests.Integration.Accounts
                 .Find()
                 .First()
                 .Id;
-
+          
             var id = Api.Accounts.Find(expected).Id;
             
             Assert.AreEqual(expected, id);
+        }
+
+        [Test]
+        public void finding_a_non_system_account_has_null_SystemAccount()
+        {
+            var newNonSystemAccount = Api.Create(new Account
+            {
+                Code = Random.GetRandomString(10),
+                Type = AccountType.OtherIncome,
+                Description = "Consultation " + Random.GetRandomString(10),
+                Name = "Consultation " + Random.GetRandomString(10)             
+            });
+
+            var account = Api.Accounts.Find(newNonSystemAccount.Id);
+
+            Assert.AreEqual(null, account.SystemAccount);
         }
     }
 }

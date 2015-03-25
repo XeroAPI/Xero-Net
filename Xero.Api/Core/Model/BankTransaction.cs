@@ -8,7 +8,7 @@ using Xero.Api.Core.Model.Types;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class BankTransaction : HasUpdatedDate
+    public class BankTransaction : HasUpdatedDate, IHasId
     {
         [DataMember(Name = "BankTransactionID", EmitDefaultValue = false)]
         public Guid Id { get; set; }
@@ -59,6 +59,12 @@ namespace Xero.Api.Core.Model
         public bool? HasAttachments { get; set; }
 
         [DataMember]
-        public List<LineItem> LineItems { get; set; }        
+        public List<LineItem> LineItems { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public Guid? PrepaymentID { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public Guid? OverpaymentID { get; set; }
     }
 }

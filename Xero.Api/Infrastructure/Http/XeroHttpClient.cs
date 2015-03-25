@@ -34,6 +34,7 @@ namespace Xero.Api.Infrastructure.Http
             : this(jsonMapper, xmlMapper)
         {
             Client = new HttpClient(baseUri, auth, consumer, user);
+            Client.ClientCertificate = auth.Certificate;
         }
 
         public DateTime? ModifiedSince { get; set; }
@@ -87,6 +88,8 @@ namespace Xero.Api.Infrastructure.Http
             return Client.Get(endpoint, null);
         }
 
+        
+
         internal IEnumerable<TResult> Read<TResult, TResponse>(Response response)
             where TResponse : IXeroResponse<TResult>, new()
         {
@@ -132,14 +135,21 @@ namespace Xero.Api.Infrastructure.Http
 
             if (response.StatusCode == HttpStatusCode.ServiceUnavailable)
             {
-                if (response.Body.Contains("oauth_problem"))
+                var body = response.Body;
+                if (body.Contains("oauth_problem"))
                 {
-                    throw new RateExceededException(response.Body);
+                    throw new RateExceededException(body);
                 }
 
-                throw new NotAvailableException(response.Body);
+                throw new NotAvailableException(body);
             }
 
+            if (response.StatusCode == HttpStatusCode.NoContent)
+            {
+                return;
+            }
+
+            
             throw new XeroApiException(response.StatusCode, response.Body);
         }
     }
