@@ -8,7 +8,7 @@ using Xero.Api.Core.Model.Types;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class Receipt : HasUpdatedDate, IHasId
+    public class Receipt : CoreData, IHasId
     {
         [DataMember(Name = "ReceiptID", EmitDefaultValue = false)]
         public Guid Id { get; set; }

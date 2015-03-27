@@ -52,11 +52,16 @@
     <Compile Include="Core\Endpoints\PrepaymentsEndpoint.cs" />
     <Compile Include="Core\Model\AllocationBase.cs" />
     <Compile Include="Core\Model\CreditNoteAllocation.cs" />
+    <Compile Include="Core\Model\FilePage.cs" />
+    <Compile Include="Core\Model\FilesUser.cs" />
+    <Compile Include="Core\Model\Folder.cs" />
     <Compile Include="Core\Model\Overpayment.cs" />
     <Compile Include="Core\Model\OverpaymentAllocation.cs" />
     <Compile Include="Core\Model\PrepaymentAllocation.cs" />
     <Compile Include="Core\Model\Status\OverpaymentStatus.cs" />
     <Compile Include="Core\Model\Types\OverpaymentType.cs" />
+    <Compile Include="Core\Model\CoreData.cs" />
+    <Compile Include="Core\Model\Status\ValidationStatus.cs" />
     <Compile Include="Core\Response\OverpaymentsResponse.cs" />
     <Compile Include="Core\Response\PrepaymentsResponse.cs" />
     <Compile Include="Core\Model\Prepayment.cs" />
@@ -96,7 +101,7 @@
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />
     <Compile Include="Infrastructure\Interfaces\IAuthenticationToken.cs" />
     <Compile Include="Infrastructure\Interfaces\IUser.cs" />
-    <Compile Include="Infrastructure\Model\ApiException.cs" />
+    <Compile Include="Infrastructure\Exceptions\ApiException.cs" />
     <Compile Include="Infrastructure\Exceptions\BadRequestException.cs" />
     <Compile Include="Infrastructure\Exceptions\NotFoundException.cs" />
     <Compile Include="Common\MimeTypes.cs" />
@@ -193,6 +198,9 @@
     <Compile Include="Core\Response\EmployeesResponse.cs" />
     <Compile Include="Infrastructure\Exceptions\UnauthorizedException.cs" />
     <Compile Include="Infrastructure\Exceptions\NotAvailableException.cs" />
+    <Compile Include="Infrastructure\Model\DataContractBase.cs" />
+    <Compile Include="Infrastructure\Model\ValidationError.cs" />
+    <Compile Include="Infrastructure\Model\Warning.cs" />
     <Compile Include="Infrastructure\OAuth\ApiUser.cs" />
     <Compile Include="Infrastructure\OAuth\OAuthException.cs" />
     <Compile Include="Infrastructure\Interfaces\IXeroRequest.cs" />

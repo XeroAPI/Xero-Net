@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xero.Api.Common;
 using Xero.Api.Infrastructure.Http;
@@ -15,7 +14,7 @@ namespace Xero.Api.Core.Endpoints.Base
     {
         protected XeroUpdateEndpoint(XeroHttpClient client, string apiEndpointUrl)
             : base(client, apiEndpointUrl)
-        {
+        {            
         }
 
         public IEnumerable<TResult> Update(IEnumerable<TResult> items)
@@ -29,6 +28,12 @@ namespace Xero.Api.Core.Endpoints.Base
         public TResult Update(TResult item)
         {
             return Update(new[] { item }).First();
+        }
+
+        public XeroUpdateEndpoint<T, TResult, TRequest, TResponse> SummarizeErrors(bool summarize)
+        {
+            AddParameter("summarizeErrors", summarize);
+            return this;
         }
 
         protected IEnumerable<TResult> Post(TRequest data)

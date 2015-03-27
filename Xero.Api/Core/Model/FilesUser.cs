@@ -1,21 +1,20 @@
-﻿using System;
 using System.Runtime.Serialization;
 
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public abstract class AllocationBase : CoreData
+    public class FilesUser
     {
         [DataMember(EmitDefaultValue = false)]
-        public decimal AppliedAmount { get; set; }
+        public string Name { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public DateTime Date { get; set; }
+        public string FirstName { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public Invoice Invoice { get; set; }
+        public string LastName { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public decimal Amount { get; set; }
+        public string FullName { get; set; }
     }
 }

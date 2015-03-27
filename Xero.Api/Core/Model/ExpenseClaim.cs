@@ -7,7 +7,7 @@ using Xero.Api.Core.Model.Status;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class ExpenseClaim : HasUpdatedDate, IHasId
+    public class ExpenseClaim : CoreData, IHasId
     {
         [DataMember(Name = "ExpenseClaimID", EmitDefaultValue = false)]
         public Guid Id { get; set; }

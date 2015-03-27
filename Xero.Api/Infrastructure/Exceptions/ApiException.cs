@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Xero.Api.Infrastructure.Model;
 
-namespace Xero.Api.Infrastructure.Model
+namespace Xero.Api.Infrastructure.Exceptions
 {
     public class ApiException
     {
@@ -9,15 +10,5 @@ namespace Xero.Api.Infrastructure.Model
         public int ErrorNumber { get; set; }
 
         public List<DataContractBase> Elements { get; set; }
-    }
-
-    public class DataContractBase
-    {
-        public List<ValidationError> ValidationErrors { get; set; }
-    }
-
-    public class ValidationError
-    {
-        public string Message { get; set; }
     }
 }

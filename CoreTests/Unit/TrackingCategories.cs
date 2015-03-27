@@ -5,10 +5,16 @@ namespace CoreTests.Unit
     [TestFixture]
     public class TrackingCategories : ApiWrapperTest
     {
+        [SetUp]
+        public void TestSetUp()
+        {
+            Api.TrackingCategories.ClearQueryString();
+        }
+
         [Test]
         public void include_archived()
         {
-            const string expected = "page=1&includeArchived=true";
+            const string expected = "includeArchived=true";
 
             var query = Api.TrackingCategories.IncludeArchived(true)
                 .QueryString;
@@ -19,22 +25,18 @@ namespace CoreTests.Unit
         [Test]
         public void exclude_archived_explict()
         {
-            const string expected = "page=1";
-
             var query = Api.TrackingCategories.IncludeArchived(false)
                 .QueryString;
 
-            Assert.AreEqual(expected, query);
+            Assert.AreEqual(string.Empty, query);
         }
 
         [Test]
         public void exclude_archived_implict()
         {
-            const string expected = "page=1";
-
             var query = Api.TrackingCategories.QueryString;
 
-            Assert.AreEqual(expected, query);
+            Assert.AreEqual(string.Empty, query);
         }
     }
 }
