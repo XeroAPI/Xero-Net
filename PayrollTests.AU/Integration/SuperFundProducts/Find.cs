@@ -16,5 +16,11 @@ namespace PayrollTests.AU.Integration.SuperFundProducts
             Assert.IsNotNull(sfp);
         }
 
+        [Test]
+        public void find_by_page()
+        {
+            var sfp = Api.SuperFundProducts.Find();
+            Assert.IsNotNull(sfp);
+        }
     }
 }

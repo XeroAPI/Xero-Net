@@ -15,6 +15,13 @@ namespace PayrollTests.US.Integration.PaySchedules
             Assert.IsTrue(ps.FirstOrDefault().Id != Guid.Empty);
         }
 
+        [Test]
+        public void find_by_page()
+        {
+            Given_a_payschedule();
+            var ps = Api.PaySchedules.Page(1).Find();
+            Assert.IsTrue(ps.FirstOrDefault().Id != Guid.Empty);
+        }
 
         [Test]
         public void find_by_id()

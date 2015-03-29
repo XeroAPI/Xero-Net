@@ -15,14 +15,22 @@ namespace PayrollTests.AU.Integration.Payrun
             Assert.IsNotNull(payruns);
             Assert.IsTrue(payruns.FirstOrDefault().Id != Guid.Empty);
         }
-
-
+        
         [Test]
         public void find_by_id()
         {
             var the_pr_id = Given_a_payrun().Id;
             var payrun = Api.PayRuns.Find(the_pr_id);
             Assert.AreEqual(the_pr_id, payrun.Id);
+        }
+
+        [Test]
+        public void find_paged()
+        {
+            Given_a_payrun();
+            var payruns = Api.PayRuns.Page(1).Find();
+            Assert.IsNotNull(payruns);
+            Assert.IsTrue(payruns.FirstOrDefault().Id != Guid.Empty);
         }
     }
 }

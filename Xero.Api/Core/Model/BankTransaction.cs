@@ -59,6 +59,12 @@ namespace Xero.Api.Core.Model
         public bool? HasAttachments { get; set; }
 
         [DataMember]
-        public List<LineItem> LineItems { get; set; }        
+        public List<LineItem> LineItems { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public Guid? PrepaymentID { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public Guid? OverpaymentID { get; set; }
     }
 }
