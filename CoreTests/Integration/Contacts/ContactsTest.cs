@@ -1,5 +1,4 @@
-﻿using System;
-using Xero.Api.Core.Model;
+﻿using Xero.Api.Core.Model;
 
 namespace CoreTests.Integration.Contacts
 {
@@ -9,7 +8,7 @@ namespace CoreTests.Integration.Contacts
         {
             var contact = Api.Create(new Contact
             {
-                Name = "Peter " + Guid.NewGuid().ToString("N")
+                Name = "Peter " + Random.GetRandomString(10)
             });
             return contact;
         }

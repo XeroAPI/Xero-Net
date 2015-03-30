@@ -11,6 +11,8 @@ namespace Xero.Api.Core.Model.Types
         AfterBillDate,
         [EnumMember(Value = "OFCURRENTMONTH")]
         CurrentMonth,
+        [EnumMember(Value = "DAYSAFTERBILLMONTH")]
+        DaysAfterBillMonth,
         [EnumMember(Value = "DAYSAFTERINVOICEMONTH")]
         AfterInvoiceMonth
     }

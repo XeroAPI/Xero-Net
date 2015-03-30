@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class BrandingTheme
+    public class BrandingTheme : CoreData
     {
         [DataMember(Name = "BrandingThemeID")]
         public Guid BrandingThemeId { get; set; }

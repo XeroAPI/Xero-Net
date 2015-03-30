@@ -6,7 +6,6 @@ using System.Net;
 using Xero.Api.Common;
 using Xero.Api.Infrastructure.Exceptions;
 using Xero.Api.Infrastructure.Interfaces;
-using Xero.Api.Infrastructure.Model;
 
 namespace Xero.Api.Infrastructure.Http
 {
@@ -33,8 +32,10 @@ namespace Xero.Api.Infrastructure.Http
         public XeroHttpClient(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
             : this(jsonMapper, xmlMapper)
         {
-            Client = new HttpClient(baseUri, auth, consumer, user);
-            Client.ClientCertificate = auth.Certificate;
+            Client = new HttpClient(baseUri, auth, consumer, user)
+            {
+                ClientCertificate = auth.Certificate
+            };
         }
 
         public DateTime? ModifiedSince { get; set; }
@@ -88,8 +89,6 @@ namespace Xero.Api.Infrastructure.Http
             return Client.Get(endpoint, null);
         }
 
-        
-
         internal IEnumerable<TResult> Read<TResult, TResponse>(Response response)
             where TResponse : IXeroResponse<TResult>, new()
         {
@@ -98,7 +97,7 @@ namespace Xero.Api.Infrastructure.Http
             {
                 return JsonMapper.From<TResponse>(response.Body).Values;
             }
-            
+
             HandleErrors(response);
             
             return null;

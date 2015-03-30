@@ -4,7 +4,7 @@ using Xero.Api.Core.Model.Types;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class Address
+    public class Address : CoreData
     {
         [DataMember]
         public AddressType AddressType { get; set; }

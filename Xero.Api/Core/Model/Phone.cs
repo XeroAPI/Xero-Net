@@ -4,7 +4,7 @@ using Xero.Api.Core.Model.Types;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class Phone
+    public class Phone : CoreData
     {
         public Phone()
         {

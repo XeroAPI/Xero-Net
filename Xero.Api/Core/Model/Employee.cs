@@ -6,7 +6,7 @@ using Xero.Api.Core.Model.Status;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class Employee : IHasId
+    public class Employee : CoreData, IHasId
     {
         [DataMember(Name = "EmployeeID", EmitDefaultValue = false)]
         public Guid Id { get; set; }
