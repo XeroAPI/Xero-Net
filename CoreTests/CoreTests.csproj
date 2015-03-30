@@ -46,9 +46,6 @@
     </None>
     <None Include="packages.config" />
     <None Include="README.md" />
-    <None Include="Resources\cert\public_privatekey.pfx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
