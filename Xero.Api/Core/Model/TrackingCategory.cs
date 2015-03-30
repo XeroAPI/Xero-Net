@@ -20,5 +20,9 @@ namespace Xero.Api.Core.Model
 
         [DataMember(EmitDefaultValue = false)]
         public List<Option> Options { get; set; }
+
+        //Added as Journal / JournalLine / TrackingCategory / Option does not exist.
+        [DataMember(EmitDefaultValue = false)]
+        public string Option { get; set; }
     }
 }
