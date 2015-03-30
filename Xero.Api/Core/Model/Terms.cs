@@ -9,7 +9,7 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public int Day { get; set; }
 
-        [DataMember]
+        [DataMember(Name = "Type")]
         public PaymentTermType TermType { get; set; }
     }
 }
