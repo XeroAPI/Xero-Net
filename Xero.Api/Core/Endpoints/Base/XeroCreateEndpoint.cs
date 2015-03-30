@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xero.Api.Common;
 using Xero.Api.Infrastructure.Http;
@@ -29,6 +28,12 @@ namespace Xero.Api.Core.Endpoints.Base
         public TResult Create(TResult item)
         {
             return Create(new[] { item }).First();
+        }
+
+        public XeroCreateEndpoint<T, TResult, TRequest, TResponse> SummarizeErrors(bool summarize)
+        {
+            AddParameter("summarizeErrors", summarize);
+            return this;
         }
 
         protected IEnumerable<TResult> Put(TRequest data)
