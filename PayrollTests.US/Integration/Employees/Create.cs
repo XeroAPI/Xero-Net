@@ -86,7 +86,7 @@ namespace PayrollTests.US.Integration.Employees
             //{
             //    Assert.DoesNotThrow(() =>
             //    {
-            //        var emp = Api.Add(new Employee
+            //        var emp = Api.Create(new Employee
             //        {
             //            FirstName = "John",
             //            MiddleNames = "James",

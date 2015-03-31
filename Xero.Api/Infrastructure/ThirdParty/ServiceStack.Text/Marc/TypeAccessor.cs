@@ -24,7 +24,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text.Marc
         /// </summary>
         public virtual bool CreateNewSupported { get { return false; } }
         /// <summary>
-        /// Add a new instance of this type
+        /// Create a new instance of this type
         /// </summary>
         public virtual object CreateNew() { throw new NotSupportedException();}
 
