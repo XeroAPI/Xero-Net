@@ -2,7 +2,9 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using NUnit.Framework;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Status;
 using Xero.Api.Core.Model.Types;
@@ -11,7 +13,7 @@ namespace CoreTests.Integration.TrackingCategories
 {
     public class TrackingCategoriesTest : ApiWrapperTest
     {
-        // Most of these tests will fail unless you go into Xero.com and delete the Tracking Categories. You may have to void invoices they are attached to as well.
+        private Invoice invoice_;
 
         public TrackingCategory Given_a_TrackingCategory_with_Options()
         {
@@ -61,13 +63,13 @@ namespace CoreTests.Integration.TrackingCategories
             return options;
         }
 
-        public Invoice Given_approved_invoice_with_tracking_option(TrackingCategory ct, InvoiceType type = InvoiceType.AccountsPayable, InvoiceStatus status = InvoiceStatus.Draft)
+        public void Given_approved_invoice_with_tracking_option(TrackingCategory ct, InvoiceType type = InvoiceType.AccountsPayable, InvoiceStatus status = InvoiceStatus.Draft)
         {
             Guid category = ct.Id;
             string name = ct.Name;
             string option = ct.Options.FirstOrDefault().Name;
 
-            var invoice = Api.Create(new Invoice
+            var inv = Api.Create(new Invoice
             {
                 Contact = new Contact { Name = "Wayne Enterprises" },
                 Type = type,
@@ -96,8 +98,30 @@ namespace CoreTests.Integration.TrackingCategories
 
             });
 
-            invoice.Status = InvoiceStatus.Authorised;
-            return Api.Update(invoice);
+            inv.Status = InvoiceStatus.Authorised;
+            invoice_ = Api.Update(inv);
+        }
+
+        public Invoice Given_Invoice_is_voided()
+        {
+            invoice_.Status = InvoiceStatus.Voided;
+            return Api.Update(invoice_);
+        }
+
+        public TrackingCategory Given_Tracking_Category_is_deleted(TrackingCategory categoty)
+        {
+            var trackingCategory = Api.TrackingCategories.Delete(categoty);
+
+            Assert.True(trackingCategory.Status == TrackingCategoryStatus.Deleted);
+
+            return trackingCategory;
+        }
+
+        public Option Given_Tracking_CategoryOption_is_deleted(TrackingCategory category, Option option)
+        {
+            var result = Api.TrackingCategories.DeleteTrackingOption(category, option);
+
+            return result;
         }
     }
 }

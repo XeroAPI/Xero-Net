@@ -16,7 +16,8 @@ namespace CoreTests.Integration.TrackingCategories
             Assert.IsTrue(category.Name.StartsWith("TheJoker"));
             
             Assert.IsTrue(category.Status == TrackingCategoryStatus.Active);
-        }
 
+            Given_Tracking_Category_is_deleted(category);
+        }
     }
 }

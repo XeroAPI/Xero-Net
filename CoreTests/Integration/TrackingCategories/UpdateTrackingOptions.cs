@@ -25,6 +25,8 @@ namespace CoreTests.Integration.TrackingCategories
             var result = Api.TrackingCategories[category.Id].UpdateOption(option1);
 
             Assert.True(result.Name == "New Name");
+
+            Given_Tracking_Category_is_deleted(category);
         }
 
         [Test]
@@ -39,6 +41,10 @@ namespace CoreTests.Integration.TrackingCategories
             var result = Api.TrackingCategories[category.Id].UpdateOption(category.Options.FirstOrDefault());
 
             Assert.True(result.Status == TrackingOptionStatus.Archived);
+
+            Given_Invoice_is_voided();
+            Given_Tracking_Category_is_deleted(category);
+
         }
     }
 }

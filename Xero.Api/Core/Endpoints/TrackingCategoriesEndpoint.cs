@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
-using Xero.Api.Common;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Model;
-using Xero.Api.Core.Model.Setup;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Http;
@@ -90,11 +85,46 @@ namespace Xero.Api.Core.Endpoints
             return groups.FirstOrDefault();
         }
 
+        public TrackingCategory Delete(TrackingCategory trackingCategory)
+        {
+            var endpoint = string.Format("/api.xro/2.0/TrackingCategories/{0}", trackingCategory.Id);
+
+            var track = HandleResponse(Client
+                .Client
+                .Delete(endpoint));
+
+            return track.Values.FirstOrDefault();
+        }
+
+        public Option DeleteTrackingOption(TrackingCategory trackingCategory, Option option)
+        {
+            var endpoint = string.Format("/api.xro/2.0/TrackingCategories/{0}/Options/{1}", trackingCategory.Id, option.Id);
+
+            var track = HandleOptionResponse(Client
+                .Client
+                .Delete(endpoint));
+
+            return track.Values.FirstOrDefault();
+        }
+
         private TrackingCategoriesResponse HandleResponse(Infrastructure.Http.Response response)
         {
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var result = Client.JsonMapper.From<TrackingCategoriesResponse>(response.Body);
+                return result;
+            }
+
+            Client.HandleErrors(response);
+
+            return null;
+        }
+
+        private OptionsResponse HandleOptionResponse(Infrastructure.Http.Response response)
+        {
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var result = Client.JsonMapper.From<OptionsResponse>(response.Body);
                 return result;
             }
 

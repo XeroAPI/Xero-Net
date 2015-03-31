@@ -20,6 +20,9 @@ namespace CoreTests.Integration.TrackingCategories
 
             Assert.IsTrue(result.First().Name == category1.Name);
             Assert.IsTrue(result.Last().Name == category2.Name);
+
+            Given_Tracking_Category_is_deleted(category1);
+            Given_Tracking_Category_is_deleted(category2);
         }
     }
 }

@@ -21,6 +21,8 @@ namespace CoreTests.Integration.TrackingCategories
             var result = Api.Update(category);
 
             Assert.True(result.Name == "The Penguin");
+
+            Given_Tracking_Category_is_deleted(category);
         }
 
         [Test]
@@ -33,6 +35,8 @@ namespace CoreTests.Integration.TrackingCategories
             var result = Api.Update(category);
 
             Assert.True(result.Name == "The Joker");
+
+            Given_Tracking_Category_is_deleted(category);
         }
     }
 }

@@ -23,6 +23,8 @@ namespace CoreTests.Integration.TrackingCategories
             var result = Api.TrackingCategories[category.Id];
 
             Assert.True(result._trackingCat.Options.FirstOrDefault().Name == option.Name);
+
+            Given_Tracking_Category_is_deleted(category);
         }
 
         [Test]
@@ -38,6 +40,8 @@ namespace CoreTests.Integration.TrackingCategories
 
             Assert.True(result._trackingCat.Options.Any(i=>i.Name == options.FirstOrDefault().Name));
             Assert.True(result._trackingCat.Options.Any(i=>i.Name == options.Last().Name));
+
+            Given_Tracking_Category_is_deleted(category);
         }
     }
 }

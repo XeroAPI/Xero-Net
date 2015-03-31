@@ -29,6 +29,9 @@ namespace CoreTests.Integration.TrackingCategories
             var actualTracking = result.SingleOrDefault(i => i.Id == category.Id);
 
             Assert.IsTrue(actualTracking != null);
+
+            Given_Invoice_is_voided();
+            Given_Tracking_Category_is_deleted(category);
         }
     }
 }

@@ -112,6 +112,7 @@
     <Compile Include="Integration\Setup\Create.cs" />
     <Compile Include="Integration\TaxRates\Update.cs" />
     <Compile Include="Integration\TaxRates\TaxRateTest.cs" />
+    <Compile Include="Integration\TrackingCategories\Delete.cs" />
     <Compile Include="Integration\TrackingCategories\GetTrackingCategoriesIncludingArchieved.cs" />
     <Compile Include="Integration\TrackingCategories\ArchiveTrackingCategory.cs" />
     <Compile Include="Integration\TrackingCategories\UpdateTrackingOptions.cs" />
