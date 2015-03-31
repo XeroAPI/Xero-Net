@@ -3,7 +3,7 @@
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class Currency
+    public class Currency : CoreData
     {
         [DataMember(EmitDefaultValue = false)]
         public string Code { get; set; }

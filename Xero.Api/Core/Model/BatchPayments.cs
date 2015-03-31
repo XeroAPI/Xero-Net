@@ -3,7 +3,7 @@
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class BatchPayments
+    public class BatchPayments : CoreData
     {
         [DataMember(EmitDefaultValue = false)]
         public string BankAccountNumber { get; set; }

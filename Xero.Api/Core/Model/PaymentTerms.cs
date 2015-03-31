@@ -3,7 +3,7 @@
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class PaymentTerms
+    public class PaymentTerms : CoreData
     {
         [DataMember]
         public Terms Bills { get; set; }

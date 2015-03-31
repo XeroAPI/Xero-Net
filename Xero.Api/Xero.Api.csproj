@@ -12,7 +12,6 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -54,11 +53,16 @@
     <Compile Include="Core\Endpoints\PrepaymentsEndpoint.cs" />
     <Compile Include="Core\Model\AllocationBase.cs" />
     <Compile Include="Core\Model\CreditNoteAllocation.cs" />
+    <Compile Include="Core\Model\FilePage.cs" />
+    <Compile Include="Core\Model\FilesUser.cs" />
+    <Compile Include="Core\Model\Folder.cs" />
     <Compile Include="Core\Model\Overpayment.cs" />
     <Compile Include="Core\Model\OverpaymentAllocation.cs" />
     <Compile Include="Core\Model\PrepaymentAllocation.cs" />
     <Compile Include="Core\Model\Status\OverpaymentStatus.cs" />
     <Compile Include="Core\Model\Types\OverpaymentType.cs" />
+    <Compile Include="Core\Model\CoreData.cs" />
+    <Compile Include="Core\Model\Status\ValidationStatus.cs" />
     <Compile Include="Core\Response\OverpaymentsResponse.cs" />
     <Compile Include="Core\Response\PrepaymentsResponse.cs" />
     <Compile Include="Core\Model\Prepayment.cs" />
@@ -99,7 +103,7 @@
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />
     <Compile Include="Infrastructure\Interfaces\IAuthenticationToken.cs" />
     <Compile Include="Infrastructure\Interfaces\IUser.cs" />
-    <Compile Include="Infrastructure\Model\ApiException.cs" />
+    <Compile Include="Infrastructure\Exceptions\ApiException.cs" />
     <Compile Include="Infrastructure\Exceptions\BadRequestException.cs" />
     <Compile Include="Infrastructure\Exceptions\NotFoundException.cs" />
     <Compile Include="Common\MimeTypes.cs" />
@@ -196,6 +200,9 @@
     <Compile Include="Core\Response\EmployeesResponse.cs" />
     <Compile Include="Infrastructure\Exceptions\UnauthorizedException.cs" />
     <Compile Include="Infrastructure\Exceptions\NotAvailableException.cs" />
+    <Compile Include="Infrastructure\Model\DataContractBase.cs" />
+    <Compile Include="Infrastructure\Model\ValidationError.cs" />
+    <Compile Include="Infrastructure\Model\Warning.cs" />
     <Compile Include="Infrastructure\OAuth\ApiUser.cs" />
     <Compile Include="Infrastructure\OAuth\OAuthException.cs" />
     <Compile Include="Infrastructure\Interfaces\IXeroRequest.cs" />
@@ -516,13 +523,6 @@
     <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -3,7 +3,7 @@
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class LineItem
+    public class LineItem : CoreData
     {
         [DataMember(EmitDefaultValue = false)]
         public string Description { get; set; }

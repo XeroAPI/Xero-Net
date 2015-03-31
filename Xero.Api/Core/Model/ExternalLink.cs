@@ -4,7 +4,7 @@ using Xero.Api.Core.Model.Types;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class ExternalLink
+    public class ExternalLink : CoreData
     {
         [DataMember]
         public ExternalLinkType LinkType { get; set; }

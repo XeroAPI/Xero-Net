@@ -7,7 +7,7 @@ using Xero.Api.Core.Model.Status;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class TrackingCategory : IHasId
+    public class TrackingCategory : CoreData, IHasId
     {
         [DataMember(Name = "TrackingCategoryID")]
         public Guid Id { get; set; }
@@ -20,5 +20,9 @@ namespace Xero.Api.Core.Model
 
         [DataMember(EmitDefaultValue = false)]
         public List<Option> Options { get; set; }
+
+        //Added as Journal / JournalLine / TrackingCategory / Option does not exist.
+        [DataMember(EmitDefaultValue = false)]
+        public string Option { get; set; }
     }
 }

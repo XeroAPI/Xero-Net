@@ -75,6 +75,7 @@ namespace CoreTests.Integration.Contacts
 
             var contacts = Api.Contacts
                 .ModifiedSince(date)
+                .OrderByDescending("UpdatedDateUTC")                
                 .Find()
                 .Select(p => p.Id)
                 .ToList();
@@ -87,12 +88,13 @@ namespace CoreTests.Integration.Contacts
         public void find_by_dateRange()
         {
             var expected = Given_a_contact().Id;
-            var fromDate = DateTime.Today.AddDays(-3);
+            var fromDate = DateTime.Today.AddDays(-1);
             var toDate = DateTime.Today.AddDays(1);
 
             var contacts = Api.Contacts
                 .Where(string.Format("UpdatedDateUTC >= DateTime.Parse(\"{0}\")", fromDate.ToString("yyyy-MM-dd")))
                 .And(string.Format("UpdatedDateUTC <= DateTime.Parse(\"{0}\")", toDate.ToString("yyyy-MM-dd")))
+                .OrderByDescending("UpdatedDateUTC")
                 .Find()
                 .Select(p => p.Id)
                 .ToList();

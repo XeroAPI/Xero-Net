@@ -19,4 +19,3 @@ if "%nuget%" == "" (
 mkdir Build
 mkdir Build\lib
 mkdir Build\lib\net40
-

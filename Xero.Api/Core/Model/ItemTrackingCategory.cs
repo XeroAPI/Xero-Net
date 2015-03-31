@@ -5,7 +5,7 @@ using Xero.Api.Common;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "", Name = "TrackingCategory")]
-    public class ItemTrackingCategory : IHasId
+    public class ItemTrackingCategory : CoreData, IHasId
     {
         [DataMember(Name = "TrackingCategoryID")]
         public Guid Id { get; set; }
