@@ -14,34 +14,21 @@ namespace CoreTests.Integration.TrackingCategories
         [Test]
         public void Can_add_tracking_option()
         {
-            var category = Given_a_TrackingCategory();
+            Given_a_TrackingCategory_with_Option();
 
-            var option = Given_a_tracking_option();
+            Then_Category_Has_Option();
 
-            Api.TrackingCategories[category.Id].Add(option);
-
-            var result = Api.TrackingCategories[category.Id];
-
-            Assert.True(result._trackingCat.Options.FirstOrDefault().Name == option.Name);
-
-            Given_Tracking_Category_is_deleted(category);
+            Given_Tracking_Category_is_deleted();
         }
 
         [Test]
         public void Can_add_tracking_options()
         {
-            var category = Given_a_TrackingCategory();
+            Given_a_TrackingCategory_with_Options();
 
-            var options = Given_a_tracking_options();
+            Then_Category_Has_Options();
 
-            Api.TrackingCategories[category.Id].Add(options);
-
-            var result = Api.TrackingCategories[category.Id];
-
-            Assert.True(result._trackingCat.Options.Any(i=>i.Name == options.FirstOrDefault().Name));
-            Assert.True(result._trackingCat.Options.Any(i=>i.Name == options.Last().Name));
-
-            Given_Tracking_Category_is_deleted(category);
+            Given_Tracking_Category_is_deleted();
         }
     }
 }

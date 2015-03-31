@@ -11,27 +11,20 @@ namespace CoreTests.Integration.TrackingCategories
         [Test]
         public void can_delete_a_Tracking_Category()
         {
-            var category = Given_a_TrackingCategory();
+            Given_a_TrackingCategory();
 
-            Assert.IsTrue(category.Name.StartsWith("TheJoker"));
-            
-            Assert.IsTrue(category.Status == TrackingCategoryStatus.Active);
-
-            category = Given_Tracking_Category_is_deleted(category);
-
-            Assert.IsTrue(category.Status == TrackingCategoryStatus.Deleted);        
+            Given_Tracking_Category_is_deleted();
         }
-        
+
         [Test]
         public void can_delete_a_Tracking_Category_Option()
         {
-            var category = Given_a_TrackingCategory_with_Options();
+            Given_a_TrackingCategory_with_Options();
 
-            var option = Given_Tracking_CategoryOption_is_deleted(category, category.Options.FirstOrDefault());
+            Given_Tracking_CategoryOption_is_deleted();
 
-            Assert.IsTrue(option.Status == TrackingOptionStatus.Deleted);
 
-            Given_Tracking_Category_is_deleted(category);
+            Given_Tracking_Category_is_deleted();
         }
 
     }

@@ -13,16 +13,13 @@ namespace CoreTests.Integration.TrackingCategories
         [Test]
         public void Can_get_Tracking_Category()
         {
-            var category1 = Given_a_TrackingCategory();
-            var category2 = Given_a_TrackingCategory();
+            Given_two_TrackingCategorys();
 
-            List<TrackingCategory> result = Api.TrackingCategories.GetAll();
+            Given_GetAll();
 
-            Assert.IsTrue(result.First().Name == category1.Name);
-            Assert.IsTrue(result.Last().Name == category2.Name);
+            List_contains_the_two_Tracking_Category();
 
-            Given_Tracking_Category_is_deleted(category1);
-            Given_Tracking_Category_is_deleted(category2);
+            Given_both_Tracking_Category_is_deleted();
         }
     }
 }

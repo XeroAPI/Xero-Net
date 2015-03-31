@@ -14,36 +14,24 @@ namespace CoreTests.Integration.TrackingCategories
         [Test]
         public void Can_update_tracking_options_name()
         {
-            var category = Given_a_TrackingCategory();
+            Given_a_TrackingCategory_with_Option();
 
-            var option = Given_a_tracking_option();
+            Given_first_Option_Name_change();
 
-            var option1 = Api.TrackingCategories[category.Id].Add(option).FirstOrDefault();
-            
-            option1.Name = "New Name";
-
-            var result = Api.TrackingCategories[category.Id].UpdateOption(option1);
-
-            Assert.True(result.Name == "New Name");
-
-            Given_Tracking_Category_is_deleted(category);
+            Given_Tracking_Category_is_deleted();
         }
 
         [Test]
         public void Can_update_tracking_options_status()
         {
-            var category = Given_a_TrackingCategory_with_Options();
+            Given_a_TrackingCategory_with_Options();
 
-            Given_approved_invoice_with_tracking_option(category);
+            Given_approved_invoice_with_tracking_option();
 
-            category.Options.FirstOrDefault().Status = TrackingOptionStatus.Archived;
-
-            var result = Api.TrackingCategories[category.Id].UpdateOption(category.Options.FirstOrDefault());
-
-            Assert.True(result.Status == TrackingOptionStatus.Archived);
+            Given_first_Option_is_Archived();
 
             Given_Invoice_is_voided();
-            Given_Tracking_Category_is_deleted(category);
+            Given_Tracking_Category_is_deleted();
 
         }
     }

@@ -14,18 +14,14 @@ namespace CoreTests.Integration.TrackingCategories
         [Test]
         public void Can_archieve_tracking_category()
         {
-            var category = Given_a_TrackingCategory_with_Options();
+            Given_a_TrackingCategory_with_Options();
 
-            Given_approved_invoice_with_tracking_option(category);
+            Given_approved_invoice_with_tracking_option();
 
-            category.Status = TrackingCategoryStatus.Archived;
-
-            var result = Api.Update(category);
-
-            Assert.True(result.Status == TrackingCategoryStatus.Archived);
+            Given_Tracking_Category_is_Archived();
 
             Given_Invoice_is_voided();
-            Given_Tracking_Category_is_deleted(category);
+            Given_Tracking_Category_is_deleted();
         }
     }
 }

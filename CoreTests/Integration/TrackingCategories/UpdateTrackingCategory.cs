@@ -14,29 +14,21 @@ namespace CoreTests.Integration.TrackingCategories
         [Test]
         public void Can_update_tracking_category_name()
         {
-            var category = Given_a_TrackingCategory();
+            Given_a_TrackingCategory();
 
-            category.Name = "The Penguin";
+            Given_name_change_to_categorie();
 
-            var result = Api.Update(category);
-
-            Assert.True(result.Name == "The Penguin");
-
-            Given_Tracking_Category_is_deleted(category);
+            Given_Tracking_Category_is_deleted();
         }
 
         [Test]
-        public void Can_update_tracking_category_with_options_name()
+        public void Can_update_tracking_category_with_Options_name()
         {
-            var category = Given_a_TrackingCategory_with_Options();
+            Given_a_TrackingCategory_with_Options();
 
-            category.Name = "The Joker";
+            Given_name_change_to_categorie();
 
-            var result = Api.Update(category);
-
-            Assert.True(result.Name == "The Joker");
-
-            Given_Tracking_Category_is_deleted(category);
+            Given_Tracking_Category_is_deleted();
         }
     }
 }

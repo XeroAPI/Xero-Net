@@ -11,13 +11,9 @@ namespace CoreTests.Integration.TrackingCategories
         [Test]
         public void Can_create_a_Tracking_Category()
         {
-            var category = Given_a_TrackingCategory();
+            Given_a_TrackingCategory();
 
-            Assert.IsTrue(category.Name.StartsWith("TheJoker"));
-            
-            Assert.IsTrue(category.Status == TrackingCategoryStatus.Active);
-
-            Given_Tracking_Category_is_deleted(category);
+            Given_Tracking_Category_is_deleted();
         }
     }
 }
