@@ -16,5 +16,6 @@ if "%nuget%" == "" (
 
 "%MsBuildExe%" Xero.Api.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=diag /nr:false
 
-
-
+mkdir Build
+mkdir Build\lib
+mkdir Build\lib\net40
