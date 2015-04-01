@@ -314,5 +314,10 @@ namespace Xero.Api.Core
             return Setup.Update(item);
         }
 
-      }
+        public TrackingCategory Update(TrackingCategory item)
+        {
+            return TrackingCategories.Update(item);
+        }
+        
+    }
 }

@@ -32,5 +32,6 @@ obj/
 _ReSharper*/
 [Pp]ackages/
 out/
+*.orig
 
 *.nupkg

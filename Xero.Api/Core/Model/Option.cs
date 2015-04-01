@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using Xero.Api.Common;
+using Xero.Api.Core.Model.Status;
 
 namespace Xero.Api.Core.Model
 {
@@ -12,5 +13,8 @@ namespace Xero.Api.Core.Model
 
         [DataMember(EmitDefaultValue = false)]
         public string Name { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public TrackingOptionStatus Status { get; set; }
     }
 }

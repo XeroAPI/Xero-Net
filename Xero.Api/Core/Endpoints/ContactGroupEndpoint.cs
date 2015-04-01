@@ -38,6 +38,7 @@ namespace Xero.Api.Core.Endpoints
                 return collection;
             }
         }
+
         public ContactGroup Add(ContactGroup contactGroup)
         {
             var endpoint = string.Format("/api.xro/2.0/ContactGroups");
@@ -49,9 +50,6 @@ namespace Xero.Api.Core.Endpoints
 
             return groups.FirstOrDefault();
         }
-
-       
-       
         
         private ContactGroupsResponse HandleResponse(Infrastructure.Http.Response response)
         {

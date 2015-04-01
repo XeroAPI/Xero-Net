@@ -113,6 +113,15 @@
     <Compile Include="Integration\Setup\Create.cs" />
     <Compile Include="Integration\TaxRates\Update.cs" />
     <Compile Include="Integration\TaxRates\TaxRateTest.cs" />
+    <Compile Include="Integration\TrackingCategories\Delete.cs" />
+    <Compile Include="Integration\TrackingCategories\GetTrackingCategoriesIncludingArchieved.cs" />
+    <Compile Include="Integration\TrackingCategories\ArchiveTrackingCategory.cs" />
+    <Compile Include="Integration\TrackingCategories\UpdateTrackingOptions.cs" />
+    <Compile Include="Integration\TrackingCategories\GetTrackingCategories.cs" />
+    <Compile Include="Integration\TrackingCategories\UpdateTrackingCategory.cs" />
+    <Compile Include="Integration\TrackingCategories\AddTrackingOption.cs" />
+    <Compile Include="Integration\TrackingCategories\CreateTrackingCategories.cs" />
+    <Compile Include="Integration\TrackingCategories\TrackingCategoriesTest.cs" />
     <Compile Include="Random.cs" />
     <Compile Include="Integration\Invoices\Create.cs" />
     <Compile Include="Integration\Accounts\Create.cs" />
