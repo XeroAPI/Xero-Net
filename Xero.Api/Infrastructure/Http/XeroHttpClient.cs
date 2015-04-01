@@ -52,10 +52,7 @@ namespace Xero.Api.Infrastructure.Http
         public IEnumerable<TResult> Get<TResult, TResponse>(string endPoint)
             where TResponse : IXeroResponse<TResult>, new()
         {
-            if (ModifiedSince.HasValue)
-            {
-                Client.ModifiedSince = ModifiedSince.Value;
-            }
+            Client.ModifiedSince = ModifiedSince.Value;
 
             return Read<TResult, TResponse>(Client.Get(endPoint, new QueryGenerator(Where, Order, Parameters).UrlEncodedQueryString));
         }
