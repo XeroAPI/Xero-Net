@@ -24,4 +24,8 @@
 	
   </files>
 
+  <group>
+      <dependency id="System.Data.SQLite" />
+   </group>
+
 </package>
