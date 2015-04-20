@@ -24,7 +24,8 @@
   <files>
     <file src="Xero.Api\bin\Release\Xero.Api.dll" target="lib\net40" />
 	  <file src="Xero.Api.Example.Applications\bin\Release\Xero.Api.Example.Applications.dll" target="lib\net40" />
-	  <file src="Xero.Api.Example.TokenStores\bin\Release\Xero.Api.Example.TokenStores.dll" target="lib\net40" />	
+	  <file src="Xero.Api.Example.TokenStores\bin\Release\Xero.Api.Example.TokenStores.dll" target="lib\net40" />
+      <file src="Xero.Api.Example.MVC\bin\Release\Xero.Api.Example.MVC.dll" target="lib\net40" />         	
   </files>  
 </package>
 
