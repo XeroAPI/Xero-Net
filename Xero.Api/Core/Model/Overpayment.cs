@@ -19,7 +19,7 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public DateTime? Date { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public OverpaymentStatus Status { get; set; }
 
         [DataMember]
@@ -43,7 +43,7 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public decimal? CurrencyRate { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public OverpaymentType Type { get; set; }
 
         [DataMember]
