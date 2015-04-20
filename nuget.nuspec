@@ -14,18 +14,17 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright &#x00A9; Xero.  All rights reserved.</copyright>
     <tags>xero api sdk</tags>
+    <dependencies>
+    <group>
+        <dependency id="System.Data.SQLite" version="[1.0,)"/>
+    </group>
+</dependencies>
   </metadata>
 
   <files>
     <file src="Xero.Api\bin\Release\Xero.Api.dll" target="lib\net40" />
-	<file src="Xero.Api.Example.Applications\bin\Release\Xero.Api.Example.Applications.dll" target="lib\net40" />
-	<file src="Xero.Api.Example.TokenStores\bin\Release\Xero.Api.Example.TokenStores.dll" target="lib\net40" />
-	
-	
-  </files>
-
-  <group>
-      <dependency id="System.Data.SQLite" />
-   </group>
-
+	  <file src="Xero.Api.Example.Applications\bin\Release\Xero.Api.Example.Applications.dll" target="lib\net40" />
+	  <file src="Xero.Api.Example.TokenStores\bin\Release\Xero.Api.Example.TokenStores.dll" target="lib\net40" />	
+  </files>  
 </package>
+
