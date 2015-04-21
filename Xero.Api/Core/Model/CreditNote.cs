@@ -74,6 +74,6 @@ namespace Xero.Api.Core.Model
         public List<LineItem> LineItems { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public List<Allocation> Allocations { get; set; }
+        public List<CreditNoteAllocation> Allocations { get; set; }
     }
 }
