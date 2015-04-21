@@ -16,8 +16,9 @@
     <tags>xero api sdk</tags>
     <dependencies>
         <group>
-            <dependency id="System.Data.SQLite" version="[1.0,)"/>
             <dependency id="Microsoft.AspNet.Mvc" version="[4.0,)"/>
+            <dependency id="Microsoft.AspNet.WebApi.WebHost" version="[4.0,)"/>
+            <dependency id="System.Data.SQLite" version="[1.0,)"/>            
         </group>
     </dependencies>
   </metadata>
