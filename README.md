@@ -1,5 +1,7 @@
 ﻿Xero-Net
 ========
+[![xero-api-sdk MyGet Build Status](https://www.myget.org/BuildSource/Badge/xero-api-sdk?identifier=e3806217-d545-47e3-9cb3-65ece45015fd)](https://www.myget.org/)
+
 A skinny wrapper of the Xero API. Supports Payroll. All third party libraries are included as source code.
 
 * [Installation] (#installation)
@@ -17,10 +19,11 @@ A skinny wrapper of the Xero API. Supports Payroll. All third party libraries ar
 
 ## Installation
 
-There are 2 ways to install this library:
+There are different way to install this library:
 
 1. Download the source code from github and compile yourself: **https://github.com/XeroAPI/Xero-Net**
-2. Download directly into Visual Studio using the NuGet powershell command: **PM&gt; Install-Package Xero.API.SDK**
+2. Download directly into Visual Studio using the NuGet powershell command **PM&gt; Install-Package Xero.API.SDK.Minimal** to get a minimal installation.
+3. Download directly into Visual Studio using the NuGet powershell command: **PM&gt; Install-Package Xero.API.SDK** to get a larger installation with sample token store using [SQLite](http://http://system.data.sqlite.org/).
 
 ## What is supported?
 ### Core
