@@ -9,12 +9,12 @@ namespace Xero.Api.Example.Applications.Private
 {
     public class SigningCertificate
     {
-        public string CertificatePath { get; private set; }
+        public string Path { get; private set; }
         public string Password { get; private set; }
 
         public SigningCertificate(string certificatePath, string password)
         {
-            CertificatePath = certificatePath;
+            Path = System.IO.Path.GetFullPath(certificatePath);
             Password = password;
         }
     }
@@ -23,25 +23,25 @@ namespace Xero.Api.Example.Applications.Private
     {
         private readonly X509Certificate2 _certificate;
 
-        public PrivateAuthenticator(string certificatePath)
+        public PrivateAuthenticator(SigningCertificate certificate)
         {
             _certificate = new X509Certificate2();
-            TryImport(certificatePath);
+            TryImport(certificate);
         }
 
-        private void TryImport(string certificatePath)
+        private void TryImport(SigningCertificate certificatePath)
         {
             MustExist(certificatePath);
 
-            _certificate.Import(certificatePath);
+            _certificate.Import(certificatePath.Path, certificatePath.Password, X509KeyStorageFlags.DefaultKeySet);
         }
 
-        private static void MustExist(string certificatePath)
+        private static void MustExist(SigningCertificate certificate)
         {
-            if (IsMissing(certificatePath))
+            if (IsMissing(certificate.Path))
                 throw new FileNotFoundException(
-                    "Unable to import certficate because the file <" + Path.GetFullPath(certificatePath) + "> does not exist.",
-                    certificatePath);
+                    "Unable to import certficate because the file <" + certificate.Path + "> does not exist.",
+                    certificate.Path);
         }
 
         private static bool IsMissing(string certificatePath)

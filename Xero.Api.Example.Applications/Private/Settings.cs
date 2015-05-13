@@ -9,9 +9,14 @@ namespace Xero.Api.Example.Applications.Private
             get { return ConfigurationManager.AppSettings["BaseUrl"]; }
         }
 
-        public string SigningCertificatePath
+        public SigningCertificate SigningCertificate
         {
-            get { return ConfigurationManager.AppSettings["SigningCertificate"]; }
+            get { return new SigningCertificate(ConfigurationManager.AppSettings["SigningCertificate"], SigningCertificatePassword); }
+        }
+
+        private string SigningCertificatePassword
+        {
+            get { return ConfigurationManager.AppSettings["SigningCertificatePassword"]; }
         }
     
         public string Key

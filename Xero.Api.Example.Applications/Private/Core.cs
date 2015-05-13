@@ -11,7 +11,7 @@ namespace Xero.Api.Example.Applications.Private
 
         public Core() :
             base(ApplicationSettings.Uri,
-                new PrivateAuthenticator(ApplicationSettings.SigningCertificatePath),
+                new PrivateAuthenticator(ApplicationSettings.SigningCertificate),
                 new Consumer(ApplicationSettings.Key, ApplicationSettings.Secret),
                 null,
                 Mapper,
