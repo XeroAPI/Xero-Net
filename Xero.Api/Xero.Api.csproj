@@ -120,6 +120,8 @@
     <Compile Include="Core\Response\OptionsResponse.cs" />
     <Compile Include="Infrastructure\Exceptions\RateExceededException.cs" />
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />
+    <Compile Include="Private\BlankAuthenticator.cs" />
+    <Compile Include="Infrastructure\Http\Bodies\Binary.cs" />
     <Compile Include="Infrastructure\Http\Internet.cs" />
     <Compile Include="Infrastructure\Http\Bodies\MultipartFormData.cs" />
     <Compile Include="Infrastructure\Interfaces\IAuthenticationToken.cs" />
