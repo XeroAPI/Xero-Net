@@ -15,7 +15,7 @@ namespace Xero.Api.Core.Endpoints
         : FourDecimalPlacesEndpoint<ReceiptsEndpoint, Receipt, ReceiptsRequest, ReceiptsResponse>, IReceiptsEndpoint
     {
         public ReceiptsEndpoint(XeroHttpClient client)
-            : base(client, "/api.xro/2.0/Receipts")
+            : base(client, "/Receipts")
         {
         }
     }

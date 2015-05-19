@@ -16,7 +16,7 @@ namespace Xero.Api.Core.Endpoints
         : FourDecimalPlacesEndpoint<ItemsEndpoint, Item, ItemsRequest, ItemsResponse>, IItemsEndpoint
     {
         public ItemsEndpoint(XeroHttpClient client) :
-            base(client, "/api.xro/2.0/Items")
+            base(client, "/Items")
         {
         }
 

@@ -20,28 +20,28 @@ namespace Xero.Api.Core.Endpoints
 
         public Allocation Add(Allocation allocation)
         {
-            var endpoint = string.Format("/api.xro/2.0/CreditNotes/{0}/Allocations", allocation.CreditNote.Id);
+            var endpoint = string.Format("/CreditNotes/{0}/Allocations", allocation.CreditNote.Id);
 
             return (Allocation)Add(allocation, endpoint);
         }
 
         public CreditNoteAllocation Add(CreditNoteAllocation allocation)
         {
-            var endpoint = string.Format("/api.xro/2.0/CreditNotes/{0}/Allocations", allocation.CreditNote.Id);
+            var endpoint = string.Format("/CreditNotes/{0}/Allocations", allocation.CreditNote.Id);
 
             return (CreditNoteAllocation)Add(allocation, endpoint);
         }
 
         public PrepaymentAllocation Add(PrepaymentAllocation allocation)
         {
-            var endpoint = string.Format("/api.xro/2.0/Prepayments/{0}/Allocations", allocation.Prepayment.Id);
+            var endpoint = string.Format("/Prepayments/{0}/Allocations", allocation.Prepayment.Id);
 
             return (PrepaymentAllocation)Add(allocation, endpoint);
         }
 
         public OverpaymentAllocation Add(OverpaymentAllocation allocation)
         {
-            var endpoint = string.Format("/api.xro/2.0/Overpayments/{0}/Allocations", allocation.Overpayment.Id);
+            var endpoint = string.Format("/Overpayments/{0}/Allocations", allocation.Overpayment.Id);
 
             return (OverpaymentAllocation)Add(allocation, endpoint);
         }

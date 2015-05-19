@@ -16,7 +16,7 @@ namespace Xero.Api.Core.Endpoints
         IBankTransactionsEndpoint
     {
         public BankTransactionsEndpoint(XeroHttpClient client)
-            : base(client, "/api.xro/2.0/BankTransactions")
+            : base(client, "/BankTransactions")
         {
         }
 
