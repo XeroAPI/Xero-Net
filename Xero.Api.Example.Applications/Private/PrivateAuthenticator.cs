@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth;
@@ -20,6 +19,9 @@ namespace Xero.Api.Example.Applications.Private
 
         public SigningCertificate(string path, string password)
         {
+            if (string.IsNullOrEmpty(path))
+                throw new ArgumentException("Cannot create without a file path", "path");
+
             Path = System.IO.Path.GetFullPath(path);
             Password = password;
         }
