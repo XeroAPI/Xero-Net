@@ -121,6 +121,7 @@
     <Compile Include="Infrastructure\Exceptions\RateExceededException.cs" />
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />
     <Compile Include="Infrastructure\Http\Internet.cs" />
+    <Compile Include="Infrastructure\Http\Bodies\MultipartFormData.cs" />
     <Compile Include="Infrastructure\Interfaces\IAuthenticationToken.cs" />
     <Compile Include="Infrastructure\Interfaces\IUser.cs" />
     <Compile Include="Infrastructure\Exceptions\ApiException.cs" />
