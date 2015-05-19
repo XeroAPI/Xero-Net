@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth;
@@ -9,10 +10,12 @@ namespace Xero.Api.Example.Applications.Private
 {
     public class PrivateAuthenticator : IAuthenticator
     {
+        private readonly IConsumer _consumer;
         private readonly X509Certificate2 _certificate;
 
-        public PrivateAuthenticator(SigningCertificate cert)
+        public PrivateAuthenticator(SigningCertificate cert, IConsumer consumer)
         {
+            _consumer = consumer;
             _certificate = new X509Certificate2();
             TryImport(cert);
         }
@@ -61,5 +64,10 @@ namespace Xero.Api.Example.Applications.Private
         }
 
         public IUser User { get; set; }
+
+        public void Authenticate(HttpWebRequest request)
+        {
+            request.Headers.Add("Authorization", GetSignature(_consumer, User, request.RequestUri, request.Method, _consumer));
+        }
     }
 }

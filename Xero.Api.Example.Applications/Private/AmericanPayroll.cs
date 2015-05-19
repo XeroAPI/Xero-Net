@@ -11,7 +11,7 @@ namespace Xero.Api.Example.Applications.Private
 
         public AmericanPayroll(bool includeRateLimiter = false) :
             base(ApplicationSettings.Uri,
-                new PrivateAuthenticator(ApplicationSettings.SigningCertificate),
+                new PrivateAuthenticator(ApplicationSettings.SigningCertificate, ApplicationSettings.Consumer),
                 new Consumer(ApplicationSettings.Key, ApplicationSettings.Secret),
                 null,
                 Mapper,

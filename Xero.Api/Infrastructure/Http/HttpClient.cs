@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using Xero.Api.Infrastructure.Http.Bodies;
 using Xero.Api.Infrastructure.Interfaces;
-using Xero.Api.Infrastructure.RateLimiter;
+using Xero.Api.Private;
 
 namespace Xero.Api.Infrastructure.Http
 {
-    // This has enough functionality to get the call the API.
-    // Content and accept types are defaulted and it is always ask for the response to be compressed.
-    // Json for GET and XML for PUT and POST
-    // It uses IAuthenticator or ICertificateAuthenticator to do the signing
     internal class HttpClient
     {
         private readonly string _baseUri;
-        private readonly IAuthenticator _auth;
-        private readonly IRateLimiter _rateLimiter;
-
+        private readonly IAuthenticator _auth = new BlankAuthenticator();
+        
         private readonly Dictionary<string, string> _headers;
 
         public DateTime? ModifiedSince { get; set; }
@@ -43,12 +39,6 @@ namespace Xero.Api.Infrastructure.Http
             _auth = auth;
         }
 
-        public HttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IRateLimiter rateLimiter)
-            : this(baseUri, auth, consumer, user)
-        {
-            _rateLimiter = rateLimiter;
-        }
-
         public string UserAgent
         {
             get; set;
@@ -67,141 +57,112 @@ namespace Xero.Api.Infrastructure.Http
         
         public Response Post(string endpoint, byte[] data, string contentType = "application/xml", string query = null)
         {
-            try
-            {
-                return WriteToServer(endpoint, data, "POST", contentType, query);
-            }
-            catch (WebException we)
-            {
-	            if (we.Response != null)
-	            {
-		            return new Response((HttpWebResponse) we.Response);
-	            }
-
-	            throw;
-            }
+            return Internet.Exec(CreateRequestWithBinaryBody(endpoint, data, "POST", contentType, query));
         }
             
         public Response PostMultipartForm(string endpoint, string contentType, string name, string filename, byte[] payload)
         {
-            return WriteToServerWithMultipart(endpoint, contentType, name,filename, payload);
+            return Internet.Exec(CreateRequestWithMultipartBody(endpoint, contentType, name, filename, payload));
         }
 
         public Response Put(string endpoint, string data, string contentType = "application/xml", string query = null)
         {
-            try
-            {
-                return WriteToServer(endpoint, Encoding.UTF8.GetBytes(data), "PUT", contentType, query);
-            }
-            catch (WebException we)
-            {
-	            if (we.Response != null)
-	            {
-		            return new Response((HttpWebResponse) we.Response);
-	            }
-
-	            throw;
-            }
+            return Internet.Exec(CreateRequestWithBinaryBody(endpoint, Encoding.UTF8.GetBytes(data), "PUT", contentType, query));
         }
 
         public Response Get(string endpoint, string query)
         {
-            try
-            {
-                var request = CreateRequest(endpoint, "GET", query: query);
-                return new Response((HttpWebResponse)request.GetResponse());
-            }
-            catch (WebException we)
-            {
-	            if (we.Response != null)
-	            {
-		            return new Response((HttpWebResponse) we.Response);
-	            }
-
-	            throw;
-            }
+            return Internet.Exec(CreateRequest(endpoint, "GET", query: query));
         }
 
         public Response GetRaw(string endpoint, string mimeType, string query = null)
         {
-            try
-            {
-                var request = CreateRequest(endpoint, "GET", mimeType, query);
-                return new Response((HttpWebResponse)request.GetResponse());
-            }
-            catch (WebException we)
-            {
-	            if (we.Response != null)
-	            {
-		            return new Response((HttpWebResponse) we.Response);
-	            }
-
-	            throw;
-            }
+            return Internet.Exec(CreateRequest(endpoint, "GET", mimeType, query));
         }
 
         public Response Delete(string endpoint)
         {
-	        try
-	        {
-		        var request = CreateRequest(endpoint, "DELETE");
-		        return new Response((HttpWebResponse) request.GetResponse());
-	        }
-	        catch (WebException we)
-	        {
-		        if (we.Response != null)
-		        {
-			        return new Response((HttpWebResponse) we.Response);
-			}
+            return Internet.Exec(CreateRequest(endpoint, "DELETE"));
+        }
 
-		        throw;
-	        }
+        private WebRequest CreateRequestWithMultipartBody(string endpoint, string contentType, string name, string filename, byte[] payload)
+        {
+            return (CreateRequest(endpoint, "POST")).Tap(request => 
+                MultipartFormData.Write(request, payload, contentType, name, filename));
+        }
+
+        private WebRequest CreateRequestWithBinaryBody(string endpoint, byte[] data, string method, string contentType = "application/xml", string query = null)
+        {
+            return CreateRequest(endpoint, method, query: query).Tap(request => 
+                Binary.Write(request, data, contentType));
         }
 
         private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null)
         {
-            var uri = new UriBuilder(_baseUri)
+            return (New(method, accept, Url(endPoint, query))).Tap(request => 
             {
-                Path = endPoint,
-            };
+                ApplyModifiedSince(request);
+
+                Authenticate(request);
+
+                AddHeaders(request);
+
+                ApplyUserAgent(request);
+
+                ApplyClientCert(request);
+            });
+        }
+
+        private void ApplyClientCert(HttpWebRequest request)
+        {
+            if (ClientCertificate != null)
+            {
+                request.ClientCertificates.Add(ClientCertificate);
+            }
+        }
+
+        private void ApplyUserAgent(HttpWebRequest request)
+        {
+            request.UserAgent = !string.IsNullOrWhiteSpace(UserAgent) ? UserAgent : "Xero Api wrapper - " + Consumer.ConsumerKey;
+        }
+
+        private UriBuilder Url(string endPoint, string query)
+        {
+            var uri = new UriBuilder(string.Join(string.Empty, _baseUri, endPoint));
 
             if (!string.IsNullOrWhiteSpace(query))
             {
                 uri.Query = query;
             }
 
-            var request = (HttpWebRequest)WebRequest.Create(uri.Uri);
+            return uri;
+        }
+
+        private static HttpWebRequest New(string method, string accept, UriBuilder uri)
+        {
+            var request = (HttpWebRequest) WebRequest.Create(uri.Uri);
 
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            
+
             request.Accept = accept;
             request.Method = method;
+            return request;
+        }
 
+        private void ApplyModifiedSince(HttpWebRequest request)
+        {
             if (ModifiedSince.HasValue)
             {
                 request.IfModifiedSince = ModifiedSince.Value;
             }
+        }
 
+        private void Authenticate(HttpWebRequest request)
+        {
             if (_auth != null)
             {
-                var oauthSignature = _auth.GetSignature(Consumer, User, request.RequestUri, method, Consumer);
-
-                AddHeader("Authorization", oauthSignature);
+                _auth.Authenticate(request);
             }
-            
-            AddHeaders(request);
-
-            request.UserAgent = !string.IsNullOrWhiteSpace(UserAgent) ? UserAgent : "Xero Api wrapper - " + Consumer.ConsumerKey;
-            
-            if (ClientCertificate != null)
-            {
-                request.ClientCertificates.Add(ClientCertificate);
-            }
-
-            if (_rateLimiter != null)
-                _rateLimiter.WaitUntilLimit();
-
-            return request;
         }
 
         private void AddHeaders(WebRequest request)
@@ -216,54 +177,5 @@ namespace Xero.Api.Infrastructure.Http
         {
             _headers[name] = value;
         }
-
-        private static void WriteData(byte[] bytes, WebRequest request, string contentType)
-        {
-            request.ContentLength = bytes.Length;
-            request.ContentType = contentType;
-
-            using (var dataStream = request.GetRequestStream())
-            {
-                dataStream.Write(bytes, 0, bytes.Length);
-            }
-        }
-
-        private Response WriteToServerWithMultipart(string endpoint,string contentType, string name, string filename ,byte[] payload)
-        {
-            var request = CreateRequest(endpoint, "POST");
-
-            WriteMultipartData(payload, request, contentType,name, filename);
-            
-            return new Response((HttpWebResponse)request.GetResponse());
-        }
-
-        private void WriteMultipartData(byte[] bytes, HttpWebRequest request, string contentType, string name, string filename)
-        {
-            var boundary = Guid.NewGuid();
-
-            byte[] header = Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\nContent-Disposition: form-data; name=" + name + "; FileName=" + filename + " \r\nContent-Type: " + contentType + "\r\n\r\n");
-            byte[] trailer = Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
-
-            request.ContentType = "multipart/form-data; boundary=" + boundary;
-            request.KeepAlive = false;
-            
-            var contentLength = bytes.Length + header.Length + trailer.Length;
-            
-            request.ContentLength = contentLength;
-
-            var dataStream = request.GetRequestStream();
-            dataStream.Write(header, 0, header.Length);
-            dataStream.Write(bytes, 0, bytes.Length);
-            dataStream.Write(trailer, 0, trailer.Length);
-            dataStream.Close();
-        }
-
-        private Response WriteToServer(string endpoint, byte[] data, string method, string contentType = "application/xml", string query = null)
-        {
-            var request = CreateRequest(endpoint, method, query: query);
-            WriteData(data, request, contentType);
-
-            return new Response((HttpWebResponse)request.GetResponse());
-        }        
     }
 }
