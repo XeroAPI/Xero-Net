@@ -28,12 +28,12 @@ namespace Xero.Api.Example.Applications.Private
             }
         }
 
-        public string Key
+        private string Key
         {
             get { return ConfigurationManager.AppSettings["ConsumerKey"]; }
         }
 
-        public string Secret
+        private string Secret
         {
             get { return ConfigurationManager.AppSettings["ConsumerSecret"]; }
         }

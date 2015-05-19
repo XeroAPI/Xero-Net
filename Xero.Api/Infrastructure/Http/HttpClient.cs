@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Xero.Api.Infrastructure.Http.Bodies;
 using Xero.Api.Infrastructure.Interfaces;
+using Xero.Api.Infrastructure.RateLimiter;
 using Xero.Api.Private;
 
 namespace Xero.Api.Infrastructure.Http
@@ -33,7 +34,7 @@ namespace Xero.Api.Infrastructure.Http
             Consumer = consumer;
         }
 
-        public HttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user)
+        public HttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IRateLimiter rateLimiter)
             : this(baseUri, consumer, user)
         {
             _auth = auth;
