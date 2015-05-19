@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth;
@@ -19,7 +20,26 @@ namespace Xero.Api.Example.Applications.Private
         public PrivateAuthenticator(string certificatePath, string certificatePassword = "")
         {
             _certificate = new X509Certificate2();
-            _certificate.Import(certificatePath, certificatePassword, X509KeyStorageFlags.MachineKeySet);
+            TryImport(Path.GetFullPath(certificatePath));
+        }
+
+        private void TryImport(string certificatePath)
+        {
+            MustExist(certificatePath);
+
+            _certificate.Import(certificatePath);
+        }
+
+        private static void MustExist(string certificatePath)
+        {
+            if (IsMissing(certificatePath))
+                throw new FileNotFoundException(
+                    "Unable to continue because the certificate file <" + certificatePath + "> does not exist.");
+        }
+
+        private static bool IsMissing(string certificatePath)
+        {
+            return false == File.Exists(certificatePath);
         }
 
         public PrivateAuthenticator(X509Certificate2 certificate)
