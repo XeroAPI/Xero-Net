@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth;
@@ -7,27 +8,38 @@ using Xero.Api.Infrastructure.OAuth.Signing;
 
 namespace Xero.Api.Example.Applications.Private
 {
+    public class SigningCertificate
+    {
+        private static readonly string NO_PASSWORD = null;
+        public string Path { get; private set; }
+        public string Password { get; private set; }
+
+        public SigningCertificate(string path) : this(path, NO_PASSWORD)
+        {
+        }
+
+        public SigningCertificate(string path, string password)
+        {
+            Path = System.IO.Path.GetFullPath(path);
+            Password = password;
+        }
+    }
+
     public class PrivateAuthenticator : IAuthenticator
     {
         private readonly X509Certificate2 _certificate;
 
-        public PrivateAuthenticator(string certificatePath)
-            :this(certificatePath, "")
-        {
-            
-        }
-
-        public PrivateAuthenticator(string certificatePath, string certificatePassword = "")
+        public PrivateAuthenticator(SigningCertificate cert)
         {
             _certificate = new X509Certificate2();
-            TryImport(Path.GetFullPath(certificatePath));
+            TryImport(cert);
         }
 
-        private void TryImport(string certificatePath)
+        private void TryImport(SigningCertificate certificatePath)
         {
-            MustExist(certificatePath);
+            MustExist(certificatePath.Path);
 
-            _certificate.Import(certificatePath);
+            _certificate.Import(certificatePath.Path, certificatePath.Password, X509KeyStorageFlags.DefaultKeySet);
         }
 
         private static void MustExist(string certificatePath)
