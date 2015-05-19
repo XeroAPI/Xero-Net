@@ -14,7 +14,7 @@ namespace Xero.Api.Core.Endpoints
         ICurrenciesEndpoint
     {
         internal CurrenciesEndpoint(XeroHttpClient client)
-            : base(client, "/api.xro/2.0/Currencies")
+            : base(client, "/Currencies")
         {
         }
     }

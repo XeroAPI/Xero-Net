@@ -16,7 +16,7 @@ namespace Xero.Api.Core.Endpoints
         : XeroUpdateEndpoint<AccountsEndpoint, Account, AccountsRequest, AccountsResponse>, IAccountsEndpoint
     {
         public AccountsEndpoint(XeroHttpClient client) :
-            base(client, "/api.xro/2.0/Accounts")
+            base(client, "/Accounts")
         {
         }
     }

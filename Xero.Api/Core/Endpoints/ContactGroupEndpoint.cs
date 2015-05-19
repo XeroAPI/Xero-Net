@@ -21,7 +21,7 @@ namespace Xero.Api.Core.Endpoints
         IContactGroupsEndpoint
     {
 
-        public ContactGroupsEndpoint(XeroHttpClient client) : base(client,"/api.xro/2.0/ContactGroups")
+        public ContactGroupsEndpoint(XeroHttpClient client) : base(client,"/ContactGroups")
         {
             
         }
@@ -30,7 +30,7 @@ namespace Xero.Api.Core.Endpoints
         {
             get
             {
-                var endpoint = string.Format("/api.xro/2.0/ContactGroups/{0}",guid);
+                var endpoint = string.Format("/ContactGroups/{0}",guid);
 
                 var group = HandleResponse(Client
                     .Client
@@ -45,7 +45,7 @@ namespace Xero.Api.Core.Endpoints
 
         public ContactGroup Add(ContactGroup contactGroup)
         {
-            var endpoint = string.Format("/api.xro/2.0/ContactGroups");
+            var endpoint = string.Format("/ContactGroups");
 
             var groups = HandleResponse(Client
                 .Client
@@ -85,7 +85,7 @@ namespace Xero.Api.Core.Endpoints
 
 
         public ContactCollection(XeroHttpClient client, ContactGroup group)
-            : base(client, "/api.xro/2.0/ContactGroups")
+            : base(client, "/ContactGroups")
         {
             _group = group;
             _client = client;
@@ -93,7 +93,7 @@ namespace Xero.Api.Core.Endpoints
 
         public void Clear()
         {
-            var endpoint = string.Format("/api.xro/2.0/ContactGroups/{0}/Contacts", _group.Id);
+            var endpoint = string.Format("/ContactGroups/{0}/Contacts", _group.Id);
 
             var groups = HandleResponse(Client
                 .Client
@@ -122,7 +122,7 @@ namespace Xero.Api.Core.Endpoints
 
         private void UnAssignContact(ContactGroup contactGroup, Guid contactId)
         {
-            var endpoint = string.Format("/api.xro/2.0/ContactGroups/{0}/Contacts/{1}", contactGroup.Id, contactId);
+            var endpoint = string.Format("/ContactGroups/{0}/Contacts/{1}", contactGroup.Id, contactId);
 
             var groups = HandleResponse(Client
                 .Client
@@ -132,7 +132,7 @@ namespace Xero.Api.Core.Endpoints
 
         private void AssignContacts(ContactGroup contactGroup, List<Contact> contacts)
         {
-            var endpoint = string.Format("/api.xro/2.0/ContactGroups/{0}/Contacts", contactGroup.Id);
+            var endpoint = string.Format("/ContactGroups/{0}/Contacts", contactGroup.Id);
 
             var groups = HandleResponse(_client
                 .Client

@@ -12,7 +12,7 @@ namespace Xero.Api.Core.Endpoints
     public class OverpaymentsEndpoint : XeroReadEndpoint<OverpaymentsEndpoint, Overpayment, OverpaymentsResponse>, IOverpaymentsEndpoint
     {
         public OverpaymentsEndpoint(XeroHttpClient client)
-            : base(client, "/api.xro/2.0/Overpayments")
+            : base(client, "/Overpayments")
         {
         }
     }

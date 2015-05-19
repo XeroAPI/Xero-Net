@@ -15,7 +15,7 @@ namespace Xero.Api.Core.Endpoints
         : FourDecimalPlacesEndpoint<PaymentsEndpoint, Payment, PaymentsRequest, PaymentsResponse>, IPaymentsEndpoint
     {
         public PaymentsEndpoint(XeroHttpClient client) :
-            base(client, "/api.xro/2.0/Payments")
+            base(client, "/Payments")
         {
         }
     }
