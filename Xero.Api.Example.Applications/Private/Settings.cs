@@ -37,5 +37,10 @@ namespace Xero.Api.Example.Applications.Private
         {
             get { return ConfigurationManager.AppSettings["ConsumerSecret"]; }
         }
+
+        public string FilesBaseUrl
+        {
+            get { return ConfigurationManager.AppSettings["FilesBaseUrl"]; }
+        }
     }
 }
