@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth;
@@ -80,6 +81,10 @@ namespace Xero.Api.Example.Applications
         }
 
         public IUser User { get; set; }
+        public void Authenticate(HttpWebRequest request)
+        {
+            throw new NotImplementedException();
+        }
 
         protected abstract string AuthorizeUser(IToken oauthToken);
         protected abstract string CreateSignature(IToken token, string verb, Uri uri, string verifier,

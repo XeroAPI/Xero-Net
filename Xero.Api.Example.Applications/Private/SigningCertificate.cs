@@ -9,8 +9,7 @@ namespace Xero.Api.Example.Applications.Private
         public string Password { get; private set; }
 
         public SigningCertificate(string path) : this(path, NO_PASSWORD)
-        {
-        }
+        { }
 
         public SigningCertificate(string path, string password)
         {
