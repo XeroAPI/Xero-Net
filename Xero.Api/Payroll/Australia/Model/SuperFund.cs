@@ -37,6 +37,9 @@ namespace Xero.Api.Payroll.Australia.Model
 
         [DataMember]
         public long EmployerNumber { get; set; }
+        
+        [DataMember]
+        public string  ElectronicServiceAddress { get; set; }
 
         [DataMember]
         public string Name { get; set; }
