@@ -55,6 +55,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integration\Accounts\Update.cs" />
     <Compile Include="Integration\Accounts\Find.cs" />
     <Compile Include="Integration\Allocations\Add.cs" />
     <Compile Include="Integration\BankTransactions\BankTransactionTest.cs" />
