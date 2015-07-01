@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Xero.Api.Common;
 using Xero.Api.Core.Model.Status;
 using Xero.Api.Infrastructure.Model;
 
-namespace Xero.Api.Core.Model
+namespace Xero.Api.Common
 {
     [DataContract(Namespace = "")]
-    public abstract class CoreData : HasUpdatedDate
+    public abstract class CoreData
     {
         [DataMember(EmitDefaultValue = false, Name = "ValidationErrors")]
         public List<ValidationError> Errors { get; set; }

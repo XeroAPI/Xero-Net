@@ -62,7 +62,7 @@
     <Compile Include="Core\Model\PrepaymentAllocation.cs" />
     <Compile Include="Core\Model\Status\OverpaymentStatus.cs" />
     <Compile Include="Core\Model\Types\OverpaymentType.cs" />
-    <Compile Include="Core\Model\CoreData.cs" />
+    <Compile Include="Common\CoreData.cs" />
     <Compile Include="Core\Model\Status\ValidationStatus.cs" />
     <Compile Include="Core\Response\OverpaymentsResponse.cs" />
     <Compile Include="Core\Response\PrepaymentsResponse.cs" />
