@@ -9,7 +9,7 @@ namespace Xero.Api.Payroll.Australia.Endpoints
     public class PayslipsEndpoint : PayrollEndpoint<PayslipsEndpoint, Payslip, PayslipRequest, PayslipsResponse>
     {
         public PayslipsEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/Payslips")
+            : base(client, "payroll.xro/1.0/Payslip")
         {
         }
     }
