@@ -13,12 +13,6 @@ namespace Xero.Api.Payroll.Australia.Model
         public string AddressLine2 { get; set; }
 
         [DataMember]
-        public string AddressLine3 { get; set; }
-
-        [DataMember]
-        public string AddressLine4 { get; set; }
-
-        [DataMember]
         public string City { get; set; }
 
         [DataMember]

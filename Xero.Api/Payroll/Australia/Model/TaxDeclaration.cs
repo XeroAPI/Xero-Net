@@ -31,6 +31,9 @@ namespace Xero.Api.Payroll.Australia.Model
 
         [DataMember(Name = "HasSFSSDebt", EmitDefaultValue = false)]
         public bool HasStudentFinancialSupplementSchemeDebt { get; set; }
+        
+        [DataMember(Name = "HasTSLDebt", EmitDefaultValue = false)]
+        public bool HasTradeSupportLoan { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public bool EligibleToReceiveLeaveLoading { get; set; }
