@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using Xero.Api.Common;
 using Xero.Api.Core.Model.Types;
 
 namespace Xero.Api.Core.Model

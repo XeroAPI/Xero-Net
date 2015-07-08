@@ -8,7 +8,7 @@ using Xero.Api.Core.Model.Types;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class Overpayment : CoreData, IHasId
+    public class Overpayment : HasUpdatedDate, IHasId
     {
         [DataMember(Name = "OverpaymentID")]
         public Guid Id { get; set; }
