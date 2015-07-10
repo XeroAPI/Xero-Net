@@ -25,7 +25,7 @@ namespace CoreTests.Integration.General
         {
             Assert.Throws<ValidationException>(() => Api.Invoices.Create(new Invoice
             {
-                Items = new List<LineItem>
+                LineItems = new List<LineItem>
                 {
                     new LineItem
                     {

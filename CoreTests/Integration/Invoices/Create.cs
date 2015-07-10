@@ -44,7 +44,7 @@ namespace CoreTests.Integration.Invoices
             {
                 Contact = new Contact { Name = "ABC Limited" },
                 Type = InvoiceType.AccountsReceivable,
-                Items = new List<LineItem>
+                LineItems = new List<LineItem>
                 {
                     new LineItem
                     {
@@ -65,7 +65,7 @@ namespace CoreTests.Integration.Invoices
 
             Assert.True(invoice.Id != Guid.Empty);
             Assert.AreEqual(InvoiceType.AccountsReceivable, invoice.Type);
-            Assert.AreEqual(2, invoice.Items.Count());
+			Assert.AreEqual(2, invoice.LineItems.Count());
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace CoreTests.Integration.Invoices
                 {
                     Contact = new Contact { Name = "ABC Limited" },
                     Type = InvoiceType.AccountsReceivable,
-                    Items = new List<LineItem>
+                    LineItems = new List<LineItem>
                     {
                         new LineItem
                         {
@@ -92,7 +92,7 @@ namespace CoreTests.Integration.Invoices
                 {
                     Contact = new Contact { Name = "Jack" },
                     Type = InvoiceType.AccountsReceivable,
-                    Items = new List<LineItem>
+                    LineItems = new List<LineItem>
                     {
                         new LineItem
                         {
@@ -117,7 +117,7 @@ namespace CoreTests.Integration.Invoices
                 {
                     Contact = new Contact { Name = "ABC Limited" },
                     Type = InvoiceType.AccountsReceivable,
-                    Items = new List<LineItem>
+					LineItems = new List<LineItem>
                     {
                         new LineItem
                         {
@@ -129,7 +129,7 @@ namespace CoreTests.Integration.Invoices
                     }
                 });
 
-            Assert.AreEqual(25.6591m, invoice.Items.First().UnitAmount);
+			Assert.AreEqual(25.6591m, invoice.LineItems.First().UnitAmount);
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace CoreTests.Integration.Invoices
                 {
                     Contact = new Contact { Name = "ABC Limited" },
                     Type = InvoiceType.AccountsReceivable,
-                    Items = new List<LineItem>
+                    LineItems = new List<LineItem>
                     {
                         new LineItem
                         {
@@ -151,10 +151,10 @@ namespace CoreTests.Integration.Invoices
                             Quantity = 1m
                         }
                     }
-                },                
+                }                
             }).ToList();
 
-            Assert.AreEqual(25.66m, invoices.First().Items.First().UnitAmount);
+			Assert.AreEqual(25.66m, invoices.First().LineItems.First().UnitAmount);
         }
 
         [Test]
@@ -188,7 +188,7 @@ namespace CoreTests.Integration.Invoices
                     TotalTax = 10.89m,
                     SubTotal = 87.11m,
                     Total = 98.00m,
-                    Items = new List<LineItem>
+                    LineItems = new List<LineItem>
                     {
                         new LineItem
                         {
@@ -219,14 +219,14 @@ namespace CoreTests.Integration.Invoices
                             TaxType = "OUTPUT2",                            
                         }
                     }
-                },                
+                }                
             }).ToList();
 
             var invoice = Api.Invoices.Find(invoices.First().Id);
 
-            Assert.AreEqual(category, invoice.Items.First().Tracking[0].Id);
-            Assert.AreEqual(name, invoice.Items.First().Tracking[0].Name);
-            Assert.AreEqual(option, invoice.Items.First().Tracking[0].Option);
+			Assert.AreEqual(category, invoice.LineItems.First().Tracking[0].Id);
+			Assert.AreEqual(name, invoice.LineItems.First().Tracking[0].Name);
+			Assert.AreEqual(option, invoice.LineItems.First().Tracking[0].Option);
             Assert.AreEqual(dueDate, invoice.DueDate);
             Assert.AreEqual(paymentDate, invoice.ExpectedPaymentDate);
             Assert.AreEqual(reference, invoice.Reference);
@@ -252,7 +252,7 @@ namespace CoreTests.Integration.Invoices
             {
                 Contact = new Contact { Name = "ABC Limited" },
                 Type = InvoiceType.AccountsReceivable,
-                Items = new List<LineItem>
+				LineItems = new List<LineItem>
                 {
                     new LineItem
                     {
@@ -264,7 +264,7 @@ namespace CoreTests.Integration.Invoices
 
             Assert.True(invoice.Id != Guid.Empty);
             Assert.AreEqual(InvoiceType.AccountsReceivable, invoice.Type);
-            Assert.AreEqual(1, invoice.Items.Count());
+			Assert.AreEqual(1, invoice.LineItems.Count());
         }
     }
 }
