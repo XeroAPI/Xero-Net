@@ -9,7 +9,7 @@ A skinny wrapper of the Xero API. Supports Payroll. All third party libraries ar
 * [Things to note] (#things-to-note)
 * [Samples] (#samples)
 * [Querying] (#querying)
-* [Applications] (#application)
+* [Applications] (#application-types)
 * [Authenticators] (#authenticators)
 * [Token Stores] (#token-stores)
 * [Serialization] (#serialization)
@@ -158,7 +158,10 @@ Uses RSA-SHA1 and a public/private certificate. There are no tokens and each req
 Uses HMAC-SHA1 and the standard 3-legged [OAuth](http://tools.ietf.org/html/rfc6749) process. Tokens last for 30 minutes and cannot be renewed.
 
 ###PartnerAuthenticator
-Uses RSA-SHA1 and a Xero provider certificate and then the standard 3-legged [OAuth](http://tools.ietf.org/html/rfc6749) process with an additional signing certificate. Tokens last for 30 minutes and be renewed. Token renewal is not currently handled by this provider, but will be done soon.
+Uses RSA-SHA1 and a Xero provider certificate and then the standard 3-legged [OAuth](http://tools.ietf.org/html/rfc6749) process with an additional signing certificate. Tokens last for 30 minutes and be renewed. Token renewal is supported by this provider.
+
+Examples for renewing your access tokens can be seen in the RenewToken method overrides in the PartnerAuthenticator.cs and PartnerMVCAuthenticator.cs classes.
+
 
 ###OAuth signing
 All the signing is done by a slightly modified version of the Dust library provided by [Ben Biddington](https://github.com/ben-biddington/dust). Source is included.
