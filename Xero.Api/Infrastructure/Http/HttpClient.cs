@@ -65,7 +65,12 @@ namespace Xero.Api.Infrastructure.Http
             }
             catch (WebException we)
             {
-                return new Response((HttpWebResponse)we.Response);
+	            if (we.Response != null)
+	            {
+		            return new Response((HttpWebResponse) we.Response);
+	            }
+
+	            throw;
             }
         }
             
@@ -82,7 +87,12 @@ namespace Xero.Api.Infrastructure.Http
             }
             catch (WebException we)
             {
-                return new Response((HttpWebResponse)we.Response);
+	            if (we.Response != null)
+	            {
+		            return new Response((HttpWebResponse) we.Response);
+	            }
+
+	            throw;
             }
         }
 
@@ -95,7 +105,12 @@ namespace Xero.Api.Infrastructure.Http
             }
             catch (WebException we)
             {
-                return new Response((HttpWebResponse)we.Response);
+	            if (we.Response != null)
+	            {
+		            return new Response((HttpWebResponse) we.Response);
+	            }
+
+	            throw;
             }
         }
 
@@ -108,21 +123,31 @@ namespace Xero.Api.Infrastructure.Http
             }
             catch (WebException we)
             {
-                return new Response((HttpWebResponse)we.Response);
+	            if (we.Response != null)
+	            {
+		            return new Response((HttpWebResponse) we.Response);
+	            }
+
+	            throw;
             }
         }
 
         public Response Delete(string endpoint)
         {
-            try
-            {
-                var request = CreateRequest(endpoint, "DELETE");
-                return new Response((HttpWebResponse)request.GetResponse());
-            }
-            catch (WebException we)
-            {
-                return new Response((HttpWebResponse)we.Response);
-            }
+	        try
+	        {
+		        var request = CreateRequest(endpoint, "DELETE");
+		        return new Response((HttpWebResponse) request.GetResponse());
+	        }
+	        catch (WebException we)
+	        {
+		        if (we.Response != null)
+		        {
+			        return new Response((HttpWebResponse) we.Response);
+			}
+
+		        throw;
+	        }
         }
 
         private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null)
