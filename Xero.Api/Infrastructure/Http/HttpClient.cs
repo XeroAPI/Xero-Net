@@ -144,7 +144,7 @@ namespace Xero.Api.Infrastructure.Http
 		        if (we.Response != null)
 		        {
 			        return new Response((HttpWebResponse) we.Response);
-				}
+			}
 
 		        throw;
 	        }
