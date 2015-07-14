@@ -130,7 +130,7 @@ namespace CoreTests.Integration.Attachments
             {
                 Contact = new Contact { Name = "Richard" },
                 Type = accRec ? InvoiceType.AccountsReceivable : InvoiceType.AccountsPayable,
-                Items = new List<LineItem>
+                LineItems = new List<LineItem>
                 {
                     new LineItem
                     {

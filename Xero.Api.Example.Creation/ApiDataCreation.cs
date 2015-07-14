@@ -117,7 +117,7 @@ namespace Xero.Api.Example.Creation
                     Date = date,
                     DueDate = date.AddDays(90),
                     LineAmountTypes = Heads(rnd) ? LineAmountType.Inclusive : LineAmountType.Exclusive,
-                    Items = CreateLineItems(maxLineItems, descriptions).ToList()
+                    LineItems = CreateLineItems(maxLineItems, descriptions).ToList()
                 });
             }
 

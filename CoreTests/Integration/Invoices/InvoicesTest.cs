@@ -28,7 +28,7 @@ namespace CoreTests.Integration.Invoices
                 DueDate = DateTime.UtcNow.AddDays(90),
                 LineAmountTypes = LineAmountType.Inclusive,
                 Status = status,
-                Items = new List<LineItem>
+				LineItems = new List<LineItem>
                 {
                     new LineItem
                     {
@@ -47,7 +47,7 @@ namespace CoreTests.Integration.Invoices
             {
                 Contact = new Contact { Name = "Richard" },
                 Type = type,
-                Items = new List<LineItem>
+				LineItems = new List<LineItem>
                 {
                     new LineItem
                     {
