@@ -57,7 +57,7 @@ namespace Xero.Api.Example.Applications.Public
             if (requestToken == null)
                 throw new ApplicationException("Failed to look up request token for user");
 
-			//Delete the request token from the _requestTokenStore as the next few lones will render it useless for the future.
+			//Delete the request token from the _requestTokenStore as the next few lines will render it useless for the future.
             _requestTokenStore.Delete(requestToken);
 
             if (requestToken.TokenKey != tokenKey)
