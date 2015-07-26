@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace CoreTests.Integration.BankTransactions
@@ -35,6 +36,15 @@ namespace CoreTests.Integration.BankTransactions
             var id = Api.BankTransactions.Find(expected).Id;
 
             Assert.AreEqual(expected, id);
+        }
+
+        [Test]
+        public void find_by_page()
+        {
+            Given_a_bank_transaction();
+            var bankTrans = Api.BankTransactions.Page(1).Find();
+
+            Assert.Greater(bankTrans.Count(), 0);
         }
     }
 }
