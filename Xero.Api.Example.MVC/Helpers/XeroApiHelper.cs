@@ -66,7 +66,7 @@ namespace Xero.Api.Example.MVC.Helpers
             };
 
             // Pick one
-            // Choose what sort of application is apportate. Comment out the above code (Partner Application Settings/Public Application Settings) that are not used.
+            // Choose what sort of application is appropriate. Comment out the above code (Partner Application Settings/Public Application Settings) that are not used.
 
             //_applicationSettings = publicApplicationSettings;
             _applicationSettings = partnerApplicationSettings;
