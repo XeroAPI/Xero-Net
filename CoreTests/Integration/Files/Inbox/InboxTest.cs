@@ -23,7 +23,7 @@ namespace CoreTests.Integration.Files.Inbox
         [Test]
         public void can_add_a_file_to_inbox_like_this()
         {
-            var filename = "Inbox file " + Guid.NewGuid();
+            var filename = "Inbox file " + Guid.NewGuid() + ".png";
 
             var result = Api.Inbox.Add(create_file_with_name(filename), exampleFile);
 
@@ -39,7 +39,7 @@ namespace CoreTests.Integration.Files.Inbox
         {
             var inboxId = Api.Inbox.InboxFolder.Id;
 
-            var result = Given_a_file_in(inboxId, "Test " + Guid.NewGuid());
+            var result = Given_a_file_in(inboxId, "Test " + Guid.NewGuid() + ".png");
 
             Api.Inbox.Remove(result);
 
