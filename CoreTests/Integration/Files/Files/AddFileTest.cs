@@ -24,7 +24,7 @@ namespace CoreTests.Integration.Files.Files
         [Test]
         public void can_get_the_content_of_a_file_like_this()
         {
-            var filename = "My Test File " + Guid.NewGuid();
+            var filename = "My Test File " + Guid.NewGuid() + ".png";
 
             var inboxId = Api.Inbox.InboxFolder.Id;
 
@@ -40,7 +40,7 @@ namespace CoreTests.Integration.Files.Files
         {
             var inboxId = Api.Inbox.InboxFolder.Id;
 
-            var result = Given_a_file_in(inboxId, "Test " + Guid.NewGuid());
+            var result = Given_a_file_in(inboxId, "Test " + Guid.NewGuid()  + ".png");
 
             Api.Files.Remove(result);
 
@@ -55,7 +55,7 @@ namespace CoreTests.Integration.Files.Files
        {
            var inboxId = Api.Inbox.InboxFolder.Id;
 
-           var result = Given_a_file_in(inboxId, "Test " + Guid.NewGuid());
+           var result = Given_a_file_in(inboxId, "Test " + Guid.NewGuid()  + ".png");
 
            var copy = Api.Files[result];
 
@@ -72,7 +72,7 @@ namespace CoreTests.Integration.Files.Files
        {
            var inboxId = Api.Inbox.InboxFolder.Id;
 
-           var result = Given_a_file_in(inboxId, "Test " + Guid.NewGuid());
+           var result = Given_a_file_in(inboxId, "Test " + Guid.NewGuid() + ".png");
 
            var newFolder = Api.Folders.Add("stuff");
 
@@ -89,7 +89,7 @@ namespace CoreTests.Integration.Files.Files
 
            char[] badchar = System.IO.Path.GetInvalidFileNameChars();
 
-           var filename = "Inbox file " + badchar[0] + badchar[3] + badchar[2];
+           var filename = "Inbox file " + badchar[0] + badchar[3] + badchar[2] + ".png"; ;
 
            Assert.Throws<WebException>(() =>
            {
