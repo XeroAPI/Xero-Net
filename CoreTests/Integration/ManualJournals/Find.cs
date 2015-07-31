@@ -37,6 +37,18 @@ namespace CoreTests.Integration.ManualJournals
                 .Find();
 
             Assert.True(found.All(p => p.Narration == expected));
-        } 
+        }
+
+        [Test]
+        public void find_by_page()
+        {
+            const string expected = "We know what we want to do";
+
+            Given_a_manual_journal(expected, 50);
+
+            var manualJournals = Api.ManualJournals.Page(1).Find();
+
+            Assert.Greater(manualJournals.Count(), 0);
+        }
     }
 }
