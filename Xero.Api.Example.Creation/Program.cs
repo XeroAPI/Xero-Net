@@ -8,7 +8,8 @@ namespace Xero.Api.Example.Creation
     {
         static void Main(string[] args)
         {
-            var user = new ApiUser { Name = Environment.MachineName };
+
+            var user = new ApiUser { Name = Environment.MachineName }; // ApiUser is used when retrieving tokens from the token store - See TokenStoreAuthenticator GetToken(IConsumer consumer, IUser user). This is primarily for Partner Applications
             var tokenStore = new SqliteTokenStore();
 
             var api = new Applications.Public.Core(tokenStore, user)
