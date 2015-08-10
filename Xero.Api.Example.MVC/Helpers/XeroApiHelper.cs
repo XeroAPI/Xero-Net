@@ -61,7 +61,7 @@ namespace Xero.Api.Example.MVC.Helpers
             var partnerApplicationSettings = new ApplicationSettings
             {
                 BaseApiUrl = basePartnerApiUrl,
-                Consumer = publicConsumer,
+                Consumer = partnerConsumer,
                 Authenticator = partnerAuthenticator
             };
 
