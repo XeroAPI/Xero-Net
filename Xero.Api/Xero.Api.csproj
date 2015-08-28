@@ -47,7 +47,7 @@
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
-    <Compile Include="Core\Model\DefaultTrackingCategory.cs" />
+    <Compile Include="Core\Model\ContactTrackingCategory.cs" />
     <Compile Include="Core\Model\Status\TrackingOptionStatus.cs" />
     <Compile Include="Core\Request\TrackingCategoriesRequest.cs" />
     <Compile Include="Core\Endpoints\OverpaymentsEndpoint.cs" />
