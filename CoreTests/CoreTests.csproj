@@ -69,6 +69,7 @@
     <Compile Include="Integration\ContactGroups\ContactGroupsTest.cs" />
     <Compile Include="Integration\ContactGroups\Create.cs" />
     <Compile Include="Integration\ContactGroups\Delete.cs" />
+    <Compile Include="Integration\ContactGroups\Find.cs" />
     <Compile Include="Integration\ContactGroups\Remove_Contact.cs" />
     <Compile Include="Integration\ContactGroups\Update.cs" />
     <Compile Include="Integration\Contacts\ContactsTest.cs" />
