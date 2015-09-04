@@ -39,6 +39,12 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public CreditNote CreditNote { get; set; }
 
+        [DataMember(EmitDefaultValue = false)]
+        public Prepayment Prepayment { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public Overpayment Overpayment { get; set; }
+
         [DataMember]
         public Account Account { get; set; }
     }
