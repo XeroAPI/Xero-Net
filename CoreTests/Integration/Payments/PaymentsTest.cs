@@ -79,5 +79,52 @@ namespace CoreTests.Integration.Payments
                 }
             });
         }
+
+        protected BankTransaction Given_a_prepayment(string bankAccountCode, decimal amount = 100m, string accountCode = "100")
+        {
+            return Api.Create(new BankTransaction
+            {
+                Contact = new Contact { Name = "Richard" },
+                Type = BankTransactionType.ReceivePrepayment,
+                Date = DateTime.UtcNow,
+                BankAccount = new Account
+                {
+                    Code = bankAccountCode
+                },
+                LineItems = new List<LineItem>
+                {
+                    new LineItem
+                    {
+                        AccountCode = accountCode,
+                        Description = "Good value item",
+                        LineAmount = amount
+                    }
+                }
+            });
+        }
+
+        protected BankTransaction Given_an_overpayment(string bankAccountCode, decimal amount = 100m, string accountCode = "100")
+        {
+            return Api.Create(new BankTransaction
+            {
+                Contact = new Contact { Name = "Richard" },
+                Type = BankTransactionType.ReceiveOverpayment,
+                Date = DateTime.UtcNow,
+                LineAmountTypes = LineAmountType.NoTax,
+                BankAccount = new Account
+                {
+                    Code = bankAccountCode
+                },
+                LineItems = new List<LineItem>
+                {
+                    new LineItem
+                    {
+                        AccountCode = accountCode,
+                        Description = "Good value item",
+                        LineAmount = amount
+                    }
+                }
+            });
+        }
     }
 }
