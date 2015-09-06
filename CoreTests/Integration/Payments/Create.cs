@@ -81,5 +81,52 @@ namespace CoreTests.Integration.Payments
             Assert.AreEqual(reference, payment.Reference);
             Assert.AreEqual(amount, payment.Amount);
         }
+
+        [Test]
+        public void create_refund_on_Prepayment()
+        {
+            const int amount = 50;
+            var transaction = Given_a_prepayment(BankAccount.Code, amount, Account.Code);
+            var date = DateTime.UtcNow;
+            const string reference = "Full refund on the prepayment";
+
+            //NOTE: When refunding a prepayment, you create the payment with a Prepayment object (payment.Prepayment). The resulting payment will have the Prepayment stored as an Invoice eg. payment.Invoice rather than payment.Prepayment
+            var payment = Api.Create(new Payment
+            {
+                Prepayment = new Prepayment { Id = transaction.PrepaymentID.GetValueOrDefault() },
+                Account = new Account { Code = BankAccount.Code },
+                Date = date,
+                Amount = amount,
+                Reference = reference
+            });
+
+            Assert.AreEqual(reference, payment.Reference);
+            Assert.AreEqual(amount, payment.Amount);
+        }
+
+        [Test]
+        public void create_refund_on_Overpayment()
+        {
+            //This may differ if you have changed the code of your accounts receivable
+            var accountsReceivable = Api.Accounts.Where("Code == \"610\"").Find().First();
+
+            const int amount = 50;
+            var transaction = Given_an_overpayment(BankAccount.Code, amount, accountsReceivable.Code);
+            var date = DateTime.UtcNow;
+            const string reference = "Full refund on the overpayment";
+
+            //NOTE: When refunding an overpayment, you create the payment with an Overpayment object (payment.Overpayment). The resulting payment will have the Overpayment stored as an Invoice eg. payment.Invoice rather than payment.Overpayment
+            var payment = Api.Create(new Payment
+            {
+                Overpayment = new Overpayment { Id = transaction.OverpaymentID.GetValueOrDefault() },
+                Account = new Account { Code = BankAccount.Code },
+                Date = date,
+                Amount = amount,
+                Reference = reference
+            });
+
+            Assert.AreEqual(reference, payment.Reference);
+            Assert.AreEqual(amount, payment.Amount);
+        }
     }
 }
