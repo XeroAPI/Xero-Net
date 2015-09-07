@@ -126,5 +126,12 @@ namespace CoreTests.Integration.Payments
                 }
             });
         }
+
+        protected void Given_this_payment_is_deleted(Payment payment)
+        {
+            var deleteThisPayment = new Payment { Status = PaymentStatus.Deleted, Id = payment.Id };
+
+            Api.Payments.Update(deleteThisPayment);
+        }
     }
 }
