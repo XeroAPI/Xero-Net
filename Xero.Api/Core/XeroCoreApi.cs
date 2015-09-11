@@ -56,6 +56,7 @@ namespace Xero.Api.Core
         public InvoicesEndpoint Invoices { get; private set; }
         public ItemsEndpoint Items { get; private set; }
         public JournalsEndpoint Journals { get; private set; }
+        public LinkedTransactionsEndpoint LinkedTransactions { get; private set; }
         public ManualJournalsEndpoint ManualJournals { get; private set; }
         public OverpaymentsEndpoint Overpayments { get; private set; }
         public PaymentsEndpoint Payments { get; private set; }
@@ -92,6 +93,7 @@ namespace Xero.Api.Core
             Invoices = new InvoicesEndpoint(Client);
             Items = new ItemsEndpoint(Client);
             Journals = new JournalsEndpoint(Client);
+            LinkedTransactions = new LinkedTransactionsEndpoint(Client);
             ManualJournals = new ManualJournalsEndpoint(Client);
             Overpayments = new OverpaymentsEndpoint(Client);
             Payments = new PaymentsEndpoint(Client);
