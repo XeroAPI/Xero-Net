@@ -9,7 +9,7 @@ namespace Xero.Api.Core.Model
     [DataContract(Namespace = "")]
     public class LinkedTransaction : HasUpdatedDate, IHasId
     {
-        [DataMember(Name = "LinedTransactionID", EmitDefaultValue = false)]
+        [DataMember(Name = "LinkedTransactionID", EmitDefaultValue = false)]
         public Guid Id { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
