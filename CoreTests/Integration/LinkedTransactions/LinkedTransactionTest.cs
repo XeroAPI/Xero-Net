@@ -21,6 +21,33 @@ namespace CoreTests.Integration.LinkedTransactions
         protected Guid TargetId { get { return TargetInvoice.Id; } }
         protected Guid TargetLineItemId { get { return TargetInvoice.LineItems[0].LineItemId; } }
 
+        protected LinkedTransaction LinkedTransaction { get; set; }
+        protected Guid LinkedTransactionId { get { return LinkedTransaction.Id; } }
+
+        protected void Given_a_basic_linked_transaction()
+        {
+            Given_a_source_invoice();
+
+            LinkedTransaction = Api.LinkedTransactions.Create(new LinkedTransaction
+            {
+                SourceTransactionID = SourceId,
+                SourceLineItemID = SourceLineItemId
+            });
+        }
+
+        protected void Given_a_linked_transaction_assigned_to_a_contact()
+        {
+            Given_a_source_invoice();
+            Given_a_contact();
+
+            LinkedTransaction = Api.LinkedTransactions.Create(new LinkedTransaction
+            {
+                SourceTransactionID = SourceId,
+                SourceLineItemID = SourceLineItemId,
+                ContactID = ContactId
+            });
+        }
+
         protected void Given_a_source_invoice()
         {
             SourceInvoice = Given_an_invoice();
