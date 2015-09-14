@@ -53,7 +53,7 @@ namespace Xero.Api.Example.Applications.Partner
         {
             var authHeader = GetAuthorization(sessionToken, "POST", Tokens.AccessUri, null, null, true);
 
-            return Tokens.GetAccessToken(sessionToken, authHeader);
+            return Tokens.RenewAccessToken(sessionToken, authHeader);
         }
 
         protected override X509Certificate2 GetClientCertificate()
