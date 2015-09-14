@@ -96,6 +96,8 @@
     <Compile Include="Integration\Items\Create.cs" />
     <Compile Include="Integration\Items\Update.cs" />
     <Compile Include="Integration\Journals\Find.cs" />
+    <Compile Include="Integration\LinkedTransactions\Create.cs" />
+    <Compile Include="Integration\LinkedTransactions\LinkedTransactionTest.cs" />
     <Compile Include="Integration\ManualJournals\Create.cs" />
     <Compile Include="Integration\ManualJournals\Find.cs" />
     <Compile Include="Integration\ManualJournals\ManualJournalsTest.cs" />
