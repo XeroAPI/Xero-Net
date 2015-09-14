@@ -8,6 +8,8 @@ namespace Xero.Api.Core.Model.Status
         [EnumMember(Value = "ACTIVE")]
         Active,
         [EnumMember(Value = "DELETED")]
-        Deleted
+        Deleted,
+        [EnumMember(Value = "ARCHIVED")]
+        Archived
     }
 }
