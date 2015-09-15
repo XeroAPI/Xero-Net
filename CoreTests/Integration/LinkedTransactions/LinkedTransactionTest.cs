@@ -48,6 +48,22 @@ namespace CoreTests.Integration.LinkedTransactions
             });
         }
 
+        protected void Given_a_fully_allocated_linked_transaction()
+        {
+            Given_a_source_invoice();
+            Given_a_contact();
+            Given_a_target_invoice(Contact);
+
+            LinkedTransaction = Api.LinkedTransactions.Create(new LinkedTransaction
+            {
+                SourceTransactionID = SourceId,
+                SourceLineItemID = SourceLineItemId,
+                ContactID = ContactId,
+                TargetTransactionID = TargetId,
+                TargetLineItemID = TargetLineItemId
+            });
+        }
+
         protected void Given_a_source_invoice()
         {
             SourceInvoice = Given_an_invoice();

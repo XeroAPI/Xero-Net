@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Request;
@@ -28,6 +29,24 @@ namespace Xero.Api.Core.Endpoints
         public LinkedTransactionsEndpoint Page(int page)
         {
             AddParameter("page", page);
+            return this;
+        }
+
+        public LinkedTransactionsEndpoint WhereSourceId(Guid sourceId)
+        {
+            AddParameter("SourceTransactionID", sourceId.ToString());
+            return this;
+        }
+
+        public LinkedTransactionsEndpoint WhereContactId(Guid contactId)
+        {
+            AddParameter("ContactID", contactId.ToString());
+            return this;
+        }
+
+        public LinkedTransactionsEndpoint WhereTargetId(Guid targetId)
+        {
+            AddParameter("TargetTransactionID", targetId.ToString());
             return this;
         }
 
