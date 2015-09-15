@@ -97,6 +97,7 @@
     <Compile Include="Integration\Items\Update.cs" />
     <Compile Include="Integration\Journals\Find.cs" />
     <Compile Include="Integration\LinkedTransactions\Create.cs" />
+    <Compile Include="Integration\LinkedTransactions\Delete.cs" />
     <Compile Include="Integration\LinkedTransactions\LinkedTransactionTest.cs" />
     <Compile Include="Integration\LinkedTransactions\Update.cs" />
     <Compile Include="Integration\ManualJournals\Create.cs" />
