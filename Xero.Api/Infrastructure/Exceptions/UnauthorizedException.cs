@@ -2,7 +2,7 @@
 
 namespace Xero.Api.Infrastructure.Exceptions
 {
-    internal class UnauthorizedException
+    public class UnauthorizedException
         : XeroApiException
     {
         public UnauthorizedException(string body)
