@@ -137,6 +137,7 @@
     <Compile Include="Integration\Attachments\Attachments.cs" />
     <Compile Include="Integration\General\Errors.cs" />
     <Compile Include="Integration\TaxRates\Create.cs" />
+    <Compile Include="Unit\RateLimiterTest.cs" />
     <Compile Include="Unit\SummarizeErrors.cs" />
     <Compile Include="Unit\UrlEncoder.cs" />
     <Compile Include="Unit\Contacts.cs" />
