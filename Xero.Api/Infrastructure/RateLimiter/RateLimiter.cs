@@ -8,10 +8,9 @@ namespace Xero.Api.Infrastructure.RateLimiter
 {
     public class RateLimiter : IRateLimiter
     {
-        public TimeSpan Duration { get; }
-        public int Qty { get; }
-
-        readonly List<DateTime> rateLimiter = null;
+        private readonly TimeSpan _duration;
+        private readonly int _qty;
+        private readonly Queue<DateTime> rateLimiter;
 
         /// <summary>
         /// Create an instance of this class that allows x requests over y seconds
@@ -20,9 +19,9 @@ namespace Xero.Api.Infrastructure.RateLimiter
         /// <param name="qty"></param>
         public RateLimiter(TimeSpan duration, int qty)
         {
-            this.Duration = duration;
-            this.Qty = qty;
-            this.rateLimiter = new List<DateTime>(Qty);
+            this._duration = duration;
+            this._qty = qty;
+            this.rateLimiter = new Queue<DateTime>(qty);
         }
 
         public RateLimiter() : this(TimeSpan.FromMinutes(1), 60) { }
@@ -32,14 +31,14 @@ namespace Xero.Api.Infrastructure.RateLimiter
         /// </summary>
         public void WaitUntilLimit()
         {
-            while (rateLimiter.Count >= Qty)
+            while (rateLimiter.Count >= _qty)
             {
-                var diff = rateLimiter[0].Add(Duration) - DateTime.UtcNow;
+                var diff = rateLimiter.Peek().Add(_duration) - DateTime.UtcNow;
                 if (diff.TotalMilliseconds > 0)
                     Thread.Sleep((int)diff.TotalMilliseconds + 1000);
-                rateLimiter.RemoveAt(0);
+                rateLimiter.Dequeue();
             }
-            rateLimiter.Add(DateTime.UtcNow);
+            rateLimiter.Enqueue(DateTime.UtcNow);
         }
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace Xero.Api.Infrastructure.RateLimiter
         /// <returns>True if we're over the limit, false if we've got some allocation left</returns>
         public bool CheckLimit()
         {
-            return (rateLimiter.Count >= Qty && rateLimiter[0].Add(Duration) > DateTime.UtcNow);
+            return (rateLimiter.Count >= _qty && rateLimiter.Peek().Add(_duration) > DateTime.UtcNow);
         }
     }
 }
