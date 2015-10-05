@@ -94,6 +94,8 @@
     <Compile Include="Integration\Invoices\InvoicesTest.cs" />
     <Compile Include="Integration\Invoices\SummarizeErrors.cs" />
     <Compile Include="Integration\Items\Create.cs" />
+    <Compile Include="Integration\Items\TrackedItems\Create.cs" />
+    <Compile Include="Integration\Items\TrackedItems\Update.cs" />
     <Compile Include="Integration\Items\Update.cs" />
     <Compile Include="Integration\Journals\Find.cs" />
     <Compile Include="Integration\ManualJournals\Create.cs" />
