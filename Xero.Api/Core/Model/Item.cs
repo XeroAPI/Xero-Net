@@ -43,6 +43,8 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public decimal? TotalCostPool { get; set; }
 
+        [DataMember(EmitDefaultValue = false)]
+        public string Name { get; set; }
 
     }
 }
