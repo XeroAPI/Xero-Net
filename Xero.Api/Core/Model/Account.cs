@@ -25,6 +25,9 @@ namespace Xero.Api.Core.Model
         public AccountType Type { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
+        public BankAccountType? BankAccountType { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public string TaxType { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
