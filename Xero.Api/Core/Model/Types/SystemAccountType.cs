@@ -31,5 +31,5 @@ namespace Xero.Api.Core.Model.Types
         UnrealisedCurrencyGain,
         [EnumMember(Value = "WAGEPAYABLES")]
         WagePayables,
-    }
+    } 
 }
