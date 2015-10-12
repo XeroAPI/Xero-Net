@@ -22,7 +22,7 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public SalesDetails SalesDetails { get; set; }
 
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember]
         public string InventoryAssetAccountCode { get; set; }
 
         [DataMember(EmitDefaultValue = false)]

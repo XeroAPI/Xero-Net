@@ -15,24 +15,66 @@ namespace CoreTests.Integration.Items.TrackedItems
         private string _revenueAccountCode;
 
         [Test]
-        public void Can_update_an_item_to_make_it_not_for_purchase()
+        public void Can_update_an_item_to_make_it_not_tracked_and_not_for_purchase()
         {
             Given_a_tracked_item();
 
             _createdItem.PurchaseDescription = null;
             _createdItem.PurchaseDetails = null;
+            _createdItem.InventoryAssetAccountCode = null;
             _createdItem.IsPurchased = false;
 
             var updatedItem = Api.Items.Update(_createdItem);
 
-            Assert.AreEqual(updatedItem, _createdItem.Id, "Expected the item's ID to be the same after creating and updating but they were different.");
+            Assert.AreEqual(updatedItem.Id, _createdItem.Id, "Expected the item's ID to be the same after creating and updating but they were different.");
+            Assert.IsFalse(updatedItem.IsTrackedAsInventory, "Expected the item's IsTrackedAsInventory value to be false but was true");
             Assert.IsFalse(updatedItem.IsPurchased.Value, "Expected the updated item's IsPurchased value to be false but was true.");
+        }
+
+        [Test]
+        public void Can_update_an_item_to_make_it_not_tracked_and_not_for_sale()
+        {
+            Given_a_tracked_item();
+
+            _createdItem.Description = null;
+            _createdItem.SalesDetails = null;
+            _createdItem.InventoryAssetAccountCode = null;
+            _createdItem.IsSold = false;
+            _createdItem.PurchaseDetails.AccountCode = _expenseAccountCode;
+            _createdItem.PurchaseDetails.COGSAccountCode = null;
+
+            var updatedItem = Api.Items.Update(_createdItem);
+
+            Assert.AreEqual(updatedItem.Id, _createdItem.Id, "Expected the item's ID to be the same after creating and updating but they were different.");
+            Assert.IsFalse(updatedItem.IsTrackedAsInventory, "Expected the item's IsTrackedAsInventory value to be false but was true");
+            Assert.IsFalse(updatedItem.IsSold.Value, "Expected the updated item's IsPurchased value to be false but was true.");
+        }
+
+        [Test]
+        public void Can_update_an_item_to_make_it_not_tracked()
+        {
+            Given_a_tracked_item();
+
+            _createdItem.Description = null;
+            _createdItem.SalesDetails = null;
+            _createdItem.PurchaseDetails = null;
+            _createdItem.IsSold = false;
+            _createdItem.InventoryAssetAccountCode = null;
+            _createdItem.IsPurchased = false;
+            _createdItem.PurchaseDescription = null;
+
+            var updatedItem = Api.Items.Update(_createdItem);
+
+            Assert.AreEqual(updatedItem.Id, _createdItem.Id, "Expected the item's ID to be the same after creating and updating but they were different.");
+            Assert.IsFalse(updatedItem.IsTrackedAsInventory, "Expected the item's IsTrackedAsInventory value to be false but was true");
+            Assert.IsFalse(updatedItem.IsSold.Value, "Expected the updated item's IsSold value to be false but was true.");
+            Assert.IsFalse(updatedItem.IsPurchased.Value, "Expected the updated item's IsSold value to be false but was true.");
         }
 
         public void Given_a_tracked_item()
         {
             Given_an_inventory_account();
-            Given_an_expense_account();
+            Given_a_direct_cost_account();
             Given_a_revenue_account();
 
             var code = "Tracked Item " + Random.GetRandomString(10);
@@ -65,18 +107,18 @@ namespace CoreTests.Integration.Items.TrackedItems
             _createdItem = item;
         }
 
-        private void Given_an_expense_account()
+        private void Given_a_direct_cost_account()
         {
-            var expenseAccount = Api.Accounts.Where("Type == \"EXPENSE\"").Find().FirstOrDefault();
+            var expenseAccount = Api.Accounts.Where("Type == \"DIRECTCOSTS\"").Find().FirstOrDefault();
 
             if (expenseAccount == null)
             {
                 expenseAccount = Api.Accounts.Create(new Account
                 {
                     Code = Random.GetRandomString(10),
-                    Type = AccountType.Expense,
-                    Description = "Cost of goods sold account",
-                    Name = "COGS"
+                    Type = AccountType.DirectCosts,
+                    Description = "Direct costs account",
+                    Name = "Direct costs account"
                 });
             }
 
