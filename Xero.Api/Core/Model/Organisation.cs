@@ -53,6 +53,9 @@ namespace Xero.Api.Core.Model
 
         [DataMember(EmitDefaultValue = false)]
         public DateTime? PeriodLockDate { get; set; }
+        
+        [DataMember(EmitDefaultValue = false)]
+        public DateTime? EndOfYearLockDate { get; set; }
 
         [DataMember(Name = "CreatedDateUTC", EmitDefaultValue = false)]
         public DateTime? CreatedDateUtc { get; set; }

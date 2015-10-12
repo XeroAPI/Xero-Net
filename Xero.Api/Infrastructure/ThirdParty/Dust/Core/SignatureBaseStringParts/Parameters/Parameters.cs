@@ -51,7 +51,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 			}
 
 			private int CompareCore(string x, string y) {
-				return string.Compare(x, y, StringComparison.InvariantCulture);
+				return string.Compare(x, y, StringComparison.Ordinal);
 			}
 		}
 	}
