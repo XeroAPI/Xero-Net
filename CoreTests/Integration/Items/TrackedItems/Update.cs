@@ -51,24 +51,19 @@ namespace CoreTests.Integration.Items.TrackedItems
         }
 
         [Test]
-        public void Can_update_an_item_to_make_it_not_tracked()
+        public void Can_update_an_item_to_make_it_not_tracked_but_still_for_sale_and_purchase()
         {
             Given_a_tracked_item();
 
-            _createdItem.Description = null;
-            _createdItem.SalesDetails = null;
-            _createdItem.PurchaseDetails = null;
-            _createdItem.IsSold = false;
+            _createdItem.PurchaseDetails.COGSAccountCode = null;
             _createdItem.InventoryAssetAccountCode = null;
-            _createdItem.IsPurchased = false;
-            _createdItem.PurchaseDescription = null;
 
             var updatedItem = Api.Items.Update(_createdItem);
 
             Assert.AreEqual(updatedItem.Id, _createdItem.Id, "Expected the item's ID to be the same after creating and updating but they were different.");
             Assert.IsFalse(updatedItem.IsTrackedAsInventory, "Expected the item's IsTrackedAsInventory value to be false but was true");
-            Assert.IsFalse(updatedItem.IsSold.Value, "Expected the updated item's IsSold value to be false but was true.");
-            Assert.IsFalse(updatedItem.IsPurchased.Value, "Expected the updated item's IsSold value to be false but was true.");
+            Assert.IsFalse(updatedItem.IsSold.Value, "Expected the updated item's IsSold value to be true but was false.");
+            Assert.IsFalse(updatedItem.IsPurchased.Value, "Expected the updated item's IsPurchased value to be true but was false.");
         }
 
         public void Given_a_tracked_item()

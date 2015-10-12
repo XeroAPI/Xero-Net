@@ -15,6 +15,8 @@ namespace CoreTests.Integration.Items.TrackedItems
         [Test]
         public void Can_create_an_item_with_minimal_properties()
         {
+            var org = Api.Users.Find();
+
             Given_an_inventory_account();
             Given_an_expense_account();
 
