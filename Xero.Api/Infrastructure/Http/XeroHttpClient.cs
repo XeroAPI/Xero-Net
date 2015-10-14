@@ -6,6 +6,7 @@ using System.Net;
 using Xero.Api.Common;
 using Xero.Api.Infrastructure.Exceptions;
 using Xero.Api.Infrastructure.Interfaces;
+using Xero.Api.Infrastructure.RateLimiter;
 
 namespace Xero.Api.Infrastructure.Http
 {
@@ -23,16 +24,28 @@ namespace Xero.Api.Infrastructure.Http
             XmlMapper = xmlMapper;
         }
 
-        public XeroHttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
-            : this(jsonMapper, xmlMapper)
+        public XeroHttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user,
+            IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
+            : this(baseUri, auth, consumer, user, jsonMapper, xmlMapper, null)
         {
-            Client = new HttpClient(baseUri, auth, consumer, user);
         }
 
-        public XeroHttpClient(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
+        public XeroHttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper, IRateLimiter rateLimiter)
             : this(jsonMapper, xmlMapper)
         {
-            Client = new HttpClient(baseUri, auth, consumer, user)
+            Client = new HttpClient(baseUri, auth, consumer, user, rateLimiter);
+        }
+
+        public XeroHttpClient(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user,
+            IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
+            : this(baseUri, auth, consumer, user, jsonMapper, xmlMapper, null)
+        {
+        }
+
+        public XeroHttpClient(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper, IRateLimiter rateLimiter)
+            : this(jsonMapper, xmlMapper)
+        {
+            Client = new HttpClient(baseUri, auth, consumer, user, rateLimiter)
             {
                 ClientCertificate = auth.Certificate
             };

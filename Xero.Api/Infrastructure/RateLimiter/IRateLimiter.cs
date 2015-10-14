@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Xero.Api.Infrastructure.RateLimiter
 {
-    interface IRateLimiter
+    public interface IRateLimiter
     {
         void WaitUntilLimit();
 

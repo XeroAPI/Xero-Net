@@ -29,7 +29,6 @@ namespace Xero.Api.Infrastructure.Http
         {
             _baseUri = baseUri;
             _headers = new Dictionary<string, string>();
-            _rateLimiter = new RateLimiter.RateLimiter(TimeSpan.FromMinutes(1), 60);
         }
         
         public HttpClient(string baseUri, IConsumer consumer, IUser user) : this(baseUri)
@@ -199,7 +198,8 @@ namespace Xero.Api.Infrastructure.Http
                 request.ClientCertificates.Add(ClientCertificate);
             }
 
-            _rateLimiter.WaitUntilLimit();
+            if (_rateLimiter != null)
+                _rateLimiter.WaitUntilLimit();
 
             return request;
         }
