@@ -4,6 +4,7 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Xero.Api.Infrastructure.Interfaces;
+using Xero.Api.Infrastructure.RateLimiter;
 
 namespace Xero.Api.Infrastructure.Http
 {
@@ -15,7 +16,8 @@ namespace Xero.Api.Infrastructure.Http
     {
         private readonly string _baseUri;
         private readonly IAuthenticator _auth;
-        
+        private readonly IRateLimiter _rateLimiter;
+
         private readonly Dictionary<string, string> _headers;
 
         public DateTime? ModifiedSince { get; set; }
@@ -39,6 +41,12 @@ namespace Xero.Api.Infrastructure.Http
             : this(baseUri, consumer, user)
         {
             _auth = auth;
+        }
+
+        public HttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IRateLimiter rateLimiter)
+            : this(baseUri, auth, consumer, user)
+        {
+            _rateLimiter = rateLimiter;
         }
 
         public string UserAgent
@@ -189,6 +197,9 @@ namespace Xero.Api.Infrastructure.Http
             {
                 request.ClientCertificates.Add(ClientCertificate);
             }
+
+            if (_rateLimiter != null)
+                _rateLimiter.WaitUntilLimit();
 
             return request;
         }
