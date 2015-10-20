@@ -120,8 +120,33 @@ namespace CoreTests.Integration.Items.TrackedItems
             InventoryAccountCode = inventoryAccount.Code;
         }
 
-
         protected void Given_an_ACCPAY_invoice_using_the_item_with_code(string code)
+        {
+            var invoice = new Invoice
+            {
+                Contact = new Contact { Name = "ABC Bank" },
+                Type = InvoiceType.AccountsPayable,
+                Date = DateTime.UtcNow,
+                DueDate = DateTime.UtcNow.AddDays(90),
+                LineAmountTypes = LineAmountType.Inclusive,
+                Status = InvoiceStatus.Authorised,
+                LineItems = new List<LineItem>
+                {
+                    new LineItem
+                    {
+                        ItemCode = code,
+                        AccountCode = InventoryAccountCode,
+                        Quantity = 2
+                    }
+                }
+
+            };
+
+            CreatedAccpayInvoice = Api.Invoices.Create(invoice);
+        }
+
+
+        protected void Given_a_zero_total_ACCPAY_invoice_using_the_item_with_code(string code)
         {
             var invoice = new Invoice
             {
@@ -142,7 +167,7 @@ namespace CoreTests.Integration.Items.TrackedItems
                     new LineItem
                     {
                         Description = "Inventory Adjustment",
-                        AccountCode = DirectCostsAccountCode, //Using this account for the example. YOu would probably have your own inventory adjustments account
+                        AccountCode = DirectCostsAccountCode, //Using this account for the example. You would probably have your own inventory adjustments account
                         Quantity = 2,
                         UnitAmount = CreatedItem.PurchaseDetails.UnitPrice * -1
                     }
@@ -154,6 +179,30 @@ namespace CoreTests.Integration.Items.TrackedItems
         }
 
         protected void Given_an_ACCREC_invoice_using_the_item_with_code(string code)
+        {
+            var invoice = new Invoice
+            {
+                Contact = new Contact { Name = "ABC Bank" },
+                Type = InvoiceType.AccountsReceivable,
+                Date = DateTime.UtcNow,
+                DueDate = DateTime.UtcNow.AddDays(90),
+                LineAmountTypes = LineAmountType.Inclusive,
+                Status = InvoiceStatus.Authorised,
+                LineItems = new List<LineItem>
+                {
+                    new LineItem
+                    {
+                        ItemCode = code,
+                        AccountCode = RevenueAccountCode,
+                        Quantity = 2
+                    }
+                }
+            };
+
+            CreatedAccrecInvoice = Api.Invoices.Create(invoice);
+        }
+
+        protected void Given_a_zero_total_ACCREC_invoice_using_the_item_with_code(string code)
         {
             var invoice = new Invoice
             {
