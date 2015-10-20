@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xero.Api.Core.Model;
+using Xero.Api.Core.Model.Status;
 using Xero.Api.Core.Model.Types;
 
 namespace CoreTests.Integration.Items.TrackedItems
@@ -7,17 +10,30 @@ namespace CoreTests.Integration.Items.TrackedItems
     public class TrackedInventoryTest : ApiWrapperTest
     {
         protected Item CreatedItem;
+        protected Invoice CreatedAccpayInvoice { get; set; }
+        protected Invoice CreatedAccrecInvoice { get; set; }
         protected string InventoryAccountCode;
         protected string DirectCostsAccountCode;
         protected string RevenueAccountCode;
 
         public void Given_a_tracked_item()
         {
-            Given_an_inventory_account();
-            Given_a_direct_cost_account();
-            Given_a_revenue_account();
+            if (string.IsNullOrEmpty(InventoryAccountCode))
+            {
+                Given_an_inventory_account();
+            }
 
-            var code = "Tracked Item " + Random.GetRandomString(10);
+            if (string.IsNullOrEmpty(DirectCostsAccountCode))
+            {
+                Given_a_direct_cost_account();
+            }
+
+            if (string.IsNullOrEmpty(RevenueAccountCode))
+            {
+                Given_a_revenue_account();
+            }
+
+            var code = "Tracked Item" + Random.GetRandomString(10);
 
             var item = Api.Items.Create(new Item
             {
@@ -102,6 +118,71 @@ namespace CoreTests.Integration.Items.TrackedItems
             }
 
             InventoryAccountCode = inventoryAccount.Code;
+        }
+
+
+        protected void Given_an_ACCPAY_invoice_using_the_item_with_code(string code)
+        {
+            var invoice = new Invoice
+            {
+                Contact = new Contact { Name = "ABC Bank" },
+                Type = InvoiceType.AccountsPayable,
+                Date = DateTime.UtcNow,
+                DueDate = DateTime.UtcNow.AddDays(90),
+                LineAmountTypes = LineAmountType.Inclusive,
+                Status = InvoiceStatus.Authorised,
+				LineItems = new List<LineItem>
+                {
+                    new LineItem
+                    {
+                        ItemCode = code,
+                        AccountCode = InventoryAccountCode,
+                        Quantity = 2
+                    },
+                    new LineItem
+                    {
+                        Description = "Inventory Adjustment",
+                        AccountCode = DirectCostsAccountCode, //Using this account for the example. YOu would probably have your own inventory adjustments account
+                        Quantity = 2,
+                        UnitAmount = CreatedItem.PurchaseDetails.UnitPrice * -1
+                    }
+                }
+                
+            };
+
+            CreatedAccpayInvoice = Api.Invoices.Create(invoice);
+        }
+
+        protected void Given_an_ACCREC_invoice_using_the_item_with_code(string code)
+        {
+            var invoice = new Invoice
+            {
+                Contact = new Contact { Name = "ABC Bank" },
+                Type = InvoiceType.AccountsReceivable,
+                Date = DateTime.UtcNow,
+                DueDate = DateTime.UtcNow.AddDays(90),
+                LineAmountTypes = LineAmountType.Inclusive,
+                Status = InvoiceStatus.Authorised,
+                LineItems = new List<LineItem>
+                {
+                    new LineItem
+                    {
+                        ItemCode = code,
+                        AccountCode = RevenueAccountCode,
+                        Quantity = 2
+                    },
+                    new LineItem
+                    {
+                        Description = "Inventory Adjustment",
+                        AccountCode = DirectCostsAccountCode, //Using this account for the example. You would probably want to have your own inventory adjustments account
+                        Quantity = 2,
+                        UnitAmount = CreatedItem.PurchaseDetails.UnitPrice * -1
+                    }
+                }
+
+            };
+
+            CreatedAccrecInvoice = Api.Invoices.Create(invoice);
         }
     }
 }
