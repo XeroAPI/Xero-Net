@@ -54,8 +54,47 @@ namespace CoreTests.Integration.Items.TrackedItems
                 },
 
                 Name = "Full Tracked Item",
-                IsTrackedAsInventory = true,
                 InventoryAssetAccountCode = InventoryAccountCode,
+                IsSold = true,
+                IsPurchased = true
+            });
+
+            CreatedItem = item;
+        }
+
+        public void Given_an_untracked_item()
+        {
+            if (string.IsNullOrEmpty(DirectCostsAccountCode))
+            {
+                Given_a_direct_cost_account();
+            }
+
+            if (string.IsNullOrEmpty(RevenueAccountCode))
+            {
+                Given_a_revenue_account();
+            }
+
+            var code = "Untracked Item" + Random.GetRandomString(10);
+
+            var item = Api.Items.Create(new Item
+            {
+                Code = code,
+                Description = "Sell me",
+                PurchaseDescription = "Purchase me",
+                PurchaseDetails = new PurchaseDetails
+                {
+                    UnitPrice = 75.5555m,
+                    TaxType = "INPUT2",
+                    AccountCode = DirectCostsAccountCode
+                },
+                SalesDetails = new SalesDetails
+                {
+                    UnitPrice = 1020.5555m,
+                    AccountCode = RevenueAccountCode,
+                    TaxType = "OUTPUT2"
+                },
+
+                Name = "Untracked Item",
                 IsSold = true,
                 IsPurchased = true
             });
@@ -79,7 +118,6 @@ namespace CoreTests.Integration.Items.TrackedItems
             }
 
             DirectCostsAccountCode = directCostsAccount.Code;
-
         }
 
         protected void Given_a_revenue_account()
@@ -98,9 +136,7 @@ namespace CoreTests.Integration.Items.TrackedItems
             }
 
             RevenueAccountCode = revenueAccount.Code;
-
         }
-
 
         protected void Given_an_inventory_account()
         {

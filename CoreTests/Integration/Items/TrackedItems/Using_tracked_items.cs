@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Xero.Api.Core.Model;
 
 namespace CoreTests.Integration.Items.TrackedItems
@@ -19,7 +18,6 @@ namespace CoreTests.Integration.Items.TrackedItems
             var item = Api.Items.Find(CreatedItem.Id);
 
             Then_the_quantity_of_the_tracked_item_is_more_than_zero(item);
-
         }
 
         //Sell inventory like this
@@ -99,7 +97,7 @@ namespace CoreTests.Integration.Items.TrackedItems
 
         private void Then_the_quantity_of_the_tracked_item_is_zero(Item item)
         {
-            Assert.True(CreatedItem.QuantityOnHand == 0);
+            Assert.True(item.QuantityOnHand == 0);
         }
 
         private void Then_the_quantity_of_the_tracked_item_is_more_than_zero(Item item)
