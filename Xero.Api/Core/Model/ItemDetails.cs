@@ -14,5 +14,10 @@ namespace Xero.Api.Core.Model
 
         [DataMember(EmitDefaultValue = false)]
         public string TaxType { get; set; }
+
+        [DataMember]
+        public string COGSAccountCode { get; set; }
+
+
     }
 }

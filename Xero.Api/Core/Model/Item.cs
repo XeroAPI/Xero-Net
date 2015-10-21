@@ -21,5 +21,30 @@ namespace Xero.Api.Core.Model
 
         [DataMember(EmitDefaultValue = false)]
         public SalesDetails SalesDetails { get; set; }
+
+        [DataMember]
+        public string InventoryAssetAccountCode { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public decimal? QuantityOnHand { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public bool? IsSold { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public bool? IsPurchased { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public string PurchaseDescription { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public bool IsTrackedAsInventory { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public decimal? TotalCostPool { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public string Name { get; set; }
+
     }
 }

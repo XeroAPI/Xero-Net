@@ -94,6 +94,11 @@
     <Compile Include="Integration\Invoices\InvoicesTest.cs" />
     <Compile Include="Integration\Invoices\SummarizeErrors.cs" />
     <Compile Include="Integration\Items\Create.cs" />
+    <Compile Include="Integration\Items\TrackedItems\Create.cs" />
+    <Compile Include="Integration\Items\TrackedItems\Find.cs" />
+    <Compile Include="Integration\Items\TrackedItems\TrackedInventoryTest.cs" />
+    <Compile Include="Integration\Items\TrackedItems\Update.cs" />
+    <Compile Include="Integration\Items\TrackedItems\Using_tracked_items.cs" />
     <Compile Include="Integration\Items\Update.cs" />
     <Compile Include="Integration\Journals\Find.cs" />
     <Compile Include="Integration\LinkedTransactions\Create.cs" />
