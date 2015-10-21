@@ -57,7 +57,6 @@ namespace CoreTests.Integration.Items.TrackedItems
                 },
 
                 Name = "Full Tracked Item",
-                IsTrackedAsInventory = true,
                 InventoryAssetAccountCode = InventoryAccountCode,
                 IsSold = true,
                 IsPurchased = true

@@ -27,6 +27,7 @@ A skinny wrapper of the Xero API. Supports Payroll. All third party libraries ar
 * Expense Claims - Create, Find and Update
 * Invoices - Create, Find, Update and as PDF
 * Items - Create, Find and Update
+* Tracked Inventory Items - Create, Find and Update
 * Journals - Find
 * Manual Journals - Create, Find and Update
 * Organisation - Find
@@ -35,7 +36,7 @@ A skinny wrapper of the Xero API. Supports Payroll. All third party libraries ar
 * Repeating Invoices - Find
 * Reports - Find
 * Tax Rates - Create, Find and Update
-* Tracking Categories - Find
+* Tracking Categories - Find, Update, Delete
 * Users - Find
 
 ### Australian Payroll
