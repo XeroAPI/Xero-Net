@@ -12,6 +12,7 @@ namespace CoreTests.Integration.Attachments
     public class Attachments : ApiWrapperTest
     {
         private const string ImagePath = @"resources\images\connect_xero_button_blue.png";
+        private const string ImageWithSpacesPath = @"resources\images\connect_xero_button_blue - Copy.png";
 
         [Test]
         public void adding_attachment_to_invoice()
@@ -98,9 +99,22 @@ namespace CoreTests.Integration.Attachments
             Assert.AreEqual(false, attachment.IncludeOnline);
         }
 
+        [Test]
+        public void can_save_attachments_with_spaces_in_the_name()
+        {
+            var attachment = Given_an_attachment_with_a_space_in_the_name_on_an_invoice();
+
+            Assert.AreEqual(false, attachment.IncludeOnline);
+        }
+
         private Attachment Given_attachment_on_invoice(bool includeOnline = false)
         {
             return CreateAttachment(Given_invoice_with_no_attachments(includeOnline), AttachmentEndpointType.Invoices, includeOnline);
+        }
+
+        private Attachment Given_an_attachment_with_a_space_in_the_name_on_an_invoice(bool includeOnline = false)
+        {
+            return CreateAttachment(Given_invoice_with_no_attachments(includeOnline), AttachmentEndpointType.Invoices, new FileInfo(ImageWithSpacesPath), includeOnline);
         }
 
         private Attachment Given_attachment_on_credit_note(bool includeOnline = false)

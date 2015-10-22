@@ -16,7 +16,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
 		}
 
 		private string Path() {
-			return _uri.LocalPath.TrimEnd('/');
+			return _uri.AbsolutePath.TrimEnd('/');
 		}
 
 		private string Escape(string what) {
