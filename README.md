@@ -1,6 +1,6 @@
 ﻿Xero-Net
 ========
-[![xero-api-sdk MyGet Build Status](https://www.myget.org/BuildSource/Badge/xero-api-sdk?identifier=e3806217-d545-47e3-9cb3-65ece45015fd)](https://www.myget.org/)
+[![xero-api-sdk MyGet Build Status](https://www.myget.org/BuildSource/Badge/xero-api-sdk?identifier=045754d8-de3f-4f0c-960a-ae6e16608e24)](https://www.myget.org/)
 
 A skinny wrapper of the Xero API. Supports Payroll. All third party libraries are included as source code.
 
