@@ -39,6 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Resources\cert\public_privatekey.txt" />
+    <Content Include="Resources\images\connect_xero_button_blue - Copy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\images\connect_xero_button_blue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
