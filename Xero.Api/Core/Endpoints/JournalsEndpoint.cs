@@ -6,7 +6,12 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public class JournalsEndpoint : XeroReadEndpoint<JournalsEndpoint, Journal, JournalsResponse>
+    public interface IJournalsEndpoint : IXeroReadEndpoint<JournalsEndpoint, Journal, JournalsResponse>
+    {
+        JournalsEndpoint Offset(int offset);
+    }
+
+    public class JournalsEndpoint : XeroReadEndpoint<JournalsEndpoint, Journal, JournalsResponse>, IJournalsEndpoint
     {
         public JournalsEndpoint(XeroHttpClient client) :
             base(client, "/api.xro/2.0/Journals")

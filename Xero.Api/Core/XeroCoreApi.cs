@@ -4,6 +4,7 @@ using Xero.Api.Common;
 using Xero.Api.Core.Endpoints;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Setup;
+using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.RateLimiter;
 using Xero.Api.Serialization;
@@ -11,7 +12,7 @@ using Organisation = Xero.Api.Core.Model.Organisation;
 
 namespace Xero.Api.Core
 {
-    public class XeroCoreApi : XeroApi
+    public class XeroCoreApi : XeroApi, IXeroCoreApi
     {
         private OrganisationEndpoint OrganisationEndpoint { get; set; }
 
@@ -76,7 +77,7 @@ namespace Xero.Api.Core
         public InboxEndpoint Inbox { get; private set; }
         public InvoicesEndpoint Invoices { get; private set; }
         public ItemsEndpoint Items { get; private set; }
-        public JournalsEndpoint Journals { get; private set; }
+        public IJournalsEndpoint Journals { get; protected set; }
         public LinkedTransactionsEndpoint LinkedTransactions { get; private set; }
         public ManualJournalsEndpoint ManualJournals { get; private set; }
         public OverpaymentsEndpoint Overpayments { get; private set; }
