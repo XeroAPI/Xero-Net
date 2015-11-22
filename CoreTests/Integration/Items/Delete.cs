@@ -26,7 +26,7 @@ namespace CoreTests.Integration.Items
 
             Given_an_ACCPAY_invoice_using_the_item_with_code(CreatedItem.Code);
 
-            When_I_try_to_Delete_it_fails();
+            When_I_try_to_Delete_it_400s();
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace CoreTests.Integration.Items
             Assert.Throws<NotFoundException>(() => Api.Items.Delete(CreatedItem));
         }
 
-        private void When_I_try_to_Delete_it_fails()
+        private void When_I_try_to_Delete_it_400s()
         {
             Assert.Throws<ValidationException>(() => Api.Items.Delete(CreatedItem));
         }
