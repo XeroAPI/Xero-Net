@@ -18,6 +18,20 @@ namespace Xero.Api.Core.Endpoints
 
     }
 
+    public FoldersResponse[] Folders
+    {
+      get
+      {
+        var endpoint = string.Format("files.xro/1.0/Folders");
+
+        var folder = HandleFoldersResponse(Client
+            .Client
+            .Get(endpoint, null));
+
+        return folder;
+      }
+    }
+
     public FilePageResponse Add(string folderName)
     {
       var endpoint = string.Format("files.xro/1.0/Folders");
@@ -55,17 +69,6 @@ namespace Xero.Api.Core.Endpoints
       return (response != null) ? response[0] : null;
     }
 
-    public FilePageResponse GetFiles(Guid id)
-    {
-      var endpoint = string.Format("files.xro/1.0/Folders/" + id);
-
-      var folder = HandleFolderResponse(Client
-          .Client
-          .Get(endpoint, null));
-
-      return folder;
-    }
-
     private FilePageResponse HandleFolderResponse(Infrastructure.Http.Response response)
     {
       if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
@@ -80,20 +83,6 @@ namespace Xero.Api.Core.Endpoints
       Client.HandleErrors(response);
 
       return null;
-    }
-
-    public FoldersResponse[] Folders
-    {
-      get
-      {
-        var endpoint = string.Format("files.xro/1.0/Folders");
-
-        var folder = HandleFoldersResponse(Client
-            .Client
-            .Get(endpoint, null));
-
-        return folder;
-      }
     }
 
     private FoldersResponse[] HandleFoldersResponse(Infrastructure.Http.Response response)

@@ -5,19 +5,21 @@ using Xero.Api.Core.Model;
 
 namespace Xero.Api.Core.Response
 {
-    public class FoldersResponse : XeroResponse<Model.Folder>
+  public class FoldersResponse : XeroResponse<Model.Folder>
+  {
+    public string Name { get; set; }
+
+    public bool IsInbox { get; set; }
+
+    public int FileCount { get; set; }
+
+    public List<Model.File> Files { get; set; }
+
+    public List<Folder> Folders { get; set; }
+
+    public override IList<Folder> Values
     {
-        public string Name { get; set; }
-
-        public bool IsInbox { get; set; }
-
-        public int FileCount { get; set; }
-
-        public List<Folder> Folders { get; set; }
-
-        public override IList<Folder> Values
-        {
-            get { return Folders; }
-        }
+      get { return Folders; }
     }
+  }
 }
