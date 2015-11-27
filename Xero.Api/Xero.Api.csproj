@@ -48,8 +48,10 @@
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
     <Compile Include="Core\Endpoints\LinkedTransactionsEndpoint.cs" />
+    <Compile Include="Core\Endpoints\PurchaseOrdersEndpoint.cs" />
     <Compile Include="Core\Model\ContactTrackingCategory.cs" />
     <Compile Include="Core\Model\LinkedTransaction.cs" />
+    <Compile Include="Core\Model\PurchaseOrder.cs" />
     <Compile Include="Core\Model\Status\LinkedTransactionStatus.cs" />
     <Compile Include="Core\Model\Status\TrackingOptionStatus.cs" />
     <Compile Include="Core\Model\Types\BankAccountType.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="Core\Request\ContactGroupsRequest.cs" />
     <Compile Include="Core\Request\SetupRequest.cs" />
     <Compile Include="Core\Response\ContactGroupsResponse.cs" />
+    <Compile Include="Core\Response\PurchaseOrdersResponse.cs" />
     <Compile Include="Core\Response\SetupResponse.cs" />
     <Compile Include="Core\Response\OptionsResponse.cs" />
     <Compile Include="Infrastructure\Exceptions\RateExceededException.cs" />
