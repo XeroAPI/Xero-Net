@@ -185,7 +185,7 @@ namespace Xero.Api.Core.Endpoints
     {
         public static string ToReportDate(this DateTime dt)
         {
-            return dt.ToString("dd MMM yyyy");
+            return dt.ToString("yyyy-MM-dd");
         }
 
         public static void AddYear(this NameValueCollection collection, string name, DateTime? value)
