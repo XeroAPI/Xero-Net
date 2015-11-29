@@ -64,8 +64,7 @@ namespace Xero.Api.Core.Endpoints
 
     public FoldersResponse Rename(Guid id, string name)
     {
-      var response = HandleFoldersResponse(Client
-          .Client.Put("files.xro/1.0/Folders/" + id, "{\"Name\":\"" + name + "\"}", "application/json"));
+      var response = HandleFoldersResponse(Client.Client.Put("files.xro/1.0/Folders/" + id, "{\"Name\":\"" + name + "\"}", "application/json"));
       return (response != null) ? response[0] : null;
     }
 

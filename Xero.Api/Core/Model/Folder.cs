@@ -20,6 +20,6 @@ namespace Xero.Api.Core.Model
     public int FileCount { get; set; }
 
     [DataMember(EmitDefaultValue = false)]
-    public List<Model.File> Files { get; set; }
+    public List<File> Files { get; set; }
   }
 }
