@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Xero.Api.Payroll.Australia.Model.Status;
 
-namespace Xero.Api.Payroll.Common.Model
+namespace Xero.Api.Payroll.Australia.Model
 {
-    [DataContract(Namespace = "")]
+    [DataContract(Namespace="")]
     public class Timesheet
     {
         [DataMember(Name = "TimesheetID", EmitDefaultValue = false)]

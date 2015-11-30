@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using Xero.Api.Common;
 using Xero.Api.Payroll.Australia.Model.Status;
+using Xero.Api.Payroll.Australia.Model;
 using Xero.Api.Payroll.Common.Model;
 
 namespace PayrollTests.AU.Integration.TimeSheets
