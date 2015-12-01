@@ -11,9 +11,9 @@ namespace Xero.Api.Example.Applications.Private
         private readonly X509Certificate2 _certificate;
 
         public PrivateAuthenticator(string certificatePath)
+            :this(certificatePath, "")
         {
-            _certificate = new X509Certificate2();
-            _certificate.Import(certificatePath);
+            
         }
 
         public PrivateAuthenticator(string certificatePath, string certificatePassword = "")
