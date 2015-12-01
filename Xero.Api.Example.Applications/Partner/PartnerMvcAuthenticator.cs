@@ -17,6 +17,15 @@ namespace Xero.Api.Example.Applications.Partner
         {            
         }
 
+        public PartnerMvcAuthenticator(string baseUri, string authorizeUri, string callBackUri,
+            ITokenStore store, string signingCertificatePath, string certificatePath, string password,
+            IConsumer consumer, ITokenStore requestTokenStore)
+            : this(baseUri, authorizeUri, callBackUri, store, consumer, requestTokenStore)
+        {
+            _signingCertificate = new X509Certificate2(signingCertificatePath);
+            _certificate = new X509Certificate2(certificatePath, password);
+        }
+
         public PartnerMvcAuthenticator(string baseUri, string authorizeUri, string callBackUri, 
             ITokenStore store, string signingCertificatePath, string certificatePath, string entrustPassword,
             IConsumer consumer, ITokenStore requestTokenStore, string signingCertPassword = "")
