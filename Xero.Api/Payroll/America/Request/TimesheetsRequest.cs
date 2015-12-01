@@ -1,8 +1,8 @@
 ﻿using System.Runtime.Serialization;
 using Xero.Api.Common;
-using Xero.Api.Payroll.Common.Model;
+using Xero.Api.Payroll.America.Model;
 
-namespace Xero.Api.Payroll.Common.Request
+namespace Xero.Api.Payroll.America.Request
 {
     [CollectionDataContract(Namespace = "", Name = "Timesheets")]
     public class TimesheetsRequest : XeroRequest<Timesheet>
