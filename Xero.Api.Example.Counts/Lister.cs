@@ -9,7 +9,7 @@ namespace Xero.Api.Example.Counts
     {
         private readonly IXeroCoreApi _api;
 
-        public Lister(XeroCoreApi api)
+        public Lister(IXeroCoreApi api)
         {
             _api = api;
         }
