@@ -9,7 +9,6 @@ namespace Xero.Api.Common
         where T : XeroReadEndpoint<T, TResult, TResponse>
         where TResponse : IXeroResponse<TResult>, new()
     {
-        XeroHttpClient Client { get; }
         string QueryString { get; }
         T ModifiedSince(DateTime modified);
         T Where(string query);
