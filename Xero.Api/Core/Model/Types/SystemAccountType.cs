@@ -26,7 +26,7 @@ namespace Xero.Api.Core.Model.Types
         [EnumMember(Value = "TRACKINGTRANSFERS")]
         TrackingTransfers,
         [EnumMember(Value = "UNPAIDEXPCLM")]
-        UnPaidExpClm,
+        UnpaidExpenseClaim,
         [EnumMember(Value = "UNREALISEDCURRENCYGAIN")]
         UnrealisedCurrencyGain,
         [EnumMember(Value = "WAGEPAYABLES")]
