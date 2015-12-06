@@ -43,9 +43,6 @@ namespace Xero.Api.Core.Model
         public bool SentToContact { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public string ExternalLinkProviderName { get; set; }
-
-        [DataMember(EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
