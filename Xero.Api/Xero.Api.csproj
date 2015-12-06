@@ -53,6 +53,7 @@
     <Compile Include="Core\Model\LinkedTransaction.cs" />
     <Compile Include="Core\Model\PurchaseOrder.cs" />
     <Compile Include="Core\Model\Status\LinkedTransactionStatus.cs" />
+    <Compile Include="Core\Model\Status\PurchaseOrderStatus.cs" />
     <Compile Include="Core\Model\Status\TrackingOptionStatus.cs" />
     <Compile Include="Core\Model\Types\BankAccountType.cs" />
     <Compile Include="Core\Model\Types\LinkedTransactionType.cs" />

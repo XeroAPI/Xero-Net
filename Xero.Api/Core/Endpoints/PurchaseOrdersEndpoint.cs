@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using Xero.Api.Common;
 using Xero.Api.Core.Model;
-using Xero.Api.Core.Request;
+using Xero.Api.Core.Model.Status;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Http;
 
@@ -15,9 +14,15 @@ namespace Xero.Api.Core.Endpoints
         {
         }
 
-        public PurchaseOrdersEndpoint Status(string status)
+        public PurchaseOrdersEndpoint Page(int page)
         {
-            AddParameter("status", status);
+            AddParameter("page", page);
+            return this;
+        }
+
+        public PurchaseOrdersEndpoint Status(PurchaseOrderStatus status)
+        {
+            AddParameter("status", status.ToString().ToUpper());
             return this;
         }
 
