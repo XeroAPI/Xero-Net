@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Xero.Api.Common;
+using Xero.Api.Core.Model.Status;
 using Xero.Api.Core.Model.Types;
 
 namespace Xero.Api.Core.Model
@@ -58,7 +59,7 @@ namespace Xero.Api.Core.Model
         public Guid? BrandingThemeID { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public string Status { get; set; }
+        public PurchaseOrderStatus Status { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public LineAmountType LineAmountTypes { get; set; }
