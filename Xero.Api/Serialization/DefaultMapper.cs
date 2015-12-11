@@ -73,6 +73,7 @@ namespace Xero.Api.Serialization
             JsConfig<ManualJournalStatus>.DeSerializeFn = EnumDeserializer<ManualJournalStatus>;
             JsConfig<OrganisationStatus>.DeSerializeFn = EnumDeserializer<OrganisationStatus>;
             JsConfig<PaymentStatus>.DeSerializeFn = EnumDeserializer<PaymentStatus>;
+            JsConfig<PurchaseOrderStatus>.DeSerializeFn = EnumDeserializer<PurchaseOrderStatus>;
             JsConfig<ReceiptStatus>.DeSerializeFn = EnumDeserializer<ReceiptStatus>;
             JsConfig<TaxRateStatus>.DeSerializeFn = EnumDeserializer<TaxRateStatus>;
             JsConfig<TrackingCategoryStatus>.DeSerializeFn = EnumDeserializer<TrackingCategoryStatus>;
