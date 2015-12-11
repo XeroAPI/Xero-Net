@@ -34,6 +34,11 @@ namespace Xero.Api.Example.Applications.Partner
             get { return ConfigurationManager.AppSettings["PartnerCertificatePassword"]; }
         }
 
+        public string SigningCertificatePassword
+        {
+            get { return ConfigurationManager.AppSettings["SigningCertificatePassword"]; }
+        }
+
         public string Key
         {
             get { return ConfigurationManager.AppSettings["ConsumerKey"]; }

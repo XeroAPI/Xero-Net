@@ -11,7 +11,7 @@ namespace Xero.Api.Example.Applications.Private
 
         public AustralianPayroll(bool includeRateLimiter = false) :
             base(ApplicationSettings.Uri,
-                new PrivateAuthenticator(ApplicationSettings.SigningCertificatePath),
+                new PrivateAuthenticator(ApplicationSettings.SigningCertificatePath, ApplicationSettings.SigningCertificatePassword),
                 new Consumer(ApplicationSettings.Key, ApplicationSettings.Secret),
                 null,
                 Mapper,
