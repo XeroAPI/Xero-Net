@@ -94,7 +94,8 @@ namespace Xero.Api.Serialization
             JsConfig<ReportTaxType>.DeSerializeFn = EnumDeserializer<ReportTaxType>;
             JsConfig<SalesTaxBasisType>.DeSerializeFn = SalesTaxBasis;
             JsConfig<SalesTaxPeriodType>.DeSerializeFn = SalesTaxPeriod;
-            JsConfig<SystemAccountType>.DeSerializeFn = EnumDeserializer<SystemAccountType>;
+            JsConfig<SourceType?>.DeSerializeFn = EnumDeserializerNullable<SourceType>;
+            JsConfig<SystemAccountType?>.DeSerializeFn = EnumDeserializerNullable<SystemAccountType>;
             JsConfig<UnitType>.DeSerializeFn = EnumDeserializer<UnitType>;
             JsConfig<UserRole>.DeSerializeFn = EnumDeserializer<UserRole>;
         }
@@ -139,6 +140,27 @@ namespace Xero.Api.Serialization
 
         private static TEnum EnumDeserializer<TEnum>(string s)
             where TEnum : struct
+        {
+            TEnum t;
+
+            // If all goes well then we are done
+            if (Enum.TryParse(s, out t))
+                return t;
+
+            // get the EnumMember attribute and see if the Value attribute matches the string
+            foreach (var p in t.GetType().GetMembers())
+            {
+                var attributes = p.GetCustomAttributes(typeof(EnumMemberAttribute), false).Cast<EnumMemberAttribute>();
+                if (attributes.All(a => String.Compare(a.Value, s, StringComparison.OrdinalIgnoreCase) != 0))
+                    continue;
+                Enum.TryParse(p.Name, out t);
+            }
+
+            return t;
+        }
+
+        private static TEnum? EnumDeserializerNullable<TEnum>(string s)
+    where TEnum : struct
         {
             TEnum t;
 
