@@ -63,7 +63,7 @@ namespace Xero.Api.Core
         public AccountsEndpoint Accounts { get; private set; }
         public AllocationsEndpoint Allocations { get; private set; }
         public AttachmentsEndpoint Attachments { get; private set; }
-        public BankTransactionsEndpoint BankTransactions { get; private set; }
+        public IBankTransactionsEndpoint BankTransactions { get; private set; }
         public BankTransfersEndpoint BankTransfers { get; private set; }
         public BrandingThemesEndpoint BrandingThemes { get; private set; }
         public ContactsEndpoint Contacts { get; private set; }

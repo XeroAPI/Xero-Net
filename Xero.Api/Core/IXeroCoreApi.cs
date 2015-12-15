@@ -11,7 +11,7 @@ namespace Xero.Api.Core
         AccountsEndpoint Accounts { get; }
         AllocationsEndpoint Allocations { get; }
         AttachmentsEndpoint Attachments { get; }
-        BankTransactionsEndpoint BankTransactions { get; }
+        IBankTransactionsEndpoint BankTransactions { get; }
         BankTransfersEndpoint BankTransfers { get; }
         BrandingThemesEndpoint BrandingThemes { get; }
         ContactsEndpoint Contacts { get; }
