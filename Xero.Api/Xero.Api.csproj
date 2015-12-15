@@ -45,6 +45,7 @@
     <Compile Include="Common\QueryGenerator.cs" />
     <Compile Include="Core\Endpoints\AllocationEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
+    <Compile Include="Core\Endpoints\Base\IXeroCreateEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\IXeroUpdateEndpoint.cs" />
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
