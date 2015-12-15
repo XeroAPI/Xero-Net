@@ -32,6 +32,7 @@ namespace Xero.Api.Core
         PaymentsEndpoint Payments { get; }
         PdfEndpoint PdfFiles { get; }
         PrepaymentsEndpoint Prepayments { get; }
+        PurchaseOrdersEndpoint PurchaseOrders { get; }
         ReceiptsEndpoint Receipts { get; }
         RepeatingInvoicesEndpoint RepeatingInvoices { get; }
         ReportsEndpoint Reports { get; }
