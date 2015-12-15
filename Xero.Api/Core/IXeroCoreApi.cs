@@ -17,7 +17,7 @@ namespace Xero.Api.Core
         IContactsEndpoint Contacts { get; }
         IContactGroupsEndpoint ContactGroups { get; }
         ICreditNotesEndpoint CreditNotes { get; }
-        CurrenciesEndpoint Currencies { get; set; }
+        ICurrenciesEndpoint Currencies { get; set; }
         EmployeesEndpoint Employees { get; }
         ExpenseClaimsEndpoint ExpenseClaims { get; }
         FilesEndpoint Files { get; }

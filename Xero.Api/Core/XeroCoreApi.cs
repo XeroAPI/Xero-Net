@@ -69,7 +69,7 @@ namespace Xero.Api.Core
         public IContactsEndpoint Contacts { get; private set; }
         public IContactGroupsEndpoint ContactGroups { get; private set;}
         public ICreditNotesEndpoint CreditNotes { get; private set; }
-        public CurrenciesEndpoint Currencies { get; set; }
+        public ICurrenciesEndpoint Currencies { get; set; }
         public EmployeesEndpoint Employees { get; private set; }
         public ExpenseClaimsEndpoint ExpenseClaims { get; private set; }
         public FilesEndpoint Files { get; private set; }
