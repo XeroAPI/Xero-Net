@@ -30,7 +30,7 @@ namespace Xero.Api.Core.Endpoints.Base
             return Create(new[] { item }).First();
         }
 
-        public XeroCreateEndpoint<T, TResult, TRequest, TResponse> SummarizeErrors(bool summarize)
+        public IXeroCreateEndpoint<T, TResult, TRequest, TResponse> SummarizeErrors(bool summarize)
         {
             AddParameter("summarizeErrors", summarize);
             return this;

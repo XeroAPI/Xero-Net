@@ -15,6 +15,6 @@ namespace Xero.Api.Core.Endpoints.Base
     {
         IEnumerable<TResult> Create(IEnumerable<TResult> items);
         TResult Create(TResult item);
-
+        IXeroCreateEndpoint<T, TResult, TRequest, TResponse> SummarizeErrors(bool summarize);
     }
 }
