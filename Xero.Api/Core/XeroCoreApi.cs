@@ -68,7 +68,7 @@ namespace Xero.Api.Core
         public IBrandingThemesEndpoint BrandingThemes { get; private set; }
         public IContactsEndpoint Contacts { get; private set; }
         public IContactGroupsEndpoint ContactGroups { get; private set;}
-        public CreditNotesEndpoint CreditNotes { get; private set; }
+        public ICreditNotesEndpoint CreditNotes { get; private set; }
         public CurrenciesEndpoint Currencies { get; set; }
         public EmployeesEndpoint Employees { get; private set; }
         public ExpenseClaimsEndpoint ExpenseClaims { get; private set; }
