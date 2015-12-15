@@ -14,7 +14,7 @@ namespace Xero.Api.Core
 {
     public class XeroCoreApi : XeroApi, IXeroCoreApi
     {
-        private OrganisationEndpoint OrganisationEndpoint { get; set; }
+        private IOrganisationEndpoint OrganisationEndpoint { get; set; }
 
         public XeroCoreApi(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user,
             IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper)
