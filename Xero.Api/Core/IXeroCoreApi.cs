@@ -8,7 +8,7 @@ namespace Xero.Api.Core
 {
     public interface IXeroCoreApi
     {
-        AccountsEndpoint Accounts { get; }
+        IAccountsEndpoint Accounts { get; }
         AllocationsEndpoint Allocations { get; }
         AttachmentsEndpoint Attachments { get; }
         IBankTransactionsEndpoint BankTransactions { get; }
