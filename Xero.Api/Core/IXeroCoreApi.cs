@@ -15,7 +15,7 @@ namespace Xero.Api.Core
         IBankTransfersEndpoint BankTransfers { get; }
         IBrandingThemesEndpoint BrandingThemes { get; }
         IContactsEndpoint Contacts { get; }
-        ContactGroupsEndpoint ContactGroups { get; }
+        IContactGroupsEndpoint ContactGroups { get; }
         CreditNotesEndpoint CreditNotes { get; }
         CurrenciesEndpoint Currencies { get; set; }
         EmployeesEndpoint Employees { get; }
