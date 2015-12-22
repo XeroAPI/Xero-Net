@@ -147,6 +147,12 @@ namespace Xero.Api.Serialization
         private static TEnum? EnumDeserializerNullable<TEnum>(string s)
             where TEnum : struct
         {
+            // first off, is this an empty string? 
+            if (String.IsNullOrEmpty(s))
+            {
+                // ... then just return null
+                return null;
+            }
             return EnumDeserializerRun<TEnum>(s);
         }
 
