@@ -4,8 +4,6 @@ using Xero.Api.Infrastructure.RateLimiter;
 using Xero.Api.Payroll.Australia.Endpoints;
 using Xero.Api.Payroll.Australia.Model;
 using Xero.Api.Payroll.Common;
-using Xero.Api.Payroll.Common.Endpoints;
-using Xero.Api.Payroll.Common.Model;
 using PayRun = Xero.Api.Payroll.Australia.Model.PayRun;
 
 namespace Xero.Api.Payroll
