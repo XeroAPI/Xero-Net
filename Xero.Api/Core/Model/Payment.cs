@@ -25,6 +25,9 @@ namespace Xero.Api.Core.Model
         public decimal CurrencyRate { get; set; }
 
         [DataMember]
+        public decimal BankAmount { get; set; }
+
+        [DataMember]
         public decimal Amount { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
