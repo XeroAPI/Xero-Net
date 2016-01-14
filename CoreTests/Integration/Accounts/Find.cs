@@ -50,5 +50,23 @@ namespace CoreTests.Integration.Accounts
 
             Assert.AreEqual(null, account.SystemAccount);
         }
+
+        [Test]
+        public void find_accounts_ifmodifiedsince()
+        {
+            var newNonSystemAccount = Api.Create(new Account
+            {
+                Code = Random.GetRandomString(10),
+                Type = AccountType.OtherIncome,
+                Description = "Consultation " + Random.GetRandomString(10),
+                Name = "Consultation " + Random.GetRandomString(10)
+            });
+
+            var accounts = Api.Accounts
+                .ModifiedSince(DateTime.Now.Date)
+                .Find();
+
+            Assert.IsNotNull(accounts);
+        }
     }
 }

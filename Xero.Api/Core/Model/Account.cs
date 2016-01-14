@@ -59,5 +59,9 @@ namespace Xero.Api.Core.Model
 
         [DataMember(EmitDefaultValue = false)]
         public bool? HasAttachments { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public DateTime UpdatedDateUTC { get; set; }
+
     }
 }
