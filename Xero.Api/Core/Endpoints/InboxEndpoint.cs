@@ -11,7 +11,10 @@ namespace Xero.Api.Core.Endpoints
 {
     public interface IInboxEndpoint : IXeroUpdateEndpoint<InboxEndpoint, Model.Folder, FolderRequest, FolderResponse>
     {
-
+        Model.File this[Guid id] { get; }
+        FilesResponse Add(Model.File file, byte[] data);
+        FilesResponse Remove(Guid fileid);
+        Folder InboxFolder { get; }
     }
 
     public class InboxEndpoint : XeroUpdateEndpoint<InboxEndpoint,Model.Folder,FolderRequest,FolderResponse>, IInboxEndpoint

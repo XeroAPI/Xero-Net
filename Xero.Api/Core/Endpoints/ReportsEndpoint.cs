@@ -12,6 +12,23 @@ namespace Xero.Api.Core.Endpoints
 {
     public interface IReportsEndpoint : IXeroReadEndpoint<ReportsEndpoint, Report, ReportsResponse>
     {
+        Report GetPublishedReport(string id);
+        Report GetPublishedReport(Guid id);
+        IEnumerable<string> Published { get; }
+        IEnumerable<string> Named { get; }
+        Report AgedPayables(Guid contact, DateTime? date = null, DateTime? from = null, DateTime? to = null);
+        Report AgedReceivables(Guid contact, DateTime? date = null, DateTime? from = null, DateTime? to = null);
+        Report TenNinetyNine(DateTime? year);
+        Report BalanceSheet(DateTime date, Guid? tracking1 = null, Guid? tracking2 = null,
+            bool standardLayout = false);
+        Report BankStatement(Guid account, DateTime? from = null, DateTime? to = null);
+        Report BankSummary(DateTime? from = null, DateTime? to = null);
+        Report BudgetSummary(DateTime? date = null, int? periods = null, BudgetSummaryTimeframeType? timeFrame = null);
+        Report ExecutiveSummary(DateTime? date = null);
+        Report ProfitAndLoss(DateTime? date, DateTime? from = null, DateTime? to = null,
+            Guid? trackingCategory = null, Guid? trackingOption = null, Guid? trackingCategory2 = null,
+            Guid? trackingOption2 = null, bool? standardLayout = null);
+        Report TrailBalance(DateTime? date = null, bool? paymentsOnly = null);
     }
 
     public class ReportsEndpoint : XeroReadEndpoint<ReportsEndpoint, Report, ReportsResponse>, IReportsEndpoint
@@ -53,7 +70,7 @@ namespace Xero.Api.Core.Endpoints
 
             parameters.AddYear("reportYear", year);
 
-           AddParameters(parameters);
+            AddParameters(parameters);
 
             return Find(NamedReportType.TenNinetyNine.ToString());
         }
@@ -137,7 +154,7 @@ namespace Xero.Api.Core.Endpoints
         }
 
         public Report ProfitAndLoss(DateTime? date, DateTime? from = null, DateTime? to = null,
-            Guid? trackingCategory = null, Guid? trackingOption = null, Guid? trackingCategory2 = null, 
+            Guid? trackingCategory = null, Guid? trackingOption = null, Guid? trackingCategory2 = null,
             Guid? trackingOption2 = null, bool? standardLayout = null)
         {
             var parameters = new NameValueCollection();

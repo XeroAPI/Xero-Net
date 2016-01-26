@@ -12,7 +12,10 @@ namespace Xero.Api.Core.Endpoints
 {
     public interface IFoldersEndpoint : IXeroUpdateEndpoint<FoldersEndpoint, Model.Folder, FolderRequest, FolderResponse>
     {
-
+        FoldersResponse[] Folders { get; }
+        FilePageResponse Add(string folderName);
+        void Remove(Guid id);
+        FoldersResponse Rename(Guid id, string name);
     }
 
     public class FoldersEndpoint : XeroUpdateEndpoint<FoldersEndpoint, Model.Folder, FolderRequest, FolderResponse>, IFoldersEndpoint

@@ -12,7 +12,12 @@ namespace Xero.Api.Core.Endpoints
 {
     public interface ITrackingCategoriesEndpoint : IXeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
     {
-
+        OptionCollection this[Guid id] { get; }
+        List<TrackingCategory> GetAll();
+        TrackingCategoriesEndpoint IncludeArchived(bool include);
+        TrackingCategory GetByID(Guid id);
+        TrackingCategory Delete(TrackingCategory trackingCategory);
+        Option DeleteTrackingOption(TrackingCategory trackingCategory, Option option);
     }
 
     public class TrackingCategoriesEndpoint : XeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, ITrackingCategoriesEndpoint

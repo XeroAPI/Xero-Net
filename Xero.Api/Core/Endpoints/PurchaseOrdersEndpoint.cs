@@ -1,4 +1,5 @@
 ﻿using System;
+using Xero.Api.Common;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Status;
@@ -9,9 +10,11 @@ using Xero.Api.Infrastructure.Http;
 namespace Xero.Api.Core.Endpoints
 {
     public interface IPurchaseOrdersEndpoint :
-        IXeroCreateEndpoint<PurchaseOrdersEndpoint, PurchaseOrder, PurchaseOrdersRequest, PurchaseOrdersResponse>
+        IXeroCreateEndpoint<PurchaseOrdersEndpoint, PurchaseOrder, PurchaseOrdersRequest, PurchaseOrdersResponse>, IPageableEndpoint<IPurchaseOrdersEndpoint>
     {
-        
+        PurchaseOrdersEndpoint Status(PurchaseOrderStatus status);
+        PurchaseOrdersEndpoint DateFrom(DateTime dateFrom);
+        PurchaseOrdersEndpoint DateTo(DateTime dateTo);
     }
 
     public class PurchaseOrdersEndpoint : XeroCreateEndpoint<PurchaseOrdersEndpoint, PurchaseOrder, PurchaseOrdersRequest, PurchaseOrdersResponse>, IPurchaseOrdersEndpoint
@@ -21,7 +24,7 @@ namespace Xero.Api.Core.Endpoints
         {
         }
 
-        public PurchaseOrdersEndpoint Page(int page)
+        public IPurchaseOrdersEndpoint Page(int page)
         {
             AddParameter("page", page);
             return this;
