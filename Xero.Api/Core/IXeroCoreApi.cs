@@ -18,28 +18,28 @@ namespace Xero.Api.Core
         IContactGroupsEndpoint ContactGroups { get; }
         ICreditNotesEndpoint CreditNotes { get; }
         ICurrenciesEndpoint Currencies { get; set; }
-        EmployeesEndpoint Employees { get; }
-        ExpenseClaimsEndpoint ExpenseClaims { get; }
-        FilesEndpoint Files { get; }
-        FoldersEndpoint Folders { get; }
-        InboxEndpoint Inbox { get; }
-        InvoicesEndpoint Invoices { get; }
-        ItemsEndpoint Items { get; }
+        IEmployeesEndpoint Employees { get; }
+        IExpenseClaimsEndpoint ExpenseClaims { get; }
+        IFilesEndpoint Files { get; }
+        IFoldersEndpoint Folders { get; }
+        IInboxEndpoint Inbox { get; }
+        IInvoicesEndpoint Invoices { get; }
+        IItemsEndpoint Items { get; }
         IJournalsEndpoint Journals { get; }
-        LinkedTransactionsEndpoint LinkedTransactions { get; }
-        ManualJournalsEndpoint ManualJournals { get; }
-        OverpaymentsEndpoint Overpayments { get; }
-        PaymentsEndpoint Payments { get; }
+        ILinkedTransactionsEndpoint LinkedTransactions { get; }
+        IManualJournalsEndpoint ManualJournals { get; }
+        IOverpaymentsEndpoint Overpayments { get; }
+        IPaymentsEndpoint Payments { get; }
         PdfEndpoint PdfFiles { get; }
-        PrepaymentsEndpoint Prepayments { get; }
-        PurchaseOrdersEndpoint PurchaseOrders { get; }
-        ReceiptsEndpoint Receipts { get; }
-        RepeatingInvoicesEndpoint RepeatingInvoices { get; }
-        ReportsEndpoint Reports { get; }
+        IPrepaymentsEndpoint Prepayments { get; }
+        IPurchaseOrdersEndpoint PurchaseOrders { get; }
+        IReceiptsEndpoint Receipts { get; }
+        IRepeatingInvoicesEndpoint RepeatingInvoices { get; }
+        IReportsEndpoint Reports { get; }
         SetupEndpoint Setup { get; }
-        TaxRatesEndpoint TaxRates { get; }
-        TrackingCategoriesEndpoint TrackingCategories { get; }
-        UsersEndpoint Users { get; }
+        ITaxRatesEndpoint TaxRates { get; }
+        ITrackingCategoriesEndpoint TrackingCategories { get; }
+        IUsersEndpoint Users { get; }
         Organisation Organisation { get; }
         string BaseUri { get; }
         string UserAgent { get; set; }
