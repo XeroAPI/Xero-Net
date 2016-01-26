@@ -8,7 +8,13 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public class PurchaseOrdersEndpoint : XeroCreateEndpoint<PurchaseOrdersEndpoint, PurchaseOrder, PurchaseOrdersRequest, PurchaseOrdersResponse>
+    public interface IPurchaseOrdersEndpoint :
+        IXeroCreateEndpoint<PurchaseOrdersEndpoint, PurchaseOrder, PurchaseOrdersRequest, PurchaseOrdersResponse>
+    {
+        
+    }
+
+    public class PurchaseOrdersEndpoint : XeroCreateEndpoint<PurchaseOrdersEndpoint, PurchaseOrder, PurchaseOrdersRequest, PurchaseOrdersResponse>, IPurchaseOrdersEndpoint
     {
         public PurchaseOrdersEndpoint(XeroHttpClient client) :
             base(client, "/api.xro/2.0/PurchaseOrders")

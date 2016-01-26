@@ -26,41 +26,41 @@ namespace CoreTests.Unit
             ExplicitNotUse4Dp(Api.Invoices, "page=1");
         }
 
-        [Test]
-        public void no_four_decimal_places_bank_transactions()
-        {
-            ExplicitNotUse4Dp(Api.BankTransactions);
-        }
+        //[Test]
+        //public void no_four_decimal_places_bank_transactions()
+        //{
+        //    ExplicitNotUse4Dp(Api.BankTransactions);
+        //}
 
-        [Test]
-        public void explict_four_decimal_places_bank_transactions()
-        {
-            ExplictUse4Dp(Api.BankTransactions);
-        }
+        //[Test]
+        //public void explict_four_decimal_places_bank_transactions()
+        //{
+        //    ExplictUse4Dp(Api.BankTransactions);
+        //}
 
-        [Test]
-        public void implict_four_decimal_places_bank_transactions()
-        {
-            ImplicitUse4Dp(Api.BankTransactions);
-        }
+        //[Test]
+        //public void implict_four_decimal_places_bank_transactions()
+        //{
+        //    ImplicitUse4Dp(Api.BankTransactions);
+        //}
 
-        [Test]
-        public void no_four_decimal_places_credit_notes()
-        {
-            ExplicitNotUse4Dp(Api.CreditNotes);
-        }
+        //[Test]
+        //public void no_four_decimal_places_credit_notes()
+        //{
+        //    ExplicitNotUse4Dp(Api.CreditNotes);
+        //}
 
-        [Test]
-        public void explict_four_decimal_places_credit_notes()
-        {
-            ExplictUse4Dp(Api.CreditNotes);
-        }
+        //[Test]
+        //public void explict_four_decimal_places_credit_notes()
+        //{
+        //    ExplictUse4Dp(Api.CreditNotes);
+        //}
 
-        [Test]
-        public void implict_four_decimal_places_credit_notes()
-        {
-            ImplicitUse4Dp(Api.CreditNotes);
-        }
+        //[Test]
+        //public void implict_four_decimal_places_credit_notes()
+        //{
+        //    ImplicitUse4Dp(Api.CreditNotes);
+        //}
 
         [Test]
         public void no_four_decimal_places_reciepts()
