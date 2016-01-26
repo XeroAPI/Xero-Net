@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Xero.Api.Common;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Request;
@@ -18,6 +19,7 @@ namespace Xero.Api.Core.Endpoints
         TrackingCategory GetByID(Guid id);
         TrackingCategory Delete(TrackingCategory trackingCategory);
         Option DeleteTrackingOption(TrackingCategory trackingCategory, Option option);
+        TrackingCategory Add(TrackingCategory trackingCategory);
     }
 
     public class TrackingCategoriesEndpoint : XeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, ITrackingCategoriesEndpoint

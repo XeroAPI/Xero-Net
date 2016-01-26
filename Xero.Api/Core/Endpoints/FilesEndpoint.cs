@@ -14,7 +14,12 @@ namespace Xero.Api.Core.Endpoints
 {
     public interface IFilesEndpoint : IXeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>
     {
-
+        Model.File Rename(Guid id, string name);
+        Model.File Move(Guid id, Guid newFolder);
+        Model.File Add(Guid folderId, Model.File file, byte[] data);
+        Model.File Remove(Guid fileid);
+        byte[] GetContent(Guid id, string contentType);
+        Model.File this[Guid id] { get; }
     }
 
     public class FilesEndpoint : XeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>, IFilesEndpoint
@@ -130,8 +135,5 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
-
-
-
     }
 }

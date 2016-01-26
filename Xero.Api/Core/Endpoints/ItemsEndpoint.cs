@@ -10,7 +10,7 @@ namespace Xero.Api.Core.Endpoints
 {
     public interface IItemsEndpoint : IXeroUpdateEndpoint<ItemsEndpoint, Item, ItemsRequest, ItemsResponse>
     {
-
+        void Delete(Item itemToDelete);
     }
 
     public class ItemsEndpoint

@@ -1,4 +1,5 @@
-﻿using Xero.Api.Core.Endpoints.Base;
+﻿using Xero.Api.Common;
+using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
@@ -6,7 +7,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IManualJournalsEndpoint : IXeroUpdateEndpoint<ManualJournalsEndpoint, ManualJournal, ManualJournalsRequest, ManualJournalsResponse>
+    public interface IManualJournalsEndpoint : IXeroUpdateEndpoint<ManualJournalsEndpoint, ManualJournal, ManualJournalsRequest, ManualJournalsResponse>, IPageableEndpoint<IManualJournalsEndpoint>
     {
 
     }
@@ -19,7 +20,7 @@ namespace Xero.Api.Core.Endpoints
         {
         }
 
-        public ManualJournalsEndpoint Page(int page)
+        public IManualJournalsEndpoint Page(int page)
         {
             AddParameter("page", page);
             return this;

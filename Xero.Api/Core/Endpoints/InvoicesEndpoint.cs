@@ -1,4 +1,5 @@
-﻿using Xero.Api.Core.Endpoints.Base;
+﻿using Xero.Api.Common;
+using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
@@ -6,7 +7,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IInvoicesEndpoint : IXeroUpdateEndpoint<InvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>
+    public interface IInvoicesEndpoint : IXeroUpdateEndpoint<InvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>, IPageableEndpoint<IInvoicesEndpoint>
     {
 
     }
@@ -20,7 +21,7 @@ namespace Xero.Api.Core.Endpoints
             Page(1);
         }
 
-        public InvoicesEndpoint Page(int page)
+        public IInvoicesEndpoint Page(int page)
         {
             AddParameter("page", page);
             return this;
