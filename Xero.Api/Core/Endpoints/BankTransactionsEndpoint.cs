@@ -7,9 +7,8 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IBankTransactionsEndpoint : IXeroUpdateEndpoint<BankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>
+    public interface IBankTransactionsEndpoint : IXeroUpdateEndpoint<BankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>, IPageableEndpoint<IBankTransactionsEndpoint>
     {
-        IBankTransactionsEndpoint Page(int page);
     }
 
     public class BankTransactionsEndpoint : 

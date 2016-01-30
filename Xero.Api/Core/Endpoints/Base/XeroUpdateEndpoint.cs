@@ -25,7 +25,7 @@ namespace Xero.Api.Core.Endpoints.Base
             return Post(request);
         }
 
-        public TResult Update(TResult item)
+        public virtual TResult Update(TResult item)
         {
             return Update(new[] { item }).First();
         }

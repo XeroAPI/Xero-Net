@@ -1,4 +1,5 @@
-﻿using Xero.Api.Core.Endpoints.Base;
+﻿using Xero.Api.Common;
+using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
@@ -7,9 +8,9 @@ using Xero.Api.Infrastructure.Http;
 namespace Xero.Api.Core.Endpoints
 {
     public interface IContactsEndpoint
-        : IXeroUpdateEndpoint<ContactsEndpoint, Contact, ContactsRequest, ContactsResponse>
+        : IXeroUpdateEndpoint<ContactsEndpoint, Contact, ContactsRequest, ContactsResponse>,
+        IPageableEndpoint<IContactsEndpoint>
     {
-        IContactsEndpoint Page(int page);
         IContactsEndpoint IncludeArchived(bool include);
     }
 

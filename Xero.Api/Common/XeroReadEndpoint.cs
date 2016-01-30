@@ -69,12 +69,12 @@ namespace Xero.Api.Common
             return (T)this;
         }
 
-        public IEnumerable<TResult> Find()
+        public virtual IEnumerable<TResult> Find()
         {
             return Get(ApiEndpointUrl, null);
         }
 
-        public TResult Find(Guid child)
+        public virtual TResult Find(Guid child)
         {
             return Find(child.ToString("D"));
         }

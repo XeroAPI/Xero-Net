@@ -16,7 +16,7 @@ namespace Xero.Api.Core.Endpoints
     public interface IContactGroupsEndpoint :
         IXeroUpdateEndpoint<ContactGroupsEndpoint, ContactGroup, ContactGroupsRequest, ContactGroupsResponse>
     {
-        ContactCollection this[Guid guid] { get; }
+        IContactCollection this[Guid guid] { get; }
         ContactGroup Add(ContactGroup contactGroup);
     }
 
@@ -29,7 +29,7 @@ namespace Xero.Api.Core.Endpoints
             
         }
 
-        public ContactCollection this[Guid guid]
+        public IContactCollection this[Guid guid]
         {
             get
             {
@@ -72,7 +72,16 @@ namespace Xero.Api.Core.Endpoints
         }
     }
 
-    public class ContactCollection  : XeroUpdateEndpoint<ContactGroupsEndpoint, ContactGroup, ContactGroupsRequest, ContactGroupsResponse>
+    public interface IContactCollection :
+        IXeroUpdateEndpoint<ContactGroupsEndpoint, ContactGroup, ContactGroupsRequest, ContactGroupsResponse>
+    {
+        void Clear();
+        void Add(Contact contact);
+        void AddRange(List<Contact> contacts);
+        void Remove(Guid guid);
+    }
+
+    public class ContactCollection  : XeroUpdateEndpoint<ContactGroupsEndpoint, ContactGroup, ContactGroupsRequest, ContactGroupsResponse>, IContactCollection
     {
         private ContactGroup _group;
         private XeroHttpClient _client;

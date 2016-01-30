@@ -13,7 +13,7 @@ namespace Xero.Api.Core.Endpoints
 {
     public interface ITrackingCategoriesEndpoint : IXeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
     {
-        OptionCollection this[Guid id] { get; }
+        IOptionCollection this[Guid id] { get; }
         List<TrackingCategory> GetAll();
         TrackingCategoriesEndpoint IncludeArchived(bool include);
         TrackingCategory GetByID(Guid id);
@@ -39,7 +39,7 @@ namespace Xero.Api.Core.Endpoints
             return this;
         }
 
-        public OptionCollection this[Guid id]
+        public IOptionCollection this[Guid id]
         {
             get
             {
@@ -83,7 +83,7 @@ namespace Xero.Api.Core.Endpoints
             return groups.FirstOrDefault();
         }
 
-        public TrackingCategory Update(TrackingCategory trackingCategory)
+        public override TrackingCategory Update(TrackingCategory trackingCategory)
         {
             var endpoint = string.Format("/api.xro/2.0/TrackingCategories/{0}", trackingCategory.Id.ToString());
 
@@ -146,8 +146,17 @@ namespace Xero.Api.Core.Endpoints
         }
     }
 
+    public interface IOptionCollection :
+        IXeroUpdateEndpoint
+            <TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
+    {
+        List<Option> Add(Option option);
+        List<Option> Add(List<Option> options);
+        Option UpdateOption(Option option);
+    }
+
     public class OptionCollection :
-        XeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
+        XeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, IOptionCollection
     {
         public TrackingCategory _trackingCat;
         private XeroHttpClient _client;

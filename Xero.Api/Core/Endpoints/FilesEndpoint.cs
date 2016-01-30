@@ -40,7 +40,7 @@ namespace Xero.Api.Core.Endpoints
             }
         }
 
-        public IList<Model.File> Find()
+        public override IEnumerable<Model.File> Find()
         {
             var response = HandleFilesResponse(Client
                 .Client.Get("files.xro/1.0/Files", ""));
@@ -48,7 +48,7 @@ namespace Xero.Api.Core.Endpoints
             return response.Items;
         }
 
-        public Model.File Find(Guid fileId)
+        public override Model.File Find(Guid fileId)
         {
             var response = HandleFilesResponse(Client
                 .Client.Get("files.xro/1.0/Files", ""));
