@@ -159,7 +159,7 @@ namespace Xero.Api.Core.Endpoints
         XeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, IOptionCollection
     {
         public TrackingCategory _trackingCat;
-        private XeroHttpClient _client;
+        private readonly XeroHttpClient _client;
 
         public OptionCollection(XeroHttpClient client, TrackingCategory trackingCat)
             : base(client, "/api.xro/2.0/TrackingCategories")

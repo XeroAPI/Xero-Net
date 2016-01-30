@@ -83,8 +83,8 @@ namespace Xero.Api.Core.Endpoints
 
     public class ContactCollection  : XeroUpdateEndpoint<ContactGroupsEndpoint, ContactGroup, ContactGroupsRequest, ContactGroupsResponse>, IContactCollection
     {
-        private ContactGroup _group;
-        private XeroHttpClient _client;
+        private readonly ContactGroup _group;
+        private readonly XeroHttpClient _client;
 
 
         public ContactCollection(XeroHttpClient client, ContactGroup group)
