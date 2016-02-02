@@ -22,6 +22,7 @@ namespace Xero.Api.Core.Endpoints
         public PurchaseOrdersEndpoint(XeroHttpClient client) :
             base(client, "/api.xro/2.0/PurchaseOrders")
         {
+            Page(1);
         }
 
         public IPurchaseOrdersEndpoint Page(int page)
@@ -46,6 +47,12 @@ namespace Xero.Api.Core.Endpoints
         {
             AddParameter("dateTo", dateTo.ToString("yyyy-MM-dd"));
             return this;
+        }
+
+        public override void ClearQueryString()
+        {
+            base.ClearQueryString();
+            Page(1);
         }
     }
 }
