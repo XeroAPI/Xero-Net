@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System.Net;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Request;

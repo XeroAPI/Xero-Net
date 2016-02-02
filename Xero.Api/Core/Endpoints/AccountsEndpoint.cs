@@ -19,7 +19,5 @@ namespace Xero.Api.Core.Endpoints
             base(client, "/api.xro/2.0/Accounts")
         {
         }
-
-        public AccountsEndpoint() : base(null, null) { }
     }
 }

@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Http;
-using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text;
 
 namespace Xero.Api.Core.Endpoints
 {
