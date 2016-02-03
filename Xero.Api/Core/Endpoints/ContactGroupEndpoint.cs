@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Model;
-using Xero.Api.Core.Model.Setup;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Http;
