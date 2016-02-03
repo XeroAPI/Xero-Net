@@ -54,11 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Xero.Api.Example.Counts\Lister.cs">
-      <Link>Lister.cs</Link>
-    </Compile>
     <Compile Include="ContactManagerAndTests\ContactManager.cs" />
     <Compile Include="ContactManagerAndTests\ContactManagerTests.cs" />
+    <Compile Include="Lister.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

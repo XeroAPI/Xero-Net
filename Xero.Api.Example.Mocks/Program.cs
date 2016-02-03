@@ -1,13 +1,9 @@
-﻿using Rhino.Mocks;
+﻿using System.Linq;
+using Rhino.Mocks;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xero.Api.Core;
 using Xero.Api.Core.Endpoints;
 using Xero.Api.Core.Model;
-using Xero.Api.Example.Counts;
 
 namespace Xero.Api.Example.Mocks
 {
@@ -16,23 +12,34 @@ namespace Xero.Api.Example.Mocks
         static void Main(string[] args)
         {
             var api = MockRepository.GenerateStub<IXeroCoreApi>();
-            IJournalsEndpoint journals = MockRepository.GenerateStub<IJournalsEndpoint>();
+            api.Stub(a => a.Organisation).Return(new Organisation() { LegalName = "Mocked Organisation" });
+
+
+            var accountsEndPoint = MockRepository.GenerateStub<IAccountsEndpoint>();
+            accountsEndPoint.Stub(a => a.Find()).Return(Enumerable.Empty<Account>());
+            api.Stub(a => a.Accounts).Return(accountsEndPoint);
+
+            var journalsEndpoint = MockRepository.GenerateStub<IJournalsEndpoint>();
             var journal = new Journal()
             {
                 Date = DateTime.UtcNow,
             };
+            api.Stub(a => a.Journals).Return(journalsEndpoint);
+            journalsEndpoint.Stub(a => a.Find()).Return(new[] { journal });
 
-            api.Stub(a => a.Organisation).Return(new Organisation() { LegalName = "Mocked Organisation" });
 
-            //var accountsEndPoint = MockRepository.GenerateStub<AccountsEndpoint>();
-            //accountsEndPoint.Stub(a => a.Find()).Return(Enumerable.Empty<Account>());
-            //api.Stub(a => a.Accounts).Return(accountsEndPoint);
+            var itemsEndpoint = MockRepository.GenerateStub<IItemsEndpoint>();
+            var item = new Item()
+            {
+                Code = "MOCK",
+                Name = "MOCKED",
+                Id = Guid.NewGuid()
+            };
+            api.Stub(a => a.Items).Return(itemsEndpoint);
+            itemsEndpoint.Stub(a => a.Find()).Return(new[] { item, item, item });
 
-            api.Stub(a => a.Journals).Return(journals);
-            journals.Stub(a => a.Find()).Return(new[] { journal });
-
-            Lister l = new Lister(api);
-            l.List();
+            var lister = new Lister(api);
+            lister.List();
         }
     }
 }
