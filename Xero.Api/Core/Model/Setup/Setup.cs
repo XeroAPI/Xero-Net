@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Xero.Api.Common;
 
 namespace Xero.Api.Core.Model.Setup
 {
     [DataContract(Namespace = "")]
-    public class Setup
+    public class Setup : CoreData
     {
         [DataMember]
         public ConversionDetails ConversionDetails { get; set; }
