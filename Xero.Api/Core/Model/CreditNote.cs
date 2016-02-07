@@ -38,10 +38,10 @@ namespace Xero.Api.Core.Model
         public Contact Contact { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public DateTime DueDate { get; set; }
+        public DateTime? DueDate { get; set; }
 
         [DataMember(Name = "BrandingThemeID", EmitDefaultValue = false)]
         public Guid BrandingThemeId { get; set; }
@@ -53,13 +53,13 @@ namespace Xero.Api.Core.Model
         public LineAmountType LineAmountTypes { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public decimal SubTotal { get; set; }
+        public decimal? SubTotal { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public decimal TotalTax { get; set; }
+        public decimal? TotalTax { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public decimal Total { get; set; }
+        public decimal? Total { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public string CurrencyCode { get; set; }
