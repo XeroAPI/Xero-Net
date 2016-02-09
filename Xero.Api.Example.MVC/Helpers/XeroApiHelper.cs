@@ -88,7 +88,7 @@ namespace Xero.Api.Example.MVC.Helpers
             return (IMvcAuthenticator)_applicationSettings.Authenticator;
         }
 
-        public static XeroCoreApi CoreApi()
+        public static IXeroCoreApi CoreApi()
         {
             if (_applicationSettings.Authenticator is ICertificateAuthenticator)
             {

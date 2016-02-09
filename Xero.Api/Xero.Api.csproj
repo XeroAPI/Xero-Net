@@ -41,13 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\IHasId.cs" />
+    <Compile Include="Common\IPageableEndpoint.cs" />
+    <Compile Include="Common\IXeroReadEndpoint.cs" />
     <Compile Include="Common\QueryGenerator.cs" />
     <Compile Include="Core\Endpoints\AllocationEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
+    <Compile Include="Core\Endpoints\Base\IXeroCreateEndpoint.cs" />
+    <Compile Include="Core\Endpoints\Base\IXeroUpdateEndpoint.cs" />
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
     <Compile Include="Core\Endpoints\LinkedTransactionsEndpoint.cs" />
+    <Compile Include="Core\IXeroCoreApi.cs" />
     <Compile Include="Core\Endpoints\PurchaseOrdersEndpoint.cs" />
     <Compile Include="Core\Model\ContactTrackingCategory.cs" />
     <Compile Include="Core\Model\LinkedTransaction.cs" />
