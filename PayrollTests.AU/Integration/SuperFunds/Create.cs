@@ -17,7 +17,7 @@ namespace PayrollTests.AU.Integration.SuperFunds
             var sf = Api.Create(new SuperFund
             {
                 Type = SuperfundType.Regulated,
-                Abn = 78984178687,
+                Abn = "08984178687",
             });
 
             Assert.IsTrue(sf.Id != Guid.Empty);
