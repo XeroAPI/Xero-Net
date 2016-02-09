@@ -32,13 +32,13 @@ namespace Xero.Api.Core.Model
         public LineAmountType LineAmountTypes { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public decimal SubTotal { get; set; }
+        public decimal? SubTotal { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public decimal TotalTax { get; set; }
+        public decimal? TotalTax { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public decimal Total { get; set; }
+        public decimal? Total { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public ReceiptStatus Status { get; set; }
