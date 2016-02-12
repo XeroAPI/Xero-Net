@@ -1,21 +1,11 @@
 ﻿using System;
 using System.IO;
-using Xero.Api.Core;
 using Xero.Api.Core.Model;
-using Xero.Api.Example.Applications.Private;
-using Settings = Xero.Api.Example.Applications.Private.Settings;
 
 namespace CoreTests.Integration.Files.Support
 {
-    public class FilesTest
+    public class FilesTest : ApiWrapperTest
     {
-        protected readonly XeroFilesApi Api = new XeroFilesApi(
-           _settings.FilesBaseUrl,
-           new PrivateAuthenticator(_settings.SigningCertificate, _settings.Consumer),
-           _settings.Consumer, null);
-
-        private static readonly Settings _settings = new Settings();
-
         protected byte[] exampleFile;
         private const string ImagePath = @"connect_xero_button_blue.png";
 
@@ -46,6 +36,7 @@ namespace CoreTests.Integration.Files.Support
             var file = create_file_with_name(filename);
 
             return Given_a_file_in(folderId, file);
+
         }
 
         protected Guid Given_a_file_in(Guid folderId)
