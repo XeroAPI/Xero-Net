@@ -28,10 +28,10 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public string DeliveryAddress { get; set; }
 
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(Name = "DeliveryAttentionTo", EmitDefaultValue = false)]
         public string AttentionTo { get; set; }
 
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(Name = "DeliveryPhone", EmitDefaultValue = false)]
         public string Telephone { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
