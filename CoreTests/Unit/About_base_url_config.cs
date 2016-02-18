@@ -12,11 +12,34 @@ namespace CoreTests.Unit
     public class About_base_url_config
     {
         [Test]
-        public void examples()
+        public void how_it_presents()
         {
             var actual = new SampleXeroApi("https://api.xero.com", new BlankCertificateAuthenticator(), null, null, null, null, null);
 
             Assert.AreEqual(actual.BaseUri, "https://api.xero.com/api.xro/2.0");
+        }
+
+        [Test]
+        public void examples()
+        {
+            Check(
+                Map("https://api.xero.com"          , "https://api.xero.com/api.xro/2.0"),
+                Map("https://xxx-anything-else-xxx" ,  "https://xxx-anything-else-xxx"));
+        }
+
+        private static Tuple<string, string> Map(string @from, string to)
+        {
+            return new Tuple<string, string>(@from, to);
+        }
+
+        private void Check(params Tuple<string,string>[] checks)
+        {
+            foreach (var check in checks)
+            {
+                var actual = new SampleXeroApi(check.Item1, new BlankCertificateAuthenticator(), null, null, null, null, null);
+
+                Assert.AreEqual(actual.BaseUri, check.Item2);
+            }
         }
 
         // TEST: check BOTH ctor paths
