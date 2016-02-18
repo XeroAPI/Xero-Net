@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Xero.Api.Infrastructure.Http;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.RateLimiter;
@@ -33,7 +34,7 @@ namespace Xero.Api.Common
         {
             var hosts = new[] { "https://api.xero.com", "https://api-partner.network.xero.com" };
 
-            var requiresSuffix = hosts.Any(baseUri.Equals);
+            var requiresSuffix = hosts.Any(it => baseUri.Equals(it, StringComparison.InvariantCultureIgnoreCase));
 
             return requiresSuffix ? string.Format("{0}/api.xro/2.0", baseUri) : baseUri;
         }
