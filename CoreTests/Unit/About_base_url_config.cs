@@ -12,14 +12,6 @@ namespace CoreTests.Unit
     public class About_base_url_config
     {
         [Test]
-        public void how_it_presents()
-        {
-            var actual = new SampleXeroApi("https://api.xero.com", new BlankCertificateAuthenticator(), null, null, null, null, null);
-
-            Assert.AreEqual("https://api.xero.com/api.xro/2.0", actual.BaseUri);
-        }
-
-        [Test]
         public void both_constructors_behave_the_same()
         {
             var constructorOne = new SampleXeroApi("https://api.xero.com", new BlankCertificateAuthenticator(), null, null, null, null, null);
@@ -41,6 +33,7 @@ namespace CoreTests.Unit
 
         // TEST: check ending-with-slash, i.e., https://api.xero.com/
         // TEST: check whitespace
+        // TEST: check with not parseable to URI
 
         private static Tuple<string, string> Map(string @from, string to)
         {
