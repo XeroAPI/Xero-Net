@@ -35,5 +35,5 @@ out/
 *.orig
 
 *.nupkg
-/.vs
+.vs
 CoreTests/App.config
