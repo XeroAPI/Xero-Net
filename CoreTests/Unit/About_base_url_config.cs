@@ -28,7 +28,7 @@ namespace CoreTests.Unit
                 Map("https://api.xero.com"                  , "https://api.xero.com/api.xro/2.0"),
                 Map("HTTPS://API.XERO.COM"                  , "HTTPS://API.XERO.COM/api.xro/2.0"),
                 Map("https://api-partner.network.xero.com"  , "https://api-partner.network.xero.com/api.xro/2.0"),
-                Map("https://xxx-anything-else-xxx"         , "https://xxx-anything-else-xxx"));
+                Map("https://xxx-anything-else-xxx/1.0"     , "https://xxx-anything-else-xxx/1.0"));
         }
 
         // TEST: check ending-with-slash, i.e., https://api.xero.com/
