@@ -1,4 +1,5 @@
-﻿using Xero.Api.Infrastructure.Http;
+﻿using System.Linq;
+using Xero.Api.Infrastructure.Http;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.RateLimiter;
 
@@ -30,7 +31,11 @@ namespace Xero.Api.Common
 
         private static string Calculate(string baseUri)
         {
-            return baseUri.Equals("https://api.xero.com") ? string.Format("{0}/api.xro/2.0", baseUri) : baseUri;
+            var hosts = new[] { "https://api.xero.com", "https://api-partner.network.xero.com" };
+
+            var requiresSuffix = hosts.Any(baseUri.Equals);
+
+            return requiresSuffix ? string.Format("{0}/api.xro/2.0", baseUri) : baseUri;
         }
 
         public string UserAgent
