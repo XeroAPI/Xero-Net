@@ -9,7 +9,7 @@ using Xero.Api.Infrastructure.RateLimiter;
 namespace CoreTests.Unit
 {
     [TestFixture]
-    public class About_base_url_config
+    public class BaseUrlConfiguration
     {
         [Test]
         public void both_constructors_behave_the_same()
