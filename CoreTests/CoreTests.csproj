@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -33,9 +33,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Resources\cert\public_privatekey.txt" />
@@ -147,7 +144,6 @@
     <Compile Include="Integration\Attachments\Attachments.cs" />
     <Compile Include="Integration\General\Errors.cs" />
     <Compile Include="Integration\TaxRates\Create.cs" />
-    <Compile Include="Unit\About_base_url_config.cs" />
     <Compile Include="Unit\ExceptionTests.cs" />
     <Compile Include="Unit\RateLimiterTest.cs" />
     <Compile Include="Unit\SummarizeErrors.cs" />
@@ -160,10 +156,11 @@
     <Compile Include="Unit\SalesTaxBasisTypeTest.cs" />
     <Compile Include="Unit\SalesTaxPeriodTypeTest.cs" />
     <Compile Include="Unit\TrackingCategories.cs" />
+    <Compile Include="Unit\BaseUrlConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xero.Api.Example.Applications\Xero.Api.Example.Applications.csproj">
-      <Project>{d799e8cc-0917-465d-80df-f8355201d13f}</Project>
+      <Project>{D799E8CC-0917-465D-80DF-F8355201D13F}</Project>
       <Name>Xero.Api.Example.Applications</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xero.Api\Xero.Api.csproj">
