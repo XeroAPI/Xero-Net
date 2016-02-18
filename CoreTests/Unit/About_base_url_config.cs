@@ -34,11 +34,11 @@ namespace CoreTests.Unit
         {
             Check(
                 Map("https://api.xero.com"                  , "https://api.xero.com/api.xro/2.0"),
+                Map("HTTPS://API.XERO.COM"                  , "HTTPS://API.XERO.COM/api.xro/2.0"),
                 Map("https://api-partner.network.xero.com"  , "https://api-partner.network.xero.com/api.xro/2.0"),
                 Map("https://xxx-anything-else-xxx"         , "https://xxx-anything-else-xxx"));
         }
 
-        // TEST: check ignores case
         // TEST: check ending-with-slash, i.e., https://api.xero.com/
         // TEST: check whitespace
 
@@ -53,7 +53,7 @@ namespace CoreTests.Unit
             {
                 var actual = new SampleXeroApi(check.Item1, new BlankCertificateAuthenticator(), null, null, null, null, null);
 
-                Assert.AreEqual(actual.BaseUri, check.Item2);
+                Assert.AreEqual(check.Item2, actual.BaseUri);
             }
         }
 
