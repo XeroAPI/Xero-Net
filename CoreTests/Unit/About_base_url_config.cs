@@ -28,12 +28,12 @@ namespace CoreTests.Unit
                 Map("https://api.xero.com"                  , "https://api.xero.com/api.xro/2.0"),
                 Map("HTTPS://API.XERO.COM"                  , "HTTPS://API.XERO.COM/api.xro/2.0"),
                 Map("https://api-partner.network.xero.com"  , "https://api-partner.network.xero.com/api.xro/2.0"),
-                Map("https://xxx-anything-else-xxx/1.0"     , "https://xxx-anything-else-xxx/1.0"));
+                Map("https://xxx-anything-else-xxx/1.0"     , "https://xxx-anything-else-xxx/1.0"),
+                Map("xxx-not-a-url-xxx"                     , "xxx-not-a-url-xxx"));
         }
 
         // TEST: check ending-with-slash, i.e., https://api.xero.com/
         // TEST: check whitespace
-        // TEST: check with not parseable to URI
 
         private static Tuple<string, string> Map(string @from, string to)
         {
