@@ -32,6 +32,8 @@ namespace Xero.Api.Common
 
         private static string Calculate(string baseUri)
         {
+            baseUri = (baseUri ?? string.Empty).Trim();
+            
             var hosts = new[] { "https://api.xero.com", "https://api-partner.network.xero.com" };
 
             var requiresSuffix = hosts.Any(it => baseUri.Equals(it, StringComparison.InvariantCultureIgnoreCase));
