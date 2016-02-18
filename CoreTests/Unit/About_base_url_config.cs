@@ -16,7 +16,7 @@ namespace CoreTests.Unit
         {
             var actual = new SampleXeroApi("https://api.xero.com", new BlankCertificateAuthenticator(), null, null, null, null, null);
 
-            Assert.AreEqual(actual.BaseUri, "https://api.xero.com/api.xro/2.0");
+            Assert.AreEqual("https://api.xero.com/api.xro/2.0", actual.BaseUri);
         }
 
         [Test]
@@ -24,7 +24,17 @@ namespace CoreTests.Unit
         {
             Check(
                 Map("https://api.xero.com"          , "https://api.xero.com/api.xro/2.0"),
-                Map("https://xxx-anything-else-xxx" ,  "https://xxx-anything-else-xxx"));
+                Map("https://xxx-anything-else-xxx" , "https://xxx-anything-else-xxx"));
+        }
+
+        [Test]
+        public void both_constructors_behace_the_same()
+        {
+            var constructorOne = new SampleXeroApi("https://api.xero.com", new BlankCertificateAuthenticator(), null, null, null, null, null);
+            var constructorTwo = new SampleXeroApi("https://api.xero.com", new BlankAuthenticator(), null, null, null, null, null);
+
+            Assert.AreEqual("https://api.xero.com/api.xro/2.0", constructorOne.BaseUri);
+            Assert.AreEqual("https://api.xero.com/api.xro/2.0", constructorTwo.BaseUri);
         }
 
         private static Tuple<string, string> Map(string @from, string to)
@@ -67,6 +77,13 @@ namespace CoreTests.Unit
                 IRateLimiter rateLimiter) : base(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter)
             {
             }
+        }
+    }
+
+    public class BlankAuthenticator : IAuthenticator
+    {
+        public void Authenticate(HttpWebRequest request)
+        {
         }
     }
 
