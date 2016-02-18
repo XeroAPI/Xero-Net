@@ -20,21 +20,21 @@ namespace CoreTests.Unit
         }
 
         [Test]
-        public void examples()
-        {
-            Check(
-                Map("https://api.xero.com"          , "https://api.xero.com/api.xro/2.0"),
-                Map("https://xxx-anything-else-xxx" , "https://xxx-anything-else-xxx"));
-        }
-
-        [Test]
-        public void both_constructors_behace_the_same()
+        public void both_constructors_behave_the_same()
         {
             var constructorOne = new SampleXeroApi("https://api.xero.com", new BlankCertificateAuthenticator(), null, null, null, null, null);
             var constructorTwo = new SampleXeroApi("https://api.xero.com", new BlankAuthenticator(), null, null, null, null, null);
 
             Assert.AreEqual("https://api.xero.com/api.xro/2.0", constructorOne.BaseUri);
             Assert.AreEqual("https://api.xero.com/api.xro/2.0", constructorTwo.BaseUri);
+        }
+
+        [Test]
+        public void examples()
+        {
+            Check(
+                Map("https://api.xero.com"          , "https://api.xero.com/api.xro/2.0"),
+                Map("https://xxx-anything-else-xxx" , "https://xxx-anything-else-xxx"));
         }
 
         private static Tuple<string, string> Map(string @from, string to)
@@ -51,8 +51,6 @@ namespace CoreTests.Unit
                 Assert.AreEqual(actual.BaseUri, check.Item2);
             }
         }
-
-        // TEST: check BOTH ctor paths
 
         class SampleXeroApi : XeroApi
         {
