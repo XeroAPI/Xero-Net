@@ -33,9 +33,14 @@ namespace CoreTests.Unit
         public void examples()
         {
             Check(
-                Map("https://api.xero.com"          , "https://api.xero.com/api.xro/2.0"),
-                Map("https://xxx-anything-else-xxx" , "https://xxx-anything-else-xxx"));
+                Map("https://api.xero.com"                  , "https://api.xero.com/api.xro/2.0"),
+                Map("https://api-partner.network.xero.com"  , "https://api-partner.network.xero.com/api.xro/2.0"),
+                Map("https://xxx-anything-else-xxx"         , "https://xxx-anything-else-xxx"));
         }
+
+        // TEST: check ignores case
+        // TEST: check ending-with-slash, i.e., https://api.xero.com/
+        // TEST: check whitespace
 
         private static Tuple<string, string> Map(string @from, string to)
         {
