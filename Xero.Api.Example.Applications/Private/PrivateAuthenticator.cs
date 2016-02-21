@@ -44,7 +44,7 @@ namespace Xero.Api.Example.Applications.Private
             _certificate = certificate;
         }
 
-        public string GetSignature(IConsumer consumer, IUser user, Uri uri, string verb, IConsumer consumer1)
+        public string GetAuthenticationString(HttpWebRequest request, IConsumer consumer, IUser user)
         {
             var token = new Token
             {
@@ -53,7 +53,7 @@ namespace Xero.Api.Example.Applications.Private
                 TokenKey = consumer.ConsumerKey
             };
 
-            return new RsaSha1Signer().CreateSignature(_certificate, token, uri, verb);
+            return new RsaSha1Signer().CreateSignature(_certificate, token, request.RequestUri, request.Method);
         }
 
         public X509Certificate Certificate { get { return _certificate; } }
@@ -64,10 +64,5 @@ namespace Xero.Api.Example.Applications.Private
         }
 
         public IUser User { get; set; }
-
-        public void Authenticate(HttpWebRequest request)
-        {
-            request.Headers.Add("Authorization", GetSignature(_consumer, User, request.RequestUri, request.Method, _consumer));
-        }
     }
 }
