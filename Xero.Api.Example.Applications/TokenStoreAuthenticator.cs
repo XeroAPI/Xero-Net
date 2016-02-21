@@ -81,9 +81,10 @@ namespace Xero.Api.Example.Applications
         }
 
         public IUser User { get; set; }
-        public void Authenticate(HttpWebRequest request)
+
+        public string GetAuthenticationString(HttpWebRequest request, IConsumer consumer, IUser user)
         {
-            throw new NotImplementedException();
+            return GetAuthorization(GetToken(consumer, user), request.Method, request.RequestUri.AbsolutePath, request.RequestUri.Query);
         }
 
         protected abstract string AuthorizeUser(IToken oauthToken);
