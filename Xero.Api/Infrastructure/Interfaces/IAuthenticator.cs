@@ -4,6 +4,6 @@ namespace Xero.Api.Infrastructure.Interfaces
 {
     public interface IAuthenticator
     {
-        string GetAuthenticationString(HttpWebRequest request, IConsumer consumer, IUser user);
+        void Authenticate(HttpWebRequest request, IConsumer consumer, IUser user);
     }
 }

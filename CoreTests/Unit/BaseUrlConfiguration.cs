@@ -80,9 +80,8 @@ namespace CoreTests.Unit
 
     public class BlankAuthenticator : IAuthenticator
     {
-        public string GetAuthenticationString(HttpWebRequest request, IConsumer consumer, IUser user)
+        public void Authenticate(HttpWebRequest request, IConsumer consumer, IUser user)
         {
-            return null;
         }
     }
 
@@ -96,9 +95,8 @@ namespace CoreTests.Unit
         public IUser User { get; set; }
         public X509Certificate Certificate { get; private set; }
 
-        public string GetAuthenticationString(HttpWebRequest request, IConsumer consumer, IUser user)
+        public void Authenticate(HttpWebRequest request, IConsumer consumer, IUser user)
         {
-            return "DUMMY";
         }
     }
 }
