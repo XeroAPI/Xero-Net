@@ -162,7 +162,7 @@ namespace Xero.Api.Infrastructure.Http
         {
             if (_auth != null)
             {
-                _auth.Authenticate(request);
+                _auth.Authenticate(request, Consumer, User);
             }
         }
 

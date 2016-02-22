@@ -80,18 +80,13 @@ namespace CoreTests.Unit
 
     public class BlankAuthenticator : IAuthenticator
     {
-        public void Authenticate(HttpWebRequest request)
+        public void Authenticate(HttpWebRequest request, IConsumer consumer, IUser user)
         {
         }
     }
 
     public class BlankCertificateAuthenticator : ICertificateAuthenticator
     {
-        public string GetSignature(IConsumer consumer, IUser user, Uri uri, string verb, IConsumer consumer1)
-        {
-            return "DUMMY";
-        }
-
         public IToken GetToken(IConsumer consumer, IUser user)
         {
             return null;
@@ -100,9 +95,8 @@ namespace CoreTests.Unit
         public IUser User { get; set; }
         public X509Certificate Certificate { get; private set; }
 
-        public void Authenticate(HttpWebRequest request)
+        public void Authenticate(HttpWebRequest request, IConsumer consumer, IUser user)
         {
-            
         }
     }
 }
