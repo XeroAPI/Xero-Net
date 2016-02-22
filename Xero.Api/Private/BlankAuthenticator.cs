@@ -5,9 +5,8 @@ namespace Xero.Api.Private
 {
     internal class BlankAuthenticator : IAuthenticator
     {
-        public string GetAuthenticationString(HttpWebRequest request, IConsumer consumer, IUser user)
+        public void Authenticate(HttpWebRequest request, IConsumer consumer, IUser user)
         {
-            return null;
         }
     }
 }

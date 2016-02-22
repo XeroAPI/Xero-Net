@@ -13,7 +13,7 @@ namespace Xero.Api.Infrastructure.Http
     internal class HttpClient
     {
         private readonly string _baseUri;
-        private readonly IAuthenticator _auth;
+        private readonly IAuthenticator _auth = new BlankAuthenticator();
         
         private readonly Dictionary<string, string> _headers;
 
@@ -162,7 +162,7 @@ namespace Xero.Api.Infrastructure.Http
         {
             if (_auth != null)
             {
-                AddHeader("Authorization", _auth.GetAuthenticationString(request, Consumer, User));
+                _auth.Authenticate(request, Consumer, User);
             }
         }
 
