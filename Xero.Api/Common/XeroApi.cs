@@ -33,12 +33,23 @@ namespace Xero.Api.Common
         private static string Calculate(string baseUri)
         {
             baseUri = (baseUri ?? string.Empty).Trim();
-            
-            var hosts = new[] { "https://api.xero.com", "https://api-partner.network.xero.com" };
 
-            var requiresSuffix = hosts.Any(it => baseUri.Equals(it, StringComparison.InvariantCultureIgnoreCase));
+            Uri uri;
 
-            return requiresSuffix ? string.Format("{0}/api.xro/2.0", baseUri) : baseUri;
+            try
+            {
+                uri = new Uri(baseUri);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("Url is not valid.");
+            }
+
+            var hosts = new[] { "api.xero.com", "api-partner.network.xero.com" };
+
+            var requiresSuffix = hosts.Any(it => uri.Host.Equals(it, StringComparison.InvariantCultureIgnoreCase));
+
+            return requiresSuffix ? string.Format("{0}api.xro/2.0", uri.AbsoluteUri) : uri.AbsoluteUri;
         }
 
         public string UserAgent
