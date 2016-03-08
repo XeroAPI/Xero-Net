@@ -344,6 +344,29 @@ namespace Xero.Api.Core
         {
             return TrackingCategories.Update(item);
         }
-        
+
+        public void SummarizeErrors(bool summarize)
+        {
+            Accounts.SummarizeErrors(summarize);
+            BankTransactions.SummarizeErrors(summarize);
+            BankTransfers.SummarizeErrors(summarize);
+            Contacts.SummarizeErrors(summarize);
+            ContactGroups.SummarizeErrors(summarize);
+            CreditNotes.SummarizeErrors(summarize);
+            Employees.SummarizeErrors(summarize);
+            Employees.SummarizeErrors(summarize);
+            Files.SummarizeErrors(summarize);
+            Folders.SummarizeErrors(summarize);
+            Inbox.SummarizeErrors(summarize);
+            Invoices.SummarizeErrors(summarize);
+            Items.SummarizeErrors(summarize);
+            LinkedTransactions.SummarizeErrors(summarize);
+            ManualJournals.SummarizeErrors(summarize);
+            Payments.SummarizeErrors(summarize);
+            PurchaseOrders.SummarizeErrors(summarize);
+            Receipts.SummarizeErrors(summarize);
+            TaxRates.SummarizeErrors(summarize);
+            TrackingCategories.SummarizeErrors(summarize);
+        }
     }
 }

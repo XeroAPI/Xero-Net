@@ -84,5 +84,7 @@ namespace Xero.Api.Core
         TaxRate Update(TaxRate item);
         ImportSummary Update(Setup item);
         TrackingCategory Update(TrackingCategory item);
+
+        void SummarizeErrors(bool summarize);
     }
 }
