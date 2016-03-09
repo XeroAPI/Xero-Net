@@ -125,6 +125,7 @@
     <Compile Include="Integration\Prepayments\Find.cs" />
     <Compile Include="Integration\PurchaseOrders\Create.cs" />
     <Compile Include="Integration\PurchaseOrders\Find.cs" />
+    <Compile Include="Integration\PurchaseOrders\Update.cs" />
     <Compile Include="Integration\Receipts\Create.cs" />
     <Compile Include="Integration\Receipts\Update.cs" />
     <Compile Include="Integration\Receipts\ReceiptTest.cs" />
