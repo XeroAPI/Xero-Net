@@ -28,10 +28,10 @@ There are different way to install this library:
 
 ## What is supported?
 ### Core
-* Accounts - Find and Create
+* Accounts - Create, Find and Update
 * Attachments - Add, Get and List
 * Bank Transactions - Create, Find and Update
-* Bank Transfers - Create, Find and Update
+* Bank Transfers - Create and Find
 * Branding Themes - Find
 * Contacts - Create, Find and Update
 * Credit Notes - Create, Find and Update
@@ -43,14 +43,14 @@ There are different way to install this library:
 * Journals - Find
 * Manual Journals - Create, Find and Update
 * Organisation - Find
-* Payments - Create and Find
+* Payments - Create, Find and Update
 * Receipts - Create, Find and Update
 * Repeating Invoices - Find
 * Reports - Find
 * Setup - Create and Update
 * Tax Rates - Create, Find and Update
 * Tracked Inventory - Create and Update Tracked Inventory Items. Purchase, sell, and adjust inventory
-* Tracking Categories - Find
+* Tracking Categories - Create, Find and Update. Add, Update and Remove TrackingOptions
 * Users - Find
 
 ### Australian Payroll
@@ -72,6 +72,11 @@ There are different way to install this library:
 * Settings - Find
 * Timesheets - Create and Find
 * Work Locations - Create and Find
+ 
+### Files API
+* Files - Find, Add, Rename, Move, Remove and Get Content
+* Folders - Find, Add, Rename and Remove
+* Inbox - Find
 
 ##Things to note
 * The library tries to do as little as possible and provides a basis to be extended. There are examples of TokenStores, Authenticators and Application types. These examples provide enough to get you going, but are not a complete solution to all your needs. You will need to adapt them for your own use and situation. Private application will work out of the box, as they do not have to deal with tokens and OAuth.
