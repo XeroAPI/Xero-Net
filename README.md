@@ -44,6 +44,7 @@ There are different way to install this library:
 * Manual Journals - Create, Find and Update
 * Organisation - Find
 * Payments - Create, Find and Update
+* Purchase Orders - Create, Find and Update
 * Receipts - Create, Find and Update
 * Repeating Invoices - Find
 * Reports - Find
