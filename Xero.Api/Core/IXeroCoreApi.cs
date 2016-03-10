@@ -43,46 +43,111 @@ namespace Xero.Api.Core
         Organisation Organisation { get; }
         string BaseUri { get; }
         string UserAgent { get; set; }
-        IEnumerable<Invoice> Create(IEnumerable<Invoice> items);
-        IEnumerable<Contact> Create(IEnumerable<Contact> items);
+
+
+        //Accounts
         IEnumerable<Account> Create(IEnumerable<Account> items);
-        IEnumerable<Employee> Create(IEnumerable<Employee> items);
-        IEnumerable<ExpenseClaim> Create(IEnumerable<ExpenseClaim> items);
-        IEnumerable<Receipt> Create(IEnumerable<Receipt> items);
-        IEnumerable<CreditNote> Create(IEnumerable<CreditNote> items);
-        IEnumerable<Item> Create(IEnumerable<Item> items);
-        IEnumerable<ManualJournal> Create(IEnumerable<ManualJournal> items);
-        IEnumerable<Payment> Create(IEnumerable<Payment> items);
-        IEnumerable<TaxRate> Create(IEnumerable<TaxRate> items);
-        IEnumerable<BankTransaction> Create(IEnumerable<BankTransaction> items);
-        IEnumerable<BankTransfer> Create(IEnumerable<BankTransfer> items);
-        Invoice Create(Invoice item);
-        Contact Create(Contact item);
+        IEnumerable<Account> Update(IEnumerable<Account> items);
         Account Create(Account item);
-        Employee Create(Employee item);
-        ExpenseClaim Create(ExpenseClaim item);
-        Receipt Create(Receipt item);
-        CreditNote Create(CreditNote item);
-        Item Create(Item item);
-        ManualJournal Create(ManualJournal item);
-        Payment Create(Payment item);
-        TaxRate Create(TaxRate item);
+        Account Update(Account item);
+
+        //BankTransactions
+        IEnumerable<BankTransaction> Create(IEnumerable<BankTransaction> items);
+        IEnumerable<BankTransaction> Update(IEnumerable<BankTransaction> items);
         BankTransaction Create(BankTransaction item);
-        BankTransfer Create(BankTransfer item);
-        ImportSummary Create(Setup item);
-        Invoice Update(Invoice item);
-        Contact Update(Contact item);
-        ContactGroup Update(ContactGroup item);
-        Employee Update(Employee item);
-        ExpenseClaim Update(ExpenseClaim item);
-        Receipt Update(Receipt item);
-        CreditNote Update(CreditNote item);
-        Item Update(Item item);
-        ManualJournal Update(ManualJournal item);
         BankTransaction Update(BankTransaction item);
-        BankTransfer Update(BankTransfer item);
-        TaxRate Update(TaxRate item);
+
+        //BankTransfers
+        IEnumerable<BankTransfer> Create(IEnumerable<BankTransfer> items);
+        BankTransfer Create(BankTransfer item);
+
+        //Contacts
+        IEnumerable<Contact> Create(IEnumerable<Contact> items);
+        IEnumerable<Contact> Update(IEnumerable<Contact> items);
+        Contact Create(Contact item);
+        Contact Update(Contact item);
+
+        //ContactGroups
+        IEnumerable<ContactGroup> Create(IEnumerable<ContactGroup> items);
+        IEnumerable<ContactGroup> Update(IEnumerable<ContactGroup> items);
+        ContactGroup Create(ContactGroup item);
+        ContactGroup Update(ContactGroup item);
+
+        //CreditNotes
+        IEnumerable<CreditNote> Create(IEnumerable<CreditNote> items);
+        IEnumerable<CreditNote> Update(IEnumerable<CreditNote> items);
+        CreditNote Create(CreditNote item);
+        CreditNote Update(CreditNote item);
+
+        //Employees
+        IEnumerable<Employee> Create(IEnumerable<Employee> items);
+        IEnumerable<Employee> Update(IEnumerable<Employee> items);
+        Employee Create(Employee item);
+        Employee Update(Employee item);
+
+        //ExpenseClaims
+        IEnumerable<ExpenseClaim> Create(IEnumerable<ExpenseClaim> items);
+        IEnumerable<ExpenseClaim> Update(IEnumerable<ExpenseClaim> items);
+        ExpenseClaim Create(ExpenseClaim item);
+        ExpenseClaim Update(ExpenseClaim item);
+
+        //Invoices
+        IEnumerable<Invoice> Create(IEnumerable<Invoice> items);
+        IEnumerable<Invoice> Update(IEnumerable<Invoice> items);
+        Invoice Create(Invoice item);
+        Invoice Update(Invoice item);
+
+        //Items
+        IEnumerable<Item> Create(IEnumerable<Item> items);
+        IEnumerable<Item> Update(IEnumerable<Item> items);
+        Item Create(Item item);
+        Item Update(Item item);
+
+        //LinkedTransactions
+        IEnumerable<LinkedTransaction> Create(IEnumerable<LinkedTransaction> items);
+        IEnumerable<LinkedTransaction> Update(IEnumerable<LinkedTransaction> items);
+        LinkedTransaction Create(LinkedTransaction item);
+        LinkedTransaction Update(LinkedTransaction item);
+
+        //ManualJournals
+        IEnumerable<ManualJournal> Create(IEnumerable<ManualJournal> items);
+        IEnumerable<ManualJournal> Update(IEnumerable<ManualJournal> items);
+        ManualJournal Create(ManualJournal item);
+        ManualJournal Update(ManualJournal item);
+
+        
+        //Payments
+        IEnumerable<Payment> Create(IEnumerable<Payment> items);
+        IEnumerable<Payment> Update(IEnumerable<Payment> items);
+        Payment Create(Payment item);
+        Payment Update(Payment item);
+        
+        //PurchaseOrders
+        IEnumerable<PurchaseOrder> Create(IEnumerable<PurchaseOrder> items);
+        IEnumerable<PurchaseOrder> Update(IEnumerable<PurchaseOrder> items);
+        PurchaseOrder Create(PurchaseOrder item);
+        PurchaseOrder Update(PurchaseOrder item);
+
+        //Receipts
+        IEnumerable<Receipt> Create(IEnumerable<Receipt> items);
+        IEnumerable<Receipt> Update(IEnumerable<Receipt> items);
+        Receipt Create(Receipt item);
+        Receipt Update(Receipt item);
+
+        //Setups
+        ImportSummary Create(Setup item);
         ImportSummary Update(Setup item);
+
+        //TaxRates
+        IEnumerable<TaxRate> Create(IEnumerable<TaxRate> items);
+        IEnumerable<TaxRate> Update(IEnumerable<TaxRate> items);
+        TaxRate Create(TaxRate item);
+        TaxRate Update(TaxRate item);
+
+        //TrackingCategories
+        IEnumerable<TrackingCategory> Create(IEnumerable<TrackingCategory> items);
+        IEnumerable<TrackingCategory> Update(IEnumerable<TrackingCategory> items);
+        TrackingCategory Create(TrackingCategory item);
         TrackingCategory Update(TrackingCategory item);
 
         void SummarizeErrors(bool summarize);
