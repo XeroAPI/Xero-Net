@@ -149,5 +149,7 @@ namespace Xero.Api.Core
         IEnumerable<TrackingCategory> Update(IEnumerable<TrackingCategory> items);
         TrackingCategory Create(TrackingCategory item);
         TrackingCategory Update(TrackingCategory item);
+
+        void SummarizeErrors(bool summarize);
     }
 }
