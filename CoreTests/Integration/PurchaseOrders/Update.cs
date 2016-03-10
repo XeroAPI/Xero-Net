@@ -24,7 +24,7 @@ namespace CoreTests.Integration.PurchaseOrders
 
             var updatedPurchaseOrder = Api.PurchaseOrders.Update(purchaseOrder);
 
-            Assert.Equals(2, updatedPurchaseOrder.LineItems.Count);
+            Assert.AreEqual(2, updatedPurchaseOrder.LineItems.Count);
         }
 
 
