@@ -10,14 +10,14 @@ using Xero.Api.Infrastructure.Http;
 namespace Xero.Api.Core.Endpoints
 {
     public interface IPurchaseOrdersEndpoint :
-        IXeroCreateEndpoint<PurchaseOrdersEndpoint, PurchaseOrder, PurchaseOrdersRequest, PurchaseOrdersResponse>, IPageableEndpoint<IPurchaseOrdersEndpoint>
+        IXeroUpdateEndpoint<PurchaseOrdersEndpoint, PurchaseOrder, PurchaseOrdersRequest, PurchaseOrdersResponse>, IPageableEndpoint<IPurchaseOrdersEndpoint>
     {
         PurchaseOrdersEndpoint Status(PurchaseOrderStatus status);
         PurchaseOrdersEndpoint DateFrom(DateTime dateFrom);
         PurchaseOrdersEndpoint DateTo(DateTime dateTo);
     }
 
-    public class PurchaseOrdersEndpoint : XeroCreateEndpoint<PurchaseOrdersEndpoint, PurchaseOrder, PurchaseOrdersRequest, PurchaseOrdersResponse>, IPurchaseOrdersEndpoint
+    public class PurchaseOrdersEndpoint : XeroUpdateEndpoint<PurchaseOrdersEndpoint, PurchaseOrder, PurchaseOrdersRequest, PurchaseOrdersResponse>, IPurchaseOrdersEndpoint
     {
         public PurchaseOrdersEndpoint(XeroHttpClient client) :
             base(client, "/api.xro/2.0/PurchaseOrders")
