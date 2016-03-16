@@ -59,7 +59,7 @@ namespace Xero.Api.Core.Model
         public Guid? BrandingThemeID { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public PurchaseOrderStatus Status { get; set; }
+        public PurchaseOrderStatus? Status { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public LineAmountType LineAmountTypes { get; set; }
