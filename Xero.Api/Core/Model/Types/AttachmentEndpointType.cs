@@ -9,6 +9,7 @@
         CreditNotes,
         Invoices,
         ManualJournals,
+        PurchaseOrders,
         Receipts,
         RepeatingInvoices
     }
