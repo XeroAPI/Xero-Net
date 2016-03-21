@@ -249,7 +249,7 @@ Thanks for the following Open Source libraries for making the wrapper and sample
 
 This software is published under the [MIT License](http://en.wikipedia.org/wiki/MIT_License).
 
-	Copyright (c) 2014 Xero Limited
+	Copyright (c) 2016 Xero Limited
 
 	Permission is hereby granted, free of charge, to any person
 	obtaining a copy of this software and associated documentation
