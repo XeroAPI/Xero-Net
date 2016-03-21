@@ -90,9 +90,6 @@ namespace Xero.Api.Payroll.Australia.Model
         [DataMember(EmitDefaultValue = false)]
         public OpeningBalances OpeningBalances { get; set; }
 
-        /// <summary>
-        /// EC Created Attribute
-        /// </summary>
         [DataMember(EmitDefaultValue = false)]
         public List<LeaveBalance> LeaveBalances { get; set; }
 
