@@ -36,7 +36,7 @@ namespace Xero.Api.Core
         IReceiptsEndpoint Receipts { get; }
         IRepeatingInvoicesEndpoint RepeatingInvoices { get; }
         IReportsEndpoint Reports { get; }
-        SetupEndpoint Setup { get; }
+        ISetupEndpoint Setup { get; }
         ITaxRatesEndpoint TaxRates { get; }
         ITrackingCategoriesEndpoint TrackingCategories { get; }
         IUsersEndpoint Users { get; }

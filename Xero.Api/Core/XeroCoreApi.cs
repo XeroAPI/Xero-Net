@@ -88,7 +88,7 @@ namespace Xero.Api.Core
         public IReceiptsEndpoint Receipts { get; private set; }
         public IRepeatingInvoicesEndpoint RepeatingInvoices { get; private set; }
         public IReportsEndpoint Reports { get; private set; }
-        public SetupEndpoint Setup { get; private set; }
+        public ISetupEndpoint Setup { get; private set; }
         public ITaxRatesEndpoint TaxRates { get; private set; }
         public ITrackingCategoriesEndpoint TrackingCategories { get; private set; }
         public IUsersEndpoint Users { get; private set; }

@@ -5,7 +5,13 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public class SetupEndpoint
+    public interface ISetupEndpoint
+    {
+        ImportSummary Update(Setup setup);
+        ImportSummary Create(Setup setup);
+    }
+
+    public class SetupEndpoint : ISetupEndpoint
     {
         private readonly XeroHttpClient _client;
         private readonly string _apiEndpointUrl;
