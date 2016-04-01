@@ -250,6 +250,7 @@
     <Compile Include="Payroll\America\Response\SettingsResponse.cs" />
     <Compile Include="Payroll\America\Response\TimesheetsResponse.cs" />
     <Compile Include="Payroll\Australia\Endpoints\TimesheetsEndpoint.cs" />
+    <Compile Include="Payroll\Australia\Model\LeaveBalance.cs" />
     <Compile Include="Payroll\Australia\Model\Settings.cs" />
     <Compile Include="Payroll\Australia\Model\Timesheet.cs" />
     <Compile Include="Payroll\Australia\Model\TimesheetLine.cs" />
