@@ -15,11 +15,9 @@ if "%nuget%" == "" (
 )
 
 rem About to restore packages
-echo "calling nuget restore"
 call %NuGet% restore
 
 rem About to build solution
-echo "building solution"
 "%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" Xero.Api.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=diag /nr:false
 
 mkdir Build
@@ -27,6 +25,5 @@ mkdir Build\lib
 mkdir Build\lib\net40
 
 rem About to pack Nugets
-echo "packing nugets"
-call %NuGet% pack "minimal.nuspec" -symbols -o Build\net40 -p Configuration=%config% %version%
-call %NuGet% pack nuget.nuspec-symbols -o Build\net40 -p Configuration=%config% %version%
+call %NuGet% pack "minimal.nuspec" -Symbols -OutputDirectory Build\lib\net40 -Version %version%
+call %NuGet% pack "nuget.nuspec" -symbols -OutputDirectory  Build\lib\net40 -Version %version%
