@@ -3,6 +3,7 @@
     public enum PdfEndpointType
     {
         CreditNotes,
-        Invoices        
+        Invoices,
+        PurchaseOrders
     }
 }

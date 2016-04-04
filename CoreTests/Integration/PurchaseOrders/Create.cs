@@ -58,5 +58,27 @@ namespace CoreTests.Integration.PurchaseOrders
                 return Api.Contacts.Find().First().Id;
             }
         }
+
+        public PurchaseOrder Given_a_purchase_order()
+        {
+            return Api.PurchaseOrders.Create(
+                new PurchaseOrder
+                {
+                    Status = PurchaseOrderStatus.Authorised,
+                    Date = DateTime.Today,
+                    Contact = new Contact { Id = ContactId },
+                    LineItems = new List<LineItem>()
+                    {
+                        new LineItem
+                        {
+                            Description = "An item I want to purchase",
+                            UnitAmount = 1,
+                            Quantity = 1,
+
+                        }
+                    }
+                }
+            );
+        }
     }
 }
