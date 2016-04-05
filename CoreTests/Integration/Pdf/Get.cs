@@ -21,6 +21,12 @@ namespace CoreTests.Integration.Pdf
         }
 
         [Test]
+        public void can_get_purchase_order_as_pdf()
+        {
+            AssertOk(PdfEndpointType.PurchaseOrders, new PurchaseOrders.Create().Given_a_purchase_order().Id);
+        }
+
+        [Test]
         public void invoice_gives_404_when_not_found()
         {
             Assert.Throws<NotFoundException>(() => Api.PdfFiles.Get(PdfEndpointType.Invoices, Guid.NewGuid()));
@@ -30,6 +36,12 @@ namespace CoreTests.Integration.Pdf
         public void credit_note_gives_404_when_not_found()
         {
             Assert.Throws<NotFoundException>(() => Api.PdfFiles.Get(PdfEndpointType.CreditNotes, Guid.NewGuid()));
+        }
+
+        [Test]
+        public void purchase_order_gives_404_when_not_found()
+        {
+            Assert.Throws<NotFoundException>(() => Api.PdfFiles.Get(PdfEndpointType.PurchaseOrders, Guid.NewGuid()));
         }
 
         private void AssertOk(PdfEndpointType type, Guid id)

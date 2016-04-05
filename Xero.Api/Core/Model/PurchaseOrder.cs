@@ -10,7 +10,7 @@ namespace Xero.Api.Core.Model
     [DataContract(Namespace = "")]
     public class PurchaseOrder : HasUpdatedDate, IHasId
     {
-        [DataMember(Name = "PurchaseOrderId", EmitDefaultValue = false)]
+        [DataMember(Name = "PurchaseOrderID", EmitDefaultValue = false)]
         public Guid Id { get; set; }
 
         [DataMember(Name = "PurchaseOrderNumber", EmitDefaultValue = false)]
@@ -59,7 +59,7 @@ namespace Xero.Api.Core.Model
         public Guid? BrandingThemeID { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public PurchaseOrderStatus Status { get; set; }
+        public PurchaseOrderStatus? Status { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public LineAmountType LineAmountTypes { get; set; }

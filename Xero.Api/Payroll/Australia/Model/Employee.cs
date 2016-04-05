@@ -91,6 +91,9 @@ namespace Xero.Api.Payroll.Australia.Model
         public OpeningBalances OpeningBalances { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
+        public List<LeaveBalance> LeaveBalances { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public List<SuperMembership> SuperMemberships { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
