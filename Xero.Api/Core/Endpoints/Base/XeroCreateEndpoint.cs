@@ -30,10 +30,22 @@ namespace Xero.Api.Core.Endpoints.Base
             return Create(new[] { item }).First();
         }
 
+        bool? summarizeErrors;
+
         public IXeroCreateEndpoint<T, TResult, TRequest, TResponse> SummarizeErrors(bool summarize)
         {
             AddParameter("summarizeErrors", summarize);
+            summarizeErrors = summarize;
             return this;
+        }
+
+        public override void ClearQueryString()
+        {
+            base.ClearQueryString();
+            if (summarizeErrors.HasValue)
+            {
+                AddParameter("summarizeErrors", summarizeErrors.Value);
+            }
         }
 
         protected IEnumerable<TResult> Put(TRequest data)
