@@ -42,11 +42,11 @@ namespace Xero.Api.Core.Model
         //There is an inconsistency with TrackingCatgories on JournalLines between Journals and ManualJournals.
         //Use TrackingCategories with Journals
         [DataMember(EmitDefaultValue = false)]
-        public List<TrackingCategory> TrackingCategories { get; set; }
+        public ItemTracking TrackingCategories { get; set; }
 
         //Use Tracking with ManualJournals
         [DataMember(EmitDefaultValue = false)]
-        public List<TrackingCategory> Tracking { get; set; }
+        public ItemTracking Tracking { get; set; }
 
         [DataMember(Name = "LineAmount", EmitDefaultValue = false)]
         public decimal Amount { get; set; }
