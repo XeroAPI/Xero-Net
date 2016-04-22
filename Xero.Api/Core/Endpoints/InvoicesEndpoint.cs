@@ -15,8 +15,8 @@ namespace Xero.Api.Core.Endpoints
     public class InvoicesEndpoint
         : FourDecimalPlacesEndpoint<InvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>, IInvoicesEndpoint
     {
-        internal InvoicesEndpoint(XeroHttpClient client)
-            : base(client, "/api.xro/2.0/Invoices")
+        internal InvoicesEndpoint(XeroHttpClientAccounting client)
+            : base(client, "/Invoices")
         {
             Page(1);
         }

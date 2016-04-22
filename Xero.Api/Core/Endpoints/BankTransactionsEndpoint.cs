@@ -15,8 +15,8 @@ namespace Xero.Api.Core.Endpoints
         FourDecimalPlacesEndpoint<BankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>,
         IBankTransactionsEndpoint
     {
-        public BankTransactionsEndpoint(XeroHttpClient client)
-            : base(client, "/api.xro/2.0/BankTransactions")
+        public BankTransactionsEndpoint(XeroHttpClientAccounting client)
+            : base(client, "/BankTransactions")
         {
         }
 

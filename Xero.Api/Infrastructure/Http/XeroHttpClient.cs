@@ -12,11 +12,37 @@ namespace Xero.Api.Infrastructure.Http
 {
     // This makes the calls to the web as text and asks the object mappers to convert to and from objects to text.
     // This knows nothing about the types being passed to and fro. (Except for the constraint in the generic type)
-    public class XeroHttpClient
+    public interface IXeroHttpClient
     {
-        internal readonly IJsonObjectMapper JsonMapper;
-        internal readonly IXmlObjectMapper XmlMapper;
-        internal readonly HttpClient Client;
+        DateTime? ModifiedSince { get; set; }
+        string Where { get; set; }
+        string Order { get; set; }
+        NameValueCollection Parameters { get; set; }
+        string UserAgent { get; set; }
+        IJsonObjectMapper JsonMapper{ get; }
+        IXmlObjectMapper XmlMapper{ get; }
+        HttpClient Client { get; }
+
+        IEnumerable<TResult> Get<TResult, TResponse>(string endPoint)
+            where TResponse : IXeroResponse<TResult>, new();
+
+        IEnumerable<TResult> Post<TResult, TResponse>(string endPoint, object data)
+            where TResponse : IXeroResponse<TResult>, new();
+
+        IEnumerable<TResult> Put<TResult, TResponse>(string endPoint, object data)
+            where TResponse : IXeroResponse<TResult>, new();
+
+        IEnumerable<TResult> Delete<TResult, TResponse>(string endPoint)
+            where TResponse : IXeroResponse<TResult>, new();
+
+        void HandleErrors(Response response);
+    }
+
+    public abstract class XeroHttpClient
+    {
+        public IJsonObjectMapper JsonMapper { get; private set; }
+        public IXmlObjectMapper XmlMapper { get; private set; }
+        public HttpClient Client { get; private set; }
 
         private XeroHttpClient(IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
         {
@@ -113,7 +139,7 @@ namespace Xero.Api.Infrastructure.Http
             return null;
         }
 
-        internal void HandleErrors(Response response)
+        public void HandleErrors(Response response)
         {
             if (response.StatusCode == HttpStatusCode.BadRequest)
             {
@@ -160,6 +186,17 @@ namespace Xero.Api.Infrastructure.Http
 
             
             throw new XeroApiException(response.StatusCode, response.Body);
+        }
+
+        protected static string CalculateUrl(string baseUri, string apiType)
+        {
+            baseUri = (baseUri ?? string.Empty).Trim();
+
+            var hosts = new[] { "https://api.xero.com", "https://api-partner.network.xero.com", "http://api.branch39.test.xero.com"};
+
+            var requiresSuffix = hosts.Any(it => baseUri.Equals(it, StringComparison.InvariantCultureIgnoreCase));
+
+            return requiresSuffix ? string.Format("{0}{1}", baseUri, apiType) : baseUri;    
         }
     }
 }

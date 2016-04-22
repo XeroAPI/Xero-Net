@@ -11,8 +11,8 @@ namespace Xero.Api.Core.Endpoints
 
     public class PrepaymentsEndpoint : XeroReadEndpoint<PrepaymentsEndpoint, Prepayment, PrepaymentsResponse>, IPrepaymentsEndpoint
     {
-        public PrepaymentsEndpoint(XeroHttpClient client)
-            : base(client, "/api.xro/2.0/Prepayments")
+        public PrepaymentsEndpoint(XeroHttpClientAccounting client)
+            : base(client, "/Prepayments")
         {
         }
     }

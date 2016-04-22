@@ -13,15 +13,15 @@ namespace Xero.Api.Core.Endpoints
 
     public class SetupEndpoint : ISetupEndpoint
     {
-        private readonly XeroHttpClient _client;
+        private readonly XeroHttpClientAccounting _client;
         private readonly string _apiEndpointUrl;
 
-        public SetupEndpoint(XeroHttpClient client) :
-            this(client, "/api.xro/2.0/Setup")
+        public SetupEndpoint(XeroHttpClientAccounting client) :
+            this(client, "/Setup")
         {
         }
 
-        protected SetupEndpoint(XeroHttpClient client, string apiEndpointUrl)
+        protected SetupEndpoint(XeroHttpClientAccounting client, string apiEndpointUrl)
         {
             _client = client;
             _apiEndpointUrl = apiEndpointUrl;

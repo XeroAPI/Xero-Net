@@ -12,9 +12,9 @@ namespace Xero.Api.Infrastructure.OAuth
         private readonly string _authorizeUri;
         private readonly string _tokenUri;
         private readonly X509Certificate2 _clientCertificate;
-        private const string XeroRequestUri = "oauth/RequestToken";
-        private const string XeroAccessTokenUri = "oauth/AccessToken";
-        private const string XeroAuthorizeUri = "oauth/Authorize";
+        private const string XeroRequestUri = "/oauth/RequestToken";
+        private const string XeroAccessTokenUri = "/oauth/AccessToken";
+        private const string XeroAuthorizeUri = "/oauth/Authorize";
 
         public OAuthTokens(string authorizeUri, string tokenUri, X509Certificate2 clientCertificate = null)
         {

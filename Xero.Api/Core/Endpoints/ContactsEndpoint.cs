@@ -17,8 +17,8 @@ namespace Xero.Api.Core.Endpoints
     public class ContactsEndpoint
         : XeroUpdateEndpoint<ContactsEndpoint, Contact, ContactsRequest, ContactsResponse>, IContactsEndpoint
     {
-        internal ContactsEndpoint(XeroHttpClient client)
-            : base(client, "/api.xro/2.0/Contacts")
+        internal ContactsEndpoint(XeroHttpClientAccounting client)
+            : base(client, "/Contacts")
         {
             Page(1);
         }

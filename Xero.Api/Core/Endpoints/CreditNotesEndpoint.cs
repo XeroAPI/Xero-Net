@@ -15,8 +15,8 @@ namespace Xero.Api.Core.Endpoints
     public class CreditNotesEndpoint
         : FourDecimalPlacesEndpoint<CreditNotesEndpoint, CreditNote, CreditNotesRequest, CreditNotesResponse>, ICreditNotesEndpoint
     {
-        public CreditNotesEndpoint(XeroHttpClient client) :
-            base(client, "/api.xro/2.0/CreditNotes")
+        public CreditNotesEndpoint(XeroHttpClientAccounting client) :
+            base(client, "/CreditNotes")
         {
         }        
     }

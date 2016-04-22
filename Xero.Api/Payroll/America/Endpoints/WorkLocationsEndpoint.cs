@@ -8,8 +8,8 @@ namespace Xero.Api.Payroll.America.Endpoints
 {
     public class WorkLocationsEndpoint : PayrollEndpoint<WorkLocationsEndpoint, WorkLocation, WorkLocationsRequest, WorkLocationsResponse>
     {
-        public WorkLocationsEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/WorkLocations")
+        public WorkLocationsEndpoint(XeroHttpClientPayroll client)
+            : base(client, "/WorkLocations")
         {
         }
     }

@@ -8,16 +8,16 @@ namespace Xero.Api.Core.Endpoints
 {
     public class PdfEndpoint
     {
-        private XeroHttpClient Client { get; set; }
+        private XeroHttpClientAccounting Client { get; set; }
 
-        public PdfEndpoint(XeroHttpClient client)
+        public PdfEndpoint(XeroHttpClientAccounting client)
         {
             Client = client;
         }
 
         public BinaryFile Get(PdfEndpointType type, Guid parent)
         {
-            var data = Client.Client.GetRaw(string.Format("/api.xro/2.0/{0}/{1}", type, parent.ToString("D")), "application/pdf");
+            var data = Client.Client.GetRaw(string.Format("/{0}/{1}", type, parent.ToString("D")), "application/pdf");
 
             if (data.StatusCode == HttpStatusCode.OK)
             {

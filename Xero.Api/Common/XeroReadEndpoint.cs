@@ -18,9 +18,9 @@ namespace Xero.Api.Common
         protected NameValueCollection Parameters { get; private set; }
 
         protected string ApiEndpointUrl { get; private set; }
-        public XeroHttpClient Client { get; private set; }
+        public IXeroHttpClient Client { get; private set; }
 
-        protected XeroReadEndpoint(XeroHttpClient client, string apiEndpointUrl)
+        protected XeroReadEndpoint(IXeroHttpClient client, string apiEndpointUrl)
         {
             Client = client;
             ApiEndpointUrl = apiEndpointUrl;

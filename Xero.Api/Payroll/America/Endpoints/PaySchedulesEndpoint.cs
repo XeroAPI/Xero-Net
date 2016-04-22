@@ -8,8 +8,8 @@ namespace Xero.Api.Payroll.America.Endpoints
 {
     public class PaySchedulesEndpoint : PayrollEndpoint<PaySchedulesEndpoint, PaySchedule, PaySchedulesRequest, PaySchedulesResponse>
     {
-        public PaySchedulesEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/PaySchedules")
+        public PaySchedulesEndpoint(XeroHttpClientPayroll client)
+            : base(client, "/PaySchedules")
         {
         }
     }

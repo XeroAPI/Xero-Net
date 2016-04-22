@@ -12,23 +12,23 @@ namespace Xero.Api.Core.Endpoints
 {
     public class AttachmentsEndpoint
     {
-        private XeroHttpClient Client { get; set; }
+        private XeroHttpClientAccounting Client { get; set; }
 
-        public AttachmentsEndpoint(XeroHttpClient client)
+        public AttachmentsEndpoint(XeroHttpClientAccounting client)
         {
             Client = client;
         }
 
         public IEnumerable<Attachment> List(AttachmentEndpointType type, Guid parent)
         {
-            return Client.Get<Attachment, AttachmentsResponse>(string.Format("/api.xro/2.0/{0}/{1}/Attachments", type, parent.ToString("D")));
+            return Client.Get<Attachment, AttachmentsResponse>(string.Format("/{0}/{1}/Attachments", type, parent.ToString("D")));
         }
 
         public Attachment Get(AttachmentEndpointType type, Guid parent, string fileName)
         {
 
             var mimeType = MimeTypes.GetMimeType(fileName);
-            var data = Client.Get(string.Format("/api.xro/2.0/{0}/{1}/Attachments/{2}", type, parent.ToString("D"), fileName), mimeType);
+            var data = Client.Get(string.Format("/{0}/{1}/Attachments/{2}", type, parent.ToString("D"), fileName), mimeType);
 
             if (data.StatusCode == HttpStatusCode.OK)
             {
@@ -43,7 +43,7 @@ namespace Xero.Api.Core.Endpoints
         {
             var mimeType = MimeTypes.GetMimeType(attachment.FileName);
 
-            var url = string.Format("/api.xro/2.0/{0}/{1}/Attachments/{2}", type, parent.ToString("D"), attachment.FileName);
+            var url = string.Format("/{0}/{1}/Attachments/{2}", type, parent.ToString("D"), attachment.FileName);
 
             if (SupportsOnline(type) && includeOnline)
             {

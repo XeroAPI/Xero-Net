@@ -1,5 +1,4 @@
-﻿using Xero.Api.Infrastructure.OAuth;
-using Xero.Api.Infrastructure.RateLimiter;
+﻿using Xero.Api.Infrastructure.RateLimiter;
 using Xero.Api.Serialization;
 
 namespace Xero.Api.Example.Applications.Private
@@ -11,8 +10,8 @@ namespace Xero.Api.Example.Applications.Private
 
         public AustralianPayroll(bool includeRateLimiter = false) :
             base(ApplicationSettings.Uri,
-                new PrivateAuthenticator(ApplicationSettings.SigningCertificatePath, ApplicationSettings.SigningCertificatePassword),
-                new Consumer(ApplicationSettings.Key, ApplicationSettings.Secret),
+                new PrivateAuthenticator(ApplicationSettings.SigningCertificate, ApplicationSettings.Consumer),
+                ApplicationSettings.Consumer,
                 null,
                 Mapper,
                 Mapper,

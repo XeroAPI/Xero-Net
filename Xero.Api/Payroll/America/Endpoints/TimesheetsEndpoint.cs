@@ -8,8 +8,8 @@ namespace Xero.Api.Payroll.America.Endpoints
 {
     public class TimesheetsEndpoint : PayrollEndpoint<TimesheetsEndpoint, Timesheet, TimesheetsRequest, TimesheetsResponse>
     {
-        public TimesheetsEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/Timesheets")
+        public TimesheetsEndpoint(XeroHttpClientPayroll client)
+            : base(client, "/Timesheets")
         {
         }
     }

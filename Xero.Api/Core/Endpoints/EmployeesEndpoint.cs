@@ -14,8 +14,8 @@ namespace Xero.Api.Core.Endpoints
     public class EmployeesEndpoint
         : XeroUpdateEndpoint<EmployeesEndpoint, Employee, EmployeesRequest, EmployeesResponse>, IEmployeesEndpoint
     {
-        public EmployeesEndpoint(XeroHttpClient client) :
-            base(client, "/api.xro/2.0/Employees")
+        public EmployeesEndpoint(XeroHttpClientAccounting client) :
+            base(client, "/Employees")
         {
         }
     }

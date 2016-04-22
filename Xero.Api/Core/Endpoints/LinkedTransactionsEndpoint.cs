@@ -20,15 +20,15 @@ namespace Xero.Api.Core.Endpoints
     public class LinkedTransactionsEndpoint
         : XeroUpdateEndpoint<LinkedTransactionsEndpoint, LinkedTransaction, LinkedTransactionsRequest, LinkedTransactionsResponse>, ILinkedTransactionsEndpoint
     {
-        internal LinkedTransactionsEndpoint(XeroHttpClient client) 
-            : base(client, "/api.xro/2.0/LinkedTransactions")
+        internal LinkedTransactionsEndpoint(XeroHttpClientAccounting client) 
+            : base(client, "/LinkedTransactions")
         {
             Page(1);
         }
 
         public void Delete(LinkedTransaction linkedTransaction)
         {
-            var endpoint = string.Format("/api.xro/2.0/LinkedTransactions/{0}", linkedTransaction.Id);
+            var endpoint = string.Format(ApiEndpointUrl + "/LinkedTransactions/{0}", linkedTransaction.Id);
 
             HandleResponse(Client
                 .Client

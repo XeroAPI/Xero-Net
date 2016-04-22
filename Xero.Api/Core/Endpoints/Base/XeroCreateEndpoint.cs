@@ -12,7 +12,7 @@ namespace Xero.Api.Core.Endpoints.Base
         where TResponse : IXeroResponse<TResult>, new()
         where TRequest : IXeroRequest<TResult>, new()
     {
-        protected XeroCreateEndpoint(XeroHttpClient client, string apiEndpointUrl)
+        protected XeroCreateEndpoint(IXeroHttpClient client, string apiEndpointUrl)
             : base(client, apiEndpointUrl)
         {
         }

@@ -17,11 +17,11 @@ namespace Xero.Api.Core.Endpoints
         Folder InboxFolder { get; }
     }
 
-    public class InboxEndpoint : XeroUpdateEndpoint<InboxEndpoint,Model.Folder,FolderRequest,FolderResponse>, IInboxEndpoint
+    public class InboxEndpoint : XeroUpdateEndpoint<InboxEndpoint, Model.Folder, FolderRequest, FolderResponse>, IInboxEndpoint
     {
 
-        internal InboxEndpoint(XeroHttpClient client)
-            : base(client, "files.xro/1.0/Inbox")
+        internal InboxEndpoint(XeroHttpClientFiles client)
+            : base(client, "/Inbox")
         {
             
         }
@@ -30,7 +30,7 @@ namespace Xero.Api.Core.Endpoints
         {
             get
             {
-                var endpoint = string.Format("files.xro/1.0/Inbox");
+                var endpoint = string.Format("/Inbox");
 
                 var folder = HandleInboxResponse(Client
                     .Client
@@ -53,7 +53,7 @@ namespace Xero.Api.Core.Endpoints
         public Model.File Find(Guid fileId)
         {
             var response = HandleFileResponse(Client
-                .Client.Get("files.xro/1.0/Files", ""));
+                .Client.Get("/Files", ""));
 
             return response.Items.SingleOrDefault(i => i.Id == fileId);
         }
@@ -63,7 +63,7 @@ namespace Xero.Api.Core.Endpoints
 
             var response = HandleFileResponse(Client
                 .Client
-                .PostMultipartForm("files.xro/1.0/Files/" + Inbox, file.Mimetype , file.Name, file.Name, data));
+                .PostMultipartForm("/Files/" + Inbox, file.Mimetype , file.Name, file.Name, data));
 
             return response;
         }
@@ -75,7 +75,7 @@ namespace Xero.Api.Core.Endpoints
         {
             var response = HandleFileResponse(Client
                 .Client
-                .Delete("files.xro/1.0/Files/" + fileid.ToString()));
+                .Delete("/Files/" + fileid.ToString()));
 
             return response;
         }
@@ -114,7 +114,7 @@ namespace Xero.Api.Core.Endpoints
         {
             get
             {
-                var endpoint = string.Format("files.xro/1.0/Inbox");
+                var endpoint = string.Format("/Inbox");
 
                 var folder = HandleFoldersResponse(Client
                     .Client

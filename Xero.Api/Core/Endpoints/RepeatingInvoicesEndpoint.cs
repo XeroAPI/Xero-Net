@@ -12,8 +12,8 @@ namespace Xero.Api.Core.Endpoints
     public class RepeatingInvoicesEndpoint
         : XeroReadEndpoint<RepeatingInvoicesEndpoint, RepeatingInvoice, RepeatingInvoicesResponse>, IRepeatingInvoicesEndpoint
     {
-        public RepeatingInvoicesEndpoint(XeroHttpClient client) :
-            base(client, "/api.xro/2.0/RepeatingInvoices")
+        public RepeatingInvoicesEndpoint(XeroHttpClientAccounting client) :
+            base(client, "/RepeatingInvoices")
         {
             UseFourDecimalPlaces(true);
         }

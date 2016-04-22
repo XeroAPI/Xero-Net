@@ -48,5 +48,6 @@ namespace Xero.Api.Example.Applications.Partner
         {
             get { return ConfigurationManager.AppSettings["ConsumerSecret"]; }
         }
+
     }
 }
