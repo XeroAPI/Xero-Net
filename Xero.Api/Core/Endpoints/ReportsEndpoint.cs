@@ -33,7 +33,7 @@ namespace Xero.Api.Core.Endpoints
 
     public class ReportsEndpoint : XeroReadEndpoint<ReportsEndpoint, Report, ReportsResponse>, IReportsEndpoint
     {
-        public ReportsEndpoint(XeroHttpClient client)
+        public ReportsEndpoint(XeroHttpClientAccounting client)
             : base(client, "/Reports")
         {
         }

@@ -8,9 +8,9 @@ namespace Xero.Api.Core.Endpoints
 {
     public class PdfEndpoint
     {
-        private XeroHttpClient Client { get; set; }
+        private XeroHttpClientAccounting Client { get; set; }
 
-        public PdfEndpoint(XeroHttpClient client)
+        public PdfEndpoint(XeroHttpClientAccounting client)
         {
             Client = client;
         }

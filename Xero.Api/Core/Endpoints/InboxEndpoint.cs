@@ -17,10 +17,10 @@ namespace Xero.Api.Core.Endpoints
         Folder InboxFolder { get; }
     }
 
-    public class InboxEndpoint : XeroUpdateEndpoint<InboxEndpoint,Model.Folder,FolderRequest,FolderResponse>, IInboxEndpoint
+    public class InboxEndpoint : XeroUpdateEndpoint<InboxEndpoint, Model.Folder, FolderRequest, FolderResponse>, IInboxEndpoint
     {
 
-        internal InboxEndpoint(XeroHttpClient client)
+        internal InboxEndpoint(XeroHttpClientFiles client)
             : base(client, "/Inbox")
         {
             

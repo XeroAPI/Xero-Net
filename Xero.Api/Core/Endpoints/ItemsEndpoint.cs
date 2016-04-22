@@ -15,14 +15,14 @@ namespace Xero.Api.Core.Endpoints
     public class ItemsEndpoint
         : FourDecimalPlacesEndpoint<ItemsEndpoint, Item, ItemsRequest, ItemsResponse>, IItemsEndpoint
     {
-        public ItemsEndpoint(XeroHttpClient client) :
+        public ItemsEndpoint(XeroHttpClientAccounting client) :
             base(client, "/Items")
         {
         }
 
         public void Delete(Item itemToDelete)
         {
-            var endpoint = string.Format("/api.xro/2.0/Items/{0}", itemToDelete.Id);
+            var endpoint = string.Format(ApiEndpointUrl + "/Items/{0}", itemToDelete.Id);
 
             HandleResponse(Client
                 .Client

@@ -20,7 +20,7 @@ namespace Xero.Api.Core.Endpoints
 
     public class FoldersEndpoint : XeroUpdateEndpoint<FoldersEndpoint, Model.Folder, FolderRequest, FolderResponse>, IFoldersEndpoint
   {
-    internal FoldersEndpoint(XeroHttpClient client)
+        internal FoldersEndpoint(XeroHttpClientFiles client)
         : base(client, "/Folders")
     {
 

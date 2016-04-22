@@ -10,7 +10,7 @@ using Xero.Api.Private;
 
 namespace Xero.Api.Infrastructure.Http
 {
-    internal class HttpClient
+    public class HttpClient
     {
         private readonly string _baseUri;
         private readonly IAuthenticator _auth = new BlankAuthenticator();

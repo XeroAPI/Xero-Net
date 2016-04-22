@@ -12,7 +12,7 @@ namespace Xero.Api.Core.Endpoints
 
     public class JournalsEndpoint : XeroReadEndpoint<JournalsEndpoint, Journal, JournalsResponse>, IJournalsEndpoint
     {
-        public JournalsEndpoint(XeroHttpClient client) :
+        public JournalsEndpoint(XeroHttpClientAccounting client) :
             base(client, "/Journals")
         {
         }

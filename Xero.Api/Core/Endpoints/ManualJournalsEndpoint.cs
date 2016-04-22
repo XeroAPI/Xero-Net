@@ -15,7 +15,7 @@ namespace Xero.Api.Core.Endpoints
     public class ManualJournalsEndpoint
         : XeroUpdateEndpoint<ManualJournalsEndpoint, ManualJournal, ManualJournalsRequest, ManualJournalsResponse>, IManualJournalsEndpoint
     {
-        public ManualJournalsEndpoint(XeroHttpClient client) :
+        public ManualJournalsEndpoint(XeroHttpClientAccounting client) :
             base(client, "/ManualJournals")
         {
         }

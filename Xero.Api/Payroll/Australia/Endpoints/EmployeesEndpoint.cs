@@ -8,8 +8,8 @@ namespace Xero.Api.Payroll.Australia.Endpoints
 {
     public class EmployeesEndpoint : PayrollEndpoint<EmployeesEndpoint, Employee, EmployeesRequest, EmployeesResponse>
     {
-        public EmployeesEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/Employees")
+        public EmployeesEndpoint(XeroHttpClientPayroll client)
+            : base(client, "/Employees")
         {
         }
     }

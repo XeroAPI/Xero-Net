@@ -12,9 +12,9 @@ namespace Xero.Api.Core.Endpoints
 {
     public class AttachmentsEndpoint
     {
-        private XeroHttpClient Client { get; set; }
+        private XeroHttpClientAccounting Client { get; set; }
 
-        public AttachmentsEndpoint(XeroHttpClient client)
+        public AttachmentsEndpoint(XeroHttpClientAccounting client)
         {
             Client = client;
         }

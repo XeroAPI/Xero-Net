@@ -44,13 +44,13 @@ namespace Xero.Api.Payroll
 
         private void Connect()
         {
-            WorkLocations = new WorkLocationsEndpoint(Client);
-            PayStubs = new PayStubsEndpoint(Client);
-            PaySchedules = new PaySchedulesEndpoint(Client);
-            Employees = new EmployeesEndpoint(Client);
-            PayRuns = new PayRunsEndpoint(Client);
-            Settings = new SettingsEndpoint(Client);
-            Timesheets = new TimesheetsEndpoint(Client);            
+            WorkLocations = new WorkLocationsEndpoint(PayrollClient);
+            PayStubs = new PayStubsEndpoint(PayrollClient);
+            PaySchedules = new PaySchedulesEndpoint(PayrollClient);
+            Employees = new EmployeesEndpoint(PayrollClient);
+            PayRuns = new PayRunsEndpoint(PayrollClient);
+            Settings = new SettingsEndpoint(PayrollClient);
+            Timesheets = new TimesheetsEndpoint(PayrollClient);            
         }
 
         public IEnumerable<PaySchedule> Create(IEnumerable<PaySchedule> items)

@@ -120,6 +120,9 @@
     <Compile Include="Core\Response\OptionsResponse.cs" />
     <Compile Include="Infrastructure\Exceptions\RateExceededException.cs" />
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />
+    <Compile Include="Infrastructure\Http\XeroHttpClient.cs" />
+    <Compile Include="Infrastructure\Http\XeroHttpClientPayroll.cs" />
+    <Compile Include="Infrastructure\Http\XeroHttpClientFiles.cs" />
     <Compile Include="Private\BlankAuthenticator.cs" />
     <Compile Include="Infrastructure\Http\Bodies\Binary.cs" />
     <Compile Include="Infrastructure\Http\Internet.cs" />
@@ -304,7 +307,7 @@
     <Compile Include="Infrastructure\ThirdParty\Dust\TokenKey.cs" />
     <Compile Include="Infrastructure\OAuth\Signing\HmacSha1Signer.cs" />
     <Compile Include="Infrastructure\Http\Response.cs" />
-    <Compile Include="Infrastructure\Http\XeroHttpClient.cs" />
+    <Compile Include="Infrastructure\Http\XeroHttpClientAccounting.cs" />
     <Compile Include="Core\Endpoints\ContactsEndpoint.cs" />
     <Compile Include="Core\Endpoints\InvoicesEndpoint.cs" />
     <Compile Include="Infrastructure\Interfaces\IXeroResponse.cs" />

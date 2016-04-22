@@ -13,7 +13,7 @@ namespace Xero.Api.Core.Endpoints
     public class CurrenciesEndpoint : XeroReadEndpoint<CurrenciesEndpoint, Currency, CurrenciesResponse>,
         ICurrenciesEndpoint
     {
-        internal CurrenciesEndpoint(XeroHttpClient client)
+        internal CurrenciesEndpoint(XeroHttpClientAccounting client)
             : base(client, "/Currencies")
         {
         }

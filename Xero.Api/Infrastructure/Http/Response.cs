@@ -4,7 +4,7 @@ using System.Net;
 
 namespace Xero.Api.Infrastructure.Http
 {
-    internal class Response
+    public class Response
     {
 	    private string _body;
 

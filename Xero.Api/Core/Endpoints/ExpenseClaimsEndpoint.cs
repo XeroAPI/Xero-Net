@@ -14,7 +14,7 @@ namespace Xero.Api.Core.Endpoints
     public class ExpenseClaimsEndpoint
         : XeroUpdateEndpoint<ExpenseClaimsEndpoint, ExpenseClaim, ExpenseClaimsRequest, ExpenseClaimsResponse>, IExpenseClaimsEndpoint
     {
-        public ExpenseClaimsEndpoint(XeroHttpClient client)
+        public ExpenseClaimsEndpoint(XeroHttpClientAccounting client)
             : base(client, "/ExpenseClaims")
         {            
         }

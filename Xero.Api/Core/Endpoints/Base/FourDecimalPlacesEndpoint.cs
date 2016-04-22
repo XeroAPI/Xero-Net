@@ -10,7 +10,7 @@ namespace Xero.Api.Core.Endpoints.Base
         where TResponse : IXeroResponse<TResult>, new()
         where TRequest : IXeroRequest<TResult>, new()
     {
-        protected FourDecimalPlacesEndpoint(XeroHttpClient client, string apiEndpointUrl) : base(client, apiEndpointUrl)
+        protected FourDecimalPlacesEndpoint(XeroHttpClientAccounting client, string apiEndpointUrl) : base(client, apiEndpointUrl)
         {
             UseFourDecimalPlaces(true);
         }

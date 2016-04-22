@@ -14,7 +14,7 @@ namespace Xero.Api.Core.Endpoints
     public class TaxRatesEndpoint
         : XeroUpdateEndpoint<TaxRatesEndpoint, TaxRate, TaxRatesRequest, TaxRatesResponse>, ITaxRatesEndpoint
     {
-        internal TaxRatesEndpoint(XeroHttpClient client)
+        internal TaxRatesEndpoint(XeroHttpClientAccounting client)
             : base(client, "/TaxRates")
         {
         }

@@ -13,7 +13,7 @@ namespace Xero.Api.Core.Endpoints
 
     public class BrandingThemesEndpoint : XeroReadEndpoint<BrandingThemesEndpoint, BrandingTheme, BrandingThemesResponse>, IBrandingThemesEndpoint
     {
-        public BrandingThemesEndpoint(XeroHttpClient client)
+        public BrandingThemesEndpoint(XeroHttpClientAccounting client)
             : base(client, "/BrandingThemes")
         {
         }

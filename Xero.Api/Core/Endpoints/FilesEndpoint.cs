@@ -23,7 +23,7 @@ namespace Xero.Api.Core.Endpoints
     public class FilesEndpoint : XeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>, IFilesEndpoint
     {
 
-        internal FilesEndpoint(XeroHttpClient client)
+        internal FilesEndpoint(XeroHttpClientFiles client)
             : base(client, "/Files")
         {
 

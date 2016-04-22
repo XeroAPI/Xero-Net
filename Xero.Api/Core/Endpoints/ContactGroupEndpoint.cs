@@ -21,7 +21,7 @@ namespace Xero.Api.Core.Endpoints
         IContactGroupsEndpoint
     {
 
-        public ContactGroupsEndpoint(XeroHttpClient client) : base(client,"/ContactGroups")
+        public ContactGroupsEndpoint(XeroHttpClientAccounting client) : base(client,"/ContactGroups")
         {
             
         }
@@ -81,10 +81,10 @@ namespace Xero.Api.Core.Endpoints
     public class ContactCollection  : XeroUpdateEndpoint<ContactGroupsEndpoint, ContactGroup, ContactGroupsRequest, ContactGroupsResponse>, IContactCollection
     {
         private readonly ContactGroup _group;
-        private readonly XeroHttpClient _client;
+        private readonly IXeroHttpClient _client;
 
 
-        public ContactCollection(XeroHttpClient client, ContactGroup group)
+        public ContactCollection(IXeroHttpClient client, ContactGroup group)
             : base(client, "/ContactGroups")
         {
             _group = group;

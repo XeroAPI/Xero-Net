@@ -95,40 +95,40 @@ namespace Xero.Api.Core
 
         private void Connect()
         {
-            OrganisationEndpoint = new OrganisationEndpoint(Client);
+            OrganisationEndpoint = new OrganisationEndpoint(AccountingClient);
 
-            Accounts = new AccountsEndpoint(Client);
-            Allocations = new AllocationsEndpoint(Client);
-            Attachments = new AttachmentsEndpoint(Client);
-            BankTransactions = new BankTransactionsEndpoint(Client);
-            BankTransfers = new BankTransfersEndpoint(Client);
-            BrandingThemes = new BrandingThemesEndpoint(Client);
-            Contacts = new ContactsEndpoint(Client);
-            ContactGroups = new ContactGroupsEndpoint(Client);
-            CreditNotes = new CreditNotesEndpoint(Client);
-            Currencies = new CurrenciesEndpoint(Client);
-            Employees = new EmployeesEndpoint(Client);
-            ExpenseClaims = new ExpenseClaimsEndpoint(Client);
-            Files = new FilesEndpoint(Client);
-            Folders = new FoldersEndpoint(Client);
-            Inbox = new InboxEndpoint(Client);
-            Invoices = new InvoicesEndpoint(Client);
-            Items = new ItemsEndpoint(Client);
-            Journals = new JournalsEndpoint(Client);
-            LinkedTransactions = new LinkedTransactionsEndpoint(Client);
-            ManualJournals = new ManualJournalsEndpoint(Client);
-            Overpayments = new OverpaymentsEndpoint(Client);
-            Payments = new PaymentsEndpoint(Client);
-            PdfFiles = new PdfEndpoint(Client);
-            Prepayments = new PrepaymentsEndpoint(Client);
-            PurchaseOrders = new PurchaseOrdersEndpoint(Client);
-            Receipts = new ReceiptsEndpoint(Client);
-            RepeatingInvoices = new RepeatingInvoicesEndpoint(Client);
-            Reports = new ReportsEndpoint(Client);
-            Setup = new SetupEndpoint(Client);
-            TaxRates = new TaxRatesEndpoint(Client);
-            TrackingCategories = new TrackingCategoriesEndpoint(Client);
-            Users = new UsersEndpoint(Client);
+            Accounts = new AccountsEndpoint(AccountingClient);
+            Allocations = new AllocationsEndpoint(AccountingClient);
+            Attachments = new AttachmentsEndpoint(AccountingClient);
+            BankTransactions = new BankTransactionsEndpoint(AccountingClient);
+            BankTransfers = new BankTransfersEndpoint(AccountingClient);
+            BrandingThemes = new BrandingThemesEndpoint(AccountingClient);
+            Contacts = new ContactsEndpoint(AccountingClient);
+            ContactGroups = new ContactGroupsEndpoint(AccountingClient);
+            CreditNotes = new CreditNotesEndpoint(AccountingClient);
+            Currencies = new CurrenciesEndpoint(AccountingClient);
+            Employees = new EmployeesEndpoint(AccountingClient);
+            ExpenseClaims = new ExpenseClaimsEndpoint(AccountingClient);
+            Files = new FilesEndpoint(FilesClient);
+            Folders = new FoldersEndpoint(FilesClient);
+            Inbox = new InboxEndpoint(FilesClient);
+            Invoices = new InvoicesEndpoint(AccountingClient);
+            Items = new ItemsEndpoint(AccountingClient);
+            Journals = new JournalsEndpoint(AccountingClient);
+            LinkedTransactions = new LinkedTransactionsEndpoint(AccountingClient);
+            ManualJournals = new ManualJournalsEndpoint(AccountingClient);
+            Overpayments = new OverpaymentsEndpoint(AccountingClient);
+            Payments = new PaymentsEndpoint(AccountingClient);
+            PdfFiles = new PdfEndpoint(AccountingClient);
+            Prepayments = new PrepaymentsEndpoint(AccountingClient);
+            PurchaseOrders = new PurchaseOrdersEndpoint(AccountingClient);
+            Receipts = new ReceiptsEndpoint(AccountingClient);
+            RepeatingInvoices = new RepeatingInvoicesEndpoint(AccountingClient);
+            Reports = new ReportsEndpoint(AccountingClient);
+            Setup = new SetupEndpoint(AccountingClient);
+            TaxRates = new TaxRatesEndpoint(AccountingClient);
+            TrackingCategories = new TrackingCategoriesEndpoint(AccountingClient);
+            Users = new UsersEndpoint(AccountingClient);
         }
 
         public Organisation Organisation

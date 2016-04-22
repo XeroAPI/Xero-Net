@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Runtime.Serialization;
 using Xero.Api.Common;
 using Xero.Api.Core.Model;
 using Xero.Api.Infrastructure.Http;
@@ -11,9 +9,9 @@ namespace Xero.Api.Core.Endpoints
 {
     public class AllocationsEndpoint
     {
-        private readonly XeroHttpClient _client;
+        private readonly XeroHttpClientAccounting _client;
         
-        public AllocationsEndpoint(XeroHttpClient client)
+        public AllocationsEndpoint(XeroHttpClientAccounting client)
         {
             _client = client;
         }

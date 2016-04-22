@@ -8,8 +8,8 @@ namespace Xero.Api.Payroll.America.Endpoints
 {
     public class PayStubsEndpoint : PayrollEndpoint<PayStubsEndpoint, PayStub, PayStubsRequest, PayStubsResponse>
     {
-        public PayStubsEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/PayStubs")
+        public PayStubsEndpoint(XeroHttpClientPayroll client)
+            : base(client, "/PayStubs")
         {
         }
     }

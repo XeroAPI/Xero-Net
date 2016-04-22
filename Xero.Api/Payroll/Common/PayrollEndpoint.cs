@@ -12,7 +12,7 @@ namespace Xero.Api.Payroll.Common
         where TResponse : IXeroResponse<TResult>, new()
         where TRequest : IXeroRequest<TResult>, new()
     {
-        protected PayrollEndpoint(XeroHttpClient client, string apiEndpointUrl)
+        protected PayrollEndpoint(XeroHttpClientPayroll client, string apiEndpointUrl)
             : base(client, apiEndpointUrl)
         {
         }

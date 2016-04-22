@@ -11,7 +11,7 @@ namespace Xero.Api.Core.Endpoints
 
     public class OrganisationEndpoint : XeroReadEndpoint<OrganisationEndpoint, Organisation, OrganisationResponse>, IOrganisationEndpoint
     {
-        internal OrganisationEndpoint(XeroHttpClient client)
+        internal OrganisationEndpoint(XeroHttpClientAccounting client)
             : base(client, "/Organisation")
         {
         }
