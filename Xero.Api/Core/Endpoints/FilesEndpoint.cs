@@ -25,7 +25,9 @@ namespace Xero.Api.Core.Endpoints
         private static string _baseUriPath = "/Files";
 
         public FilesEndpoint(XeroHttpClient client) : base(client, _baseUriPath)
-        { }
+        {
+            client.TrimBaseUri();
+        }
 
         public Model.File this[Guid id]
         {
