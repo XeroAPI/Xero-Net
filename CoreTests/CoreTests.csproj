@@ -159,6 +159,8 @@
     <Compile Include="Integration\Attachments\Attachments.cs" />
     <Compile Include="Integration\General\Errors.cs" />
     <Compile Include="Integration\TaxRates\Create.cs" />
+    <Compile Include="Unit\Support\BlankAuthenticator.cs" />
+    <Compile Include="Unit\Support\BlankCertificateAuthenticator.cs" />
     <Compile Include="Unit\ExceptionTests.cs" />
     <Compile Include="Unit\PayrollUrlConfiguration.cs" />
     <Compile Include="Unit\RateLimiterTest.cs" />

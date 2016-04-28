@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
+using CoreTests.Unit.Support;
 using NUnit.Framework;
 using Xero.Api.Common;
 using Xero.Api.Infrastructure.Interfaces;
@@ -87,28 +86,6 @@ namespace CoreTests.Unit
                 IRateLimiter rateLimiter) : base(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter)
             {
             }
-        }
-    }
-
-    public class BlankAuthenticator : IAuthenticator
-    {
-        public void Authenticate(HttpWebRequest request, IConsumer consumer, IUser user)
-        {
-        }
-    }
-
-    public class BlankCertificateAuthenticator : ICertificateAuthenticator
-    {
-        public IToken GetToken(IConsumer consumer, IUser user)
-        {
-            return null;
-        }
-
-        public IUser User { get; set; }
-        public X509Certificate Certificate { get; private set; }
-
-        public void Authenticate(HttpWebRequest request, IConsumer consumer, IUser user)
-        {
         }
     }
 }
