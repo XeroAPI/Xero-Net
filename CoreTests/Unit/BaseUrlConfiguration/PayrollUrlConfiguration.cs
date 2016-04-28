@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Xero.Api.Infrastructure.Http;
 using Xero.Api.Payroll.Australia.Endpoints;
 
-namespace CoreTests.Unit
+namespace CoreTests.Unit.BaseUrlConfiguration
 {
     [TestFixture]
     public class PayrollUrlConfiguration

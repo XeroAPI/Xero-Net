@@ -2,7 +2,7 @@
 using CoreTests.Unit.Support;
 using NUnit.Framework;
 
-namespace CoreTests.Unit
+namespace CoreTests.Unit.BaseUrlConfiguration
 {
     [TestFixture]
     public class BaseUrlConfiguration
