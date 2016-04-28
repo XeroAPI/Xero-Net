@@ -22,9 +22,9 @@ namespace Xero.Api.Core.Endpoints
 
     public class FilesEndpoint : XeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>, IFilesEndpoint
     {
-        private static string _baseUriPath = "/Files";
+        public static string BASE_URI_PATH = "/files.xro/1.0/Files/";
 
-        public FilesEndpoint(XeroHttpClient client) : base(client, _baseUriPath)
+        public FilesEndpoint(XeroHttpClient client) : base(client, BASE_URI_PATH)
         {
             client.TrimBaseUri();
         }
@@ -41,7 +41,7 @@ namespace Xero.Api.Core.Endpoints
         public override IEnumerable<Model.File> Find()
         {
             var response = HandleFilesResponse(Client
-                .Client.Get(_baseUriPath, ""));
+                .Client.Get(BASE_URI_PATH, ""));
 
             return response.Items;
         }
@@ -49,7 +49,7 @@ namespace Xero.Api.Core.Endpoints
         public override Model.File Find(Guid fileId)
         {
             var response = HandleFilesResponse(Client
-                .Client.Get(_baseUriPath, ""));
+                .Client.Get(BASE_URI_PATH, ""));
 
             return response.Items.SingleOrDefault(i => i.Id == fileId);
         }
@@ -57,7 +57,7 @@ namespace Xero.Api.Core.Endpoints
         public Model.File Rename(Guid id, string name)
         {
             var response = HandleFileResponse(Client
-                .Client.Put("/Files/" + id, "{\"Name\":\"" + name + "\"}", "application/json"));
+                .Client.Put(BASE_URI_PATH + id, "{\"Name\":\"" + name + "\"}", "application/json"));
 
 
             return response;
@@ -66,8 +66,7 @@ namespace Xero.Api.Core.Endpoints
         public Model.File Move(Guid id, Guid newFolder)
         {
             var response = HandleFileResponse(Client
-                .Client.Put("/Files/" + id, "{\"FolderId\":\"" + newFolder + "\"}", "application/json"));
-
+                .Client.Put(BASE_URI_PATH + id, "{\"FolderId\":\"" + newFolder + "\"}", "application/json"));
 
             return response;
         }
@@ -77,7 +76,7 @@ namespace Xero.Api.Core.Endpoints
 
             var response = HandleFileResponse(Client
                 .Client
-                .PostMultipartForm("/Files/" + folderId, file.Mimetype, file.Name, file.FileName, data));
+                .PostMultipartForm(BASE_URI_PATH + folderId, file.Mimetype, file.Name, file.FileName, data));
 
             return response;
         }
@@ -93,7 +92,7 @@ namespace Xero.Api.Core.Endpoints
 
         public byte[] GetContent(Guid id, string contentType)
         {
-            var response = Client.Client.GetRaw("/Files/" + id + "/Content", contentType, "");
+            var response = Client.Client.GetRaw(BASE_URI_PATH + id + "/Content", contentType, "");
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -101,7 +100,6 @@ namespace Xero.Api.Core.Endpoints
 
                 return ms.ToArray();
             }
-
         }
 
         private Model.File HandleFileResponse(Infrastructure.Http.Response response)

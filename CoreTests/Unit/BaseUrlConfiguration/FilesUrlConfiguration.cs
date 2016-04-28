@@ -8,8 +8,6 @@ namespace CoreTests.Unit.BaseUrlConfiguration
     [TestFixture]
     public class FilesUrlConfiguration
     {
-        // [i] SuperFundsEndpoint just chosen as an example -- subclass of `PayrollEndpoint` will do
-
         [Test]
         public void it_instructs_its_client_to_ignore_path_segments_on_its_base_url()
         {
@@ -18,6 +16,12 @@ namespace CoreTests.Unit.BaseUrlConfiguration
             new FilesEndpoint(xeroHttpClient);
 
             Assert.AreEqual("http://api.xero.com", xeroHttpClient.BaseUri, "Expected the <XeroHttpClient> to be configured with a new base url");
+        }
+
+        [Test]
+        public void it_appends_a_path_to_base_uri()
+        {
+            Assert.AreEqual("/files.xro/1.0/Files/", FilesEndpoint.BASE_URI_PATH, "There is no other practical way to do this");
         }
     }
 }
