@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace CoreTests.Unit.BaseUrlConfiguration
 {
     [TestFixture]
-    public class BaseUrlConfiguration
+    public class DefaultUrlConfiguration
     {
         [Test]
         public void both_constructors_behave_the_same()

@@ -176,7 +176,7 @@
     <Compile Include="Unit\SalesTaxBasisTypeTest.cs" />
     <Compile Include="Unit\SalesTaxPeriodTypeTest.cs" />
     <Compile Include="Unit\TrackingCategories.cs" />
-    <Compile Include="Unit\BaseUrlConfiguration\BaseUrlConfiguration.cs" />
+    <Compile Include="Unit\BaseUrlConfiguration\DefaultUrlConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xero.Api.Example.Applications\Xero.Api.Example.Applications.csproj">
