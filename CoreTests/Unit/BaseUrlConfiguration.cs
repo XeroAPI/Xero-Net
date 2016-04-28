@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using NUnit.Framework;
@@ -33,7 +32,7 @@ namespace CoreTests.Unit
                 Map("https://xxx-anything-else-xxx/1.0"     , "https://xxx-anything-else-xxx/1.0"),
                 Map("https://api.xero.com/"                 , "https://api.xero.com/api.xro/2.0"),
                 Map("https://api-partner.network.xero.com/" , "https://api-partner.network.xero.com/api.xro/2.0")
-                );
+            );
         }
 
 
