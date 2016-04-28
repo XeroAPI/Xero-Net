@@ -22,12 +22,10 @@ namespace Xero.Api.Core.Endpoints
 
     public class FilesEndpoint : XeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>, IFilesEndpoint
     {
+        private static string _baseUriPath = "/Files";
 
-        internal FilesEndpoint(XeroHttpClient client)
-            : base(client, "/Files")
-        {
-
-        }
+        public FilesEndpoint(XeroHttpClient client) : base(client, _baseUriPath)
+        { }
 
         public Model.File this[Guid id]
         {
@@ -41,7 +39,7 @@ namespace Xero.Api.Core.Endpoints
         public override IEnumerable<Model.File> Find()
         {
             var response = HandleFilesResponse(Client
-                .Client.Get("/Files", ""));
+                .Client.Get(_baseUriPath, ""));
 
             return response.Items;
         }
@@ -49,7 +47,7 @@ namespace Xero.Api.Core.Endpoints
         public override Model.File Find(Guid fileId)
         {
             var response = HandleFilesResponse(Client
-                .Client.Get("/Files", ""));
+                .Client.Get(_baseUriPath, ""));
 
             return response.Items.SingleOrDefault(i => i.Id == fileId);
         }
