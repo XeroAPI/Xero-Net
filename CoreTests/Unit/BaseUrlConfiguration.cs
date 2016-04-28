@@ -35,7 +35,6 @@ namespace CoreTests.Unit
             );
         }
 
-
         [Test]
         public void exception_examples()
         {

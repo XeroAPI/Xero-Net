@@ -12,7 +12,7 @@ namespace Xero.Api.Infrastructure.Http
 {
     internal class HttpClient
     {
-        public string BaseUri { get; }
+        public string BaseUri { get; set; }
         private readonly IAuthenticator _auth = new BlankAuthenticator();
         
         private readonly Dictionary<string, string> _headers;
@@ -177,6 +177,28 @@ namespace Xero.Api.Infrastructure.Http
         public void AddHeader(string name, string value)
         {
             _headers[name] = value;
+        }
+
+        internal void TrimBaseUri()
+        {
+            var temp = Try.Uri(BaseUri);
+
+            if (temp != null)
+            {
+                BaseUri = string.Format("{0}://{1}", temp.Scheme, temp.Host);
+            }
+        }
+    }
+
+    internal static class Try
+    {
+        internal static Uri Uri(string text)
+        {
+            Uri result;
+
+            System.Uri.TryCreate(text, UriKind.Absolute, out result);
+
+            return result;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Xero.Api.Payroll.Common
         protected PayrollEndpoint(XeroHttpClient client, string apiEndpointUrl)
             : base(client, apiEndpointUrl)
         {
+            client.TrimBaseUri();
         }
 
         public IEnumerable<TResult> Create(IEnumerable<TResult> items)

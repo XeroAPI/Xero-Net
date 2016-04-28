@@ -168,5 +168,10 @@ namespace Xero.Api.Infrastructure.Http
             
             throw new XeroApiException(response.StatusCode, response.Body);
         }
+
+        public void TrimBaseUri()
+        {
+            Client.TrimBaseUri();
+        }
     }
 }
