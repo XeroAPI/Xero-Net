@@ -11,7 +11,7 @@ namespace CoreTests.Unit.BaseUrlConfiguration
         // [i] SuperFundsEndpoint just chosen as an example -- any subclass of `PayrollEndpoint` will do.
 
         [Test]
-        public void each_endpoint_instructs_its_client_to_ignore_path_segments_on_is_base_url()
+        public void each_endpoint_instructs_its_client_to_ignore_path_segments_on_its_base_url()
         {
             var xeroHttpClient = new XeroHttpClient("http://api.xero.com/api.xero/2.0/", new BlankAuthenticator(), null, null, null, null);
 
