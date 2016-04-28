@@ -39,5 +39,25 @@ namespace CoreTests.Unit.BaseUrlConfiguration
 
             Assert.AreEqual("http://any.host.name", xeroHttpClient.BaseUri, "Expected the <XeroHttpClient> to be configured with a new base url");
         }
+
+        [Test]
+        public void or_null()
+        {
+            var xeroHttpClient = new XeroHttpClient(null, new BlankAuthenticator(), null, null, null, null);
+
+            new SuperFundsEndpoint(xeroHttpClient);
+
+            Assert.AreEqual(null, xeroHttpClient.BaseUri, "Expected the <XeroHttpClient> to be configured with a new base url");
+        }
+
+        [Test]
+        public void or_empty()
+        {
+            var xeroHttpClient = new XeroHttpClient(string.Empty, new BlankAuthenticator(), null, null, null, null);
+
+            new SuperFundsEndpoint(xeroHttpClient);
+
+            Assert.AreEqual(string.Empty, xeroHttpClient.BaseUri, "Expected the <XeroHttpClient> to be configured with a new base url");
+        }
     }
 }
