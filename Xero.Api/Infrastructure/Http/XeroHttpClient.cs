@@ -62,6 +62,13 @@ namespace Xero.Api.Infrastructure.Http
             set { Client.UserAgent = value; }
         }
 
+        public string BaseUri {
+            get
+            {
+                return Client.BaseUri;
+            }
+        }
+
         public IEnumerable<TResult> Get<TResult, TResponse>(string endPoint)
             where TResponse : IXeroResponse<TResult>, new()
         {

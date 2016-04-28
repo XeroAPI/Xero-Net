@@ -12,7 +12,7 @@ namespace Xero.Api.Infrastructure.Http
 {
     internal class HttpClient
     {
-        private readonly string _baseUri;
+        public string BaseUri { get; }
         private readonly IAuthenticator _auth = new BlankAuthenticator();
         
         private readonly Dictionary<string, string> _headers;
@@ -24,7 +24,7 @@ namespace Xero.Api.Infrastructure.Http
 
         public HttpClient(string baseUri)
         {
-            _baseUri = baseUri;
+            BaseUri = baseUri;
             _headers = new Dictionary<string, string>();
         }
         
@@ -129,7 +129,7 @@ namespace Xero.Api.Infrastructure.Http
 
         private UriBuilder Url(string endPoint, string query)
         {
-            var uri = new UriBuilder(string.Join(string.Empty, _baseUri, endPoint));
+            var uri = new UriBuilder(string.Join(string.Empty, BaseUri, endPoint));
 
             if (!string.IsNullOrWhiteSpace(query))
             {
