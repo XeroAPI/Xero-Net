@@ -19,11 +19,10 @@ namespace Xero.Api.Core.Endpoints
 
     public class InboxEndpoint : XeroUpdateEndpoint<InboxEndpoint,Model.Folder,FolderRequest,FolderResponse>, IInboxEndpoint
     {
-
-        internal InboxEndpoint(XeroHttpClient client)
+        public InboxEndpoint(XeroHttpClient client)
             : base(client, "/Inbox")
         {
-            
+            client.TrimBaseUri();
         }
 
         private Guid Inbox

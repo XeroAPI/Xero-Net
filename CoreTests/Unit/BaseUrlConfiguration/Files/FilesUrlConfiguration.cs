@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Xero.Api.Core.Endpoints;
 using Xero.Api.Infrastructure.Http;
 
-namespace CoreTests.Unit.BaseUrlConfiguration
+namespace CoreTests.Unit.BaseUrlConfiguration.Files
 {
     [TestFixture]
     public class FilesUrlConfiguration
