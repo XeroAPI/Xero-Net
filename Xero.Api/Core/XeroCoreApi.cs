@@ -95,40 +95,40 @@ namespace Xero.Api.Core
 
         private void Connect()
         {
-            OrganisationEndpoint = new OrganisationEndpoint(Client);
+            OrganisationEndpoint = new OrganisationEndpoint(Client.Clone());
 
-            Accounts = new AccountsEndpoint(Client);
-            Allocations = new AllocationsEndpoint(Client);
-            Attachments = new AttachmentsEndpoint(Client);
-            BankTransactions = new BankTransactionsEndpoint(Client);
-            BankTransfers = new BankTransfersEndpoint(Client);
-            BrandingThemes = new BrandingThemesEndpoint(Client);
-            Contacts = new ContactsEndpoint(Client);
-            ContactGroups = new ContactGroupsEndpoint(Client);
-            CreditNotes = new CreditNotesEndpoint(Client);
-            Currencies = new CurrenciesEndpoint(Client);
-            Employees = new EmployeesEndpoint(Client);
-            ExpenseClaims = new ExpenseClaimsEndpoint(Client);
-            Files = new FilesEndpoint(Client);
-            Folders = new FoldersEndpoint(Client);
-            Inbox = new InboxEndpoint(Client);
-            Invoices = new InvoicesEndpoint(Client);
-            Items = new ItemsEndpoint(Client);
-            Journals = new JournalsEndpoint(Client);
-            LinkedTransactions = new LinkedTransactionsEndpoint(Client);
-            ManualJournals = new ManualJournalsEndpoint(Client);
-            Overpayments = new OverpaymentsEndpoint(Client);
-            Payments = new PaymentsEndpoint(Client);
-            PdfFiles = new PdfEndpoint(Client);
-            Prepayments = new PrepaymentsEndpoint(Client);
-            PurchaseOrders = new PurchaseOrdersEndpoint(Client);
-            Receipts = new ReceiptsEndpoint(Client);
-            RepeatingInvoices = new RepeatingInvoicesEndpoint(Client);
-            Reports = new ReportsEndpoint(Client);
-            Setup = new SetupEndpoint(Client);
-            TaxRates = new TaxRatesEndpoint(Client);
-            TrackingCategories = new TrackingCategoriesEndpoint(Client);
-            Users = new UsersEndpoint(Client);
+            Accounts = new AccountsEndpoint(Client.Clone());
+            Allocations = new AllocationsEndpoint(Client.Clone());
+            Attachments = new AttachmentsEndpoint(Client.Clone());
+            BankTransactions = new BankTransactionsEndpoint(Client.Clone());
+            BankTransfers = new BankTransfersEndpoint(Client.Clone());
+            BrandingThemes = new BrandingThemesEndpoint(Client.Clone());
+            Contacts = new ContactsEndpoint(Client.Clone());
+            ContactGroups = new ContactGroupsEndpoint(Client.Clone());
+            CreditNotes = new CreditNotesEndpoint(Client.Clone());
+            Currencies = new CurrenciesEndpoint(Client.Clone());
+            Employees = new EmployeesEndpoint(Client.Clone());
+            ExpenseClaims = new ExpenseClaimsEndpoint(Client.Clone());
+            Files = new FilesEndpoint(Client.Clone());
+            Folders = new FoldersEndpoint(Client.Clone());
+            Inbox = new InboxEndpoint(Client.Clone());
+            Invoices = new InvoicesEndpoint(Client.Clone());
+            Items = new ItemsEndpoint(Client.Clone());
+            Journals = new JournalsEndpoint(Client.Clone());
+            LinkedTransactions = new LinkedTransactionsEndpoint(Client.Clone());
+            ManualJournals = new ManualJournalsEndpoint(Client.Clone());
+            Overpayments = new OverpaymentsEndpoint(Client.Clone());
+            Payments = new PaymentsEndpoint(Client.Clone());
+            PdfFiles = new PdfEndpoint(Client.Clone());
+            Prepayments = new PrepaymentsEndpoint(Client.Clone());
+            PurchaseOrders = new PurchaseOrdersEndpoint(Client.Clone());
+            Receipts = new ReceiptsEndpoint(Client.Clone());
+            RepeatingInvoices = new RepeatingInvoicesEndpoint(Client.Clone());
+            Reports = new ReportsEndpoint(Client.Clone());
+            Setup = new SetupEndpoint(Client.Clone());
+            TaxRates = new TaxRatesEndpoint(Client.Clone());
+            TrackingCategories = new TrackingCategoriesEndpoint(Client.Clone());
+            Users = new UsersEndpoint(Client.Clone());
         }
 
         public Organisation Organisation
