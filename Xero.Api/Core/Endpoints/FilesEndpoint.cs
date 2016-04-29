@@ -83,7 +83,7 @@ namespace Xero.Api.Core.Endpoints
         {
             var response = HandleFileResponse(Client
                 .Client
-                .Delete("/Files/" + fileid.ToString()));
+                .Delete(UriPath(fileid)));
 
             return response;
         }
