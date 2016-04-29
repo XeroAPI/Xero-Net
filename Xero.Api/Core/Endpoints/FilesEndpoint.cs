@@ -22,7 +22,7 @@ namespace Xero.Api.Core.Endpoints
 
     public class FilesEndpoint : XeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>, IFilesEndpoint
     {
-        public static string BASE_URI_PATH = "/files.xro/1.0/Files/";
+        public static string BASE_URI_PATH = "/files.xro/1.0/Files";
 
         public FilesEndpoint(XeroHttpClient client) : base(client, BASE_URI_PATH)
         {

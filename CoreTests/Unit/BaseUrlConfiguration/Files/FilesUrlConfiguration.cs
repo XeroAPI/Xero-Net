@@ -21,7 +21,8 @@ namespace CoreTests.Unit.BaseUrlConfiguration.Files
         [Test]
         public void it_appends_a_path_to_base_uri()
         {
-            Assert.AreEqual("/files.xro/1.0/Files/", FilesEndpoint.BASE_URI_PATH, "There is no other practical way to do this");
+            Assert.AreEqual("/files.xro/1.0/Files", FilesEndpoint.BASE_URI_PATH, 
+                "(There is no other practical way to do this)");
         }
     }
 }
