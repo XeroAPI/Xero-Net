@@ -64,7 +64,6 @@ namespace Xero.Api.Core.Endpoints
             var response = HandleFileResponse(Client
                 .Client.Put(BASE_URI_PATH + id, "{\"Name\":\"" + name + "\"}", "application/json"));
 
-
             return response;
         }
 
@@ -78,12 +77,18 @@ namespace Xero.Api.Core.Endpoints
 
         public Model.File Add(Guid folderId, Model.File file, byte[] data)
         {
-
             var response = HandleFileResponse(Client
                 .Client
-                .PostMultipartForm(BASE_URI_PATH + folderId, file.Mimetype, file.Name, file.FileName, data));
+                .PostMultipartForm(UriPath(folderId), file.Mimetype, file.Name, file.FileName, data));
 
             return response;
+        }
+
+        private static string UriPath(params object[] parts)
+        {
+            var t = new[] { BASE_URI_PATH };
+
+            return string.Join("/", t.Concat(parts.Select(it => it.ToString())));
         }
 
         public Model.File Remove(Guid fileid)
@@ -97,7 +102,7 @@ namespace Xero.Api.Core.Endpoints
 
         public byte[] GetContent(Guid id, string contentType)
         {
-            var response = Client.Client.GetRaw(BASE_URI_PATH + id + "/Content", contentType, "");
+            var response = Client.Client.GetRaw(UriPath(id, "Content"), contentType, "");
 
             using (MemoryStream ms = new MemoryStream())
             {
