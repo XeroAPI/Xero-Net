@@ -159,6 +159,7 @@
     <Compile Include="Integration\Attachments\Attachments.cs" />
     <Compile Include="Integration\General\Errors.cs" />
     <Compile Include="Integration\TaxRates\Create.cs" />
+    <Compile Include="Unit\BaseUrlConfiguration\Cloning_xero_http_client.cs" />
     <Compile Include="Unit\BaseUrlConfiguration\FilesUrlConfiguration.cs" />
     <Compile Include="Unit\SampleXeroApi.cs" />
     <Compile Include="Unit\Support\BlankAuthenticator.cs" />
