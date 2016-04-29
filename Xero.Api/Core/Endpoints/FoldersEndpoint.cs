@@ -65,7 +65,7 @@ namespace Xero.Api.Core.Endpoints
         {
             var response = HandleFolderResponse(Client
                 .Client
-                .Delete(UriPath("Folders", id)));
+                .Delete(UriPath(id)));
         }
 
         public FoldersResponse Rename(Guid id, string name)
