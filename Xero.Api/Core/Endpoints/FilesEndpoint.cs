@@ -79,13 +79,6 @@ namespace Xero.Api.Core.Endpoints
             return response;
         }
 
-        private static string UriPath(params object[] parts)
-        {
-            var t = new[] { BASE_URI_PATH };
-
-            return string.Join("/", t.Concat(parts.Select(it => it.ToString())));
-        }
-
         public Model.File Remove(Guid fileid)
         {
             var response = HandleFileResponse(Client
@@ -105,6 +98,13 @@ namespace Xero.Api.Core.Endpoints
 
                 return ms.ToArray();
             }
+        }
+
+        private static string UriPath(params object[] parts)
+        {
+            var t = new[] { BASE_URI_PATH };
+
+            return string.Join("/", t.Concat(parts.Select(it => it.ToString())));
         }
 
         private Model.File HandleFileResponse(Infrastructure.Http.Response response)
