@@ -14,12 +14,12 @@ namespace CoreTests.Unit.BaseUrlConfiguration
 
             var clone = original.Clone();
 
-            Assert.AreNotSame(clone, original);
+            Assert.AreNotSame(clone, original, "Expected the clone to be a new instance");
 
-            clone.TrimBaseUri();
+            clone.TrimBaseUri(); Assert.AreEqual("http://api.xero.com", clone.BaseUri, "Expected the clone to have truncated its base uri");
 
-            Assert.AreEqual("http://api.xero.com"       , clone.BaseUri);
-            Assert.AreEqual("http://api.xero.com/a/b/c" , original.BaseUri);
+            Assert.AreEqual("http://api.xero.com/a/b/c" , original.BaseUri, 
+                "Expected the original to have preserved its base uri because it shows the clone has operated only on itself.");
         }
     }
 }
