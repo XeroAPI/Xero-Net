@@ -57,7 +57,7 @@ namespace Xero.Api.Core.Endpoints
         public Model.File Rename(Guid id, string name)
         {
             var response = HandleFileResponse(Client
-                .Client.Put(BASE_URI_PATH + id, "{\"Name\":\"" + name + "\"}", "application/json"));
+                .Client.Put(UriPath(id), "{\"Name\":\"" + name + "\"}", "application/json"));
 
             return response;
         }
@@ -65,7 +65,7 @@ namespace Xero.Api.Core.Endpoints
         public Model.File Move(Guid id, Guid newFolder)
         {
             var response = HandleFileResponse(Client
-                .Client.Put(BASE_URI_PATH + id, "{\"FolderId\":\"" + newFolder + "\"}", "application/json"));
+                .Client.Put(UriPath(id), "{\"FolderId\":\"" + newFolder + "\"}", "application/json"));
 
             return response;
         }

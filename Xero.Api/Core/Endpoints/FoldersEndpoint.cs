@@ -19,105 +19,110 @@ namespace Xero.Api.Core.Endpoints
     }
 
     public class FoldersEndpoint : XeroUpdateEndpoint<FoldersEndpoint, Model.Folder, FolderRequest, FolderResponse>, IFoldersEndpoint
-  {
-    public FoldersEndpoint(XeroHttpClient client)
-        : base(client, "/Folders")
     {
-        client.TrimBaseUri();
+        public static string BASE_URI_PATH = "/files.xro/1.0/Folders";
+
+        public FoldersEndpoint(XeroHttpClient client)
+            : base(client, "/Folders")
+        {
+            client.TrimBaseUri();
+        }
+
+        public FoldersResponse[] Folders
+        {
+            get
+            {
+                var folder = HandleFoldersResponse(Client
+                    .Client
+                    .Get(BASE_URI_PATH, null));
+
+                return folder;
+            }
+        }
+
+        public FilePageResponse Add(string folderName)
+        {
+            var result = HandleFolderResponse(Client
+                .Client
+                .Post(BASE_URI_PATH, Client.JsonMapper.To(new Folder() { Name = folderName }), contentType: "application/json"));
+
+            return result;
+        }
+
+        public IList<Model.Folder> Find()
+        {
+            var response = HandleFoldersResponse(Client
+                .Client.Get(BASE_URI_PATH, ""));
+
+
+            var resultingFolders = from i in response
+                                   select new Folder() { Id = i.Id, Name = i.Name, IsInbox = i.IsInbox, FileCount = i.FileCount };
+
+            return resultingFolders.ToList();
+        }
+
+        public void Remove(Guid id)
+        {
+            var response = HandleFolderResponse(Client
+                .Client
+                .Delete(UriPath("Folders", id)));
+        }
+
+        public FoldersResponse Rename(Guid id, string name)
+        {
+            var response = HandleFoldersResponse(Client.Client.Put(UriPath(id), "{\"Name\":\"" + name + "\"}", "application/json"));
+            return (response != null) ? response[0] : null;
+        }
+
+        internal static string UriPath(params object[] parts)
+        {
+            var t = new[] { BASE_URI_PATH };
+
+            return string.Join("/", t.Concat(parts.Select(it => it.ToString())));
+        }
+
+        private FilePageResponse HandleFolderResponse(Infrastructure.Http.Response response)
+        {
+            if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
+            {
+                var json = response.Body;
+
+                var result = Client.JsonMapper.From<FilePageResponse>(json);
+
+                return result;
+            }
+
+            Client.HandleErrors(response);
+
+            return null;
+        }
+
+        private FoldersResponse[] HandleFoldersResponse(Infrastructure.Http.Response response)
+        {
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var json = response.Body;
+
+                var result = Client.JsonMapper.From<FoldersResponse[]>(json);
+
+                return result;
+            }
+
+            Client.HandleErrors(response);
+
+            return null;
+        }
     }
 
-    public FoldersResponse[] Folders
+    public class FolderResponse : XeroResponse<Model.Folder>
     {
-      get
-      {
-        var endpoint = string.Format("/Folders");
-
-        var folder = HandleFoldersResponse(Client
-            .Client
-            .Get(endpoint, null));
-
-        return folder;
-      }
+        public override IList<Folder> Values
+        {
+            get { throw new System.NotImplementedException(); }
+        }
     }
 
-    public FilePageResponse Add(string folderName)
+    public class FolderRequest : XeroRequest<Model.Folder>
     {
-      var endpoint = string.Format("/Folders");
-
-      var result = HandleFolderResponse(Client
-          .Client
-          .Post(endpoint, Client.JsonMapper.To(new Folder() { Name = folderName }), contentType: "application/json"));
-
-      return result;
     }
-
-    public IList<Model.Folder> Find()
-    {
-      var response = HandleFoldersResponse(Client
-          .Client.Get("/Folders", ""));
-
-
-      var resultingFolders = from i in response
-                             select new Folder() { Id = i.Id, Name = i.Name, IsInbox = i.IsInbox, FileCount = i.FileCount };
-
-      return resultingFolders.ToList();
-    }
-
-    public void Remove(Guid id)
-    {
-      var response = HandleFolderResponse(Client
-          .Client
-          .Delete("/Folders/" + id.ToString()));
-    }
-
-    public FoldersResponse Rename(Guid id, string name)
-    {
-      var response = HandleFoldersResponse(Client.Client.Put("/Folders/" + id, "{\"Name\":\"" + name + "\"}", "application/json"));
-      return (response != null) ? response[0] : null;
-    }
-
-    private FilePageResponse HandleFolderResponse(Infrastructure.Http.Response response)
-    {
-      if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
-      {
-        var json = response.Body;
-
-        var result = Client.JsonMapper.From<FilePageResponse>(json);
-
-        return result;
-      }
-
-      Client.HandleErrors(response);
-
-      return null;
-    }
-
-    private FoldersResponse[] HandleFoldersResponse(Infrastructure.Http.Response response)
-    {
-      if (response.StatusCode == HttpStatusCode.OK)
-      {
-        var json = response.Body;
-
-        var result = Client.JsonMapper.From<FoldersResponse[]>(json);
-
-        return result;
-      }
-
-      Client.HandleErrors(response);
-
-      return null;
-    }
-  }
-
-  public class FolderResponse : XeroResponse<Model.Folder>
-  {
-    public override IList<Folder> Values
-    {
-      get { throw new System.NotImplementedException(); }
-    }
-  }
-
-  public class FolderRequest : XeroRequest<Model.Folder>
-  {
-  }
 }
