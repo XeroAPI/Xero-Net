@@ -30,11 +30,9 @@ namespace Xero.Api.Core.Endpoints
         {
             get
             {
-                var endpoint = string.Format("/Inbox");
-
                 var folder = HandleInboxResponse(Client
                     .Client
-                    .Get(endpoint, null));
+                    .Get(UriPath("Inbox"), null));
 
                 return folder.Id; 
             }
@@ -45,37 +43,31 @@ namespace Xero.Api.Core.Endpoints
         {
             get
             {
-                var result = Find(id);
-                return result;
+                return Find(id);
             }
         }
 
         public Model.File Find(Guid fileId)
         {
-            var response = HandleFileResponse(Client
-                .Client.Get("/Files", ""));
+            var response = HandleFileResponse(Client.Client.Get(UriPath("Files"), ""));
 
             return response.Items.SingleOrDefault(i => i.Id == fileId);
         }
 
         public FilesResponse Add(Model.File file, byte[] data)
         {
-
             var response = HandleFileResponse(Client
                 .Client
-                .PostMultipartForm("/Files/" + Inbox, file.Mimetype , file.Name, file.Name, data));
+                .PostMultipartForm(UriPath("Files", Inbox), file.Mimetype , file.Name, file.Name, data));
 
             return response;
         }
-
-
-     
 
         public FilesResponse Remove(Guid fileid)
         {
             var response = HandleFileResponse(Client
                 .Client
-                .Delete("/Files/" + fileid.ToString()));
+                .Delete(UriPath("Files", fileid)));
 
             return response;
         }
@@ -108,23 +100,27 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
-      
 
         public Folder InboxFolder
         {
             get
             {
-                var endpoint = string.Format("{0}/Inbox", FilesApi.BaseUriPath);
-
                 var folder = HandleFoldersResponse(Client
                     .Client
-                    .Get(endpoint, null));
+                    .Get(UriPath("Inbox"), null));
 
                 var resultingFolders = from i in folder
                                        select new Folder() { Id = i.Id, Name = i.Name, IsInbox = i.IsInbox, FileCount = i.FileCount };
 
                 return resultingFolders.First();
             }
+        }
+
+        private static string UriPath(params object[] parts)
+        {
+            var t = new[] { FilesApi.BaseUriPath };
+
+            return string.Join("/", t.Concat(parts.Select(it => it.ToString())));
         }
 
         private FoldersResponse[] HandleFoldersResponse(Infrastructure.Http.Response response)
