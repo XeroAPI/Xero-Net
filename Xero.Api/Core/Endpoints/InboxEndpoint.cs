@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Xero.Api.Core.Endpoints.Base;
+using Xero.Api.Core.Endpoints.Internal;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Http;

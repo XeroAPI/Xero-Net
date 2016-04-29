@@ -20,11 +20,6 @@ namespace Xero.Api.Core.Endpoints
         Model.File this[Guid id] { get; }
     }
 
-    internal static class FilesApi
-    {
-        internal static string BaseUriPath = "/files.xro/1.0";
-    }
-
     public class FilesEndpoint : XeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>, IFilesEndpoint
     {
         public static string BASE_URI_PATH = "/files.xro/1.0/Files";
