@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Policy;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
@@ -102,9 +103,7 @@ namespace Xero.Api.Core.Endpoints
 
         private static string UriPath(params object[] parts)
         {
-            var t = new[] { BASE_URI_PATH };
-
-            return string.Join("/", t.Concat(parts.Select(it => it.ToString())));
+            return Internal.Url.From(BASE_URI_PATH, parts);
         }
 
         private Model.File HandleFileResponse(Infrastructure.Http.Response response)

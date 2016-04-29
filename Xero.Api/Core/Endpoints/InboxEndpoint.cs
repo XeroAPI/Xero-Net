@@ -118,9 +118,7 @@ namespace Xero.Api.Core.Endpoints
 
         private static string UriPath(params object[] parts)
         {
-            var t = new[] { FilesApi.BaseUriPath };
-
-            return string.Join("/", t.Concat(parts.Select(it => it.ToString())));
+            return Url.From(FilesApi.BaseUriPath, parts);
         }
 
         private FoldersResponse[] HandleFoldersResponse(Infrastructure.Http.Response response)

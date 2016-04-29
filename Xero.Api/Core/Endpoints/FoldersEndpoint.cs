@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using Xero.Api.Common;
 using Xero.Api.Core.Endpoints.Base;
+using Xero.Api.Core.Endpoints.Internal;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Http;
@@ -76,9 +77,7 @@ namespace Xero.Api.Core.Endpoints
 
         internal static string UriPath(params object[] parts)
         {
-            var t = new[] { BASE_URI_PATH };
-
-            return string.Join("/", t.Concat(parts.Select(it => it.ToString())));
+            return Url.From(BASE_URI_PATH, parts);
         }
 
         private FilePageResponse HandleFolderResponse(Infrastructure.Http.Response response)
