@@ -12,7 +12,10 @@ namespace Xero.Api.Infrastructure.Http
             }
             catch (WebException we)
             {
-                return new Response((HttpWebResponse)we.Response);
+                if (we.Status.Equals(WebExceptionStatus.ProtocolError))
+                    return new Response((HttpWebResponse)we.Response);
+
+                throw;
             }
         }
     }
