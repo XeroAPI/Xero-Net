@@ -113,7 +113,7 @@ namespace Xero.Api.Core.Endpoints
         {
             get
             {
-                var endpoint = string.Format("/Inbox");
+                var endpoint = string.Format("{0}/Inbox", FilesApi.BaseUriPath);
 
                 var folder = HandleFoldersResponse(Client
                     .Client
