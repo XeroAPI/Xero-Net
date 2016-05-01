@@ -18,6 +18,15 @@ A skinny wrapper of the Xero API. Supports Payroll. All third party libraries ar
 * [Acknowledgements] (#acknowledgements)
 * [License] (#license)
 
+## Development
+
+To get all tests to pass you'll need a Xero account and a [private application](http://developer.xero.com/documentation/getting-started/private-applications/). 
+
+1. generate a [public/private keypair](http://developer.xero.com/documentation/advanced-docs/public-private-keypair/)
+1. copy `public_privatekey.pfx` generated in (1) to `CoreTests\Resources\cert/`
+1. [register a private application](https://app.xero.com/Application). (Upload the `.cer` file generated in (1).)
+1. update `App.config` with consumer key and secret 
+
 ## Installation
 
 There are different way to install this library:
