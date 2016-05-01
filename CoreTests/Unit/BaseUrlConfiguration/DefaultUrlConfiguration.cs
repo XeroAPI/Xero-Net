@@ -22,6 +22,7 @@ namespace CoreTests.Unit.BaseUrlConfiguration
         {
             Check(
                 Map("https://api.xero.com"                  , "https://api.xero.com/api.xro/2.0"),
+                Map("https://api.xero.com/"                 , "https://api.xero.com/api.xro/2.0"),
                 Map(" https://api.xero.com "                , "https://api.xero.com/api.xro/2.0"),
                 Map("HTTPS://API.XERO.COM"                  , "https://api.xero.com/api.xro/2.0"),
                 Map("https://api-partner.network.xero.com"  , "https://api-partner.network.xero.com/api.xro/2.0"),

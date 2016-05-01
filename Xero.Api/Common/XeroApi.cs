@@ -49,7 +49,7 @@ namespace Xero.Api.Common
 
             var requiresSuffix = hosts.Any(it => uri.Host.Equals(it, StringComparison.InvariantCultureIgnoreCase));
 
-            return requiresSuffix ? string.Format("{0}api.xro/2.0", uri.AbsoluteUri) : uri.AbsoluteUri;
+            return (requiresSuffix ? string.Format("{0}api.xro/2.0", uri.AbsoluteUri) : uri.AbsoluteUri).TrimEnd('/');
         }
 
         public string UserAgent
