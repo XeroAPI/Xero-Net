@@ -5,7 +5,7 @@ using Xero.Api.Infrastructure.Http;
 namespace CoreTests.Unit.BaseUrlConfiguration
 {
     [TestFixture]
-    public class Cloning_xero_http_client
+    public class CloningXeroHttpClient
     {
         [Test]
         public void it_produces_new_http_client()
