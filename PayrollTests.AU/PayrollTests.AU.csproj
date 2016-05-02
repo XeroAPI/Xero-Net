@@ -72,9 +72,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\cert\public_privatekey.txt" />
+    <Content Include="Resources\cert\public_privatekey.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="App.config">
-      <SubType>Designer</SubType>
+      <SubType>
+      </SubType>
     </None>
     <None Include="packages.config" />
     <None Include="README.md" />
