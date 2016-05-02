@@ -1,4 +1,5 @@
 using CoreTests.Unit.Support;
+using CoreTests.Unit.Support.Lang;
 using NUnit.Framework;
 using Xero.Api.Infrastructure.Http;
 using Xero.Api.Payroll.America.Endpoints;
@@ -18,7 +19,7 @@ namespace CoreTests.Unit.BaseUrlConfiguration
 
             new SuperFundsEndpoint(xeroHttpClient);
 
-            Assert.AreEqual("http://api.xero.com", xeroHttpClient.BaseUri, "Expected the <XeroHttpClient> to be configured with a new base url");
+            xeroHttpClient.MustHaveBaseUri("http://api.xero.com");
         }
 
         [Test]
@@ -28,7 +29,7 @@ namespace CoreTests.Unit.BaseUrlConfiguration
 
             new WorkLocationsEndpoint(xeroHttpClient);
 
-            Assert.AreEqual("http://api.xero.com", xeroHttpClient.BaseUri, "Expected the <XeroHttpClient> to be configured with a new base url");
+            xeroHttpClient.MustHaveBaseUri("http://api.xero.com");
         }
 
         [Test]
@@ -38,7 +39,7 @@ namespace CoreTests.Unit.BaseUrlConfiguration
 
             new SuperFundsEndpoint(xeroHttpClient);
 
-            Assert.AreEqual("http://any.host.name", xeroHttpClient.BaseUri, "Expected the <XeroHttpClient> to be configured with a new base url");
+            xeroHttpClient.MustHaveBaseUri("http://any.host.name");
         }
 
         [Test]
@@ -48,7 +49,7 @@ namespace CoreTests.Unit.BaseUrlConfiguration
 
             new SuperFundsEndpoint(xeroHttpClient);
 
-            Assert.AreEqual("http://any.host.name", xeroHttpClient.BaseUri, "Expected the <XeroHttpClient> to be configured with a new base url");
+            xeroHttpClient.MustHaveBaseUri("http://any.host.name");
         }
 
         [Test]
@@ -58,7 +59,7 @@ namespace CoreTests.Unit.BaseUrlConfiguration
 
             new SuperFundsEndpoint(xeroHttpClient);
 
-            Assert.AreEqual(null, xeroHttpClient.BaseUri, "Expected the <XeroHttpClient> to be configured with a new base url");
+            xeroHttpClient.MustHaveBaseUri(null);
         }
 
         [Test]
@@ -68,7 +69,7 @@ namespace CoreTests.Unit.BaseUrlConfiguration
 
             new SuperFundsEndpoint(xeroHttpClient);
 
-            Assert.AreEqual(string.Empty, xeroHttpClient.BaseUri, "Expected the <XeroHttpClient> to be configured with a new base url");
+            xeroHttpClient.MustHaveBaseUri(string.Empty);
         }
     }
 }

@@ -165,6 +165,7 @@
     <Compile Include="Unit\BaseUrlConfiguration\Files\FilesUrlConfiguration.cs" />
     <Compile Include="Unit\BaseUrlConfiguration\Files\FoldersUrlConfiguration.cs" />
     <Compile Include="Unit\BaseUrlConfiguration\Files\InboxUrlConfiguration.cs" />
+    <Compile Include="Unit\Support\Lang\XeroHttpClientAssertions.cs" />
     <Compile Include="Unit\SampleXeroApi.cs" />
     <Compile Include="Unit\Support\BlankAuthenticator.cs" />
     <Compile Include="Unit\Support\BlankCertificateAuthenticator.cs" />

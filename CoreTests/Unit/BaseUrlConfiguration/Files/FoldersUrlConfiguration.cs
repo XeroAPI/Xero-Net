@@ -1,4 +1,5 @@
 using CoreTests.Unit.Support;
+using CoreTests.Unit.Support.Lang;
 using NUnit.Framework;
 using Xero.Api.Core.Endpoints;
 using Xero.Api.Infrastructure.Http;
@@ -15,7 +16,7 @@ namespace CoreTests.Unit.BaseUrlConfiguration.Files
 
             new FoldersEndpoint(xeroHttpClient);
 
-            Assert.AreEqual("http://api.xero.com", xeroHttpClient.BaseUri, "Expected the <XeroHttpClient> to be configured with a new base url");
+            xeroHttpClient.MustHaveBaseUri("http://api.xero.com");
         }
     }
 }
