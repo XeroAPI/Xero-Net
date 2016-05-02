@@ -49,17 +49,19 @@ namespace Xero.Api.Payroll
 
         private void Connect()
         {
-            LeaveApplications = new LeaveApplicationsEndpoint(Client);
-            SuperFundProducts = new SuperFundProductsEndpoint(Client);
-            SuperFunds = new SuperFundsEndpoint(Client);
-            Payslips = new PayslipsEndpoint(Client);
+            var client = Client.Clone();
 
-            Employees = new EmployeesEndpoint(Client);
-            PayRuns = new PayRunsEndpoint(Client);
-            Timesheets = new TimesheetsEndpoint(Client);
-            PayItems = new PayItemsEndpoint(Client);
-            PayrollCalendars = new PayrollCalendarsEndpoint(Client);
-            Settings = new SettingsEndpoint(Client);
+            LeaveApplications = new LeaveApplicationsEndpoint(client);
+            SuperFundProducts = new SuperFundProductsEndpoint(client);
+            SuperFunds = new SuperFundsEndpoint(client);
+            Payslips = new PayslipsEndpoint(client);
+
+            Employees = new EmployeesEndpoint(client);
+            PayRuns = new PayRunsEndpoint(client);
+            Timesheets = new TimesheetsEndpoint(client);
+            PayItems = new PayItemsEndpoint(client);
+            PayrollCalendars = new PayrollCalendarsEndpoint(client);
+            Settings = new SettingsEndpoint(client);
         }
 
         public IEnumerable<LeaveApplication> Create(IEnumerable<LeaveApplication> items)
