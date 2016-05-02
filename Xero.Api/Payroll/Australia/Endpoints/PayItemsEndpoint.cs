@@ -9,7 +9,7 @@ namespace Xero.Api.Payroll.Australia.Endpoints
     public class PayItemsEndpoint : PayrollEndpoint<PayItemsEndpoint, PayItems, PayItemsRequest, PayItemsResponse>
     {
         public PayItemsEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/PayItems")
+            : base(client, "/payroll.xro/1.0/PayItems")
         {
         }
     }

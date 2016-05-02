@@ -9,7 +9,7 @@ namespace Xero.Api.Payroll.Australia.Endpoints
     public class TimesheetsEndpoint : PayrollEndpoint<TimesheetsEndpoint, Timesheet, TimesheetsRequest, TimesheetsResponse>
     {
         public TimesheetsEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/Timesheets")
+            : base(client, "/payroll.xro/1.0/Timesheets")
         {
         }
     }
