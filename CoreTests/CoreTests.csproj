@@ -101,6 +101,7 @@
     <Compile Include="Integration\ExpenseClaims\ExpenseClaimTest.cs" />
     <Compile Include="Integration\ExpenseClaims\Create.cs" />
     <Compile Include="Integration\ExpenseClaims\Update.cs" />
+    <Compile Include="Integration\Files\Associations\AssociationTest.cs" />
     <Compile Include="Integration\Files\Folders\AddFolderTest.cs" />
     <Compile Include="Integration\Files\Inbox\InboxTest.cs" />
     <Compile Include="Integration\Files\Support\DataItem.cs" />
@@ -190,6 +191,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
