@@ -14,7 +14,7 @@ namespace Xero.Api.Infrastructure.Http
     // It uses IAuthenticator or ICertificateAuthenticator to do the signing
     internal class HttpClient
     {
-        static readonly int defaultTimeout = (int)TimeSpan.FromMinutes(5).TotalMilliseconds;
+        static readonly int defaultTimeout = (int)TimeSpan.FromMinutes(5.5).TotalMilliseconds;
 
         private readonly string _baseUri;
         private readonly IAuthenticator _auth;
