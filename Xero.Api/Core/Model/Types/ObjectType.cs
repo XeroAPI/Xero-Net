@@ -1,8 +1,9 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Xero.Api.Core.Model.Types {
-    public enum ObjectType {
-
+namespace Xero.Api.Core.Model.Types
+{
+    public enum ObjectType 
+    {
         [EnumMember(Value = "ACCOUNT")]
         Account,
         [EnumMember(Value = "ACCPAY")]
@@ -24,13 +25,13 @@ namespace Xero.Api.Core.Model.Types {
         [EnumMember(Value = "APOVERPAYMENT")]
         PurchasesOverpayment,
         [EnumMember(Value = "APOVERPAYMENTPAYMENT")]
-        PurchasesOverpayment2,
+        PurchasesOverpaymentPayment,
         [EnumMember(Value = "APOVERPAYMENTSOURCEPAYMENT")]
         BankPartOfPurchasesOverpayment,
         [EnumMember(Value = "APPREPAYMENT")]
         PurchasesPrepayment,
         [EnumMember(Value = "APPREPAYMENTPAYMENT")]
-        PurchasesPrepayment2,
+        PurchasesPrepaymentPayment,
         [EnumMember(Value = "APPREPAYMENTSOURCEPAYMENT")]
         BankPartOfPurchasesPrepayment,
         [EnumMember(Value = "ARCREDITPAYMENT")]
@@ -38,13 +39,13 @@ namespace Xero.Api.Core.Model.Types {
         [EnumMember(Value = "AROVERPAYMENT")]
         SalesOverpayment,
         [EnumMember(Value = "AROVERPAYMENTPAYMENT")]
-        SalesOverpayment2,
+        SalesOverpaymentPayment,
         [EnumMember(Value = "AROVERPAYMENTSOURCEPAYMENT")]
         BankPartOfSalesOverpayment,
         [EnumMember(Value = "ARPREPAYMENT")]
         SalesPrepayment,
         [EnumMember(Value = "ARPREPAYMENTPAYMENT")]
-        SalesPrepayment2,
+        SalesPrepaymentPayment,
         [EnumMember(Value = "ARPREPAYMENTSOURCEPAYMENT")]
         BankPartOfSalesPrepayment,
         [EnumMember(Value = "CASHPAID")]
@@ -69,7 +70,5 @@ namespace Xero.Api.Core.Model.Types {
         ExpenseReceipt,
         [EnumMember(Value = "TRANSFER")]
         BankTransfer
-
-
     }
 }

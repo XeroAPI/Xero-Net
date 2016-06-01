@@ -1,9 +1,10 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Xero.Api.Core.Model.Types {
-
+namespace Xero.Api.Core.Model.Types
+{
     [DataContract(Namespace = "")]
-    public enum ObjectGroupType {
+    public enum ObjectGroupType
+    {
         [EnumMember(Value = "Account")]
         Account,
         [EnumMember(Value = "BankTransaction")]

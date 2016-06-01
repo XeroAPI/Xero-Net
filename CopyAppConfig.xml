@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+  </startup>
+
+  <appSettings>
+    <add key="BaseUrl" value="https://api.xero.com"/>
+    <add key="PartnerBaseUrl" value="https://api-partner.network.xero.com"/>
+    <add key="ConsumerKey" value="TTM65QIPBIRKBXQU3TI0T4YXJKHFPE"/>
+    <add key="ConsumerSecret" value="YJZOTCDQKW1FX2ONTYELZNALVZMPV0"/>   
+    <add key="CallbackUrl" value="localhost"/>
+    <add key="SigningCertificate" value="E:\Users\markh\Documents\Visual Studio Projects\Accumulus\AccumulusZephyr\Signing\public_privatekey.pfx"/>
+    <add key="SigningCertificatePassword" value="breeze"/>
+    <add key="PartnerCertificate" value=""/>
+    <add key="PartnerCertificatePassword" value=""/>
+  </appSettings>
+</configuration>
