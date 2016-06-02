@@ -8,8 +8,6 @@ namespace Xero.Api.Core.Endpoints
 {
     public interface IAssociationsEndpoint
     {
-        XeroHttpClient Client { get; }
-
         Association Find(Guid fileId, Guid objectId);
 
         IEnumerable<Association> Find(Guid fileId);
