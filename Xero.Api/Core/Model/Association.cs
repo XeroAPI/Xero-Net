@@ -14,10 +14,10 @@ namespace Xero.Api.Core.Model
         public Guid ObjectId { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public ObjectGroupType ObjectGroup { get; set; }
+        public ObjectGroupType? ObjectGroup { get; set; }
 
         [DataMember(EmitDefaultValue = false, IsRequired = false)]
-        public ObjectType ObjectType { get; set; }
+        public ObjectType? ObjectType { get; set; }
 
         public override string ToString()
         {
