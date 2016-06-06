@@ -23,6 +23,7 @@ namespace Xero.Api.Core
         IFilesEndpoint Files { get; }
         IFoldersEndpoint Folders { get; }
         IInboxEndpoint Inbox { get; }
+        IAssociationsEndpoint Associations { get; }
         IInvoicesEndpoint Invoices { get; }
         IItemsEndpoint Items { get; }
         IJournalsEndpoint Journals { get; }
