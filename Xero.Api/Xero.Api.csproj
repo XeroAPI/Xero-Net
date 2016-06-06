@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>5</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -45,6 +46,7 @@
     <Compile Include="Common\IXeroReadEndpoint.cs" />
     <Compile Include="Common\QueryGenerator.cs" />
     <Compile Include="Core\Endpoints\AllocationEndpoint.cs" />
+    <Compile Include="Core\Endpoints\AssociationsEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\IXeroCreateEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\IXeroUpdateEndpoint.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="Core\Model\OnlineInvoice.cs" />
     <Compile Include="Core\IXeroCoreApi.cs" />
     <Compile Include="Core\Endpoints\PurchaseOrdersEndpoint.cs" />
+    <Compile Include="Core\Model\Association.cs" />
     <Compile Include="Core\Model\ContactTrackingCategory.cs" />
     <Compile Include="Core\Model\LinkedTransaction.cs" />
     <Compile Include="Core\Model\PurchaseOrder.cs" />
@@ -63,6 +66,8 @@
     <Compile Include="Core\Model\Status\TrackingOptionStatus.cs" />
     <Compile Include="Core\Model\Types\BankAccountType.cs" />
     <Compile Include="Core\Model\Types\LinkedTransactionType.cs" />
+    <Compile Include="Core\Model\Types\ObjectGroupType.cs" />
+    <Compile Include="Core\Model\Types\ObjectType.cs" />
     <Compile Include="Core\Model\Types\SourceType.cs" />
     <Compile Include="Core\Request\LinkedTransactionsRequest.cs" />
     <Compile Include="Core\Request\OnlineInvoicesRequest.cs" />

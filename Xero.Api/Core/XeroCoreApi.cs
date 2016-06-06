@@ -75,6 +75,7 @@ namespace Xero.Api.Core
         public IFilesEndpoint Files { get; private set; }
         public IFoldersEndpoint Folders { get; private set; }
         public IInboxEndpoint Inbox { get; private set; }
+        public IAssociationsEndpoint Associations { get; private set; }
         public IInvoicesEndpoint Invoices { get; private set; }
         public IItemsEndpoint Items { get; private set; }
         public IJournalsEndpoint Journals { get; protected set; }
@@ -113,6 +114,7 @@ namespace Xero.Api.Core
             Files = new FilesEndpoint(Client);
             Folders = new FoldersEndpoint(Client);
             Inbox = new InboxEndpoint(Client);
+            Associations = new AssociationsEndpoint(Client);
             Invoices = new InvoicesEndpoint(Client);
             Items = new ItemsEndpoint(Client);
             Journals = new JournalsEndpoint(Client);
