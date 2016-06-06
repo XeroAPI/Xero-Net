@@ -51,7 +51,12 @@ namespace Xero.Api.Example.Applications.Public
         {
             var existingAccessToken = Store.Find(userId);
             if (existingAccessToken != null)
-                return existingAccessToken;
+            {
+                if (!existingAccessToken.HasExpired)
+                    return existingAccessToken;
+                else
+                    Store.Delete(existingAccessToken);
+            }
 
             var requestToken = _requestTokenStore.Find(userId);
             if (requestToken == null)
