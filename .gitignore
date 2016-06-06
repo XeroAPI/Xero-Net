@@ -36,3 +36,5 @@ out/
 
 *.nupkg
 /.vs
+*.DotSettings
+*.lnk

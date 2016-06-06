@@ -3,9 +3,12 @@ using System.Net;
 
 namespace Xero.Api.Infrastructure.Exceptions
 {
+    [Serializable]
     public class XeroApiException
         : Exception
     {
+        public XeroApiException() { }
+
         public XeroApiException(HttpStatusCode statusCode, string body)
             : base(body)
         {
