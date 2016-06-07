@@ -7,7 +7,7 @@ namespace Xero.Api.Core.Model
     [DataContract(Namespace = "")]
     public class Terms : CoreData
     {
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember]
         public int Day { get; set; }
 
         [DataMember(Name = "Type")]
