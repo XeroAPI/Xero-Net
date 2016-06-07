@@ -5,7 +5,7 @@ namespace Xero.Api.Payroll.Australia.Model.Types
     [DataContract(Namespace = "")]
     public enum RateType
     {
-        [EnumMember(Value = "FIXED")]
+        [EnumMember(Value = "FIXEDAMOUNT")]
         Fixed,
         [EnumMember(Value = "MULTIPLE")]
         Multiple,
