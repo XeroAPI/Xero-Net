@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Xero.Api.Infrastructure.Model;
 using Xero.Api.Payroll.Australia.Model.Types;
 
 namespace Xero.Api.Payroll.Australia.Model
@@ -29,6 +31,9 @@ namespace Xero.Api.Payroll.Australia.Model
         public decimal? NumberOfUnits { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public EarningsRateCalculationType EarningsRateCalculation { get; set; }
+        public EarningsRateCalculationType CalculationType { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public List<ValidationError> ValidationErrors { get; set; }
     } 
 }
