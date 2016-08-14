@@ -22,7 +22,7 @@ namespace Xero.Api.Core.Endpoints
 
         public void Delete(Item itemToDelete)
         {
-            var endpoint = string.Format("/api.xro/2.0/Items/{0}", itemToDelete.Id);
+            var endpoint = string.Format("/Items/{0}", itemToDelete.Id);
 
             HandleResponse(Client
                 .Client
