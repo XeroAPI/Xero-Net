@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Net;
+using System.Runtime.Serialization;
 using CoreTests.Integration.Files.Support;
 using NUnit.Framework;
 using Xero.Api.Core.Model;
@@ -91,7 +92,7 @@ namespace CoreTests.Integration.Files.Files
 
            var filename = "Inbox file " + badchar[0] + badchar[3] + badchar[2] + ".png"; ;
 
-           Assert.Throws<WebException>(() =>
+           var err = Assert.Throws<SerializationException>(() =>
            {
                Api.Files.Add( inboxId, create_file_with_name(filename), exampleFile);
            });

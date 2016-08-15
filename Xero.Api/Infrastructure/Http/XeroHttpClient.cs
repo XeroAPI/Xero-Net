@@ -14,9 +14,13 @@ namespace Xero.Api.Infrastructure.Http
     // This knows nothing about the types being passed to and fro. (Except for the constraint in the generic type)
     public class XeroHttpClient
     {
+        private readonly ICertificateAuthenticator _certificateAuth;
+        private readonly IConsumer _consumer;
+        private readonly IUser _user;
         internal readonly IJsonObjectMapper JsonMapper;
         internal readonly IXmlObjectMapper XmlMapper;
         internal readonly HttpClient Client;
+        private IAuthenticator _auth;
 
         private XeroHttpClient(IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
         {
@@ -24,30 +28,60 @@ namespace Xero.Api.Infrastructure.Http
             XmlMapper = xmlMapper;
         }
 
-        public XeroHttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user,
+        public XeroHttpClient(string baseUri, IAuthenticator certificateAuth, IConsumer consumer, IUser user,
             IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
-            : this(baseUri, auth, consumer, user, jsonMapper, xmlMapper, null)
+            : this(baseUri, certificateAuth, consumer, user, jsonMapper, xmlMapper, null)
         {
         }
 
-        public XeroHttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper, IRateLimiter rateLimiter)
+        public XeroHttpClient(
+            string baseUri, 
+            IAuthenticator auth, 
+            IConsumer consumer, 
+            IUser user, 
+            IJsonObjectMapper jsonMapper, 
+            IXmlObjectMapper xmlMapper, 
+            IRateLimiter rateLimiter
+        )
             : this(jsonMapper, xmlMapper)
         {
+            _auth = auth;
+            _consumer = consumer;
+            _user = user;
+
             Client = new HttpClient(baseUri, auth, consumer, user, rateLimiter);
         }
 
-        public XeroHttpClient(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user,
-            IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
-            : this(baseUri, auth, consumer, user, jsonMapper, xmlMapper, null)
+        public XeroHttpClient(
+            string baseUri,
+            ICertificateAuthenticator certificateAuth,
+            IConsumer consumer,
+            IUser user,
+            IJsonObjectMapper jsonMapper,
+            IXmlObjectMapper xmlMapper
+            )
+            : this(baseUri, certificateAuth, consumer, user, jsonMapper, xmlMapper, null)
         {
+            
         }
 
-        public XeroHttpClient(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper, IRateLimiter rateLimiter)
+        public XeroHttpClient(
+            string baseUri, 
+            ICertificateAuthenticator certificateAuth, 
+            IConsumer consumer, 
+            IUser user, 
+            IJsonObjectMapper jsonMapper, 
+            IXmlObjectMapper xmlMapper, 
+            IRateLimiter rateLimiter)
             : this(jsonMapper, xmlMapper)
         {
-            Client = new HttpClient(baseUri, auth, consumer, user, rateLimiter)
+            _certificateAuth = certificateAuth;
+            _consumer = consumer;
+            _user = user;
+
+            Client = new HttpClient(baseUri, certificateAuth, consumer, user, rateLimiter)
             {
-                ClientCertificate = auth.Certificate
+                ClientCertificate = certificateAuth.Certificate
             };
         }
 
@@ -60,6 +94,13 @@ namespace Xero.Api.Infrastructure.Http
         {
             get { return Client.UserAgent; }
             set { Client.UserAgent = value; }
+        }
+
+        public string BaseUri {
+            get
+            {
+                return Client.BaseUri;
+            }
         }
 
         public IEnumerable<TResult> Get<TResult, TResponse>(string endPoint)
@@ -160,6 +201,18 @@ namespace Xero.Api.Infrastructure.Http
 
             
             throw new XeroApiException(response.StatusCode, response.Body);
+        }
+
+        public void TrimBaseUri()
+        {
+            Client.TrimBaseUri();
+        }
+
+        public XeroHttpClient Clone()
+        {
+            return _auth != null 
+                ? new XeroHttpClient(BaseUri, _auth, _consumer, _user, JsonMapper, XmlMapper) 
+                : new XeroHttpClient(BaseUri, _certificateAuth, _consumer, _user, JsonMapper, XmlMapper);
         }
     }
 }

@@ -251,16 +251,13 @@ namespace CoreTests.Integration.Invoices
                 .Find()
                 .FirstOrDefault();
 
-            if (item == null)
-            {
-                Assert.False(false, "No items");
-            }
+            Assert.NotNull(item, "Unable to continue with test because the organisation has no items");
 
             var invoice = Api.Create(new Invoice
             {
                 Contact = new Contact { Name = "ABC Limited" },
                 Type = InvoiceType.AccountsReceivable,
-				LineItems = new List<LineItem>
+                LineItems = new List<LineItem>
                 {
                     new LineItem
                     {

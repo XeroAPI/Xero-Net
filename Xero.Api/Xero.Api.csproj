@@ -51,8 +51,10 @@
     <Compile Include="Core\Endpoints\Base\IXeroCreateEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\IXeroUpdateEndpoint.cs" />
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
+    <Compile Include="Core\Endpoints\Internal\FilesApi.cs" />
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
+    <Compile Include="Core\Endpoints\Internal\Url.cs" />
     <Compile Include="Core\Endpoints\LinkedTransactionsEndpoint.cs" />
     <Compile Include="Core\Model\OnlineInvoice.cs" />
     <Compile Include="Core\IXeroCoreApi.cs" />
@@ -128,6 +130,10 @@
     <Compile Include="Core\Response\OptionsResponse.cs" />
     <Compile Include="Infrastructure\Exceptions\RateExceededException.cs" />
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />
+    <Compile Include="Private\BlankAuthenticator.cs" />
+    <Compile Include="Infrastructure\Http\Bodies\Binary.cs" />
+    <Compile Include="Infrastructure\Http\Internet.cs" />
+    <Compile Include="Infrastructure\Http\Bodies\MultipartFormData.cs" />
     <Compile Include="Infrastructure\Interfaces\IAuthenticationToken.cs" />
     <Compile Include="Infrastructure\Interfaces\IUser.cs" />
     <Compile Include="Infrastructure\Exceptions\ApiException.cs" />
@@ -266,6 +272,7 @@
     <Compile Include="Payroll\Australia\Response\SettingsResponse.cs" />
     <Compile Include="Payroll\Australia\Response\TimesheetsResponse.cs" />
     <Compile Include="Payroll\Common\Model\NumberOfUnits.cs" />
+    <Compile Include="Private\ObjectExtensions.cs" />
     <Compile Include="Serialization\DefaultMapper.cs" />
     <Compile Include="Core\Endpoints\UsersEndpoint.cs" />
     <Compile Include="Core\Model\Types\AddressType.cs" />
@@ -557,6 +564,7 @@
   <ItemGroup>
     <None Include="README.md" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

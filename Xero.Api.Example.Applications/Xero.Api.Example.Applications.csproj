@@ -52,6 +52,7 @@
     <Compile Include="Private\Core.cs" />
     <Compile Include="Private\PrivateAuthenticator.cs" />
     <Compile Include="Private\Settings.cs" />
+    <Compile Include="Private\SigningCertificate.cs" />
     <Compile Include="Public\AmericanPayroll.cs" />
     <Compile Include="Public\AustralianPayroll.cs" />
     <Compile Include="Public\Core.cs" />

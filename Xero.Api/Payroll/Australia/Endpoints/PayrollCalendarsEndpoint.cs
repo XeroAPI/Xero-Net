@@ -10,7 +10,7 @@ namespace Xero.Api.Payroll.Australia.Endpoints
         PayrollEndpoint<PayrollCalendarsEndpoint, PayrollCalendar, PayrollCalendarsRequest, PayrollCalendarResponse>
     {
         public PayrollCalendarsEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/PayrollCalendars")
+            : base(client, "/payroll.xro/1.0/PayrollCalendars")
         {
         }
     }

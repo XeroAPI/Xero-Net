@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Xero.Api.Core.Endpoints.Base;
+using Xero.Api.Core.Endpoints.Internal;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Response;
 using Xero.Api.Infrastructure.Http;
@@ -19,22 +20,19 @@ namespace Xero.Api.Core.Endpoints
 
     public class InboxEndpoint : XeroUpdateEndpoint<InboxEndpoint,Model.Folder,FolderRequest,FolderResponse>, IInboxEndpoint
     {
-
-        internal InboxEndpoint(XeroHttpClient client)
-            : base(client, "files.xro/1.0/Inbox")
+        public InboxEndpoint(XeroHttpClient client)
+            : base(client, "/Inbox")
         {
-            
+            client.TrimBaseUri();
         }
 
         private Guid Inbox
         {
             get
             {
-                var endpoint = string.Format("files.xro/1.0/Inbox");
-
                 var folder = HandleInboxResponse(Client
                     .Client
-                    .Get(endpoint, null));
+                    .Get(UriPath("Inbox"), null));
 
                 return folder.Id; 
             }
@@ -45,37 +43,31 @@ namespace Xero.Api.Core.Endpoints
         {
             get
             {
-                var result = Find(id);
-                return result;
+                return Find(id);
             }
         }
 
         public Model.File Find(Guid fileId)
         {
-            var response = HandleFileResponse(Client
-                .Client.Get("files.xro/1.0/Files", ""));
+            var response = HandleFileResponse(Client.Client.Get(UriPath("Files"), ""));
 
             return response.Items.SingleOrDefault(i => i.Id == fileId);
         }
 
         public FilesResponse Add(Model.File file, byte[] data)
         {
-
             var response = HandleFileResponse(Client
                 .Client
-                .PostMultipartForm("files.xro/1.0/Files/" + Inbox, file.Mimetype , file.Name, file.Name, data));
+                .PostMultipartForm(UriPath("Files", Inbox), file.Mimetype , file.Name, file.Name, data));
 
             return response;
         }
-
-
-     
 
         public FilesResponse Remove(Guid fileid)
         {
             var response = HandleFileResponse(Client
                 .Client
-                .Delete("files.xro/1.0/Files/" + fileid.ToString()));
+                .Delete(UriPath("Files", fileid)));
 
             return response;
         }
@@ -108,23 +100,25 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
-      
 
         public Folder InboxFolder
         {
             get
             {
-                var endpoint = string.Format("files.xro/1.0/Inbox");
-
                 var folder = HandleFoldersResponse(Client
                     .Client
-                    .Get(endpoint, null));
+                    .Get(UriPath("Inbox"), null));
 
                 var resultingFolders = from i in folder
                                        select new Folder() { Id = i.Id, Name = i.Name, IsInbox = i.IsInbox, FileCount = i.FileCount };
 
                 return resultingFolders.First();
             }
+        }
+
+        private static string UriPath(params object[] parts)
+        {
+            return Url.From(FilesApi.BaseUriPath, parts);
         }
 
         private FoldersResponse[] HandleFoldersResponse(Infrastructure.Http.Response response)

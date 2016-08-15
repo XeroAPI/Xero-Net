@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,9 +34,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Content Include="Resources\cert\public_privatekey.txt" />
     <Content Include="Resources\images\connect_xero_button_blue - Copy.png">
@@ -45,9 +42,7 @@
     <Content Include="Resources\images\connect_xero_button_blue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
@@ -108,8 +103,8 @@
     <Compile Include="Integration\Files\Support\DataItem.cs" />
     <Compile Include="Integration\Files\Support\DiskFile.cs" />
     <Compile Include="Integration\Files\Support\File.cs" />
-    <Compile Include="Integration\Files\Support\FilesTest.cs" />
     <Compile Include="Integration\Files\Files\AddFileTest.cs" />
+    <Compile Include="Integration\Files\Support\FilesTest.cs" />
     <Compile Include="Integration\Invoices\Find.cs" />
     <Compile Include="Integration\Invoices\InvoicesTest.cs" />
     <Compile Include="Integration\Invoices\OnlineInvoiceUrl.cs" />
@@ -167,9 +162,19 @@
     <Compile Include="Integration\Attachments\Attachments.cs" />
     <Compile Include="Integration\General\Errors.cs" />
     <Compile Include="Integration\TaxRates\Create.cs" />
+    <Compile Include="Unit\BaseUrlConfiguration\CloningXeroHttpClient.cs" />
+    <Compile Include="Unit\BaseUrlConfiguration\Files\FilesUrlConfiguration.cs" />
+    <Compile Include="Unit\BaseUrlConfiguration\Files\FoldersUrlConfiguration.cs" />
+    <Compile Include="Unit\BaseUrlConfiguration\Files\InboxUrlConfiguration.cs" />
+    <Compile Include="Unit\Support\Lang\XeroHttpClientAssertions.cs" />
+    <Compile Include="Unit\SampleXeroApi.cs" />
+    <Compile Include="Unit\Support\BlankAuthenticator.cs" />
+    <Compile Include="Unit\Support\BlankCertificateAuthenticator.cs" />
     <Compile Include="Unit\ExceptionTests.cs" />
+    <Compile Include="Unit\BaseUrlConfiguration\PayrollUrlConfiguration.cs" />
     <Compile Include="Unit\RateLimiterTest.cs" />
     <Compile Include="Unit\SummarizeErrors.cs" />
+    <Compile Include="Unit\Support\SampleXeroApi.cs" />
     <Compile Include="Unit\UrlEncoder.cs" />
     <Compile Include="Unit\Contacts.cs" />
     <Compile Include="Unit\FourDecimalPlaces.cs" />
@@ -179,10 +184,11 @@
     <Compile Include="Unit\SalesTaxBasisTypeTest.cs" />
     <Compile Include="Unit\SalesTaxPeriodTypeTest.cs" />
     <Compile Include="Unit\TrackingCategories.cs" />
+    <Compile Include="Unit\BaseUrlConfiguration\DefaultUrlConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xero.Api.Example.Applications\Xero.Api.Example.Applications.csproj">
-      <Project>{d799e8cc-0917-465d-80df-f8355201d13f}</Project>
+      <Project>{D799E8CC-0917-465D-80DF-F8355201D13F}</Project>
       <Name>Xero.Api.Example.Applications</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xero.Api\Xero.Api.csproj">

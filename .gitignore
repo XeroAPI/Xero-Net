@@ -35,6 +35,9 @@ out/
 *.orig
 
 *.nupkg
+CoreTests/App.config
+.vs/
+*.userprefs
 /.vs
 *.DotSettings
 *.lnk

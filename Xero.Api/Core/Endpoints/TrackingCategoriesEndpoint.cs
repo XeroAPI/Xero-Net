@@ -24,7 +24,7 @@ namespace Xero.Api.Core.Endpoints
     public class TrackingCategoriesEndpoint : XeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, ITrackingCategoriesEndpoint
     {
         public TrackingCategoriesEndpoint(XeroHttpClient client) :
-            base(client, "/api.xro/2.0/TrackingCategories")
+            base(client, "/TrackingCategories")
         {
         }
 
@@ -42,7 +42,7 @@ namespace Xero.Api.Core.Endpoints
         {
             get
             {
-                var endpoint = string.Format("/api.xro/2.0/TrackingCategories/{0}", id);
+                var endpoint = string.Format("/TrackingCategories/{0}", id);
 
                 var trackingCat = HandleResponse(Client.Client.Get(endpoint, null)).TrackingCategories.FirstOrDefault();
 
@@ -54,7 +54,7 @@ namespace Xero.Api.Core.Endpoints
 
         public TrackingCategory GetByID(Guid id)
         {
-            var endpoint = string.Format("/api.xro/2.0/TrackingCategories/{0}", id);
+            var endpoint = string.Format("/TrackingCategories/{0}", id);
 
             var trackingCat = HandleResponse(Client.Client.Get(endpoint, null)).TrackingCategories.FirstOrDefault();
 
@@ -63,7 +63,7 @@ namespace Xero.Api.Core.Endpoints
 
         public List<TrackingCategory> GetAll()
         {
-            var endpoint = string.Format("/api.xro/2.0/TrackingCategories");
+            var endpoint = string.Format("/TrackingCategories");
 
             List<TrackingCategory> trackingCats = HandleResponse(Client.Client.Get(endpoint, QueryString)).TrackingCategories.ToList();
 
@@ -72,7 +72,7 @@ namespace Xero.Api.Core.Endpoints
 
         public TrackingCategory Add(TrackingCategory trackingCategory)
         {
-            var endpoint = string.Format("/api.xro/2.0/TrackingCategories");
+            var endpoint = string.Format("/TrackingCategories");
 
             var groups = HandleResponse(Client
                 .Client
@@ -84,7 +84,7 @@ namespace Xero.Api.Core.Endpoints
 
         public override TrackingCategory Update(TrackingCategory trackingCategory)
         {
-            var endpoint = string.Format("/api.xro/2.0/TrackingCategories/{0}", trackingCategory.Id.ToString());
+            var endpoint = string.Format("/TrackingCategories/{0}", trackingCategory.Id.ToString());
 
             trackingCategory.Options = null;
 
@@ -98,7 +98,7 @@ namespace Xero.Api.Core.Endpoints
 
         public TrackingCategory Delete(TrackingCategory trackingCategory)
         {
-            var endpoint = string.Format("/api.xro/2.0/TrackingCategories/{0}", trackingCategory.Id);
+            var endpoint = string.Format("/TrackingCategories/{0}", trackingCategory.Id);
 
             var track = HandleResponse(Client
                 .Client
@@ -109,7 +109,7 @@ namespace Xero.Api.Core.Endpoints
 
         public Option DeleteTrackingOption(TrackingCategory trackingCategory, Option option)
         {
-            var endpoint = string.Format("/api.xro/2.0/TrackingCategories/{0}/Options/{1}", trackingCategory.Id, option.Id);
+            var endpoint = string.Format("/TrackingCategories/{0}/Options/{1}", trackingCategory.Id, option.Id);
 
             var track = HandleOptionResponse(Client
                 .Client
@@ -161,7 +161,7 @@ namespace Xero.Api.Core.Endpoints
         private readonly XeroHttpClient _client;
 
         public OptionCollection(XeroHttpClient client, TrackingCategory trackingCat)
-            : base(client, "/api.xro/2.0/TrackingCategories")
+            : base(client, "/TrackingCategories")
         {
             _trackingCat = trackingCat;
             _client = client;
@@ -183,7 +183,7 @@ namespace Xero.Api.Core.Endpoints
 
         private List<Option> AssignOptions(TrackingCategory category, List<Option> options)
         {
-            var endpoint = string.Format("/api.xro/2.0/trackingcategories/{0}/options", category.Id);
+            var endpoint = string.Format("/trackingcategories/{0}/options", category.Id);
 
             var result = HandleResponse(_client
                  .Client
@@ -207,7 +207,7 @@ namespace Xero.Api.Core.Endpoints
 
         public Option UpdateOption(Option option)
         {
-            var endpoint = string.Format("/api.xro/2.0/trackingcategories/{0}/options/{1}", _trackingCat.Id, option.Id);
+            var endpoint = string.Format("/trackingcategories/{0}/options/{1}", _trackingCat.Id, option.Id);
 
 
             List<Option> Options = new List<Option>();

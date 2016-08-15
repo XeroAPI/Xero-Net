@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth;
+using Xero.Api.Infrastructure.OAuth.Signing;
 
 namespace Xero.Api.Example.Applications
 {
@@ -80,6 +82,13 @@ namespace Xero.Api.Example.Applications
         }
 
         public IUser User { get; set; }
+
+        public void Authenticate(HttpWebRequest request, IConsumer consumer, IUser user)
+        {
+            var authString =  GetAuthorization(GetToken(consumer, user), request.Method, request.RequestUri.AbsolutePath, request.RequestUri.Query);
+
+            request.Headers.Add("Authorization", authString);
+        }
 
         protected abstract string AuthorizeUser(IToken oauthToken);
         protected abstract string CreateSignature(IToken token, string verb, Uri uri, string verifier,

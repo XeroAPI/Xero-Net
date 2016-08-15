@@ -46,10 +46,7 @@ namespace CoreTests.Integration.Files.Inbox
             var notfound = Api.Inbox[result];
 
             Assert.IsNull(notfound);
-
         }
-
-       
 
         private File create_file_with_name(string filename)
         {

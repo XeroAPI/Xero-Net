@@ -9,7 +9,7 @@ namespace Xero.Api.Payroll.America.Endpoints
     public class PayRunsEndpoint : PayrollEndpoint<PayRunsEndpoint, PayRun, PayRunsRequest, PayRunsResponse>
     {
         public PayRunsEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/PayRuns")
+            : base(client, "/payroll.xro/1.0/PayRuns")
         {
         }
     }

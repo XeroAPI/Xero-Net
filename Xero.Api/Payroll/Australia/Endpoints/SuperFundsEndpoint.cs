@@ -11,7 +11,7 @@ namespace Xero.Api.Payroll.Australia.Endpoints
     public class SuperFundsEndpoint : PayrollEndpoint<SuperFundsEndpoint, SuperFund, SuperFundsRequest, SuperFundsResponse>
     {
         public SuperFundsEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/SuperFunds")
+            : base(client, "/payroll.xro/1.0/SuperFunds")
         {
         }
     }
