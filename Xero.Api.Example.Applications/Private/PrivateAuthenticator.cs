@@ -10,12 +10,10 @@ namespace Xero.Api.Example.Applications.Private
 {
     public class PrivateAuthenticator : IAuthenticator
     {
-        private readonly IConsumer _consumer;
         private readonly X509Certificate2 _certificate;
 
-        public PrivateAuthenticator(SigningCertificate cert, IConsumer consumer)
+        public PrivateAuthenticator(SigningCertificate cert)
         {
-            _consumer = consumer;
             _certificate = new X509Certificate2();
             TryImport(cert);
         }
