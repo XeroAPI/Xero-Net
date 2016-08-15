@@ -37,3 +37,4 @@ out/
 *.nupkg
 CoreTests/App.config
 .vs/
+*.userprefs
