@@ -8,6 +8,18 @@ using Xero.Api.Infrastructure.OAuth.Signing;
 
 namespace Xero.Api.Example.Applications.Private
 {
+    public class SigningCertificate
+    {
+        public string Path { get; private set; }
+        public string Password { get; private set; }
+
+        public SigningCertificate(string certificatePath, string password)
+        {
+            Path = System.IO.Path.GetFullPath(certificatePath);
+            Password = password;
+        }
+    }
+
     public class PrivateAuthenticator : IAuthenticator
     {
         private readonly IConsumer _consumer;
