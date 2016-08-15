@@ -74,6 +74,7 @@ namespace Xero.Api.Core
         public IFilesEndpoint Files { get; private set; }
         public IFoldersEndpoint Folders { get; private set; }
         public IInboxEndpoint Inbox { get; private set; }
+        public IAssociationsEndpoint Associations { get; private set; }
         public IInvoicesEndpoint Invoices { get; private set; }
         public IItemsEndpoint Items { get; private set; }
         public IJournalsEndpoint Journals { get; protected set; }

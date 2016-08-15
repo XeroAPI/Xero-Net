@@ -1,11 +1,15 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Xero.Api.Infrastructure.Model;
 
 namespace Xero.Api.Infrastructure.Exceptions
 {
+    [Serializable]
     public class BadRequestException
         : XeroApiException
     {
+        public BadRequestException() { }
+
         public BadRequestException(ApiException apiException)
             : base(HttpStatusCode.BadRequest, apiException.Message)
         {

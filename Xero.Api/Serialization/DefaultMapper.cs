@@ -84,6 +84,10 @@ namespace Xero.Api.Serialization
             JsConfig<BankTransactionType>.DeSerializeFn = EnumDeserializer<BankTransactionType>;
             JsConfig<CreditNoteType>.DeSerializeFn = EnumDeserializer<CreditNoteType>;
             JsConfig<InvoiceType>.DeSerializeFn = EnumDeserializer<InvoiceType>;
+            JsConfig<ObjectGroupType>.DeSerializeFn = EnumDeserializer<ObjectGroupType>;
+            JsConfig<ObjectGroupType?>.DeSerializeFn = EnumDeserializerNullable<ObjectGroupType>;
+            JsConfig<ObjectType>.DeSerializeFn = EnumDeserializer<ObjectType>;
+            JsConfig<ObjectType?>.DeSerializeFn = EnumDeserializerNullable<ObjectType>;
             JsConfig<OrganisationType>.DeSerializeFn = EnumDeserializer<OrganisationType>;
             JsConfig<OrganisationVersion>.DeSerializeFn = EnumDeserializer<OrganisationVersion>;
             JsConfig<OverpaymentType>.DeSerializeFn = EnumDeserializer<OverpaymentType>;

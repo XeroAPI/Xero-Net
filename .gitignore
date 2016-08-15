@@ -38,3 +38,6 @@ out/
 CoreTests/App.config
 .vs/
 *.userprefs
+/.vs
+*.DotSettings
+*.lnk
