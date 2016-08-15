@@ -17,7 +17,6 @@ namespace Xero.Api.Infrastructure.Http
         private readonly ICertificateAuthenticator _certificateAuth;
         private readonly IConsumer _consumer;
         private readonly IUser _user;
-        private readonly IRateLimiter _rateLimiter;
         internal readonly IJsonObjectMapper JsonMapper;
         internal readonly IXmlObjectMapper XmlMapper;
         internal readonly HttpClient Client;
@@ -49,7 +48,6 @@ namespace Xero.Api.Infrastructure.Http
             _auth = auth;
             _consumer = consumer;
             _user = user;
-            _rateLimiter = rateLimiter;
 
             Client = new HttpClient(baseUri, auth, consumer, user, rateLimiter);
         }
@@ -80,7 +78,6 @@ namespace Xero.Api.Infrastructure.Http
             _certificateAuth = certificateAuth;
             _consumer = consumer;
             _user = user;
-            _rateLimiter = rateLimiter;
 
             Client = new HttpClient(baseUri, certificateAuth, consumer, user, rateLimiter)
             {
