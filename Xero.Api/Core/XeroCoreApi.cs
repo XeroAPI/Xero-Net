@@ -113,6 +113,7 @@ namespace Xero.Api.Core
             Files = new FilesEndpoint(Client.Clone());
             Folders = new FoldersEndpoint(Client.Clone());
             Inbox = new InboxEndpoint(Client.Clone());
+            Associations = new AssociationsEndpoint(Client.Clone());
             Invoices = new InvoicesEndpoint(Client.Clone());
             Items = new ItemsEndpoint(Client.Clone());
             Journals = new JournalsEndpoint(Client.Clone());
