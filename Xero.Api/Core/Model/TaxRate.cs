@@ -18,7 +18,7 @@ namespace Xero.Api.Core.Model
         [DataMember]
         public List<TaxComponent> TaxComponents { get; set; }
 
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember]
         public ReportTaxType ReportTaxType { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
