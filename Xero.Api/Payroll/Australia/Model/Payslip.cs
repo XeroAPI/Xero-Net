@@ -46,5 +46,9 @@ namespace Xero.Api.Payroll.Australia.Model
 
         [DataMember]
         public List<TaxLine> TaxLines { get; set; }
+
+        [DataMember(EmitDefaultValue = false, Name = "PayRunID")]
+        public Guid PayRunId { get; set; }
+
     }
 }
