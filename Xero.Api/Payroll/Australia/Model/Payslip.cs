@@ -24,7 +24,7 @@ namespace Xero.Api.Payroll.Australia.Model
         public decimal Wages { get; set; }
 
         [DataMember]
-        public List<EarningsLine> EarningsLines { get; set; }
+        public List<PayslipEarningsLine> EarningsLines { get; set; }
 
         [DataMember]
         public List<DeductionLine> DeductionLines { get; set; }
