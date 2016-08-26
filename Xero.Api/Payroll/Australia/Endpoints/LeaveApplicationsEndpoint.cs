@@ -10,7 +10,7 @@ namespace Xero.Api.Payroll.Australia.Endpoints
         : PayrollEndpoint<LeaveApplicationsEndpoint, LeaveApplication, LeaveApplicationsRequest, LeaveApplicationsResponse>
     {
         public LeaveApplicationsEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/LeaveApplications")
+            : base(client, "/payroll.xro/1.0/LeaveApplications")
         {
         }
     }

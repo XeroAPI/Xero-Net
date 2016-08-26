@@ -128,6 +128,9 @@
     <Compile Include="Core\Response\OptionsResponse.cs" />
     <Compile Include="Infrastructure\Exceptions\RateExceededException.cs" />
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />
+    <Compile Include="Infrastructure\Http\Bodies\Binary.cs" />
+    <Compile Include="Infrastructure\Http\Bodies\MultipartFormData.cs" />
+    <Compile Include="Infrastructure\Http\Internet.cs" />
     <Compile Include="Infrastructure\Interfaces\IAuthenticationToken.cs" />
     <Compile Include="Infrastructure\Interfaces\IUser.cs" />
     <Compile Include="Infrastructure\Exceptions\ApiException.cs" />
@@ -266,6 +269,7 @@
     <Compile Include="Payroll\Australia\Response\SettingsResponse.cs" />
     <Compile Include="Payroll\Australia\Response\TimesheetsResponse.cs" />
     <Compile Include="Payroll\Common\Model\NumberOfUnits.cs" />
+    <Compile Include="Private\BlankAuthenticator.cs" />
     <Compile Include="Serialization\DefaultMapper.cs" />
     <Compile Include="Core\Endpoints\UsersEndpoint.cs" />
     <Compile Include="Core\Model\Types\AddressType.cs" />

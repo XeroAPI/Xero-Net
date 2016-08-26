@@ -21,7 +21,7 @@ namespace Xero.Api.Core.Endpoints
     public class FoldersEndpoint : XeroUpdateEndpoint<FoldersEndpoint, Model.Folder, FolderRequest, FolderResponse>, IFoldersEndpoint
   {
     internal FoldersEndpoint(XeroHttpClient client)
-        : base(client, "files.xro/1.0/Folders")
+        : base(client, "/files.xro/1.0/Folders")
     {
 
     }
@@ -30,7 +30,7 @@ namespace Xero.Api.Core.Endpoints
     {
       get
       {
-        var endpoint = string.Format("files.xro/1.0/Folders");
+        var endpoint = string.Format("/files.xro/1.0/Folders");
 
         var folder = HandleFoldersResponse(Client
             .Client
@@ -42,7 +42,7 @@ namespace Xero.Api.Core.Endpoints
 
     public FilePageResponse Add(string folderName)
     {
-      var endpoint = string.Format("files.xro/1.0/Folders");
+      var endpoint = string.Format("/files.xro/1.0/Folders");
 
       var result = HandleFolderResponse(Client
           .Client
@@ -54,7 +54,7 @@ namespace Xero.Api.Core.Endpoints
     public IList<Model.Folder> Find()
     {
       var response = HandleFoldersResponse(Client
-          .Client.Get("files.xro/1.0/Folders", ""));
+          .Client.Get("/files.xro/1.0/Folders", ""));
 
 
       var resultingFolders = from i in response
@@ -67,12 +67,12 @@ namespace Xero.Api.Core.Endpoints
     {
       var response = HandleFolderResponse(Client
           .Client
-          .Delete("files.xro/1.0/Folders/" + id.ToString()));
+          .Delete("/files.xro/1.0/Folders/" + id.ToString()));
     }
 
     public FoldersResponse Rename(Guid id, string name)
     {
-      var response = HandleFoldersResponse(Client.Client.Put("files.xro/1.0/Folders/" + id, "{\"Name\":\"" + name + "\"}", "application/json"));
+      var response = HandleFoldersResponse(Client.Client.Put("/files.xro/1.0/Folders/" + id, "{\"Name\":\"" + name + "\"}", "application/json"));
       return (response != null) ? response[0] : null;
     }
 

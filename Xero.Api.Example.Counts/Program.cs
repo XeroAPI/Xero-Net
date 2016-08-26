@@ -10,7 +10,7 @@ namespace Xero.Api.Example.Counts
         static void Main(string[] args)
         {
             var user = new ApiUser { Name = Environment.MachineName };
-            var tokenStore = new SqliteTokenStore();
+            var tokenStore = new MemoryTokenStore();
 
             var api = new Applications.Public.Core(tokenStore, user)
             {

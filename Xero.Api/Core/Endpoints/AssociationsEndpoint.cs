@@ -30,32 +30,32 @@ namespace Xero.Api.Core.Endpoints
 
         public Association Find(Guid fileId, Guid objectId)
         {
-            var endpoint = string.Format("files.xro/1.0/Files/{0}/Associations/{1}", fileId, objectId);
+            var endpoint = string.Format("/files.xro/1.0/Files/{0}/Associations/{1}", fileId, objectId);
             return HandleAssociationResponse(Client.Client.Get(endpoint, null));
         }
 
         public IEnumerable<Association> Find(Guid fileId)
         {
-            var endpoint = string.Format("files.xro/1.0/Files/{0}/Associations", fileId);
+            var endpoint = string.Format("/files.xro/1.0/Files/{0}/Associations", fileId);
             return HandleAssociationsResponse(Client.Client.Get(endpoint, null));
         }
 
         public IEnumerable<Association> FindForObject(Guid objectId)
         {
-            var endpoint = string.Format("files.xro/1.0/Associations/{0}", objectId);
+            var endpoint = string.Format("/files.xro/1.0/Associations/{0}", objectId);
             return HandleAssociationsResponse(Client.Client.Get(endpoint, null));
         }
 
         public Association Create(Association association)
         {
-            var endpoint = string.Format("files.xro/1.0/Files/{0}/Associations", association.FileId);
+            var endpoint = string.Format("/files.xro/1.0/Files/{0}/Associations", association.FileId);
             var resp = Client.Client.Post(endpoint, Client.JsonMapper.To(association), "application/json");
             return HandleAssociationResponse(resp);
         }
 
         public void Delete(Association association)
         {
-            var endpoint = string.Format("files.xro/1.0/Files/{0}/Associations/{1}", association.FileId,
+            var endpoint = string.Format("/files.xro/1.0/Files/{0}/Associations/{1}", association.FileId,
                 association.ObjectId);
             HandleAssociationResponse(Client.Client.Delete(endpoint));
         }
