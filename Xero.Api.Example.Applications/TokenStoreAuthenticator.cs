@@ -97,11 +97,11 @@ namespace Xero.Api.Example.Applications
                 GetAuthorization(requestToken, "POST", Tokens.AccessUri, null, verifier));
         }
 
-        protected string GetAuthorizeUrl(IToken token)
+        protected string GetAuthorizeUrl(IToken token, string scope = null)
         {
             return new UriBuilder(Tokens.AuthorizeUri)
             {
-                Query = "oauth_token=" + token.TokenKey
+                Query = "oauth_token=" + token.TokenKey + "&scope=" + scope
             }.Uri.ToString();
         }
 
