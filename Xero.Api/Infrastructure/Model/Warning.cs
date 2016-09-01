@@ -6,6 +6,6 @@ namespace Xero.Api.Infrastructure.Model
     public class Warning
     {
         [DataMember(EmitDefaultValue = false)]
-        public string Message;
+        public string Message { get; set; }
     }
 }
