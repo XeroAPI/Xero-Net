@@ -90,7 +90,7 @@ namespace Xero.Api.Core.Endpoints
         }
 
         public Report BalanceSheet(DateTime date, Guid? tracking1 = null, Guid? tracking2 = null,
-            bool standardLayout = false)
+            bool standardLayout = false, bool? paymentsOnly = null)
         {
             var parameters = new NameValueCollection();
 
@@ -98,6 +98,7 @@ namespace Xero.Api.Core.Endpoints
             parameters.Add("trackingOptionID1", tracking1);
             parameters.Add("trackingOptionID2", tracking2);
             parameters.Add("standardLayout", standardLayout);
+            parameters.Add("paymentsOnly", paymentsOnly);
 
             AddParameters(parameters);
 
@@ -155,7 +156,7 @@ namespace Xero.Api.Core.Endpoints
 
         public Report ProfitAndLoss(DateTime? date, DateTime? from = null, DateTime? to = null,
             Guid? trackingCategory = null, Guid? trackingOption = null, Guid? trackingCategory2 = null,
-            Guid? trackingOption2 = null, bool? standardLayout = null)
+            Guid? trackingOption2 = null, bool? standardLayout = null, bool? paymentsOnly = null)
         {
             var parameters = new NameValueCollection();
 
@@ -167,6 +168,7 @@ namespace Xero.Api.Core.Endpoints
             parameters.Add("trackingCategoryID2", trackingCategory2);
             parameters.Add("trackingOptionID2", trackingOption2);
             parameters.Add("standardLayout", standardLayout);
+            parameters.Add("paymentsOnly", paymentsOnly);
 
             AddParameters(parameters);
 
