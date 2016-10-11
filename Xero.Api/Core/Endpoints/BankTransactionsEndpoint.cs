@@ -11,7 +11,7 @@ namespace Xero.Api.Core.Endpoints
     {
     }
 
-    public class BankTransactionsEndpoint : 
+    public class BankTransactionsEndpoint :
         FourDecimalPlacesEndpoint<BankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>,
         IBankTransactionsEndpoint
     {

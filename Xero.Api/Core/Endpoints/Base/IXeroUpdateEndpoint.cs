@@ -9,7 +9,7 @@ namespace Xero.Api.Core.Endpoints.Base
 {
     public interface IXeroUpdateEndpoint<T, TResult, TRequest, TResponse>
         : IXeroCreateEndpoint<T, TResult, TRequest, TResponse>
-        where T : XeroReadEndpoint<T, TResult, TResponse>
+        where T : IXeroUpdateEndpoint<T, TResult, TRequest, TResponse>
         where TResponse : IXeroResponse<TResult>, new()
         where TRequest : IXeroRequest<TResult>, new()
     {

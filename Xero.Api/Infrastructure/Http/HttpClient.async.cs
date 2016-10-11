@@ -54,6 +54,12 @@ namespace Xero.Api.Infrastructure.Http
             return await this.WriteToServerAsync(requestMessage, cancellation);
         }
 
+        public async Task<Response> DeleteAsync(string endpoint, CancellationToken cancellation = default(CancellationToken))
+        {
+            var requestMessage = this.CreateRequest(endpoint, HttpMethod.Delete, new StringContent(string.Empty));
+            return await this.WriteToServerAsync(requestMessage, cancellation);
+        }
+
         public async Task<Response> PostAsync(string endpoint, string data, string contentType = "application/xml", string query = null, CancellationToken cancellation = default(CancellationToken))
         {
             var requestMessage = this.CreateRequest(endpoint, HttpMethod.Post, new StringContent(data), contentType, query);
@@ -105,7 +111,6 @@ namespace Xero.Api.Infrastructure.Http
             return message;
         }
 
-
         private void SetHeaders(HttpRequestMessage message, string method, string contentType = null)
         {
             var content = message.Content;
@@ -118,7 +123,6 @@ namespace Xero.Api.Infrastructure.Http
             {
                 message.Headers.Add(pair.Key, pair.Value);
             }
-
 
             // TODO: Verify local/utc time conversion is correct
             content.Headers.LastModified = this.ModifiedSince;

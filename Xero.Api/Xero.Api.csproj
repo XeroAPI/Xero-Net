@@ -81,18 +81,25 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\IAsyncXeroReadEndpoint.cs" />
     <Compile Include="Common\IHasId.cs" />
     <Compile Include="Common\IPageableEndpoint.cs" />
     <Compile Include="Common\IXeroReadEndpoint.cs" />
     <Compile Include="Common\QueryGenerator.cs" />
+    <Compile Include="Common\XeroReadEndpoint.async.cs" />
     <Compile Include="Core\Endpoints\AllocationEndpoint.cs" />
     <Compile Include="Core\Endpoints\AssociationsEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
+    <Compile Include="Core\Endpoints\Base\IAsyncXeroUpdateEndpoint.cs" />
+    <Compile Include="Core\Endpoints\Base\IAsyncXeroCreateEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\IXeroCreateEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\IXeroUpdateEndpoint.cs" />
+    <Compile Include="Core\Endpoints\Base\XeroCreateEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\Base\XeroUpdateEndpoint.async.cs" />
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
+    <Compile Include="Core\Endpoints\InvoicesEndpoint.async.cs" />
     <Compile Include="Core\Endpoints\LinkedTransactionsEndpoint.cs" />
     <Compile Include="Core\Model\OnlineInvoice.cs" />
     <Compile Include="Core\IXeroCoreApi.cs" />
@@ -171,6 +178,9 @@
     <Compile Include="Infrastructure\Http\HttpClient.async.cs" />
     <Compile Include="Infrastructure\Http\Response.async.cs" />
     <Compile Include="Infrastructure\Http\XeroHttpClient.async.cs" />
+    <Compile Include="Infrastructure\Interfaces\IAsyncAuthenticator.cs" />
+    <Compile Include="Infrastructure\Interfaces\IAsyncCertificateAuthenticator.cs" />
+    <Compile Include="Infrastructure\Interfaces\IAsyncTokenStore.cs" />
     <Compile Include="Infrastructure\Interfaces\IAuthenticationToken.cs" />
     <Compile Include="Infrastructure\Interfaces\IUser.cs" />
     <Compile Include="Infrastructure\Exceptions\ApiException.cs" />
@@ -288,7 +298,10 @@
     <Compile Include="Infrastructure\Interfaces\ITokenStore.cs" />
     <Compile Include="Infrastructure\Exceptions\XeroApiException.cs" />
     <Compile Include="Core\Endpoints\BrandingThemesEndpoint.cs" />
+    <Compile Include="Infrastructure\OAuth\OAuthTokens.async.cs" />
+    <Compile Include="Infrastructure\RateLimiter\IAsyncRateLimiter.cs" />
     <Compile Include="Infrastructure\RateLimiter\IRateLimiter.cs" />
+    <Compile Include="Infrastructure\RateLimiter\RateLimiter.async.cs" />
     <Compile Include="Infrastructure\RateLimiter\RateLimiter.cs" />
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\UrlEncoder.cs" />
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\HttpEncoder.cs" />

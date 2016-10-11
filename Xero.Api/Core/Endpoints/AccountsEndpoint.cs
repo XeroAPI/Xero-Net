@@ -9,7 +9,7 @@ namespace Xero.Api.Core.Endpoints
     public interface IAccountsEndpoint
         : IXeroUpdateEndpoint<AccountsEndpoint, Account, AccountsRequest, AccountsResponse>
     {
-        
+
     }
 
     public class AccountsEndpoint
