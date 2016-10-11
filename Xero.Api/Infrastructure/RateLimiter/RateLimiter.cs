@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace Xero.Api.Infrastructure.RateLimiter
 {
-    public class RateLimiter : IRateLimiter
+    public partial class RateLimiter : IRateLimiter
     {
         private readonly TimeSpan _duration;
         private readonly int _qty;
