@@ -12,7 +12,7 @@ namespace Xero.Api.Infrastructure.Http
 {
     // This makes the calls to the web as text and asks the object mappers to convert to and from objects to text.
     // This knows nothing about the types being passed to and fro. (Except for the constraint in the generic type)
-    public class XeroHttpClient
+    public partial class XeroHttpClient
     {
         internal readonly IJsonObjectMapper JsonMapper;
         internal readonly IXmlObjectMapper XmlMapper;
@@ -109,7 +109,7 @@ namespace Xero.Api.Infrastructure.Http
             }
 
             HandleErrors(response);
-            
+
             return null;
         }
 
@@ -158,7 +158,7 @@ namespace Xero.Api.Infrastructure.Http
                 return;
             }
 
-            
+
             throw new XeroApiException(response.StatusCode, response.Body);
         }
     }

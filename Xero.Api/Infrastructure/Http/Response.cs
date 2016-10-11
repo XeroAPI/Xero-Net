@@ -4,7 +4,7 @@ using System.Net;
 
 namespace Xero.Api.Infrastructure.Http
 {
-    internal class Response
+    internal partial class Response
     {
 	    private string _body;
 
@@ -21,7 +21,7 @@ namespace Xero.Api.Infrastructure.Http
                 stream.CopyTo(Stream);
                 // rewind
                 Stream.Seek(0, SeekOrigin.Begin);
-            }            
+            }
         }
 
         public string Body
@@ -37,7 +37,7 @@ namespace Xero.Api.Infrastructure.Http
                     var result = rdr.ReadToEnd();
 
                     Stream.Seek(0, SeekOrigin.Begin);
-                        
+
                     _body = result;
                 }
 

@@ -12,7 +12,7 @@ namespace Xero.Api.Infrastructure.Http
     // Content and accept types are defaulted and it is always ask for the response to be compressed.
     // Json for GET and XML for PUT and POST
     // It uses IAuthenticator or ICertificateAuthenticator to do the signing
-    internal class HttpClient
+    internal partial class HttpClient
     {
         static readonly int defaultTimeout = (int)TimeSpan.FromMinutes(5.5).TotalMilliseconds;
 
@@ -24,7 +24,7 @@ namespace Xero.Api.Infrastructure.Http
 
         public DateTime? ModifiedSince { get; set; }
         public IUser User { get; set; }
-        
+
         private IConsumer Consumer { get; set; }
 
         public HttpClient(string baseUri)
@@ -32,7 +32,7 @@ namespace Xero.Api.Infrastructure.Http
             _baseUri = baseUri;
             _headers = new Dictionary<string, string>();
         }
-        
+
         public HttpClient(string baseUri, IConsumer consumer, IUser user) : this(baseUri)
         {
             User = user;
@@ -66,7 +66,7 @@ namespace Xero.Api.Infrastructure.Http
         {
             return Post(endpoint, Encoding.UTF8.GetBytes(data), contentType, query);
         }
-        
+
         public Response Post(string endpoint, byte[] data, string contentType = "application/xml", string query = null)
         {
             try
@@ -83,7 +83,7 @@ namespace Xero.Api.Infrastructure.Http
 	            throw;
             }
         }
-            
+
         public Response PostMultipartForm(string endpoint, string contentType, string name, string filename, byte[] payload)
         {
             return WriteToServerWithMultipart(endpoint, contentType, name,filename, payload);
@@ -177,7 +177,7 @@ namespace Xero.Api.Infrastructure.Http
             request.Timeout = defaultTimeout;
 
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            
+
             request.Accept = accept;
             request.Method = method;
 
@@ -192,11 +192,11 @@ namespace Xero.Api.Infrastructure.Http
 
                 AddHeader("Authorization", oauthSignature);
             }
-            
+
             AddHeaders(request);
 
             request.UserAgent = !string.IsNullOrWhiteSpace(UserAgent) ? UserAgent : "Xero Api wrapper - " + Consumer.ConsumerKey;
-            
+
             if (ClientCertificate != null)
             {
                 request.ClientCertificates.Add(ClientCertificate);
@@ -237,7 +237,7 @@ namespace Xero.Api.Infrastructure.Http
             var request = CreateRequest(endpoint, "POST");
 
             WriteMultipartData(payload, request, contentType,name, filename);
-            
+
             return new Response((HttpWebResponse)request.GetResponse());
         }
 
@@ -250,9 +250,9 @@ namespace Xero.Api.Infrastructure.Http
 
             request.ContentType = "multipart/form-data; boundary=" + boundary;
             request.KeepAlive = false;
-            
+
             var contentLength = bytes.Length + header.Length + trailer.Length;
-            
+
             request.ContentLength = contentLength;
 
             var dataStream = request.GetRequestStream();
@@ -268,6 +268,6 @@ namespace Xero.Api.Infrastructure.Http
             WriteData(data, request, contentType);
 
             return new Response((HttpWebResponse)request.GetResponse());
-        }        
+        }
     }
 }
