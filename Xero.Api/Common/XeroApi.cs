@@ -28,6 +28,18 @@ namespace Xero.Api.Common
             Client = new XeroHttpClient(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter);
         }
 
+        protected XeroApi(string baseUri, IAsyncAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper, IAsyncRateLimiter rateLimiter)
+            : this(baseUri)
+        {
+            Client = new XeroHttpClient(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter);
+        }
+
+        protected XeroApi(string baseUri, IAsyncCertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper, IAsyncRateLimiter rateLimiter)
+            : this(baseUri)
+        {
+            Client = new XeroHttpClient(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter);
+        }
+
         public string UserAgent
         {
             get

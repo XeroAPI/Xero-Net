@@ -5,7 +5,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IOverpaymentsEndpoint : IXeroReadEndpoint<OverpaymentsEndpoint, Overpayment, OverpaymentsResponse>
+    public partial interface IOverpaymentsEndpoint : IXeroReadEndpoint<OverpaymentsEndpoint, Overpayment, OverpaymentsResponse>
     {
     }
 

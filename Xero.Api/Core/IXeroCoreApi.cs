@@ -6,7 +6,7 @@ using Organisation = Xero.Api.Core.Model.Organisation;
 
 namespace Xero.Api.Core
 {
-    public interface IXeroCoreApi
+    public partial interface IXeroCoreApi
     {
         IAccountsEndpoint Accounts { get; }
         AllocationsEndpoint Allocations { get; }

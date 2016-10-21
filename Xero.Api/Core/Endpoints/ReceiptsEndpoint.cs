@@ -6,7 +6,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IReceiptsEndpoint : IXeroUpdateEndpoint<ReceiptsEndpoint, Receipt, ReceiptsRequest, ReceiptsResponse>
+    public partial interface IReceiptsEndpoint : IXeroUpdateEndpoint<ReceiptsEndpoint, Receipt, ReceiptsRequest, ReceiptsResponse>
     {
 
     }

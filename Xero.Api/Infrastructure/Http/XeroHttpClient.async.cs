@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xero.Api.Common;
 using Xero.Api.Infrastructure.Interfaces;
+using Xero.Api.Infrastructure.RateLimiter;
 
 namespace Xero.Api.Infrastructure.Http
 {
@@ -14,6 +15,34 @@ namespace Xero.Api.Infrastructure.Http
     /// </summary>
     partial class XeroHttpClient
     {
+
+        public XeroHttpClient(string baseUri, IAsyncAuthenticator auth, IConsumer consumer, IUser user,
+            IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
+            : this(baseUri, auth, consumer, user, jsonMapper, xmlMapper, null)
+        {
+        }
+
+        public XeroHttpClient(string baseUri, IAsyncAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper, IAsyncRateLimiter rateLimiter)
+            : this(jsonMapper, xmlMapper)
+        {
+            Client = new HttpClient(baseUri, auth, consumer, user, rateLimiter);
+        }
+
+        public XeroHttpClient(string baseUri, IAsyncCertificateAuthenticator auth, IConsumer consumer, IUser user,
+            IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
+            : this(baseUri, auth, consumer, user, jsonMapper, xmlMapper, null)
+        {
+        }
+
+        public XeroHttpClient(string baseUri, IAsyncCertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper, IAsyncRateLimiter rateLimiter)
+            : this(jsonMapper, xmlMapper)
+        {
+            Client = new HttpClient(baseUri, auth, consumer, user, rateLimiter)
+            {
+                ClientCertificate = auth.Certificate
+            };
+        }
+
         public async Task<IList<TResult>> GetAsync<TResult, TResponse>(string endPoint, CancellationToken cancellation = default(CancellationToken)) where TResponse : IXeroResponse<TResult>, new()
         {
             Client.ModifiedSince = ModifiedSince;

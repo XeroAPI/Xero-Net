@@ -5,7 +5,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface ICurrenciesEndpoint : IXeroReadEndpoint<CurrenciesEndpoint, Currency, CurrenciesResponse>
+    public partial interface ICurrenciesEndpoint : IXeroReadEndpoint<CurrenciesEndpoint, Currency, CurrenciesResponse>
     {
         
     }
