@@ -10,10 +10,11 @@ namespace Xero.Api.Example.Counts
     {
         static void Main(string[] args)
         {
+            // Test the non-async code
             //Test();
 
-            var test = Task.Factory.StartNew(() => TestAsync(), TaskCreationOptions.LongRunning);
-            test.Unwrap().Wait();
+            // Test the Async code
+            new Func<Task>(() => TestAsync(asyncAuthenticator: true)).StartLongRunningAsync().Unwrap().Wait();
         }
 
         static void Test()
@@ -29,20 +30,26 @@ namespace Xero.Api.Example.Counts
             new Lister(api).List();
         }
 
-        static async Task TestAsync()
+        static async Task TestAsync(bool asyncAuthenticator)
         {
             Console.WriteLine("Starting test...");
 
             var user = new ApiUser { Name = Environment.MachineName };
             var tokenStore = new SqliteTokenStore();
 
-            var api = new Applications.PublicAsync.Core(tokenStore, user)
+            XeroCoreApi api;
+            if (asyncAuthenticator)
             {
-                UserAgent = "Xero Api - Listing example"
-            };
+                api = new Applications.PublicAsync.Core(tokenStore, user) { UserAgent = "Xero Api - Listing example" };
+            }
+            else
+            {
+                api = new Applications.Public.Core(tokenStore, user) { UserAgent = "Xero Api - Listing example" };
+            }
+
+            await new AsyncLister(api).ListAsync();
 
             //new Lister(api).List();
-            await new AsyncLister(api).ListAsync();
 
             Console.WriteLine("Test complete...");
         }

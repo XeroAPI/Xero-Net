@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 using Xero.Api.Common;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Types;
@@ -12,23 +14,16 @@ namespace Xero.Api.Core.Endpoints
 {
     public partial class AttachmentsEndpoint
     {
-        private XeroHttpClient Client { get; set; }
-
-        public AttachmentsEndpoint(XeroHttpClient client)
+        public Task<IList<Attachment>> ListAsync(AttachmentEndpointType type, Guid parent, CancellationToken cancellation = default(CancellationToken))
         {
-            Client = client;
+            return Client.GetAsync<Attachment, AttachmentsResponse>(string.Format("/api.xro/2.0/{0}/{1}/Attachments", type, parent.ToString("D")), cancellation);
         }
 
-        public IEnumerable<Attachment> List(AttachmentEndpointType type, Guid parent)
-        {
-            return Client.Get<Attachment, AttachmentsResponse>(string.Format("/api.xro/2.0/{0}/{1}/Attachments", type, parent.ToString("D")));
-        }
-
-        public Attachment Get(AttachmentEndpointType type, Guid parent, string fileName)
+        public async Task<Attachment> GetAsync(AttachmentEndpointType type, Guid parent, string fileName, CancellationToken cancellation = default(CancellationToken))
         {
 
             var mimeType = MimeTypes.GetMimeType(fileName);
-            var data = Client.Get(string.Format("/api.xro/2.0/{0}/{1}/Attachments/{2}", type, parent.ToString("D"), fileName), mimeType);
+            var data = await Client.GetAsync(string.Format("/api.xro/2.0/{0}/{1}/Attachments/{2}", type, parent.ToString("D"), fileName), mimeType, cancellation);
 
             if (data.StatusCode == HttpStatusCode.OK)
             {
@@ -39,7 +34,7 @@ namespace Xero.Api.Core.Endpoints
             return null;
         }
 
-        public Attachment AddOrReplace(Attachment attachment, AttachmentEndpointType type, Guid parent, bool includeOnline = false)
+        public async Task<Attachment> AddOrReplaceAsync(Attachment attachment, AttachmentEndpointType type, Guid parent, bool includeOnline = false, CancellationToken cancellation = default(CancellationToken))
         {
             var mimeType = MimeTypes.GetMimeType(attachment.FileName);
 
@@ -50,12 +45,7 @@ namespace Xero.Api.Core.Endpoints
                 Client.Parameters.Add("IncludeOnline", true);
             }
 
-            return Client.Post<Attachment, AttachmentsResponse>(url, attachment.Content, mimeType).FirstOrDefault();
-        }
-
-        private static bool SupportsOnline(AttachmentEndpointType type)
-        {
-            return type == AttachmentEndpointType.Invoices || type == AttachmentEndpointType.CreditNotes;
+            return (await Client.PostAsync<Attachment, AttachmentsResponse>(url, attachment.Content, mimeType, cancellation)).FirstOrDefault();
         }
     }
 }

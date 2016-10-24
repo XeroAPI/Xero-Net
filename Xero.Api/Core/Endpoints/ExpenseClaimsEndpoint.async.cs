@@ -8,6 +8,5 @@ namespace Xero.Api.Core.Endpoints
 {
     public partial interface IExpenseClaimsEndpoint : IAsyncXeroUpdateEndpoint<ExpenseClaimsEndpoint, ExpenseClaim, ExpenseClaimsRequest, ExpenseClaimsResponse>
     {
-
     }
 }

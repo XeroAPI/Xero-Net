@@ -25,7 +25,7 @@ namespace Xero.Api.Infrastructure.Http
         public HttpClient(string baseUri, IAsyncAuthenticator auth, IConsumer consumer, IUser user)
             : this(baseUri, consumer, user)
         {
-            _async = true;
+            _isAsyncAuth = true;
             _authAsync = auth;
         }
 
@@ -33,6 +33,18 @@ namespace Xero.Api.Infrastructure.Http
             : this(baseUri, auth, consumer, user)
         {
             _rateLimiterAsync = rateLimiter;
+        }
+
+        public HttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IAsyncRateLimiter rateLimiter)
+            : this(baseUri, auth, consumer, user)
+        {
+            _rateLimiterAsync = rateLimiter;
+        }
+
+        public HttpClient(string baseUri, IAsyncAuthenticator auth, IConsumer consumer, IUser user, IRateLimiter rateLimiter)
+            : this(baseUri, auth, consumer, user)
+        {
+            _rateLimiter = rateLimiter;
         }
 
         public System.Net.Http.HttpClient AsyncClient
@@ -72,6 +84,12 @@ namespace Xero.Api.Infrastructure.Http
             return await this.WriteToServerAsync(requestMessage, cancellation);
         }
 
+        public async Task<Response> GetRawAsync(string endpoint, string mimeType, string query = null, CancellationToken cancellation = default(CancellationToken))
+        {
+            var requestMessage = await this.CreateRequestAsync(endpoint, HttpMethod.Get, null, query: query, accept: mimeType);
+            return await this.WriteToServerAsync(requestMessage, cancellation);
+        }
+
         public async Task<Response> DeleteAsync(string endpoint, CancellationToken cancellation = default(CancellationToken))
         {
             var requestMessage = await this.CreateRequestAsync(endpoint, HttpMethod.Delete, null, cancellation: cancellation);
@@ -90,11 +108,22 @@ namespace Xero.Api.Infrastructure.Http
             return await this.WriteToServerAsync(requestMessage, cancellation);
         }
 
+        public Task<Response> PostMultipartFormAsync(string endpoint, string contentType, string name, string filename, byte[] payload, CancellationToken cancellation = default(CancellationToken))
+        {
+            // todo:
+            ////return WriteToServerWithMultipartAsync(endpoint, contentType, name, filename, payload, cancellation);
+            throw new NotImplementedException();
+        }
+
         private async Task<Response> WriteToServerAsync(HttpRequestMessage requestMessage, CancellationToken cancellation)
         {
             if (_rateLimiterAsync != null)
             {
                 await _rateLimiterAsync.WaitUntilLimitAsync(cancellation);
+            }
+            else if (_rateLimiter != null)
+            {
+                await Task.Factory.StartNew(_rateLimiter.WaitUntilLimit, TaskCreationOptions.LongRunning);
             }
 
             var response = await this.AsyncClient.SendAsync(requestMessage);
@@ -103,8 +132,6 @@ namespace Xero.Api.Infrastructure.Http
 
         private async Task<HttpRequestMessage> CreateRequestAsync(string endpoint, HttpMethod method, HttpContent content, string contentType = null, string query = null, string accept = "application/json", CancellationToken cancellation = default(CancellationToken))
         {
-            Debug.Assert(!this._async.HasValue || this._async.Value, "Async functions require IAsyncAuthenticator");
-            
             var uri = new UriBuilder(_baseUri)
             {
                 Path = endpoint,
@@ -135,12 +162,14 @@ namespace Xero.Api.Infrastructure.Http
             var content = message.Content;
             if (content != null && contentType != null)
             {
-                content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(contentType);
+                content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
             }
 
-            if (this._authAsync != null)
+            if (this._authAsync != null || this._auth != null)
             {
-                var oauthSignature = await this._authAsync.GetSignatureAsync(Consumer, User, message.RequestUri, method, Consumer, cancellation);
+                var oauthSignature = this._authAsync != null
+                    ? await this._authAsync.GetSignatureAsync(Consumer, User, message.RequestUri, method, Consumer, cancellation) 
+                    : this._auth.GetSignature(Consumer, User, message.RequestUri, method, Consumer);
 
                 AddHeader("Authorization", oauthSignature);                
             }

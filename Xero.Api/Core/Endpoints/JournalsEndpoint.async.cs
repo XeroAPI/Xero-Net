@@ -8,6 +8,5 @@ namespace Xero.Api.Core.Endpoints
 {
     public partial interface IJournalsEndpoint : IAsyncXeroReadEndpoint<JournalsEndpoint, Journal, JournalsResponse>
     {
-
     }
 }

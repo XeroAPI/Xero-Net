@@ -25,7 +25,6 @@ namespace Xero.Api.Example.Applications
                 {
                     _tokens = new OAuthTokens(_tokenUri, BaseUri, GetClientCertificate());      
                 }
-
                 return _tokens;
             } 
         }

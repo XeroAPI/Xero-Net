@@ -8,6 +8,5 @@ namespace Xero.Api.Core.Endpoints
 {
     public partial interface ITaxRatesEndpoint : IAsyncXeroUpdateEndpoint<TaxRatesEndpoint, TaxRate, TaxRatesRequest, TaxRatesResponse>
     {
-
     }
 }

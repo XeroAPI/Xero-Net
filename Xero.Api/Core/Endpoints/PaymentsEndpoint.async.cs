@@ -8,6 +8,5 @@ namespace Xero.Api.Core.Endpoints
 {
     public partial interface IPaymentsEndpoint : IAsyncXeroUpdateEndpoint<PaymentsEndpoint, Payment, PaymentsRequest, PaymentsResponse>
     {
-
     }
 }

@@ -9,7 +9,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IInboxEndpoint : IXeroUpdateEndpoint<InboxEndpoint, Model.Folder, FolderRequest, FolderResponse>
+    public partial interface IInboxEndpoint : IXeroUpdateEndpoint<InboxEndpoint, Model.Folder, FolderRequest, FolderResponse>
     {
         Model.File this[Guid id] { get; }
         FilesResponse Add(Model.File file, byte[] data);
@@ -17,9 +17,8 @@ namespace Xero.Api.Core.Endpoints
         Folder InboxFolder { get; }
     }
 
-    public class InboxEndpoint : XeroUpdateEndpoint<InboxEndpoint,Model.Folder,FolderRequest,FolderResponse>, IInboxEndpoint
+    public partial class InboxEndpoint : XeroUpdateEndpoint<InboxEndpoint,Model.Folder,FolderRequest,FolderResponse>, IInboxEndpoint
     {
-
         internal InboxEndpoint(XeroHttpClient client)
             : base(client, "files.xro/1.0/Inbox")
         {
@@ -50,7 +49,7 @@ namespace Xero.Api.Core.Endpoints
             }
         }
 
-        public Model.File Find(Guid fileId)
+        public new Model.File Find(Guid fileId)
         {
             var response = HandleFileResponse(Client
                 .Client.Get("files.xro/1.0/Files", ""));
@@ -67,9 +66,6 @@ namespace Xero.Api.Core.Endpoints
 
             return response;
         }
-
-
-     
 
         public FilesResponse Remove(Guid fileid)
         {
@@ -108,7 +104,6 @@ namespace Xero.Api.Core.Endpoints
 
             return null;
         }
-      
 
         public Folder InboxFolder
         {

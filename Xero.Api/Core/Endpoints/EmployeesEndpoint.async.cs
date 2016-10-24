@@ -8,6 +8,5 @@ namespace Xero.Api.Core.Endpoints
 {
     public partial interface IEmployeesEndpoint : IAsyncXeroUpdateEndpoint<EmployeesEndpoint, Employee, EmployeesRequest, EmployeesResponse>
     {
-
     }
 }

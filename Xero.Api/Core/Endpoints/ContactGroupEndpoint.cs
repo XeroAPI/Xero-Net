@@ -10,20 +10,18 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IContactGroupsEndpoint :
+    public partial interface IContactGroupsEndpoint :
         IXeroUpdateEndpoint<ContactGroupsEndpoint, ContactGroup, ContactGroupsRequest, ContactGroupsResponse>
     {
         IContactCollection this[Guid guid] { get; }
         ContactGroup Add(ContactGroup contactGroup);
     }
 
-    public class ContactGroupsEndpoint : XeroUpdateEndpoint<ContactGroupsEndpoint,ContactGroup,ContactGroupsRequest,ContactGroupsResponse>,
-        IContactGroupsEndpoint
+    public partial class ContactGroupsEndpoint : XeroUpdateEndpoint<ContactGroupsEndpoint,ContactGroup,ContactGroupsRequest,ContactGroupsResponse>, IContactGroupsEndpoint
     {
 
         public ContactGroupsEndpoint(XeroHttpClient client) : base(client,"/api.xro/2.0/ContactGroups")
         {
-            
         }
 
         public IContactCollection this[Guid guid]
@@ -78,7 +76,7 @@ namespace Xero.Api.Core.Endpoints
         void Remove(Guid guid);
     }
 
-    public class ContactCollection  : XeroUpdateEndpoint<ContactGroupsEndpoint, ContactGroup, ContactGroupsRequest, ContactGroupsResponse>, IContactCollection
+    public partial class ContactCollection  : XeroUpdateEndpoint<ContactGroupsEndpoint, ContactGroup, ContactGroupsRequest, ContactGroupsResponse>, IContactCollection
     {
         private readonly ContactGroup _group;
         private readonly XeroHttpClient _client;
@@ -127,7 +125,6 @@ namespace Xero.Api.Core.Endpoints
             var groups = HandleResponse(Client
                 .Client
                 .Delete(endpoint));
-
         }
 
         private void AssignContacts(ContactGroup contactGroup, List<Contact> contacts)

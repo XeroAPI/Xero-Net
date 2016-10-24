@@ -10,22 +10,22 @@ namespace Xero.Api.Common
 {
     partial class XeroReadEndpoint<T, TResult, TResponse> : IAsyncXeroReadEndpoint<T, TResult, TResponse>
     {
-        public Task<IList<TResult>> FindAsync()
+        public virtual Task<IList<TResult>> FindAsync()
         {
             return FindAsync(CancellationToken.None);
         }
 
-        public Task<IList<TResult>> FindAsync(CancellationToken cancellation)
+        public virtual Task<IList<TResult>> FindAsync(CancellationToken cancellation)
         {
             return GetAsync(ApiEndpointUrl, null, cancellation);
         }
 
-        public Task<TResult> FindAsync(Guid child)
+        public virtual Task<TResult> FindAsync(Guid child)
         {
             return FindAsync(child, CancellationToken.None);
         }
 
-        public Task<TResult> FindAsync(Guid child, CancellationToken cancellation)
+        public virtual Task<TResult> FindAsync(Guid child, CancellationToken cancellation)
         {
             return FindAsync(child.ToString("D"), cancellation);
         }

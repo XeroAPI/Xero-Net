@@ -10,7 +10,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface ITrackingCategoriesEndpoint : IXeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
+    public partial interface ITrackingCategoriesEndpoint : IXeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
     {
         IOptionCollection this[Guid id] { get; }
         List<TrackingCategory> GetAll();
@@ -21,7 +21,7 @@ namespace Xero.Api.Core.Endpoints
         TrackingCategory Add(TrackingCategory trackingCategory);
     }
 
-    public class TrackingCategoriesEndpoint : XeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, ITrackingCategoriesEndpoint
+    public partial class TrackingCategoriesEndpoint : XeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, ITrackingCategoriesEndpoint
     {
         public TrackingCategoriesEndpoint(XeroHttpClient client) :
             base(client, "/api.xro/2.0/TrackingCategories")
@@ -145,16 +145,14 @@ namespace Xero.Api.Core.Endpoints
         }
     }
 
-    public interface IOptionCollection :
-        IXeroUpdateEndpoint
-            <TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
+    public interface IOptionCollection : IXeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
     {
         List<Option> Add(Option option);
         List<Option> Add(List<Option> options);
         Option UpdateOption(Option option);
     }
 
-    public class OptionCollection :
+    public partial class OptionCollection :
         XeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, IOptionCollection
     {
         public TrackingCategory _trackingCat;

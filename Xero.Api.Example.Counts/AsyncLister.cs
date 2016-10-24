@@ -37,12 +37,12 @@ namespace Xero.Api.Example.Counts
             Console.WriteLine("There are {0} receipts", (await _api.Receipts.FindAsync()).Count());
             Console.WriteLine("There are {0} repeating invoices", (await _api.RepeatingInvoices.FindAsync()).Count());
             Console.WriteLine("There are {0} tax rates", (await _api.TaxRates.FindAsync()).Count());
-            //Console.WriteLine("There are {0} tracking categories", (await _api.TrackingCategories.FindAsync()).Count());
+            Console.WriteLine("There are {0} tracking categories", (await _api.TrackingCategories.FindAsync()).Count());
             Console.WriteLine("There are {0} users", (await _api.Users.FindAsync()).Count());
 
 
-            //ListReports(_api.Reports.Named, "named");
-            //ListReports(_api.Reports.Published, "published");
+            ListReports(_api.Reports.Named, "named");
+            ListReports(await _api.Reports.GetPublishedAsync(), "published");
 
             Console.WriteLine("Done! Press any key to exit.");
             Console.ReadKey();
@@ -76,6 +76,21 @@ namespace Xero.Api.Example.Counts
             }
 
             return total;
+        }
+
+        private void ListReports(IEnumerable<string> reports, string name)
+        {
+            var enumerable = reports as IList<string> ?? reports.ToList();
+            Console.WriteLine("There are {0} {1} reports", enumerable.Count(), name);
+
+            if (enumerable.Any())
+            {
+                Console.WriteLine("Named:");
+                foreach (var r in enumerable)
+                {
+                    Console.WriteLine("\t{0}", r);
+                }
+            }
         }
     }
 }

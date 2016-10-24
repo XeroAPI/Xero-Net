@@ -9,6 +9,5 @@ namespace Xero.Api.Core.Endpoints
 {
     public partial interface IManualJournalsEndpoint : IAsyncXeroUpdateEndpoint<ManualJournalsEndpoint, ManualJournal, ManualJournalsRequest, ManualJournalsResponse>, IPageableEndpoint<IManualJournalsEndpoint>
     {
-
     }
 }

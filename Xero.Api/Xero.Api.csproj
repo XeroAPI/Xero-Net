@@ -87,6 +87,17 @@
     <Compile Include="Common\IXeroReadEndpoint.cs" />
     <Compile Include="Common\QueryGenerator.cs" />
     <Compile Include="Common\XeroReadEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\AllocationEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\AssociationsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\AttachmentsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\ContactGroupEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\FilesEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\FoldersEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\InboxEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\PdfEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\ReportsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\TrackingCategoriesEndpoint.async.cs" />
+    <Compile Include="Core\Response\FoldersResponseExtensions.cs" />
     <Compile Include="Core\TaskExtensions.cs" />
     <Compile Include="Core\Endpoints\AccountsEndpoint.async.cs" />
     <Compile Include="Core\Endpoints\AllocationEndpoint.cs" />

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 using Xero.Api.Core.File;
 using Xero.Api.Core.Model.Types;
 using Xero.Api.Infrastructure.Http;
@@ -8,17 +10,9 @@ namespace Xero.Api.Core.Endpoints
 {
     public partial class PdfEndpoint
     {
-        // todo: implement HttpClient.GetRawAsync for use in async version of Get
-        private XeroHttpClient Client { get; set; }
-
-        public PdfEndpoint(XeroHttpClient client)
+        public async Task<BinaryFile> GetAsync(PdfEndpointType type, Guid parent, CancellationToken cancellation = default(CancellationToken))
         {
-            Client = client;
-        }
-
-        public BinaryFile Get(PdfEndpointType type, Guid parent)
-        {
-            var data = Client.Client.GetRaw(string.Format("/api.xro/2.0/{0}/{1}", type, parent.ToString("D")), "application/pdf");
+            var data = await Client.Client.GetRawAsync(string.Format("/api.xro/2.0/{0}/{1}", type, parent.ToString("D")), "application/pdf", cancellation: cancellation);
 
             if (data.StatusCode == HttpStatusCode.OK)
             {

@@ -73,9 +73,9 @@ namespace Xero.Api.Infrastructure.Http
             return (IList<TResult>)Read<TResult, TResponse>(await Client.DeleteAsync(endPoint, cancellation));
         }
 
-        internal Task<Response> GetAsync(string endpoint, string mimeType)
+        internal Task<Response> GetAsync(string endpoint, string mimeType, CancellationToken cancellation = default(CancellationToken))
         {
-            return Client.GetAsync(endpoint, null);
+            return Client.GetAsync(endpoint, null, cancellation);
         }
     }
 }

@@ -7,6 +7,5 @@ namespace Xero.Api.Core.Endpoints
 {
     public partial interface ICurrenciesEndpoint : IAsyncXeroReadEndpoint<CurrenciesEndpoint, Currency, CurrenciesResponse>
     {
-        
     }
 }

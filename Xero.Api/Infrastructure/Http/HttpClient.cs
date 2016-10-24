@@ -26,7 +26,7 @@ namespace Xero.Api.Infrastructure.Http
         /// = true when constructed with IAsyncAuthenticator or descendants
         /// = false when constructed with IAuthenticator or descendants
         /// </summary>
-        private readonly bool? _async = null;
+        private readonly bool? _isAsyncAuth = null;
 
         private readonly Dictionary<string, string> _headers;
 
@@ -50,7 +50,7 @@ namespace Xero.Api.Infrastructure.Http
         public HttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user)
             : this(baseUri, consumer, user)
         {
-            _async = false;
+            _isAsyncAuth = false;
             _auth = auth;
         }
 
@@ -171,7 +171,7 @@ namespace Xero.Api.Infrastructure.Http
 
         private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null)
         {
-            Debug.Assert(!this._async.HasValue || !this._async.Value, "Non-async require IAuthenticator");
+            Debug.Assert(this._isAsyncAuth != true, "Non-async requests require IAuthenticator");
 
             var uri = new UriBuilder(_baseUri)
             {
