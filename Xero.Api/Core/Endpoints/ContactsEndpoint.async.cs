@@ -10,6 +10,5 @@ namespace Xero.Api.Core.Endpoints
     public partial interface IContactsEndpoint
         : IAsyncXeroUpdateEndpoint<ContactsEndpoint, Contact, ContactsRequest, ContactsResponse>, IPageableEndpoint<IContactsEndpoint>
     {
-
     }
 }

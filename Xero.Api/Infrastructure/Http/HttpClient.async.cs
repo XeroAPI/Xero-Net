@@ -147,19 +147,22 @@ namespace Xero.Api.Infrastructure.Http
                 Content = content
             };
 
+            await this.SetHeadersAsync(request, method.ToString(), contentType, accept, cancellation);
+            return request;
+        }
+
+        private async Task SetHeadersAsync(HttpRequestMessage request, string method, string contentType, string accept, CancellationToken cancellation)
+        {
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
             if (ModifiedSince.HasValue)
             {
                 request.Headers.IfModifiedSince = ModifiedSince.Value;
             }
 
-            await this.SetHeadersAsync(request, method.ToString(), contentType, cancellation);
-            return request;
-        }
+            // Have to set User-Agent header manually, calling request.Headers.UserAgent.Add() validates format of value which requires a version
+            request.Headers.Add("User-Agent", !string.IsNullOrWhiteSpace(UserAgent) ? UserAgent : "Xero Api wrapper - " + Consumer.ConsumerKey);
 
-        private async Task SetHeadersAsync(HttpRequestMessage message, string method, string contentType, CancellationToken cancellation)
-        {
-            var content = message.Content;
+            var content = request.Content;
             if (content != null && contentType != null)
             {
                 content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
@@ -168,15 +171,15 @@ namespace Xero.Api.Infrastructure.Http
             if (this._authAsync != null || this._auth != null)
             {
                 var oauthSignature = this._authAsync != null
-                    ? await this._authAsync.GetSignatureAsync(Consumer, User, message.RequestUri, method, Consumer, cancellation) 
-                    : this._auth.GetSignature(Consumer, User, message.RequestUri, method, Consumer);
+                    ? await this._authAsync.GetSignatureAsync(Consumer, User, request.RequestUri, method, Consumer, cancellation) 
+                    : this._auth.GetSignature(Consumer, User, request.RequestUri, method, Consumer);
 
-                AddHeader("Authorization", oauthSignature);                
+                AddHeader("Authorization", oauthSignature);
             }
 
             foreach (var pair in _headers)
             {
-                message.Headers.Add(pair.Key, pair.Value);
+                request.Headers.Add(pair.Key, pair.Value);
             }
         }
     }
