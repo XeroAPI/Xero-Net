@@ -8,7 +8,6 @@ namespace Xero.Api.Core.Endpoints
 {
     public partial class PdfEndpoint
     {
-        // todo: implement HttpClient.GetRawAsync for use in async version of Get
         private XeroHttpClient Client { get; set; }
 
         public PdfEndpoint(XeroHttpClient client)

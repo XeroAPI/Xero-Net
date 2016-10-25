@@ -5,7 +5,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public partial interface IAsyncBrandingThemesEndpoint :
+    public partial interface IBrandingThemesEndpoint :
         IXeroReadEndpoint<BrandingThemesEndpoint, BrandingTheme, BrandingThemesResponse>
     {
 

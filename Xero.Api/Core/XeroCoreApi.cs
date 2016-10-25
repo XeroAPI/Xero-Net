@@ -60,50 +60,6 @@ namespace Xero.Api.Core
         {
         }
 
-        public XeroCoreApi(string baseUri, IAsyncAuthenticator auth, IConsumer consumer, IUser user,
-            IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper)
-            : this(baseUri, auth, consumer, user, readMapper, writeMapper, null)
-        {
-        }
-
-        public XeroCoreApi(string baseUri, IAsyncAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper, IAsyncRateLimiter rateLimiter)
-            : base(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter)
-        {
-            Connect();
-        }
-
-        public XeroCoreApi(string baseUri, IAsyncCertificateAuthenticator auth, IConsumer consumer, IUser user,
-            IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper)
-            : this(baseUri, auth, consumer, user, readMapper, writeMapper, null)
-        {
-        }
-
-        public XeroCoreApi(string baseUri, IAsyncCertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper, IAsyncRateLimiter rateLimiter)
-            : base(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter)
-        {
-            Connect();
-        }
-
-        public XeroCoreApi(string baseUri, IAsyncAuthenticator auth, IConsumer consumer, IUser user)
-            : this(baseUri, auth, consumer, user, null)
-        {
-        }
-
-        public XeroCoreApi(string baseUri, IAsyncAuthenticator auth, IConsumer consumer, IUser user, IAsyncRateLimiter rateLimiter)
-            : this(baseUri, auth, consumer, user, new DefaultMapper(), new DefaultMapper())
-        {
-        }
-
-        public XeroCoreApi(string baseUri, IAsyncCertificateAuthenticator auth, IConsumer consumer, IUser user)
-            : this(baseUri, auth, consumer, user, null)
-        {
-        }
-
-        public XeroCoreApi(string baseUri, IAsyncCertificateAuthenticator auth, IConsumer consumer, IUser user, IAsyncRateLimiter rateLimiter)
-            : this(baseUri, auth, consumer, user, new DefaultMapper(), new DefaultMapper(), rateLimiter)
-        {
-        }
-
         public IAccountsEndpoint Accounts { get; private set; }
         public AllocationsEndpoint Allocations { get; private set; }
         public AttachmentsEndpoint Attachments { get; private set; }

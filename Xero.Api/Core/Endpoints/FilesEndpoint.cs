@@ -32,7 +32,7 @@ namespace Xero.Api.Core.Endpoints
         {
             get
             {
-                var result = this.Find(id);
+                var result = Find(id);
                 return result;
             }
         }
