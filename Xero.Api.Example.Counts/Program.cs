@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Comment out the #define ASYNC line to test synchronous operation
+#define ASYNC
+
+using System;
 using System.Threading.Tasks;
 using Xero.Api.Core;
 using Xero.Api.Example.TokenStores;
@@ -10,30 +13,18 @@ namespace Xero.Api.Example.Counts
     {
         static void Main(string[] args)
         {
+#if ASYNC
+            // Test the Async code, with or without an async IAuthenticator
+            new Func<Task>(() => TestAsync(asyncAuthenticator: true)).StartLongRunningAsync().Unwrap().Wait();
+#else
             // Test the non-async code
             //Test();
-
-            // Test the Async code
-            new Func<Task>(() => TestAsync(asyncAuthenticator: true)).StartLongRunningAsync().Unwrap().Wait();
+#endif
         }
 
-        static void Test()
-        {
-            var user = new ApiUser { Name = Environment.MachineName };
-            var tokenStore = new SqliteTokenStore();
-
-            var api = new Applications.Public.Core(tokenStore, user)
-            {
-                UserAgent = "Xero Api - Listing example"
-            };
-
-            new Lister(api).List();
-        }
-
+#if ASYNC
         static async Task TestAsync(bool asyncAuthenticator)
         {
-            Console.WriteLine("Starting test...");
-
             var user = new ApiUser { Name = Environment.MachineName };
             var tokenStore = new SqliteTokenStore();
 
@@ -48,10 +39,20 @@ namespace Xero.Api.Example.Counts
             }
 
             await new AsyncLister(api).ListAsync();
-
-            //new Lister(api).List();
-
-            Console.WriteLine("Test complete...");
         }
+#else
+        static void Test()
+        {
+            var user = new ApiUser { Name = Environment.MachineName };
+            var tokenStore = new SqliteTokenStore();
+
+            var api = new Applications.Public.Core(tokenStore, user)
+            {
+                UserAgent = "Xero Api - Listing example"
+            };
+
+            new Lister(api).List();
+        }
+#endif
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xero.Api.Core;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Types;
@@ -29,6 +30,22 @@ namespace Xero.Api.Example.Creation
             Console.WriteLine("Created {0} contacts in last 24 hours", _api.Contacts.ModifiedSince(DateTime.UtcNow.AddDays(-1)).Find().Count());
             Console.WriteLine("There are {0} invoicess", GetTotalInvoiceCount());
             Console.WriteLine("Created {0} invoices in last 24 hours", _api.Invoices.ModifiedSince(DateTime.UtcNow.AddDays(-1)).Find().Count());            
+            Console.WriteLine("Done!");
+            Console.ReadLine();
+        }
+
+        public async Task CreateAsync(int invoiceCount, int maxLineItems, IEnumerable<Name> peopleNames, IEnumerable<Address> places, IEnumerable<string> descriptions)
+        {
+            var contacts = CreateContacts(peopleNames, places).ToList();
+            await PopulateContactsAsync(contacts);
+
+            var invoices = CreateInvoices(invoiceCount, maxLineItems, contacts, descriptions).ToList();
+            await PopulateInvoicesAsync(invoices);
+
+            Console.WriteLine("There are {0} contacts", await GetTotalContactCountAsync());
+            Console.WriteLine("Created {0} contacts in last 24 hours", (await _api.Contacts.ModifiedSince(DateTime.UtcNow.AddDays(-1)).FindAsync()).Count());
+            Console.WriteLine("There are {0} invoicess", await GetTotalInvoiceCountAsync());
+            Console.WriteLine("Created {0} invoices in last 24 hours", (await _api.Invoices.ModifiedSince(DateTime.UtcNow.AddDays(-1)).FindAsync()).Count());
             Console.WriteLine("Done!");
             Console.ReadLine();
         }
@@ -172,6 +189,71 @@ namespace Xero.Api.Example.Creation
         public bool Heads(Random rnd)
         {
             return rnd.NextDouble() * 2 >= 1;
+        }
+
+        private async Task<int> GetTotalContactCountAsync()
+        {
+            int count = (await _api.Contacts.FindAsync()).Count();
+            int total = count;
+            int page = 2;
+
+            while (count == 100)
+            {
+                count = (await _api.Contacts.Page(page++).FindAsync()).Count();
+                total += count;
+            }
+
+            return total;
+        }
+
+        private async Task<int> GetTotalInvoiceCountAsync()
+        {
+            int count = (await _api.Invoices.FindAsync()).Count();
+            int total = count;
+            int page = 2;
+
+            while (count == 100)
+            {
+                count = (await _api.Invoices.Page(page++).FindAsync()).Count();
+                total += count;
+            }
+
+            return total;
+        }
+
+        private async Task PopulateInvoicesAsync(IEnumerable<Invoice> invoices)
+        {
+            var invoiceCount = invoices.Count();
+
+            const int pageSize = 20;
+            var pages = (invoiceCount / pageSize) + 1;
+
+            Console.WriteLine("Creating invoices");
+            for (var i = 0; i < pages; i++)
+            {
+                var batch = invoices.Skip(i * pageSize).Take(pageSize).ToList();
+                var items = await _api.CreateAsync(batch);
+                Console.WriteLine("Created {0} invoices", items.Count());
+            }
+
+            Console.WriteLine("Finished creating {0} invoices", invoiceCount);
+        }
+
+        private async Task PopulateContactsAsync(IEnumerable<Contact> contacts)
+        {
+            var contactCount = contacts.Count();
+            const int pageSize = 20;
+            var pages = (contactCount / pageSize) + 1;
+
+            Console.WriteLine("Creating contacts");
+            for (var i = 0; i < pages; i++)
+            {
+                var batch = contacts.Skip(i * pageSize).Take(pageSize).ToList();
+                var items = await _api.CreateAsync(batch);
+                Console.WriteLine("Created {0} contacts", items.Count());
+            }
+
+            Console.WriteLine("Finished creating {0} contacts", contactCount);
         }
     }
 }
