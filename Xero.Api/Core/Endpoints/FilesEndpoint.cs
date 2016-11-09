@@ -10,7 +10,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IFilesEndpoint : IXeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>
+    public partial interface IFilesEndpoint : IXeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>
     {
         Model.File Rename(Guid id, string name);
         Model.File Move(Guid id, Guid newFolder);
@@ -20,9 +20,8 @@ namespace Xero.Api.Core.Endpoints
         Model.File this[Guid id] { get; }
     }
 
-    public class FilesEndpoint : XeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>, IFilesEndpoint
+    public partial class FilesEndpoint : XeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>, IFilesEndpoint
     {
-
         internal FilesEndpoint(XeroHttpClient client)
             : base(client, "files.xro/1.0/Files")
         {

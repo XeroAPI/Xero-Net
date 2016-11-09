@@ -7,14 +7,14 @@ using Xero.Api.Infrastructure.Interfaces;
 
 namespace Xero.Api.Common
 {
-    public abstract class XeroReadEndpoint<T, TResult, TResponse> : IXeroReadEndpoint<T, TResult, TResponse> 
+    public abstract partial class XeroReadEndpoint<T, TResult, TResponse> : IXeroReadEndpoint<T, TResult, TResponse>
         where T : XeroReadEndpoint<T, TResult, TResponse>
         where TResponse : IXeroResponse<TResult>, new()
     {
         private DateTime? _modifiedSince;
         private string _query;
         private string _orderBy;
-        
+
         protected NameValueCollection Parameters { get; private set; }
 
         protected string ApiEndpointUrl { get; private set; }

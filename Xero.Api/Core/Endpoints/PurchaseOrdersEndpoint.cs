@@ -9,7 +9,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IPurchaseOrdersEndpoint :
+    public partial interface IPurchaseOrdersEndpoint :
         IXeroUpdateEndpoint<PurchaseOrdersEndpoint, PurchaseOrder, PurchaseOrdersRequest, PurchaseOrdersResponse>, IPageableEndpoint<IPurchaseOrdersEndpoint>
     {
         PurchaseOrdersEndpoint Status(PurchaseOrderStatus status);

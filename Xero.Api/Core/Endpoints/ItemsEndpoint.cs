@@ -7,12 +7,12 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IItemsEndpoint : IXeroUpdateEndpoint<ItemsEndpoint, Item, ItemsRequest, ItemsResponse>
+    public partial interface IItemsEndpoint : IXeroUpdateEndpoint<ItemsEndpoint, Item, ItemsRequest, ItemsResponse>
     {
         void Delete(Item itemToDelete);
     }
 
-    public class ItemsEndpoint
+    public partial class ItemsEndpoint
         : FourDecimalPlacesEndpoint<ItemsEndpoint, Item, ItemsRequest, ItemsResponse>, IItemsEndpoint
     {
         public ItemsEndpoint(XeroHttpClient client) :

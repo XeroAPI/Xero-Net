@@ -6,7 +6,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IAssociationsEndpoint
+    public partial interface IAssociationsEndpoint
     {
         Association Find(Guid fileId, Guid objectId);
 
@@ -19,7 +19,7 @@ namespace Xero.Api.Core.Endpoints
         void Delete(Association association);
     }
 
-    public class AssociationsEndpoint : IAssociationsEndpoint
+    public partial class AssociationsEndpoint : IAssociationsEndpoint
     {
         public XeroHttpClient Client { get; private set; }
 

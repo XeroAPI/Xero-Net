@@ -7,7 +7,7 @@ using Xero.Api.Infrastructure.OAuth;
 
 namespace Xero.Api.Example.TokenStores
 {
-    public class SqliteTokenStore : ITokenStore
+    public partial class SqliteTokenStore : ITokenStore
     {
         private const string FileName = "tokens.sqlite";
         private const string ConnectionString = "Data Source=" + FileName + ";Version=3;";

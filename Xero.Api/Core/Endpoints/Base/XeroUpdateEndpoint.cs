@@ -6,15 +6,15 @@ using Xero.Api.Infrastructure.Interfaces;
 
 namespace Xero.Api.Core.Endpoints.Base
 {
-    public abstract class XeroUpdateEndpoint<T, TResult, TRequest, TResponse>
+    public abstract partial class XeroUpdateEndpoint<T, TResult, TRequest, TResponse>
         : XeroCreateEndpoint<T, TResult, TRequest, TResponse>, IXeroUpdateEndpoint<T, TResult, TRequest, TResponse>
-        where T : XeroReadEndpoint<T, TResult, TResponse>
+        where T : XeroUpdateEndpoint<T, TResult, TRequest, TResponse>
         where TResponse : IXeroResponse<TResult>, new()
         where TRequest : IXeroRequest<TResult>, new()
     {
         protected XeroUpdateEndpoint(XeroHttpClient client, string apiEndpointUrl)
             : base(client, apiEndpointUrl)
-        {            
+        {
         }
 
         public IEnumerable<TResult> Update(IEnumerable<TResult> items)

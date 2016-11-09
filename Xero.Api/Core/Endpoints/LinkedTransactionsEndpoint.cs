@@ -9,7 +9,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface ILinkedTransactionsEndpoint : IXeroUpdateEndpoint<LinkedTransactionsEndpoint, LinkedTransaction, LinkedTransactionsRequest, LinkedTransactionsResponse>, IPageableEndpoint<ILinkedTransactionsEndpoint>
+    public partial interface ILinkedTransactionsEndpoint : IXeroUpdateEndpoint<LinkedTransactionsEndpoint, LinkedTransaction, LinkedTransactionsRequest, LinkedTransactionsResponse>, IPageableEndpoint<ILinkedTransactionsEndpoint>
     {
         void Delete(LinkedTransaction linkedTransaction);
         LinkedTransactionsEndpoint WhereSourceId(Guid sourceId);
@@ -17,7 +17,7 @@ namespace Xero.Api.Core.Endpoints
         LinkedTransactionsEndpoint WhereTargetId(Guid targetId);
     }
 
-    public class LinkedTransactionsEndpoint
+    public partial class LinkedTransactionsEndpoint
         : XeroUpdateEndpoint<LinkedTransactionsEndpoint, LinkedTransaction, LinkedTransactionsRequest, LinkedTransactionsResponse>, ILinkedTransactionsEndpoint
     {
         internal LinkedTransactionsEndpoint(XeroHttpClient client) 

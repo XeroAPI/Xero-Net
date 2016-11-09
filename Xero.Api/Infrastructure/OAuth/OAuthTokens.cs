@@ -7,7 +7,7 @@ using HttpUtility = Xero.Api.Infrastructure.ThirdParty.HttpUtility.HttpUtility;
 
 namespace Xero.Api.Infrastructure.OAuth
 {
-    public class OAuthTokens
+    public partial class OAuthTokens
     {
         private readonly string _authorizeUri;
         private readonly string _tokenUri;
@@ -76,7 +76,7 @@ namespace Xero.Api.Infrastructure.OAuth
 
             if (_clientCertificate != null)
                 req.ClientCertificate = _clientCertificate;
-            
+
             req.AddHeader("Authorization", header);
 
             var response = req.Post(endPoint, string.Empty);

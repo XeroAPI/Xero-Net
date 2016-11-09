@@ -123,23 +123,23 @@ namespace CoreTests.Unit
         [Test]
         public void no_four_decimal_places_repeat_invoice()
         {
-            Assert.AreEqual("", Api.RepeatingInvoices.UseFourDecimalPlaces(false).QueryString);            
+            Assert.AreEqual("", Api.RepeatingInvoices.UseFourDecimalPlaces(false).QueryString);
         }
 
         [Test]
         public void explict_four_decimal_repeat_invoice()
         {
-            Assert.AreEqual("unitdp=4", Api.RepeatingInvoices.UseFourDecimalPlaces(true).QueryString);            
+            Assert.AreEqual("unitdp=4", Api.RepeatingInvoices.UseFourDecimalPlaces(true).QueryString);
         }
 
         [Test]
         public void implict_four_decimal_repeat_invoice()
         {
-            Assert.AreEqual("unitdp=4", Api.RepeatingInvoices.QueryString);            
+            Assert.AreEqual("unitdp=4", Api.RepeatingInvoices.QueryString);
         }
 
         private void ExplictUse4Dp<T, TResult, TRequest, TResponse>(FourDecimalPlacesEndpoint<T, TResult, TRequest, TResponse> endpoint, string expected = "unitdp=4")
-            where T : XeroReadEndpoint<T, TResult, TResponse>
+            where T : FourDecimalPlacesEndpoint<T, TResult, TRequest, TResponse>
             where TResponse : IXeroResponse<TResult>, new()
             where TRequest : IXeroRequest<TResult>, new()
         {
@@ -147,7 +147,7 @@ namespace CoreTests.Unit
         }
 
         private void ImplicitUse4Dp<T, TResult, TRequest, TResponse>(FourDecimalPlacesEndpoint<T, TResult, TRequest, TResponse> endpoint, string expected = "unitdp=4")
-            where T : XeroReadEndpoint<T, TResult, TResponse>
+            where T : FourDecimalPlacesEndpoint<T, TResult, TRequest, TResponse>
             where TResponse : IXeroResponse<TResult>, new()
             where TRequest : IXeroRequest<TResult>, new()
         {
@@ -155,7 +155,7 @@ namespace CoreTests.Unit
         }
 
         private void ExplicitNotUse4Dp<T, TResult, TRequest, TResponse>(FourDecimalPlacesEndpoint<T, TResult, TRequest, TResponse> endpoint, string expected = "")
-            where T : XeroReadEndpoint<T, TResult, TResponse>
+            where T : FourDecimalPlacesEndpoint<T, TResult, TRequest, TResponse>
             where TResponse : IXeroResponse<TResult>, new()
             where TRequest : IXeroRequest<TResult>, new()
         {

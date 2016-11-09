@@ -6,7 +6,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public class PdfEndpoint
+    public partial class PdfEndpoint
     {
         private XeroHttpClient Client { get; set; }
 

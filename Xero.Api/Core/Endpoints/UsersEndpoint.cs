@@ -5,7 +5,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IUsersEndpoint : IXeroReadEndpoint<UsersEndpoint, User, UsersResponse>
+    public partial interface IUsersEndpoint : IXeroReadEndpoint<UsersEndpoint, User, UsersResponse>
     {
     }
 

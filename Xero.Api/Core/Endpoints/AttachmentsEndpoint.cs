@@ -10,7 +10,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public class AttachmentsEndpoint
+    public partial class AttachmentsEndpoint
     {
         private XeroHttpClient Client { get; set; }
 

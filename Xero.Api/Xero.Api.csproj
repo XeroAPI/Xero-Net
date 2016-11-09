@@ -33,27 +33,110 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.IO, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\IAsyncXeroReadEndpoint.cs" />
     <Compile Include="Common\IHasId.cs" />
     <Compile Include="Common\IPageableEndpoint.cs" />
     <Compile Include="Common\IXeroReadEndpoint.cs" />
     <Compile Include="Common\QueryGenerator.cs" />
+    <Compile Include="Common\XeroReadEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\AllocationEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\AssociationsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\AttachmentsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\ContactGroupEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\FilesEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\FoldersEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\InboxEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\PdfEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\ReportsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\TrackingCategoriesEndpoint.async.cs" />
+    <Compile Include="Core\Response\FoldersResponseExtensions.cs" />
+    <Compile Include="Core\TaskExtensions.cs" />
+    <Compile Include="Core\Endpoints\AccountsEndpoint.async.cs" />
     <Compile Include="Core\Endpoints\AllocationEndpoint.cs" />
     <Compile Include="Core\Endpoints\AssociationsEndpoint.cs" />
+    <Compile Include="Core\Endpoints\BankTransactionsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\BankTransfersEndpoint.async.cs" />
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
+    <Compile Include="Core\Endpoints\Base\IAsyncXeroUpdateEndpoint.cs" />
+    <Compile Include="Core\Endpoints\Base\IAsyncXeroCreateEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\IXeroCreateEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\IXeroUpdateEndpoint.cs" />
+    <Compile Include="Core\Endpoints\Base\XeroCreateEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\Base\XeroUpdateEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\BrandingThemesEndpoint.async.cs" />
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
+    <Compile Include="Core\Endpoints\ContactsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\CreditNotesEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\CurrenciesEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\EmployeesEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\ExpenseClaimsEndpoint.async.cs" />
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
+    <Compile Include="Core\Endpoints\InvoicesEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\ItemsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\JournalsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\LinkedTransactionsEndpoint.async.cs" />
     <Compile Include="Core\Endpoints\LinkedTransactionsEndpoint.cs" />
+    <Compile Include="Core\Endpoints\ManualJournalsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\OrganisationEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\OverpaymentsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\PaymentsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\PrepaymentsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\PurchaseOrdersEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\ReceiptsEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\RepeatingInvoicesEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\SetupEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\TaxRatesEndpoint.async.cs" />
+    <Compile Include="Core\Endpoints\UsersEndpoint.async.cs" />
+    <Compile Include="Core\IXeroCoreApi.async.cs" />
     <Compile Include="Core\Model\OnlineInvoice.cs" />
     <Compile Include="Core\IXeroCoreApi.cs" />
     <Compile Include="Core\Endpoints\PurchaseOrdersEndpoint.cs" />
@@ -126,8 +209,15 @@
     <Compile Include="Core\Response\PurchaseOrdersResponse.cs" />
     <Compile Include="Core\Response\SetupResponse.cs" />
     <Compile Include="Core\Response\OptionsResponse.cs" />
+    <Compile Include="Core\XeroCoreApi.async.cs" />
     <Compile Include="Infrastructure\Exceptions\RateExceededException.cs" />
     <Compile Include="Infrastructure\Exceptions\ValidationException.cs" />
+    <Compile Include="Infrastructure\Http\HttpClient.async.cs" />
+    <Compile Include="Infrastructure\Http\Response.async.cs" />
+    <Compile Include="Infrastructure\Http\XeroHttpClient.async.cs" />
+    <Compile Include="Infrastructure\Interfaces\IAsyncAuthenticator.cs" />
+    <Compile Include="Infrastructure\Interfaces\IAsyncCertificateAuthenticator.cs" />
+    <Compile Include="Infrastructure\Interfaces\IAsyncTokenStore.cs" />
     <Compile Include="Infrastructure\Interfaces\IAuthenticationToken.cs" />
     <Compile Include="Infrastructure\Interfaces\IUser.cs" />
     <Compile Include="Infrastructure\Exceptions\ApiException.cs" />
@@ -245,7 +335,10 @@
     <Compile Include="Infrastructure\Interfaces\ITokenStore.cs" />
     <Compile Include="Infrastructure\Exceptions\XeroApiException.cs" />
     <Compile Include="Core\Endpoints\BrandingThemesEndpoint.cs" />
+    <Compile Include="Infrastructure\OAuth\OAuthTokens.async.cs" />
+    <Compile Include="Infrastructure\RateLimiter\IAsyncRateLimiter.cs" />
     <Compile Include="Infrastructure\RateLimiter\IRateLimiter.cs" />
+    <Compile Include="Infrastructure\RateLimiter\RateLimiter.async.cs" />
     <Compile Include="Infrastructure\RateLimiter\RateLimiter.cs" />
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\UrlEncoder.cs" />
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\HttpEncoder.cs" />
@@ -555,9 +648,16 @@
     <Compile Include="Infrastructure\ThirdParty\ServiceStack.Text\XmlSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

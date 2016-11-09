@@ -7,7 +7,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IContactsEndpoint
+    public partial interface IContactsEndpoint
         : IXeroUpdateEndpoint<ContactsEndpoint, Contact, ContactsRequest, ContactsResponse>,
         IPageableEndpoint<IContactsEndpoint>
     {

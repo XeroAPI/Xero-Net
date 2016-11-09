@@ -12,7 +12,7 @@ using Organisation = Xero.Api.Core.Model.Organisation;
 
 namespace Xero.Api.Core
 {
-    public class XeroCoreApi : XeroApi, IXeroCoreApi
+    public partial class XeroCoreApi : XeroApi, IXeroCoreApi
     {
         private IOrganisationEndpoint OrganisationEndpoint { get; set; }
 
