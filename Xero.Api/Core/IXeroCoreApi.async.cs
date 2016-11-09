@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Setup;
@@ -11,111 +12,111 @@ namespace Xero.Api.Core
 {
     partial interface IXeroCoreApi
     {
-        Task<Organisation> GetOrganisationAsync();
+        Task<Organisation> GetOrganisationAsync(CancellationToken cancellation = default(CancellationToken));
 
         //Accounts
-        Task<IList<Account>> CreateAsync(IList<Account> items);
-        Task<IList<Account>> UpdateAsync(IList<Account> items);
-        Task<Account> CreateAsync(Account item);
-        Task<Account> UpdateAsync(Account item);
+        Task<IList<Account>> CreateAsync(IList<Account> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<Account>> UpdateAsync(IList<Account> items, CancellationToken cancellation = default(CancellationToken));
+        Task<Account> CreateAsync(Account item, CancellationToken cancellation = default(CancellationToken));
+        Task<Account> UpdateAsync(Account item, CancellationToken cancellation = default(CancellationToken));
 
         //BankTransactions
-        Task<IList<BankTransaction>> CreateAsync(IList<BankTransaction> items);
-        Task<IList<BankTransaction>> UpdateAsync(IList<BankTransaction> items);
-        Task<BankTransaction> CreateAsync(BankTransaction item);
-        Task<BankTransaction> UpdateAsync(BankTransaction item);
+        Task<IList<BankTransaction>> CreateAsync(IList<BankTransaction> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<BankTransaction>> UpdateAsync(IList<BankTransaction> items, CancellationToken cancellation = default(CancellationToken));
+        Task<BankTransaction> CreateAsync(BankTransaction item, CancellationToken cancellation = default(CancellationToken));
+        Task<BankTransaction> UpdateAsync(BankTransaction item, CancellationToken cancellation = default(CancellationToken));
 
         //BankTransfers
-        Task<IList<BankTransfer>> CreateAsync(IList<BankTransfer> items);
-        Task<BankTransfer> CreateAsync(BankTransfer item);
+        Task<IList<BankTransfer>> CreateAsync(IList<BankTransfer> items, CancellationToken cancellation = default(CancellationToken));
+        Task<BankTransfer> CreateAsync(BankTransfer item, CancellationToken cancellation = default(CancellationToken));
 
         //Contacts
-        Task<IList<Contact>> CreateAsync(IList<Contact> items);
-        Task<IList<Contact>> UpdateAsync(IList<Contact> items);
-        Task<Contact> CreateAsync(Contact item);
-        Task<Contact> UpdateAsync(Contact item);
+        Task<IList<Contact>> CreateAsync(IList<Contact> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<Contact>> UpdateAsync(IList<Contact> items, CancellationToken cancellation = default(CancellationToken));
+        Task<Contact> CreateAsync(Contact item, CancellationToken cancellation = default(CancellationToken));
+        Task<Contact> UpdateAsync(Contact item, CancellationToken cancellation = default(CancellationToken));
 
         //ContactGroups
-        Task<IList<ContactGroup>> CreateAsync(IList<ContactGroup> items);
-        Task<IList<ContactGroup>> UpdateAsync(IList<ContactGroup> items);
-        Task<ContactGroup> CreateAsync(ContactGroup item);
-        Task<ContactGroup> UpdateAsync(ContactGroup item);
+        Task<IList<ContactGroup>> CreateAsync(IList<ContactGroup> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<ContactGroup>> UpdateAsync(IList<ContactGroup> items, CancellationToken cancellation = default(CancellationToken));
+        Task<ContactGroup> CreateAsync(ContactGroup item, CancellationToken cancellation = default(CancellationToken));
+        Task<ContactGroup> UpdateAsync(ContactGroup item, CancellationToken cancellation = default(CancellationToken));
 
         //CreditNotes
-        Task<IList<CreditNote>> CreateAsync(IList<CreditNote> items);
-        Task<IList<CreditNote>> UpdateAsync(IList<CreditNote> items);
-        Task<CreditNote> CreateAsync(CreditNote item);
-        Task<CreditNote> UpdateAsync(CreditNote item);
+        Task<IList<CreditNote>> CreateAsync(IList<CreditNote> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<CreditNote>> UpdateAsync(IList<CreditNote> items, CancellationToken cancellation = default(CancellationToken));
+        Task<CreditNote> CreateAsync(CreditNote item, CancellationToken cancellation = default(CancellationToken));
+        Task<CreditNote> UpdateAsync(CreditNote item, CancellationToken cancellation = default(CancellationToken));
 
         //Employees
-        Task<IList<Employee>> CreateAsync(IList<Employee> items);
-        Task<IList<Employee>> UpdateAsync(IList<Employee> items);
-        Task<Employee> CreateAsync(Employee item);
-        Task<Employee> UpdateAsync(Employee item);
+        Task<IList<Employee>> CreateAsync(IList<Employee> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<Employee>> UpdateAsync(IList<Employee> items, CancellationToken cancellation = default(CancellationToken));
+        Task<Employee> CreateAsync(Employee item, CancellationToken cancellation = default(CancellationToken));
+        Task<Employee> UpdateAsync(Employee item, CancellationToken cancellation = default(CancellationToken));
 
         //ExpenseClaims
-        Task<IList<ExpenseClaim>> CreateAsync(IList<ExpenseClaim> items);
-        Task<IList<ExpenseClaim>> UpdateAsync(IList<ExpenseClaim> items);
-        Task<ExpenseClaim> CreateAsync(ExpenseClaim item);
-        Task<ExpenseClaim> UpdateAsync(ExpenseClaim item);
+        Task<IList<ExpenseClaim>> CreateAsync(IList<ExpenseClaim> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<ExpenseClaim>> UpdateAsync(IList<ExpenseClaim> items, CancellationToken cancellation = default(CancellationToken));
+        Task<ExpenseClaim> CreateAsync(ExpenseClaim item, CancellationToken cancellation = default(CancellationToken));
+        Task<ExpenseClaim> UpdateAsync(ExpenseClaim item, CancellationToken cancellation = default(CancellationToken));
 
         //Invoices
-        Task<IList<Invoice>> CreateAsync(IList<Invoice> items);
-        Task<IList<Invoice>> UpdateAsync(IList<Invoice> items);
-        Task<Invoice> CreateAsync(Invoice item);
-        Task<Invoice> UpdateAsync(Invoice item);
+        Task<IList<Invoice>> CreateAsync(IList<Invoice> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<Invoice>> UpdateAsync(IList<Invoice> items, CancellationToken cancellation = default(CancellationToken));
+        Task<Invoice> CreateAsync(Invoice item, CancellationToken cancellation = default(CancellationToken));
+        Task<Invoice> UpdateAsync(Invoice item, CancellationToken cancellation = default(CancellationToken));
 
         //Items
-        Task<IList<Item>> CreateAsync(IList<Item> items);
-        Task<IList<Item>> UpdateAsync(IList<Item> items);
-        Task<Item> CreateAsync(Item item);
-        Task<Item> UpdateAsync(Item item);
+        Task<IList<Item>> CreateAsync(IList<Item> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<Item>> UpdateAsync(IList<Item> items, CancellationToken cancellation = default(CancellationToken));
+        Task<Item> CreateAsync(Item item, CancellationToken cancellation = default(CancellationToken));
+        Task<Item> UpdateAsync(Item item, CancellationToken cancellation = default(CancellationToken));
 
         //LinkedTransactions
-        Task<IList<LinkedTransaction>> CreateAsync(IList<LinkedTransaction> items);
-        Task<IList<LinkedTransaction>> UpdateAsync(IList<LinkedTransaction> items);
-        Task<LinkedTransaction> CreateAsync(LinkedTransaction item);
-        Task<LinkedTransaction> UpdateAsync(LinkedTransaction item);
+        Task<IList<LinkedTransaction>> CreateAsync(IList<LinkedTransaction> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<LinkedTransaction>> UpdateAsync(IList<LinkedTransaction> items, CancellationToken cancellation = default(CancellationToken));
+        Task<LinkedTransaction> CreateAsync(LinkedTransaction item, CancellationToken cancellation = default(CancellationToken));
+        Task<LinkedTransaction> UpdateAsync(LinkedTransaction item, CancellationToken cancellation = default(CancellationToken));
 
         //ManualJournals
-        Task<IList<ManualJournal>> CreateAsync(IList<ManualJournal> items);
-        Task<IList<ManualJournal>> UpdateAsync(IList<ManualJournal> items);
-        Task<ManualJournal> CreateAsync(ManualJournal item);
-        Task<ManualJournal> UpdateAsync(ManualJournal item);
+        Task<IList<ManualJournal>> CreateAsync(IList<ManualJournal> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<ManualJournal>> UpdateAsync(IList<ManualJournal> items, CancellationToken cancellation = default(CancellationToken));
+        Task<ManualJournal> CreateAsync(ManualJournal item, CancellationToken cancellation = default(CancellationToken));
+        Task<ManualJournal> UpdateAsync(ManualJournal item, CancellationToken cancellation = default(CancellationToken));
 
 
         //Payments
-        Task<IList<Payment>> CreateAsync(IList<Payment> items);
-        Task<IList<Payment>> UpdateAsync(IList<Payment> items);
-        Task<Payment> CreateAsync(Payment item);
-        Task<Payment> UpdateAsync(Payment item);
+        Task<IList<Payment>> CreateAsync(IList<Payment> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<Payment>> UpdateAsync(IList<Payment> items, CancellationToken cancellation = default(CancellationToken));
+        Task<Payment> CreateAsync(Payment item, CancellationToken cancellation = default(CancellationToken));
+        Task<Payment> UpdateAsync(Payment item, CancellationToken cancellation = default(CancellationToken));
 
         //PurchaseOrders
-        Task<IList<PurchaseOrder>> CreateAsync(IList<PurchaseOrder> items);
-        Task<IList<PurchaseOrder>> UpdateAsync(IList<PurchaseOrder> items);
-        Task<PurchaseOrder> CreateAsync(PurchaseOrder item);
-        Task<PurchaseOrder> UpdateAsync(PurchaseOrder item);
+        Task<IList<PurchaseOrder>> CreateAsync(IList<PurchaseOrder> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<PurchaseOrder>> UpdateAsync(IList<PurchaseOrder> items, CancellationToken cancellation = default(CancellationToken));
+        Task<PurchaseOrder> CreateAsync(PurchaseOrder item, CancellationToken cancellation = default(CancellationToken));
+        Task<PurchaseOrder> UpdateAsync(PurchaseOrder item, CancellationToken cancellation = default(CancellationToken));
 
         //Receipts
-        Task<IList<Receipt>> CreateAsync(IList<Receipt> items);
-        Task<IList<Receipt>> UpdateAsync(IList<Receipt> items);
-        Task<Receipt> CreateAsync(Receipt item);
-        Task<Receipt> UpdateAsync(Receipt item);
+        Task<IList<Receipt>> CreateAsync(IList<Receipt> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<Receipt>> UpdateAsync(IList<Receipt> items, CancellationToken cancellation = default(CancellationToken));
+        Task<Receipt> CreateAsync(Receipt item, CancellationToken cancellation = default(CancellationToken));
+        Task<Receipt> UpdateAsync(Receipt item, CancellationToken cancellation = default(CancellationToken));
 
         //Setups
-        Task<ImportSummary> CreateAsync(Setup item);
-        Task<ImportSummary> UpdateAsync(Setup item);
+        Task<ImportSummary> CreateAsync(Setup item, CancellationToken cancellation = default(CancellationToken));
+        Task<ImportSummary> UpdateAsync(Setup item, CancellationToken cancellation = default(CancellationToken));
 
         //TaxRates
-        Task<IList<TaxRate>> CreateAsync(IList<TaxRate> items);
-        Task<IList<TaxRate>> UpdateAsync(IList<TaxRate> items);
-        Task<TaxRate> CreateAsync(TaxRate item);
-        Task<TaxRate> UpdateAsync(TaxRate item);
+        Task<IList<TaxRate>> CreateAsync(IList<TaxRate> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<TaxRate>> UpdateAsync(IList<TaxRate> items, CancellationToken cancellation = default(CancellationToken));
+        Task<TaxRate> CreateAsync(TaxRate item, CancellationToken cancellation = default(CancellationToken));
+        Task<TaxRate> UpdateAsync(TaxRate item, CancellationToken cancellation = default(CancellationToken));
 
         //TrackingCategories
-        Task<IList<TrackingCategory>> CreateAsync(IList<TrackingCategory> items);
-        Task<IList<TrackingCategory>> UpdateAsync(IList<TrackingCategory> items);
-        Task<TrackingCategory> CreateAsync(TrackingCategory item);
-        Task<TrackingCategory> UpdateAsync(TrackingCategory item);
+        Task<IList<TrackingCategory>> CreateAsync(IList<TrackingCategory> items, CancellationToken cancellation = default(CancellationToken));
+        Task<IList<TrackingCategory>> UpdateAsync(IList<TrackingCategory> items, CancellationToken cancellation = default(CancellationToken));
+        Task<TrackingCategory> CreateAsync(TrackingCategory item, CancellationToken cancellation = default(CancellationToken));
+        Task<TrackingCategory> UpdateAsync(TrackingCategory item, CancellationToken cancellation = default(CancellationToken));
     }
 }

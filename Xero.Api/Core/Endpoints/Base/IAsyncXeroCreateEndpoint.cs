@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xero.Api.Common;
 using Xero.Api.Infrastructure.Interfaces;
@@ -14,8 +15,8 @@ namespace Xero.Api.Core.Endpoints.Base
       where TResponse : IXeroResponse<TResult>, new()
       where TRequest : IXeroRequest<TResult>, new()
     {
-        Task<IList<TResult>> CreateAsync(IList<TResult> items);
+        Task<IList<TResult>> CreateAsync(IList<TResult> items, CancellationToken cancellation = default(CancellationToken));
 
-        Task<TResult> CreateAsync(TResult item);
+        Task<TResult> CreateAsync(TResult item, CancellationToken cancellation = default(CancellationToken));
     }
 }
