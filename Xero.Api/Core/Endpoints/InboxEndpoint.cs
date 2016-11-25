@@ -21,7 +21,7 @@ namespace Xero.Api.Core.Endpoints
     {
 
         internal InboxEndpoint(XeroHttpClient client)
-            : base(client, "files.xro/1.0/Inbox")
+            : base(client, "/files.xro/1.0/Inbox")
         {
             
         }
@@ -30,7 +30,7 @@ namespace Xero.Api.Core.Endpoints
         {
             get
             {
-                var endpoint = string.Format("files.xro/1.0/Inbox");
+                var endpoint = string.Format("/files.xro/1.0/Inbox");
 
                 var folder = HandleInboxResponse(Client
                     .Client
@@ -53,7 +53,7 @@ namespace Xero.Api.Core.Endpoints
         public Model.File Find(Guid fileId)
         {
             var response = HandleFileResponse(Client
-                .Client.Get("files.xro/1.0/Files", ""));
+                .Client.Get("/files.xro/1.0/Files", ""));
 
             return response.Items.SingleOrDefault(i => i.Id == fileId);
         }
@@ -63,7 +63,7 @@ namespace Xero.Api.Core.Endpoints
 
             var response = HandleFileResponse(Client
                 .Client
-                .PostMultipartForm("files.xro/1.0/Files/" + Inbox, file.Mimetype , file.Name, file.Name, data));
+                .PostMultipartForm("/files.xro/1.0/Files/" + Inbox, file.Mimetype , file.Name, file.Name, data));
 
             return response;
         }
@@ -75,7 +75,7 @@ namespace Xero.Api.Core.Endpoints
         {
             var response = HandleFileResponse(Client
                 .Client
-                .Delete("files.xro/1.0/Files/" + fileid.ToString()));
+                .Delete("/files.xro/1.0/Files/" + fileid.ToString()));
 
             return response;
         }
@@ -114,7 +114,7 @@ namespace Xero.Api.Core.Endpoints
         {
             get
             {
-                var endpoint = string.Format("files.xro/1.0/Inbox");
+                var endpoint = string.Format("/files.xro/1.0/Inbox");
 
                 var folder = HandleFoldersResponse(Client
                     .Client

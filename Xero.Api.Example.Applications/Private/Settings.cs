@@ -1,4 +1,6 @@
 ﻿using System.Configuration;
+using Xero.Api.Infrastructure.Interfaces;
+using Xero.Api.Infrastructure.OAuth;
 
 namespace Xero.Api.Example.Applications.Private
 {
@@ -9,24 +11,37 @@ namespace Xero.Api.Example.Applications.Private
             get { return ConfigurationManager.AppSettings["BaseUrl"]; }
         }
 
-        public string SigningCertificatePath
+        public SigningCertificate SigningCertificate
         {
-            get { return ConfigurationManager.AppSettings["SigningCertificate"]; }
+            get
+            {
+                return new SigningCertificate(
+                    ConfigurationManager.AppSettings["SigningCertificate"],
+                    ConfigurationManager.AppSettings["SigningCertificatePassword"]);
+            }
         }
 
-        public string SigningCertificatePassword
+        public IConsumer Consumer
         {
-            get { return ConfigurationManager.AppSettings["SigningCertificatePassword"]; }
+            get
+            {
+                return new Consumer(Key, Secret);
+            }
         }
-    
-        public string Key
+
+        private string Key
         {
             get { return ConfigurationManager.AppSettings["ConsumerKey"]; }
         }
 
-        public string Secret
+        private string Secret
         {
             get { return ConfigurationManager.AppSettings["ConsumerSecret"]; }
+        }
+
+        public string FilesBaseUrl
+        {
+            get { return ConfigurationManager.AppSettings["FilesBaseUrl"]; }
         }
     }
 }

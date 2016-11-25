@@ -8,7 +8,7 @@ namespace Xero.Api.Payroll.America.Endpoints
     public class SettingsEndpoint : XeroReadEndpoint<SettingsEndpoint, Settings, SettingsResponse>
     {
         public SettingsEndpoint(XeroHttpClient client)
-            : base(client, "payroll.xro/1.0/Settings")
+            : base(client, "/payroll.xro/1.0/Settings")
         {
         }
     }
