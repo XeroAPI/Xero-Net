@@ -24,7 +24,7 @@ There are different way to install this library:
 
 1. Download the source code from github and compile yourself: **https://github.com/XeroAPI/Xero-Net**
 2. Download directly into Visual Studio using the NuGet powershell command **PM&gt; Install-Package Xero.API.SDK.Minimal** to get a minimal installation.
-3. Download directly into Visual Studio using the NuGet powershell command: **PM&gt; Install-Package Xero.API.SDK** to get a larger installation with sample token store using [SQLite](http://http://system.data.sqlite.org/).
+3. Download directly into Visual Studio using the NuGet powershell command: **PM&gt; Install-Package Xero.API.SDK** to get a larger installation with sample token store using [SQLite](http://system.data.sqlite.org/).
 
 ## What is supported?
 ### Core
