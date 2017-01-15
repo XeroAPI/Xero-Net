@@ -6,7 +6,7 @@ namespace Xero.Api.Example.Applications.Partner
     {
         public string Uri
         {
-            get { return ConfigurationManager.AppSettings["PartnerBaseUrl"]; }
+            get { return ConfigurationManager.AppSettings["BaseUrl"]; }
         }
 
         public string CallBackUri
@@ -22,16 +22,6 @@ namespace Xero.Api.Example.Applications.Partner
         public string SigningCertificatePath
         {
             get { return ConfigurationManager.AppSettings["SigningCertificate"]; }
-        }
-    
-        public string ParterCertificatePath
-        {
-            get { return ConfigurationManager.AppSettings["PartnerCertificate"]; }
-        }
-
-        public string ParterCertificatePassword
-        {
-            get { return ConfigurationManager.AppSettings["PartnerCertificatePassword"]; }
         }
 
         public string SigningCertificatePassword

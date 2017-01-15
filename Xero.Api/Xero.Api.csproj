@@ -240,7 +240,6 @@
     <Compile Include="Core\Model\Status\EmployeeStatus.cs" />
     <Compile Include="Core\Response\AccountsResponse.cs" />
     <Compile Include="Core\Endpoints\OrganisationEndpoint.cs" />
-    <Compile Include="Infrastructure\Interfaces\ICertificateAuthenticator.cs" />
     <Compile Include="Infrastructure\Interfaces\IJsonObjectMapper.cs" />
     <Compile Include="Infrastructure\Interfaces\ITokenStore.cs" />
     <Compile Include="Infrastructure\Exceptions\XeroApiException.cs" />

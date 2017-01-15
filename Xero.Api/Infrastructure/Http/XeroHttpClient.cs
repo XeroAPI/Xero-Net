@@ -36,21 +36,6 @@ namespace Xero.Api.Infrastructure.Http
             Client = new HttpClient(baseUri, auth, consumer, user, rateLimiter);
         }
 
-        public XeroHttpClient(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user,
-            IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
-            : this(baseUri, auth, consumer, user, jsonMapper, xmlMapper, null)
-        {
-        }
-
-        public XeroHttpClient(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper, IRateLimiter rateLimiter)
-            : this(jsonMapper, xmlMapper)
-        {
-            Client = new HttpClient(baseUri, auth, consumer, user, rateLimiter)
-            {
-                ClientCertificate = auth.Certificate
-            };
-        }
-
         public DateTime? ModifiedSince { get; set; }
         public string Where { get; set; }
         public string Order { get; set; }
