@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Xero.Api.Common;
+using Xero.Api.Infrastructure.Model;
 using Xero.Api.Payroll.Australia.Model.Status;
 
 namespace Xero.Api.Payroll.Australia.Model
@@ -98,5 +99,8 @@ namespace Xero.Api.Payroll.Australia.Model
 
         [DataMember(EmitDefaultValue = false)]
         public TaxDeclaration TaxDeclaration { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public List<ValidationError> ValidationErrors { get; set; }
     }
 }
