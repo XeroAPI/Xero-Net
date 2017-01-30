@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
+using Newtonsoft.Json.Linq;
 using Xero.Api.Common;
 using Xero.Api.Infrastructure.Exceptions;
 using Xero.Api.Infrastructure.Interfaces;
+using Xero.Api.Infrastructure.Model;
 using Xero.Api.Infrastructure.RateLimiter;
 
 namespace Xero.Api.Infrastructure.Http
@@ -106,6 +108,16 @@ namespace Xero.Api.Infrastructure.Http
 
                 if (data.Elements != null && data.Elements.Any())
                 {
+                    throw new ValidationException(data);
+                }
+
+                //CHeck for inline errors
+                var jsonObject = JObject.Parse(response.Body);
+                var inlineValidationErrors = jsonObject.SelectTokens("$..ValidationErrors..Message").Select(p => new ValidationError { Message = p.ToString() }).ToList();
+
+                if (inlineValidationErrors.Any())
+                {
+                    data.Elements = new List<DataContractBase> { new DataContractBase {ValidationErrors = inlineValidationErrors } };
                     throw new ValidationException(data);
                 }
 
