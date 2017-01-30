@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
+using Newtonsoft.Json.Linq;
 using Xero.Api.Common;
 using Xero.Api.Infrastructure.Exceptions;
 using Xero.Api.Infrastructure.Interfaces;
+using Xero.Api.Infrastructure.Model;
 using Xero.Api.Infrastructure.RateLimiter;
 
 namespace Xero.Api.Infrastructure.Http
@@ -34,21 +36,6 @@ namespace Xero.Api.Infrastructure.Http
             : this(jsonMapper, xmlMapper)
         {
             Client = new HttpClient(baseUri, auth, consumer, user, rateLimiter);
-        }
-
-        public XeroHttpClient(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user,
-            IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper)
-            : this(baseUri, auth, consumer, user, jsonMapper, xmlMapper, null)
-        {
-        }
-
-        public XeroHttpClient(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper jsonMapper, IXmlObjectMapper xmlMapper, IRateLimiter rateLimiter)
-            : this(jsonMapper, xmlMapper)
-        {
-            Client = new HttpClient(baseUri, auth, consumer, user, rateLimiter)
-            {
-                ClientCertificate = auth.Certificate
-            };
         }
 
         public DateTime? ModifiedSince { get; set; }
@@ -121,6 +108,16 @@ namespace Xero.Api.Infrastructure.Http
 
                 if (data.Elements != null && data.Elements.Any())
                 {
+                    throw new ValidationException(data);
+                }
+
+                //CHeck for inline errors
+                var jsonObject = JObject.Parse(response.Body);
+                var inlineValidationErrors = jsonObject.SelectTokens("$..ValidationErrors..Message").Select(p => new ValidationError { Message = p.ToString() }).ToList();
+
+                if (inlineValidationErrors.Any())
+                {
+                    data.Elements = new List<DataContractBase> { new DataContractBase {ValidationErrors = inlineValidationErrors } };
                     throw new ValidationException(data);
                 }
 

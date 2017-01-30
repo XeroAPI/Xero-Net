@@ -10,10 +10,5 @@ namespace Xero.Api.Payroll.Common
             : base(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter)
         {
         }
-
-        protected PayrollApi(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper, IRateLimiter rateLimiter)
-            : base(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter)
-        {
-        }
     }
 }

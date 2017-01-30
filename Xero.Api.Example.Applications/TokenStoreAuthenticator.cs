@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth;
 
@@ -21,7 +20,7 @@ namespace Xero.Api.Example.Applications
             {
                 if (_tokens == null)
                 {
-                    _tokens = new OAuthTokens(_tokenUri, BaseUri, GetClientCertificate());      
+                    _tokens = new OAuthTokens(_tokenUri, BaseUri);      
                 }
                 return _tokens;
             } 
@@ -33,11 +32,6 @@ namespace Xero.Api.Example.Applications
             CallBackUri = callBackUri;
             BaseUri = baseUri;
             Store = store;                      
-        }
-
-        protected virtual X509Certificate2 GetClientCertificate()
-        {
-            return null;            
         }
 
         public string GetSignature(IConsumer consumer, IUser user, Uri uri, string verb, IConsumer consumer1)

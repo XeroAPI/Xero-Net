@@ -29,9 +29,6 @@ namespace Xero.Api.Payroll.Australia.Model
         public decimal? NumberOfUnits { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public EarningsRateCalculationType EarningsRateCalculation { get; set; }
-
-        [DataMember(EmitDefaultValue = false)]
-        public EarningsRateCalculationType CalculationType { get; set; }
+        public EarningsRateCalculationType? CalculationType { get; set; }
     } 
 }
