@@ -14,6 +14,11 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright &#x00A9; Xero.  All rights reserved.</copyright>
     <tags>xero api sdk</tags>
+    <dependencies>
+        <group>
+            <dependency id="NewtonSoft.Json" version="[9.0.1,)"/>            
+        </group>
+    </dependencies>
   </metadata>
   <files>
     <file src="Xero.Api\bin\Release\Xero.Api.dll" target="lib\net40" />
