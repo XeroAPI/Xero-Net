@@ -11,10 +11,10 @@ namespace Xero.Api.Payroll.Australia.Model
         public Guid SuperMembershipId { get; set; }
 
         [DataMember]
-        public SuperannuationContributionType ContributionType { get; set; }
+        public SuperannuationContributionType? ContributionType { get; set; }
 
         [DataMember]
-        public SuperannuationCalculationType CalculationType { get; set; }
+        public SuperannuationCalculationType? CalculationType { get; set; }
 
         [DataMember]
         public decimal MinimumMonthlyEarnings { get; set; }

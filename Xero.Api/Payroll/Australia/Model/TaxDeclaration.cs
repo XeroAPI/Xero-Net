@@ -23,8 +23,8 @@ namespace Xero.Api.Payroll.Australia.Model
         [DataMember(EmitDefaultValue = false)]
         public bool AustralianResidentForTaxPurposes { get; set; }
 
-        [DataMember(EmitDefaultValue = true)]
-        public bool TaxFreeThresholdClaimed { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public bool? TaxFreeThresholdClaimed { get; set; }
 
         [DataMember(Name = "HasHELPDebt", EmitDefaultValue = false)]
         public bool HasHigherEducationLoanProgramDebt { get; set; }
@@ -54,6 +54,6 @@ namespace Xero.Api.Payroll.Australia.Model
 
 
         [DataMember(Name = "TFNExemptionType", EmitDefaultValue = false)]
-        public TaxFileNumberExemptionType TaxFileNumberExemption { get; set; }
+        public TaxFileNumberExemptionType? TaxFileNumberExemption { get; set; }
     }
 }
