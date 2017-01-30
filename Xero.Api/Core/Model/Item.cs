@@ -5,7 +5,7 @@ using Xero.Api.Common;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public sealed class Item : CoreData, IHasId
+    public sealed class Item : HasUpdatedDate, IHasId
     {
         [DataMember(Name = "ItemID", EmitDefaultValue = false)]
         public Guid Id { get; set; }
