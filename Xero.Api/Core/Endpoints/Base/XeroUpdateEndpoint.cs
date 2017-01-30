@@ -30,6 +30,12 @@ namespace Xero.Api.Core.Endpoints.Base
             return Update(new[] { item }).First();
         }
 
+        public new IXeroUpdateEndpoint<T, TResult, TRequest, TResponse> SummarizeErrors(bool summarize)
+        {
+            AddParameter("summarizeErrors", summarize);
+            return this;
+        }
+
         protected IEnumerable<TResult> Post(TRequest data)
         {
             try
