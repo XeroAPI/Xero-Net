@@ -69,6 +69,7 @@
     <Compile Include="Integration\TimeSheets\Create.cs" />
     <Compile Include="Integration\TimeSheets\Find.cs" />
     <Compile Include="Integration\TimeSheets\TimesheetTest.cs" />
+    <Compile Include="Integration\ValidationErrors\AUPayrollValidationErrors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
