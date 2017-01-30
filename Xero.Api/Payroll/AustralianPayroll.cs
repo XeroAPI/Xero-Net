@@ -22,18 +22,6 @@ namespace Xero.Api.Payroll
             Connect();
         }
 
-        public AustralianPayroll(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user,
-            IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper)
-            : this(baseUri, auth, consumer, user, readMapper, writeMapper, null)
-        {
-        }
-
-        public AustralianPayroll(string baseUri, ICertificateAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper, IRateLimiter rateLimiter)
-            : base(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter)
-        {
-            Connect();
-        }
-
         public SuperFundsEndpoint SuperFunds { get; set; }
         public SuperFundProductsEndpoint SuperFundProducts { get; set; }
         public LeaveApplicationsEndpoint LeaveApplications { get; set; }

@@ -7,14 +7,17 @@ namespace Xero.Api.Example.Applications.Public
 {
     public class PublicAuthenticator : TokenStoreAuthenticator
     {
-        public PublicAuthenticator(string baseUri, string tokenUri, string callBackUrl, ITokenStore store) 
+        private readonly string _scope;
+
+        public PublicAuthenticator(string baseUri, string tokenUri, string callBackUrl, ITokenStore store, string scope = null) 
             : base(baseUri, tokenUri, callBackUrl, store)
-        {            
+        {
+            _scope = scope;
         }
 
         protected override string AuthorizeUser(IToken token)
         {
-            var authorizeUrl = GetAuthorizeUrl(token);
+            var authorizeUrl = GetAuthorizeUrl(token, _scope);
 
             Process.Start(authorizeUrl);
 

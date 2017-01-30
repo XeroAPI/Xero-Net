@@ -24,7 +24,7 @@ There are different way to install this library:
 
 1. Download the source code from github and compile yourself: **https://github.com/XeroAPI/Xero-Net**
 2. Download directly into Visual Studio using the NuGet powershell command **PM&gt; Install-Package Xero.API.SDK.Minimal** to get a minimal installation.
-3. Download directly into Visual Studio using the NuGet powershell command: **PM&gt; Install-Package Xero.API.SDK** to get a larger installation with sample token store using [SQLite](http://http://system.data.sqlite.org/).
+3. Download directly into Visual Studio using the NuGet powershell command: **PM&gt; Install-Package Xero.API.SDK** to get a larger installation with sample token store using [SQLite](http://system.data.sqlite.org/).
 
 ## What is supported?
 ### Core
@@ -153,7 +153,6 @@ A private application will need to also populate
 A partner application will need to also populate
 
 	<add key="SigningCertificate" value="Path to .pfx file"/>
-	<add key="PartnerCertificate" value="Path to Xero issued Entrust certificate file"/>    
 
 ##Authenticators
 
@@ -166,7 +165,7 @@ Uses RSA-SHA1 and a public/private certificate. There are no tokens and each req
 Uses HMAC-SHA1 and the standard 3-legged [OAuth](http://tools.ietf.org/html/rfc6749) process. Tokens last for 30 minutes and cannot be renewed.
 
 ###PartnerAuthenticator
-Uses RSA-SHA1 and a Xero provider certificate and then the standard 3-legged [OAuth](http://tools.ietf.org/html/rfc6749) process with an additional signing certificate. Tokens last for 30 minutes and be renewed. Token renewal is supported by this provider.
+Uses RSA-SHA1 and then the standard 3-legged [OAuth](http://tools.ietf.org/html/rfc6749) process with an additional signing certificate. Tokens last for 30 minutes and be renewed. Token renewal is supported by this provider.
 
 Examples for renewing your access tokens can be seen in the RenewToken method overrides in the PartnerAuthenticator.cs and PartnerMVCAuthenticator.cs classes.
 
@@ -229,7 +228,7 @@ are for development only.
 			// Partner Application Sample
 			var partner_app_api = new XeroCoreApi("https://api-partner.network.xero.com", new PartnerAuthenticator("https://api-partner.network.xero.com",
                 "https://api.xero.com", "oob", new MemoryTokenStore(),
-                @"C:\Dev\your_public_privatekey.pfx", @"C:\Dev\your_entrust_cert.p12", "your_entrust_cert_password"),
+                @"C:\Dev\your_public_privatekey.pfx"),
                  new Consumer("your-consumer-key", "your-consumer-secret"), user,
                  new DefaultMapper(), new DefaultMapper());
 				

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.RateLimiter;
@@ -54,12 +53,6 @@ namespace Xero.Api.Infrastructure.Http
         public string UserAgent
         {
             get; set;
-        }
-
-        public X509Certificate ClientCertificate
-        {
-            get;
-            set;
         }
 
         public Response Post(string endpoint, string data, string contentType = "application/xml", string query = null)
@@ -197,11 +190,6 @@ namespace Xero.Api.Infrastructure.Http
 
             request.UserAgent = !string.IsNullOrWhiteSpace(UserAgent) ? UserAgent : "Xero Api wrapper - " + Consumer.ConsumerKey;
             
-            if (ClientCertificate != null)
-            {
-                request.ClientCertificates.Add(ClientCertificate);
-            }
-
             if (_rateLimiter != null)
                 _rateLimiter.WaitUntilLimit();
 

@@ -6,9 +6,8 @@ using Xero.Api.Infrastructure.OAuth.Signing;
 
 namespace Xero.Api.Example.Applications.Partner
 {
-    public class PartnerAuthenticator : TokenStoreAuthenticator, ICertificateAuthenticator
+    public class PartnerAuthenticator : TokenStoreAuthenticator
     {       
-        private readonly X509Certificate2 _certificate;
         private readonly X509Certificate2 _signingCertificate;
 
         private PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store)
@@ -16,26 +15,22 @@ namespace Xero.Api.Example.Applications.Partner
         {            
         }
 
-        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, string signingCertificatePath, string certificatePath, string password)
-            : this(baseUri, authorizeUri, callBackUri, store, signingCertificatePath, certificatePath, password ,"")
+        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, string signingCertificatePath)
+            : this(baseUri, authorizeUri, callBackUri, store, signingCertificatePath, "")
         {
         }
 
-        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, string signingCertificatePath, string certificatePath, string entrustPassword, string signingCertPassword)
+        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, string signingCertificatePath, string signingCertPassword)
             : this(baseUri, authorizeUri, callBackUri, store)
         {
             _signingCertificate = new X509Certificate2(signingCertificatePath, signingCertPassword, X509KeyStorageFlags.MachineKeySet);
-            _certificate = new X509Certificate2(certificatePath, entrustPassword);            
         }
 
-        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, X509Certificate2 signingCertificate, X509Certificate2 certificate)
+        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, X509Certificate2 signingCertificate)
             : this(baseUri, authorizeUri, callBackUri, store)
         {
             _signingCertificate = signingCertificate;
-            _certificate = certificate;
         }
-
-        public X509Certificate Certificate { get { return _certificate; } }
 
         protected override string AuthorizeUser(IToken token)
         {
@@ -59,11 +54,6 @@ namespace Xero.Api.Example.Applications.Partner
             var authHeader = GetAuthorization(sessionToken, "POST", Tokens.AccessUri, null, null, true);
 
             return Tokens.GetAccessToken(sessionToken, authHeader);
-        }
-
-        protected override X509Certificate2 GetClientCertificate()
-        {
-            return _certificate;
         }
     }
 }
