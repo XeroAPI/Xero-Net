@@ -82,11 +82,12 @@ There are different way to install this library:
 ##Things to note
 * The library tries to do as little as possible and provides a basis to be extended. There are examples of TokenStores, Authenticators and Application types. These examples provide enough to get you going, but are not a complete solution to all your needs. You will need to adapt them for your own use and situation. Private application will work out of the box, as they do not have to deal with tokens and OAuth.
 * The HTTP verbs are not used in the public part of the API. Create, Update and Find are used instead. This seperates the implementation from the the intent.
-* Invoices and Contacts support pagination. In the RESTful API these are off by default. For the wrapper, they are always on and default to page 1. See the Counts or Creation code examples for how to use the Page method to get all items.
-* Contacts support including archived contacts. Like the RESTful API, this if off by default. Use IncluceArchived(true) to include them.
+* Some accounting endpoints support pagination. In the RESTful API these are off by default. For the wrapper, they are always on and default to page 1. See the Counts or Creation code examples for how to use the Page method to get all items.
+* Contacts support including archived contacts. Like the RESTful API, this if off by default. Use IncludeArchived(true) to include them.
 * Payroll supports paging on all endpoints.
 * Four decimal places are supported and are always on.
 * You will need an instance of the API per organisation / connection. The connection is stored as part of the API instance.
+* Query parameters are cleared after each operation on an endpoint. If you use Invoices.Where("Type == \"ACCREC\"").Find() when querying invoices for example, the next Invoices.Find() will not retain the where clause query parameter.
 
 ## Samples
 There are samples for each of the API endpoints. These have been done as console application and also a collection of NUnit tests. See the README for each of the executable and test assemblies. The test projects contain lots of useful examples of how to use this library to interact with the Xero API.
