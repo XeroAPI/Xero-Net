@@ -5,7 +5,6 @@ using Xero.Api.Payroll.America.Model;
 
 namespace Xero.Api.Payroll.America.Response
 {
-    [DataContract(Namespace = "", Name = "PayRuns")]
     public class PayRunsResponse : XeroResponse<PayRun>
     {
         public IList<PayRun> PayRuns { get; set; }

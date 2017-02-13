@@ -9,32 +9,34 @@ namespace Xero.Api.Example.Applications.Partner
     public class PartnerAuthenticator : TokenStoreAuthenticator
     {       
         private readonly X509Certificate2 _signingCertificate;
+        private string _scope;
 
-        private PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store)
+        private PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, string scope = null)
             : base(baseUri, authorizeUri, callBackUri, store)
-        {            
+        {
+            _scope = scope;
         }
 
-        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, string signingCertificatePath)
-            : this(baseUri, authorizeUri, callBackUri, store, signingCertificatePath, "")
+        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, string signingCertificatePath, string scope = null)
+            : this(baseUri, authorizeUri, callBackUri, store, signingCertificatePath, "", scope)
         {
         }
 
-        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, string signingCertificatePath, string signingCertPassword)
-            : this(baseUri, authorizeUri, callBackUri, store)
+        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, string signingCertificatePath, string signingCertPassword, string scope = null)
+            : this(baseUri, authorizeUri, callBackUri, store, scope)
         {
             _signingCertificate = new X509Certificate2(signingCertificatePath, signingCertPassword, X509KeyStorageFlags.MachineKeySet);
         }
 
-        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, X509Certificate2 signingCertificate)
-            : this(baseUri, authorizeUri, callBackUri, store)
+        public PartnerAuthenticator(string baseUri, string authorizeUri, string callBackUri, ITokenStore store, X509Certificate2 signingCertificate, string scope = null)
+            : this(baseUri, authorizeUri, callBackUri, store, scope)
         {
             _signingCertificate = signingCertificate;
         }
 
         protected override string AuthorizeUser(IToken token)
         {
-            var authorizeUrl = GetAuthorizeUrl(token);
+            var authorizeUrl = GetAuthorizeUrl(token, _scope);
 
             Process.Start(authorizeUrl);
 
