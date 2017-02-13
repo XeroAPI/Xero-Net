@@ -10,7 +10,7 @@ namespace Xero.Api.Example.Applications.Partner
         private static readonly DefaultMapper Mapper = new DefaultMapper();
         private static readonly Settings ApplicationSettings = new Settings();
 
-        public AustralianPayroll(ITokenStore store, IUser user, bool includeRateLimiter = false) :
+        public AustralianPayroll(ITokenStore store, IUser user, bool includeRateLimiter = false, string scope = null) :
             base(ApplicationSettings.Uri,
                 new PartnerAuthenticator(
                     ApplicationSettings.Uri,
@@ -18,7 +18,8 @@ namespace Xero.Api.Example.Applications.Partner
                     ApplicationSettings.CallBackUri,
                     store,
                     ApplicationSettings.SigningCertificatePath,
-                    ApplicationSettings.SigningCertificatePassword),
+                    ApplicationSettings.SigningCertificatePassword,
+                    scope),
                 new Consumer(
                     ApplicationSettings.Key,
                     ApplicationSettings.Secret),
