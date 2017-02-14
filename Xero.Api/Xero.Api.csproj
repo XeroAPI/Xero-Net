@@ -45,6 +45,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\IHasAttachment.cs" />
     <Compile Include="Common\IHasId.cs" />
     <Compile Include="Common\IPageableEndpoint.cs" />
     <Compile Include="Common\IXeroReadEndpoint.cs" />
