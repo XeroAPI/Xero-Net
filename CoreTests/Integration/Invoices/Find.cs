@@ -27,6 +27,16 @@ namespace CoreTests.Integration.Invoices
         }
 
         [Test]
+        public void find_by_id_list()
+        {
+            var created = Given_an_invoice();
+            var invoices = Api.Invoices.Ids(new[] {created.Id}).Find().ToList();
+
+            Assert.AreEqual(1, invoices.Count());
+            Assert.AreEqual(created.Id, invoices.First().Id);
+        }
+
+        [Test]
         public void find_by_value()
         {
             Given_an_invoice();

@@ -13,6 +13,7 @@ namespace Xero.Api.Core.Endpoints
     public interface IInvoicesEndpoint : IXeroUpdateEndpoint<InvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>, IPageableEndpoint<IInvoicesEndpoint>
     {
         OnlineInvoice RetrieveOnlineInvoiceUrl(Guid invoiceId);
+        IInvoicesEndpoint Ids(IEnumerable<Guid> ids);
     }
 
     public class InvoicesEndpoint
@@ -27,6 +28,12 @@ namespace Xero.Api.Core.Endpoints
         public IInvoicesEndpoint Page(int page)
         {
             AddParameter("page", page);
+            return this;
+        }
+
+        public IInvoicesEndpoint Ids(IEnumerable<Guid> ids)
+        {
+            AddParameter("ids", string.Join(",", ids));
             return this;
         }
 
