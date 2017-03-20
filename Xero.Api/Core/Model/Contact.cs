@@ -7,7 +7,7 @@ using Xero.Api.Core.Model.Status;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class Contact : HasUpdatedDate, IHasId
+    public class Contact : HasUpdatedDate, IHasId, IHasAttachment
     {
         [DataMember(Name = "ContactID", EmitDefaultValue = false)]
         public Guid Id { get; set; }
