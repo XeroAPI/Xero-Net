@@ -8,7 +8,7 @@ using Xero.Api.Core.Model.Types;
 namespace Xero.Api.Core.Model
 {
     [DataContract(Namespace = "")]
-    public class Prepayment : HasUpdatedDate, IHasId
+    public class Prepayment : HasUpdatedDate, IHasId, IHasAttachment
     {
         [DataMember(Name = "PrepaymentID")]
         public Guid Id { get; set; }
