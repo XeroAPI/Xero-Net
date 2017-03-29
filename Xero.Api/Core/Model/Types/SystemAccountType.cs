@@ -5,6 +5,7 @@ namespace Xero.Api.Core.Model.Types
     [DataContract(Namespace = "")]
     public enum SystemAccountType
     {
+        NonSystemAccount = 0,
         [EnumMember(Value = "DEBTORS")]
         Debtors,
         [EnumMember(Value = "CREDITORS")]
