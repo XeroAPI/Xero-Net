@@ -249,6 +249,7 @@
     <Compile Include="Infrastructure\Interfaces\ITokenStore.cs" />
     <Compile Include="Infrastructure\Exceptions\XeroApiException.cs" />
     <Compile Include="Core\Endpoints\BrandingThemesEndpoint.cs" />
+    <Compile Include="Infrastructure\OAuth\UnexpectedOauthResponseException.cs" />
     <Compile Include="Infrastructure\RateLimiter\IRateLimiter.cs" />
     <Compile Include="Infrastructure\RateLimiter\RateLimiter.cs" />
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\UrlEncoder.cs" />
