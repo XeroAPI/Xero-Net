@@ -77,7 +77,12 @@ namespace Xero.Api.Infrastructure.OAuth
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                throw new OAuthException(response.Body);
+                if (response.Body.Contains("oauth_problem"))
+                {
+                    throw new OAuthException(response.Body);
+                }
+
+                throw new UnexpectedOauthResponseException(response.StatusCode, response.Body);
             }
 
             var qs = HttpUtility.ParseQueryString(response.Body);
