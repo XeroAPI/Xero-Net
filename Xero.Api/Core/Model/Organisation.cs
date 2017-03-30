@@ -9,6 +9,9 @@ namespace Xero.Api.Core.Model
     [DataContract(Namespace = "")]
     public class Organisation
     {
+        [DataMember(Name = "OrganisationID")]
+        public Guid Id { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
         public string Name { get; set; }
 
