@@ -79,7 +79,7 @@ There are different way to install this library:
 * Folders - Find, Add, Rename and Remove
 * Inbox - Find
 
-##Things to note
+## Things to note
 * The library tries to do as little as possible and provides a basis to be extended. There are examples of TokenStores, Authenticators and Application types. These examples provide enough to get you going, but are not a complete solution to all your needs. You will need to adapt them for your own use and situation. Private application will work out of the box, as they do not have to deal with tokens and OAuth.
 * The HTTP verbs are not used in the public part of the API. Create, Update and Find are used instead. This seperates the implementation from the the intent.
 * Some accounting endpoints support pagination. In the RESTful API these are off by default. For the wrapper, they are always on and default to page 1. See the Counts or Creation code examples for how to use the Page method to get all items.
@@ -92,7 +92,7 @@ There are different way to install this library:
 ## Samples
 There are samples for each of the API endpoints. These have been done as console application and also a collection of NUnit tests. See the README for each of the executable and test assemblies. The test projects contain lots of useful examples of how to use this library to interact with the Xero API.
 
-##Querying
+## Querying
 There are simple filters on different endpoints.
 
 * ModifiedSince
@@ -123,8 +123,8 @@ The following gives the same query string to the API as the example above.
 		.And("Total < 10000.0")  
 		.ModifiedSince(new DateTime(2014, 1, 31))  
 		.Find();
-		
-##Application types
+
+## Application types
 
 There are specific classes for each of the application types. If these are used, you will need to have the app.config file settings for your organisation.
 
@@ -155,26 +155,26 @@ A partner application will need to also populate
 
 	<add key="SigningCertificate" value="Path to .pfx file"/>
 
-##Authenticators
+## Authenticators
 
 The application classes all use implementations of IAuthenticator. See [PrivateAuthenticator](https://github.com/XeroAPI/Xero-Net/blob/master/Xero.Api.Example.Applications/Private/PrivateAuthenticator.cs) for an example. The authenticators are used by the base infrastructure to do the heavy lifting of the Xero API authentication.
 
-###PrivateAuthenticator
+### PrivateAuthenticator
 Uses RSA-SHA1 and a public/private certificate. There are no tokens and each request has to be signed.
 
-###PublicAuthenticator
+### PublicAuthenticator
 Uses HMAC-SHA1 and the standard 3-legged [OAuth](http://tools.ietf.org/html/rfc6749) process. Tokens last for 30 minutes and cannot be renewed.
 
-###PartnerAuthenticator
+### PartnerAuthenticator
 Uses RSA-SHA1 and then the standard 3-legged [OAuth](http://tools.ietf.org/html/rfc6749) process with an additional signing certificate. Tokens last for 30 minutes and be renewed. Token renewal is supported by this provider.
 
 Examples for renewing your access tokens can be seen in the RenewToken method overrides in the PartnerAuthenticator.cs and PartnerMVCAuthenticator.cs classes.
 
 
-###OAuth signing
+### OAuth signing
 All the signing is done by a slightly modified version of the Dust library provided by [Ben Biddington](https://github.com/ben-biddington/dust). Source is included.
 
-##Token Stores
+## Token Stores
 The token store implementations are separate and optional. (It is recommended that you do have a store.)
 
 The interface ITokenStore has three methods.
@@ -193,11 +193,11 @@ The examples are
 * MemoryTokenStore - Dictionary of token in RAM keyed on UserId
 * SqliteTokenStore - A database of tokens (file on local disk). This does not support multiple add-ons in the same database. The tokens are only for the application the database was created by.
 
-##Serialization
+## Serialization
 
 All communication with the [Xero API](http://developer.xero.com) is compressed at source. Writing to the API is done with XML. The data model classes have be attributed to give a small XML payload. All communication back from the API is JSON. These details are transparent to the user of the class library.
 
-##Usage
+## Usage
 To get going quickly:
 
 1. Follow this getting started guide: http://developer.xero.com/documentation/getting-started/getting-started-guide/
@@ -236,7 +236,7 @@ are for development only.
 			var partner_contacts = partner_app_api.Contacts.Find().ToList();			
         }
 
-##Acknowledgements
+## Acknowledgements
 Thanks for the following Open Source libraries for making the wrapper and samples easier
 
 * [Dust](https://github.com/ben-biddington/dust) - OAuth
@@ -245,7 +245,7 @@ Thanks for the following Open Source libraries for making the wrapper and sample
 * [ServiceStack.Text](https://github.com/ServiceStack/ServiceStack.Text/tree/v3) - serialization
 * [SQLite](http://http://system.data.sqlite.org/) - file based database
 
-##License
+## License
 
 This software is published under the [MIT License](http://en.wikipedia.org/wiki/MIT_License).
 
