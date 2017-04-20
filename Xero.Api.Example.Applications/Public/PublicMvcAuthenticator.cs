@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth.Signing;
 
@@ -23,9 +24,9 @@ namespace Xero.Api.Example.Applications.Public
         }
 
         protected override string CreateSignature(IToken token, string verb, Uri uri, string verifier,
-            bool renewToken = false, string callback = null)
+            bool renewToken = false, string callback = null, IEnumerable<KeyValuePair<string, string>> additionalParameters = null)
         {
-            return new HmacSha1Signer().CreateSignature(token, uri, verb, verifier, callback);
+            return new HmacSha1Signer().CreateSignature(token, uri, verb, verifier, callback, additionalParameters);
         }
 
         protected override IToken RenewToken(IToken sessionToken, IConsumer consumer)

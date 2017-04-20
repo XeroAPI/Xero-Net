@@ -22,8 +22,8 @@ namespace Xero.Api.Core
         {
         }
 
-        public XeroCoreApi(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper, IRateLimiter rateLimiter)
-            : base(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter)
+        public XeroCoreApi(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IJsonObjectMapper readMapper, IXmlObjectMapper writeMapper, IRateLimiter rateLimiter, bool useFormUrlEncodedPutsAndPosts = false)
+            : base(baseUri, auth, consumer, user, readMapper, writeMapper, rateLimiter, useFormUrlEncodedPutsAndPosts)
         {
             Connect();
         }
@@ -33,8 +33,8 @@ namespace Xero.Api.Core
         {
         }
 
-        public XeroCoreApi(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IRateLimiter rateLimiter)
-            : this(baseUri, auth, consumer, user, new DefaultMapper(), new DefaultMapper(), rateLimiter)
+        public XeroCoreApi(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IRateLimiter rateLimiter, bool useFormUrlEncodedPutsAndPosts = false)
+            : this(baseUri, auth, consumer, user, new DefaultMapper(), new DefaultMapper(), rateLimiter, useFormUrlEncodedPutsAndPosts)
         {
         }
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.ThirdParty.Dust;
@@ -13,7 +15,7 @@ namespace Xero.Api.Infrastructure.OAuth.Signing
     public class RsaSha1Signer
     {
         public string CreateSignature(X509Certificate2 certificate, IToken token, Uri uri, string verb,
-            string verifier = null, bool renewToken = false, string callback = null)
+            string verifier = null, bool renewToken = false, string callback = null, IEnumerable<KeyValuePair<string, string>> additionalParameters = null)
         {
             var oAuthParameters = new OAuthParameters(
                 new ConsumerKey(token.ConsumerKey),
@@ -26,7 +28,8 @@ namespace Xero.Api.Infrastructure.OAuth.Signing
                 verifier,
                 token.Session,
                 renewToken,
-                callback);
+                callback,
+                additionalParameters);
 
             var signatureBaseString =
                 new SignatureBaseString(

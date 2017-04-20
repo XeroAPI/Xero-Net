@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.RateLimiter;
@@ -13,8 +14,12 @@ namespace Xero.Api.Infrastructure.Http
     // It uses IAuthenticator or ICertificateAuthenticator to do the signing
     internal class HttpClient
     {
+        private const string FormUrlEncodedContentType = "application/x-www-form-urlencoded";
+        private const string XmlContentType = "application/xml";
+
         static readonly int defaultTimeout = (int)TimeSpan.FromMinutes(5.5).TotalMilliseconds;
 
+        private readonly string _defaultContentType = XmlContentType;
         private readonly string _baseUri;
         private readonly IAuthenticator _auth;
         private readonly IRateLimiter _rateLimiter;
@@ -31,23 +36,15 @@ namespace Xero.Api.Infrastructure.Http
             _baseUri = baseUri;
             _headers = new Dictionary<string, string>();
         }
-        
-        public HttpClient(string baseUri, IConsumer consumer, IUser user) : this(baseUri)
+
+        public HttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IRateLimiter rateLimiter, bool useFormUrlEncodedPutsAndPosts = false)
+            : this(baseUri)
         {
             User = user;
             Consumer = consumer;
-        }
-
-        public HttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user)
-            : this(baseUri, consumer, user)
-        {
             _auth = auth;
-        }
-
-        public HttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user, IRateLimiter rateLimiter)
-            : this(baseUri, auth, consumer, user)
-        {
             _rateLimiter = rateLimiter;
+            _defaultContentType = useFormUrlEncodedPutsAndPosts ? FormUrlEncodedContentType : XmlContentType;
         }
 
         public string UserAgent
@@ -55,16 +52,29 @@ namespace Xero.Api.Infrastructure.Http
             get; set;
         }
 
-        public Response Post(string endpoint, string data, string contentType = "application/xml", string query = null)
+        private string FormEncodeData(string data) {
+            return "xml=" + Uri.EscapeDataString(data);
+        }
+
+        public Response Post(string endpoint, string data, string contentType = null, string query = null)
         {
-            return Post(endpoint, Encoding.UTF8.GetBytes(data), contentType, query);
+            var signatureParameters = new List<KeyValuePair<string, string>>();
+            contentType = contentType ?? _defaultContentType;
+            if (contentType.Equals(FormUrlEncodedContentType, StringComparison.InvariantCultureIgnoreCase)) {
+                signatureParameters.Add(new KeyValuePair<string, string>("xml", data));
+                data = FormEncodeData(data);
+            }
+
+            return Post(endpoint, Encoding.UTF8.GetBytes(data), contentType, query, signatureParameters);
         }
         
-        public Response Post(string endpoint, byte[] data, string contentType = "application/xml", string query = null)
+        public Response Post(string endpoint, byte[] data, string contentType = null, string query = null, IEnumerable<KeyValuePair<string, string>> signatureParameters = null)
         {
+            contentType = contentType ?? _defaultContentType;
+
             try
             {
-                return WriteToServer(endpoint, data, "POST", contentType, query);
+                return WriteToServer(endpoint, data, "POST", contentType, query, signatureParameters);
             }
             catch (WebException we)
             {
@@ -82,10 +92,15 @@ namespace Xero.Api.Infrastructure.Http
             return WriteToServerWithMultipart(endpoint, contentType, name,filename, payload);
         }
 
-        public Response Put(string endpoint, string data, string contentType = "application/xml", string query = null)
+        public Response Put(string endpoint, string data, string contentType = null, string query = null)
         {
             try
             {
+                contentType = contentType ?? _defaultContentType;
+                if (contentType.Equals(FormUrlEncodedContentType, StringComparison.InvariantCultureIgnoreCase)) {
+                    data = FormEncodeData(data);
+                }
+
                 return WriteToServer(endpoint, Encoding.UTF8.GetBytes(data), "PUT", contentType, query);
             }
             catch (WebException we)
@@ -153,7 +168,7 @@ namespace Xero.Api.Infrastructure.Http
 	        }
         }
 
-        private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null)
+        private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null, IEnumerable<KeyValuePair<string, string>> signatureParameters = null)
         {
             var uri = new UriBuilder(_baseUri)
             {
@@ -181,7 +196,7 @@ namespace Xero.Api.Infrastructure.Http
 
             if (_auth != null)
             {
-                var oauthSignature = _auth.GetSignature(Consumer, User, request.RequestUri, method, Consumer);
+                var oauthSignature = _auth.GetSignature(Consumer, User, request.RequestUri, method, Consumer, signatureParameters);
 
                 AddHeader("Authorization", oauthSignature);
             }
@@ -250,9 +265,9 @@ namespace Xero.Api.Infrastructure.Http
             dataStream.Close();
         }
 
-        private Response WriteToServer(string endpoint, byte[] data, string method, string contentType = "application/xml", string query = null)
+        private Response WriteToServer(string endpoint, byte[] data, string method, string contentType = "application/xml", string query = null, IEnumerable<KeyValuePair<string, string>> signatureParameters = null)
         {
-            var request = CreateRequest(endpoint, method, query: query);
+            var request = CreateRequest(endpoint, method, query: query, signatureParameters: signatureParameters);
             WriteData(data, request, contentType);
 
             return new Response((HttpWebResponse)request.GetResponse());

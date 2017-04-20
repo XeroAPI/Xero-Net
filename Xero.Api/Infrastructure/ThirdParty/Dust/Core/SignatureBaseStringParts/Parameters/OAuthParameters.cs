@@ -1,4 +1,5 @@
-﻿using Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.Parameters.Nonce;
+﻿using System.Collections.Generic;
+using Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.Parameters.Nonce;
 using Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.Parameters.Timestamp;
 using Xero.Api.Infrastructure.ThirdParty.Dust.Lang;
 
@@ -14,8 +15,10 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
         private readonly string _nonce, _timestamp, _verifier, _session;
         private readonly bool _renewToken;
         private readonly string _callback;
+        private readonly IEnumerable<KeyValuePair<string, string>> _additionalParameters;
 
-	    public static OAuthParameters Empty = new OAuthParameters(
+
+        public static OAuthParameters Empty = new OAuthParameters(
 	        new ConsumerKey(string.Empty), 
 	        new TokenKey(string.Empty), 
 	        string.Empty, 
@@ -36,8 +39,9 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
             string verifier = null,
             string session = null,
             bool renewToken = false,
-            string callback = null
-		)
+            string callback = null,
+            IEnumerable<KeyValuePair<string, string>> additionalParameters = null
+        )
         {
     	    _key = key;
             _tokenKey = tokenKey;
@@ -51,6 +55,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
     	    _timestamp = timestamps.Next();
 	        _renewToken = renewToken;
 	        _callback = callback;
+            _additionalParameters = additionalParameters;
         }
 
 	    internal Parameters List() {
@@ -80,6 +85,12 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust.Core.SignatureBaseStringParts.
                     if (!string.IsNullOrWhiteSpace(_callback))
                     {
                         it.Add(Callback);
+                    }
+
+                    if (_additionalParameters != null) {
+                        foreach (var kvPair in _additionalParameters) {
+                            it.Add(new Parameter(kvPair.Key, kvPair.Value));
+                        }
                     }
                 });
     	}
