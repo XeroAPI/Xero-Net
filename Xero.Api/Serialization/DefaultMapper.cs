@@ -180,6 +180,27 @@ namespace Xero.Api.Serialization
             return t;
         }
 
+        private static TEnum? EnumDeserializerNullable<TEnum>(string s)
+    where TEnum : struct
+        {
+            TEnum t;
+
+            // If all goes well then we are done
+            if (Enum.TryParse(s, out t))
+                return t;
+
+            // get the EnumMember attribute and see if the Value attribute matches the string
+            foreach (var p in t.GetType().GetMembers())
+            {
+                var attributes = p.GetCustomAttributes(typeof(EnumMemberAttribute), false).Cast<EnumMemberAttribute>();
+                if (attributes.All(a => String.Compare(a.Value, s, StringComparison.OrdinalIgnoreCase) != 0))
+                    continue;
+                Enum.TryParse(p.Name, out t);
+            }
+
+            return t;
+        }
+
         private static SalesTaxBasisType SalesTaxBasis(string s)
         {
             switch (s.ToUpper())
