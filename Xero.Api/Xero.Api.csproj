@@ -272,6 +272,7 @@
     <Compile Include="Payroll\Australia\Response\SettingsResponse.cs" />
     <Compile Include="Payroll\Australia\Response\TimesheetsResponse.cs" />
     <Compile Include="Payroll\Common\Model\NumberOfUnits.cs" />
+    <Compile Include="Payroll\Common\Model\PayrollSettingsTrackingCategories.cs" />
     <Compile Include="Serialization\DefaultMapper.cs" />
     <Compile Include="Core\Endpoints\UsersEndpoint.cs" />
     <Compile Include="Core\Model\Types\AddressType.cs" />
