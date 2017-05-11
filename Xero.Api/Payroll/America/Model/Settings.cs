@@ -11,7 +11,7 @@ namespace Xero.Api.Payroll.America.Model
         public List<Account> Accounts { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public List<TrackingCategory> TrackingCategories { get; set; }
+        public PayrollSettingsTrackingCategories TrackingCategories { get; set; }
 
         public IList<Settings> Values { get; private set; }
     }
