@@ -10,14 +10,15 @@ namespace Xero.Api.Example.Applications.Private
         private static readonly DefaultMapper Mapper = new DefaultMapper();
         private static readonly Settings ApplicationSettings = new Settings();
 
-        public Core(bool includeRateLimiter = false) :
+        public Core(bool includeRateLimiter = false, bool useFormUrlEncodedPutsAndPosts = false) :
             base(ApplicationSettings.Uri,
                 new PrivateAuthenticator(ApplicationSettings.SigningCertificatePath, ApplicationSettings.SigningCertificatePassword),
                 new Consumer(ApplicationSettings.Key, ApplicationSettings.Secret),
                 null,
                 Mapper,
                 Mapper,
-                includeRateLimiter ? new RateLimiter() : null)
+                includeRateLimiter ? new RateLimiter() : null,
+                useFormUrlEncodedPutsAndPosts)
         {
         }
     }

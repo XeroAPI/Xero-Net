@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth;
@@ -27,7 +28,7 @@ namespace Xero.Api.Example.Applications.Private
             _certificate = certificate;
         }
 
-        public string GetSignature(IConsumer consumer, IUser user, Uri uri, string verb, IConsumer consumer1)
+        public string GetSignature(IConsumer consumer, IUser user, Uri uri, string verb, IConsumer consumer1, IEnumerable<KeyValuePair<string, string>> additionalParameters = null)
         {
             var token = new Token
             {
@@ -36,7 +37,7 @@ namespace Xero.Api.Example.Applications.Private
                 TokenKey = consumer.ConsumerKey
             };
 
-            return new RsaSha1Signer().CreateSignature(_certificate, token, uri, verb);
+            return new RsaSha1Signer().CreateSignature(_certificate, token, uri, verb, additionalParameters: additionalParameters);
         }
 
         public X509Certificate Certificate { get { return _certificate; } }

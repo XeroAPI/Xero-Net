@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth;
 
@@ -34,9 +35,9 @@ namespace Xero.Api.Example.Applications
             Store = store;                      
         }
 
-        public string GetSignature(IConsumer consumer, IUser user, Uri uri, string verb, IConsumer consumer1)
+        public string GetSignature(IConsumer consumer, IUser user, Uri uri, string verb, IConsumer consumer1, IEnumerable<KeyValuePair<string, string>> additionalParameters = null)
         {
-            return GetAuthorization(GetToken(consumer, user), verb, uri.AbsolutePath, uri.Query);
+            return GetAuthorization(GetToken(consumer, user), verb, uri.AbsolutePath, uri.Query, additionalParameters: additionalParameters);
         }
 
         public IToken GetToken(IConsumer consumer, IUser user)
@@ -77,7 +78,7 @@ namespace Xero.Api.Example.Applications
 
         protected abstract string AuthorizeUser(IToken oauthToken);
         protected abstract string CreateSignature(IToken token, string verb, Uri uri, string verifier,
-            bool renewToken = false, string callback = null);
+            bool renewToken = false, string callback = null, IEnumerable<KeyValuePair<string, string>> additionalParameters = null);
 
         protected abstract IToken RenewToken(IToken sessionToken, IConsumer consumer);
 
@@ -113,7 +114,7 @@ namespace Xero.Api.Example.Applications
         }
 
         protected string GetAuthorization(IToken token, string verb, string endpoint, string query = null,
-            string verifier = null, bool renewToken = false, string callback = null)
+            string verifier = null, bool renewToken = false, string callback = null, IEnumerable<KeyValuePair<string, string>> additionalParameters = null)
         {
             var uri = new UriBuilder(BaseUri)
             {
@@ -125,7 +126,7 @@ namespace Xero.Api.Example.Applications
                 uri.Query = query.TrimStart('?');
             }
 
-            return CreateSignature(token, verb, uri.Uri, verifier, renewToken, callback);
+            return CreateSignature(token, verb, uri.Uri, verifier, renewToken, callback, additionalParameters);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Example.Applications.Public;
 using Xero.Api.Infrastructure.Interfaces;
@@ -39,9 +40,9 @@ namespace Xero.Api.Example.Applications.Partner
         }
 
         protected override string CreateSignature(IToken token, string verb, Uri uri,
-            string verifier, bool renewToken = false, string callback = null)
+            string verifier, bool renewToken = false, string callback = null, IEnumerable<KeyValuePair<string, string>> additionalParameters = null)
         {
-            return new RsaSha1Signer().CreateSignature(_signingCertificate, token, uri, verb, verifier, renewToken, callback);
+            return new RsaSha1Signer().CreateSignature(_signingCertificate, token, uri, verb, verifier, renewToken, callback, additionalParameters);
         }
 
         protected override IToken RenewToken(IToken sessionToken, IConsumer consumer)

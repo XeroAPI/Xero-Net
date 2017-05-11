@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.ThirdParty.Dust;
 using Xero.Api.Infrastructure.ThirdParty.Dust.Core;
@@ -11,7 +12,7 @@ namespace Xero.Api.Infrastructure.OAuth.Signing
 {
     public class HmacSha1Signer
     {
-        public string CreateSignature(IToken token, Uri uri, string verb, string verifier = null, string callback = null)
+        public string CreateSignature(IToken token, Uri uri, string verb, string verifier = null, string callback = null, IEnumerable<KeyValuePair<string, string>> additionalParameters = null)
         {
             var oAuthParameters = new OAuthParameters(
                 new ConsumerKey(token.ConsumerKey),
@@ -22,7 +23,7 @@ namespace Xero.Api.Infrastructure.OAuth.Signing
                 string.Empty,
                 "1.0",
                 verifier,
-                token.Session, false, callback);
+                token.Session, false, callback, additionalParameters);
 
             var signatureBaseString =
                 new SignatureBaseString(
