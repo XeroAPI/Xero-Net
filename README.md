@@ -73,7 +73,7 @@ There are different way to install this library:
 * Settings - Find
 * Timesheets - Create and Find
 * Work Locations - Create and Find
- 
+
 ### Files API
 * Files - Find, Add, Rename, Move, Remove and Get Content
 * Folders - Find, Add, Rename and Remove
@@ -105,56 +105,56 @@ There are simple filters on different endpoints.
 * Offset
 
 They are used in a [Fluent](http://en.wikipedia.org/wiki/Fluent_interface) way, but are not LINQ. They simply create a query for the URL passed to the API. Nested queries are not handled using the syntax. Or and And need to come after a Where statement. OrderBy, OrderByDescending and Page can come anywhere.
-
-	var invoices = xeroApi.Invoices  
-		.ModifiedSince(new DateTime(2014, 1, 31))  
-		.Where("Total > 3500.0")  
-		.And("Total < 10000.0")  
-		.Page(2)  
-		.OrderByDescending("DueDate")  
-		.Find();
-
+```csharp
+var invoices = xeroApi.Invoices  
+	.ModifiedSince(new DateTime(2014, 1, 31))  
+	.Where("Total > 3500.0")  
+	.And("Total < 10000.0")  
+	.Page(2)  
+	.OrderByDescending("DueDate")  
+	.Find();
+```
 The following gives the same query string to the API as the example above.
-
-	var invoices = xeroApi.Invoices  
-		.Page(2)  
-		.OrderByDescending("DueDate")  
-		.Where("Total > 3500.0")   
-		.And("Total < 10000.0")  
-		.ModifiedSince(new DateTime(2014, 1, 31))  
-		.Find();
-
+```csharp
+var invoices = xeroApi.Invoices  
+	.Page(2)  
+	.OrderByDescending("DueDate")  
+	.Where("Total > 3500.0")   
+	.And("Total < 10000.0")  
+	.ModifiedSince(new DateTime(2014, 1, 31))  
+	.Find();
+```		
 ## Application types
 
 There are specific classes for each of the application types. If these are used, you will need to have the app.config file settings for your organisation.
 
 For a public application you would use
-	
-	var user = new ApiUser { Name = "The users name" };
-    var tokenStore = new SqliteTokenStore();
+```csharp
+var user = new ApiUser { Name = "The users name" };
+var tokenStore = new SqliteTokenStore();
 
-    var api = new Applications.Public.Core(tokenStore, user)
-    {
-        UserAgent = "Something to show your application"
-    };
-	
+var api = new Applications.Public.Core(tokenStore, user)
+{
+    UserAgent = "Something to show your application"
+};
+```
 The config file will look like this
-	
-    <add key="BaseUrl" value="https://api.xero.com"/>
-    <add key="ConsumerKey" value="Your Key"/>
-    <add key="ConsumerSecret" value="Your secret"/>
-    <add key="CallbackUrl" value="Your callback"/>
-	
+```xml
+<add key="BaseUrl" value="https://api.xero.com"/>
+<add key="ConsumerKey" value="Your Key"/>
+<add key="ConsumerSecret" value="Your secret"/>
+<add key="CallbackUrl" value="Your callback"/>
+```
 There are classes for Private, Public and Partner applications for the Core Xero API and Australian and American Payrolls.
 
 A private application will need to also populate
-
-	<add key="SigningCertificate" value="Path to .pfx file"/>
-    
+```xml
+<add key="SigningCertificate" value="Path to .pfx file"/>
+```
 A partner application will need to also populate
-
-	<add key="SigningCertificate" value="Path to .pfx file"/>
-
+```xml
+<add key="SigningCertificate" value="Path to .pfx file"/>
+```
 ## Authenticators
 
 The application classes all use implementations of IAuthenticator. See [PrivateAuthenticator](https://github.com/XeroAPI/Xero-Net/blob/master/Xero.Api.Example.Applications/Private/PrivateAuthenticator.cs) for an example. The authenticators are used by the base infrastructure to do the heavy lifting of the Xero API authentication.
@@ -178,14 +178,14 @@ All the signing is done by a slightly modified version of the Dust library provi
 The token store implementations are separate and optional. (It is recommended that you do have a store.)
 
 The interface ITokenStore has three methods.
-
-	public interface ITokenStore
-	{
-		IConsumer Find(string user);
-		void Add(IToken token);
-		void Delete(IToken token);
-	}
-
+```csharp
+public interface ITokenStore
+{
+	IConsumer Find(string user);
+	void Add(IToken token);
+	void Delete(IToken token);
+}
+```
 You can provide your own implementation to suit the database you are using for your product. Ensure the dates on the token are stored in UTC.
 
 The examples are
@@ -201,42 +201,43 @@ All communication with the [Xero API](http://developer.xero.com) is compressed a
 To get going quickly:
 
 1. Follow this getting started guide: http://developer.xero.com/documentation/getting-started/getting-started-guide/
-2. Create a console project and download the following package using the NuGet powershell command: PM> Install-Package Xero.API.SDK 
+2. Create a console project and download the following package using the NuGet powershell command: PM> Install-Package Xero.API.SDK
 3. Use the snippets below depending on the type of application, modifying keys and certificate paths.
 
 Note, remember to implement your own custom token store before going live. The examples provided in the library Xero.Api.Example.TokenStores.dll
 are for development only.
+```csharp
+static void Main(string[] args)
+{
+	// Private Application Sample
+	var private_app_api = new XeroCoreApi("https://api.xero.com", new PrivateAuthenticator(@"C:\Dev\your_public_privatekey.pfx"),
+        new Consumer("your-consumer-key", "your-consumer-secret"), null,
+        new DefaultMapper(), new DefaultMapper());
 
-        static void Main(string[] args)
-        {
-			// Private Application Sample
-			var private_app_api = new XeroCoreApi("https://api.xero.com", new PrivateAuthenticator(@"C:\Dev\your_public_privatekey.pfx"),
-                new Consumer("your-consumer-key", "your-consumer-secret"), null,
-                new DefaultMapper(), new DefaultMapper());
-				
-			var org = private_app_api.Organisation;
-			
-			var user = new ApiUser { Name = Environment.MachineName };
+	var org = private_app_api.Organisation;
 
-			// Public Application Sample
-            var public_app_api = new XeroCoreApi("https://api.xero.com", new PublicAuthenticator("https://api.xero.com", "https://api.xero.com", "oob", 
-				new MemoryTokenStore()),
-                new Consumer("your-consumer-key", "your-consumer-secret"), user,
-                new DefaultMapper(), new DefaultMapper());
+	var user = new ApiUser { Name = Environment.MachineName };
 
-            var public_contacts = public_app_api.Contacts.Find().ToList();
-			
-			// Partner Application Sample
-			var partner_app_api = new XeroCoreApi("https://api-partner.network.xero.com", new PartnerAuthenticator("https://api-partner.network.xero.com",
-                "https://api.xero.com", "oob", new MemoryTokenStore(),
-                @"C:\Dev\your_public_privatekey.pfx"),
-                 new Consumer("your-consumer-key", "your-consumer-secret"), user,
-                 new DefaultMapper(), new DefaultMapper());
-				
-			var partner_contacts = partner_app_api.Contacts.Find().ToList();			
-        }
+	// Public Application Sample
+    var public_app_api = new XeroCoreApi("https://api.xero.com", new PublicAuthenticator("https://api.xero.com", "https://api.xero.com", "oob",
+		new MemoryTokenStore()),
+        new Consumer("your-consumer-key", "your-consumer-secret"), user,
+        new DefaultMapper(), new DefaultMapper());
 
+    var public_contacts = public_app_api.Contacts.Find().ToList();
+
+	// Partner Application Sample
+	var partner_app_api = new XeroCoreApi("https://api-partner.network.xero.com", new PartnerAuthenticator("https://api-partner.network.xero.com",
+        "https://api.xero.com", "oob", new MemoryTokenStore(),
+        @"C:\Dev\your_public_privatekey.pfx"),
+         new Consumer("your-consumer-key", "your-consumer-secret"), user,
+         new DefaultMapper(), new DefaultMapper());
+
+	var partner_contacts = partner_app_api.Contacts.Find().ToList();			
+}
+```
 ## Acknowledgements
+
 Thanks for the following Open Source libraries for making the wrapper and samples easier
 
 * [Dust](https://github.com/ben-biddington/dust) - OAuth
