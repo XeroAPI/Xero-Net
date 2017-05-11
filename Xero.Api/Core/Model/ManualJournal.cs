@@ -17,10 +17,10 @@ namespace Xero.Api.Core.Model
         public DateTime Date { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public ManualJournalStatus Status { get; set; }
+        public ManualJournalStatus? Status { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public LineAmountType LineAmountTypes { get; set; }
+        public LineAmountType? LineAmountTypes { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public string Url { get; set; }
