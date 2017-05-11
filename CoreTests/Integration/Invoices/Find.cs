@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using NUnit.Framework;
 using Xero.Api.Core.Model.Types;
@@ -34,6 +35,47 @@ namespace CoreTests.Integration.Invoices
 
             Assert.AreEqual(1, invoices.Count());
             Assert.AreEqual(created.Id, invoices.First().Id);
+        }
+
+        [Test]
+        public void find_by_statuses_list()
+        {
+            var created = Given_an_invoice();
+            var invoices = Api.Invoices.Statuses(new[] {created.Status}).Find().ToList();
+
+            Assert.True(invoices.Any(it => it.Id == created.Id));
+        }
+
+        [Test]
+        public void find_by_contact_id_list()
+        {
+            var created = Given_an_invoice();
+            var invoices = Api.Invoices.ContactIds(new[] {created.Contact.Id}).Find().ToList();
+
+            Assert.True(invoices.Any(it => it.Id == created.Id));
+        }
+
+        [Test]
+        public void find_by_invoice_number_list()
+        {
+            var created = Given_an_invoice(invoiceNumber: Guid.NewGuid().ToString());
+            var invoices = Api.Invoices.InvoiceNumbers(new[] {created.Number}).Find().ToList();
+
+            Assert.True(invoices.Any(it => it.Id == created.Id));
+        }
+
+        [Test]
+        public void find_by_mixture_of_query_param_lists()
+        {
+            var created = Given_an_invoice(invoiceNumber: Guid.NewGuid().ToString());
+            var invoices = Api.Invoices
+                .Ids(new [] {created.Id})
+                .ContactIds(new [] { created.Contact.Id })
+                .Statuses(new [] {created.Status})
+                .InvoiceNumbers(new [] {created.Number})
+                .Find().ToList();
+
+            Assert.True(invoices.Any(it => it.Id == created.Id));
         }
 
         [Test]
