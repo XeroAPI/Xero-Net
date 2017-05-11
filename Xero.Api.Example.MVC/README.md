@@ -1,4 +1,4 @@
-﻿##MVC Example Application
+## MVC Example Application
 This example MVC application can be configured to be used with Public or Partner Applications.
  
 The Authorize callback URL is required in XeroApiHelper.cs. If you are working locally then 'http://localhost:XXXXX/Home/Authorize' is fine, replacing XXXXX with your port. Make sure you add the call back domain to your application settings on https://app.xero.com 'localhost' is fine. For more details see here: http://developer.xero.com/documentation/advanced-docs/oauth-callback-domains-explained/
