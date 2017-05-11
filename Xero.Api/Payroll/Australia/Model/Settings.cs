@@ -11,11 +11,24 @@ namespace Xero.Api.Payroll.Australia.Model
         public List<Account> Accounts { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public List<TrackingCategory> TrackingCategories { get; set; }
+        public TrackingCategories TrackingCategories { get; set; }
 
         [DataMember]
         public int DaysInPayrollYear { get; set; }
 
         public IList<Settings> Values { get; private set; }
     }
+
+    [DataContract(Namespace = "")]
+    public class TrackingCategories
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public TrackingCategory EmployeeGroups { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public TrackingCategory TimesheetCategories { get; set; }
+
+    }
+
+
 }
