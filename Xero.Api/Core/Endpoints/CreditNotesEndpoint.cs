@@ -20,7 +20,6 @@ namespace Xero.Api.Core.Endpoints
         public CreditNotesEndpoint(XeroHttpClient client) :
             base(client, "/api.xro/2.0/CreditNotes")
         {
-            Page(1);
         }
 
         public ICreditNotesEndpoint Page(int page)
