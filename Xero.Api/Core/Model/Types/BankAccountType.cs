@@ -15,5 +15,7 @@ namespace Xero.Api.Core.Model.Types
         CreditCard,
         [EnumMember(Value = "PAYPAL")]
         Paypal,
+        [EnumMember(Value = "NONE")]
+        None,
     }
 }
