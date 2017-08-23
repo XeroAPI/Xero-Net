@@ -48,7 +48,7 @@ namespace Xero.Api.Core.Endpoints
         public override IEnumerable<Model.File> Find()
         {
             var response = HandleFilesResponse(Client
-                .Client.Get("files.xro/1.0/Files", ""));
+                .Client.Get("files.xro/1.0/Files", QueryString));
 
             return response.Items;
         }
