@@ -2,10 +2,10 @@
 
 namespace Xero.Api.Core.Model.Types
 {
-    public enum ObjectType 
+    public enum ObjectType
     {
         [EnumMember(Value = "ACCOUNT")]
-        Account,
+        Account = 1,
         [EnumMember(Value = "ACCPAY")]
         PurchasesInvoice,
         [EnumMember(Value = "ACCPAYCREDIT")]

@@ -6,7 +6,7 @@ namespace Xero.Api.Core.Model.Types
     public enum ObjectGroupType
     {
         [EnumMember(Value = "Account")]
-        Account,
+        Account = 1,
         [EnumMember(Value = "BankTransaction")]
         BankTransaction,
         [EnumMember(Value = "Contact")]
