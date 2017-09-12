@@ -9,7 +9,7 @@ namespace Xero.Api.Payroll.America.Request
 {
     [DataContract(Namespace = "", Name = "PayItems")]
     public class PayItemsRequest : XeroRequest<PayItems>
-    {/*
+    {
         [DataMember(EmitDefaultValue = false)]
         public List<EarningsType> EarningsTypes { get { return PayItems.EarningsTypes; } }
 
@@ -34,6 +34,6 @@ namespace Xero.Api.Payroll.America.Request
         public void AddRange(IEnumerable<PayItems> value)
         {
             PayItems = value.FirstOrDefault();
-        }*/
+        }
     }
 }
