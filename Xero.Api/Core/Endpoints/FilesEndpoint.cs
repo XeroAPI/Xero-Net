@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using Xero.Api.Common;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Request;
 using Xero.Api.Core.Response;
@@ -10,7 +11,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IFilesEndpoint : IXeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>
+    public interface IFilesEndpoint : IXeroUpdateEndpoint<FilesEndpoint, Model.File, FilesRequest, FilesResponse>, IPageableEndpoint<IFilesEndpoint>
     {
         Model.File Rename(Guid id, string name);
         Model.File Move(Guid id, Guid newFolder);
@@ -26,7 +27,13 @@ namespace Xero.Api.Core.Endpoints
         internal FilesEndpoint(XeroHttpClient client)
             : base(client, "files.xro/1.0/Files")
         {
+            Page(1);
+        }
 
+        public IFilesEndpoint Page(int page)
+        {
+            AddParameter("page", page);
+            return this;
         }
 
         public Model.File this[Guid id]
@@ -41,7 +48,7 @@ namespace Xero.Api.Core.Endpoints
         public override IEnumerable<Model.File> Find()
         {
             var response = HandleFilesResponse(Client
-                .Client.Get("files.xro/1.0/Files", ""));
+                .Client.Get("files.xro/1.0/Files", QueryString));
 
             return response.Items;
         }
