@@ -16,7 +16,7 @@
     <tags>xero api sdk</tags>
     <dependencies>
         <group>
-            <dependency id="NewtonSoft.Json" version="[9.0.1,)"/>            
+            <dependency id="Newtonsoft.Json" version="[9.0.1,)"/>            
         </group>
     </dependencies>
   </metadata>
