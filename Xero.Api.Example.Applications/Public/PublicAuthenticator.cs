@@ -8,16 +8,18 @@ namespace Xero.Api.Example.Applications.Public
     public class PublicAuthenticator : TokenStoreAuthenticator
     {
         private readonly string _scope;
+        private readonly bool _redirectOnError;
 
-        public PublicAuthenticator(string baseUri, string tokenUri, string callBackUrl, ITokenStore store, string scope = null) 
+        public PublicAuthenticator(string baseUri, string tokenUri, string callBackUrl, ITokenStore store, string scope = null, bool redirectOnError = false)
             : base(baseUri, tokenUri, callBackUrl, store)
         {
             _scope = scope;
+            _redirectOnError = redirectOnError;
         }
 
         protected override string AuthorizeUser(IToken token)
         {
-            var authorizeUrl = GetAuthorizeUrl(token, _scope);
+            var authorizeUrl = GetAuthorizeUrl(token, _scope, _redirectOnError);
 
             Process.Start(authorizeUrl);
 
@@ -36,5 +38,5 @@ namespace Xero.Api.Example.Applications.Public
         {
             return GetToken(consumer);
         }
-    }   
+    }
 }
