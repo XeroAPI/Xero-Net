@@ -256,11 +256,14 @@
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\UrlEncoder.cs" />
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\HttpEncoder.cs" />
     <Compile Include="Infrastructure\ThirdParty\HttpUtility\HttpUtility.cs" />
+    <Compile Include="Payroll\America\Endpoints\PayItemsEndpoint.cs" />
     <Compile Include="Payroll\America\Endpoints\TimesheetsEndpoint.cs" />
     <Compile Include="Payroll\America\Model\Timesheet.cs" />
     <Compile Include="Payroll\America\Model\TimesheetLine.cs" />
     <Compile Include="Payroll\America\Model\Types\State.cs" />
+    <Compile Include="Payroll\America\Request\PayItemsRequest.cs" />
     <Compile Include="Payroll\America\Request\TimesheetsRequest.cs" />
+    <Compile Include="Payroll\America\Response\PayItemsResponse.cs" />
     <Compile Include="Payroll\America\Response\SettingsResponse.cs" />
     <Compile Include="Payroll\America\Response\TimesheetsResponse.cs" />
     <Compile Include="Payroll\Australia\Endpoints\TimesheetsEndpoint.cs" />
