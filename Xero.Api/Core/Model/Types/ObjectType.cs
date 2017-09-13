@@ -2,10 +2,12 @@
 
 namespace Xero.Api.Core.Model.Types
 {
-    public enum ObjectType 
+    public enum ObjectType
     {
+        [EnumMember(Value = "UNKNOWN")]
+        Unknown = -1,
         [EnumMember(Value = "ACCOUNT")]
-        Account,
+        Account = 1,
         [EnumMember(Value = "ACCPAY")]
         PurchasesInvoice,
         [EnumMember(Value = "ACCPAYCREDIT")]
@@ -58,7 +60,7 @@ namespace Xero.Api.Core.Model.Types
         ExpenseClaimPayment,
         [EnumMember(Value = "FIXEDASSET")]
         FixedAsset,
-        [EnumMember(Value = "MANUALJOURNAL")]
+        [EnumMember(Value = "MANJOURNAL")]
         ManualJournal,
         [EnumMember(Value = "PAYRUN")]
         Payrun,

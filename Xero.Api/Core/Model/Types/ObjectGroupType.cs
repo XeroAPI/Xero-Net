@@ -5,8 +5,10 @@ namespace Xero.Api.Core.Model.Types
     [DataContract(Namespace = "")]
     public enum ObjectGroupType
     {
+        [EnumMember(Value = "Unknown")]
+        Unknown = -1,
         [EnumMember(Value = "Account")]
-        Account,
+        Account = 1,
         [EnumMember(Value = "BankTransaction")]
         BankTransaction,
         [EnumMember(Value = "Contact")]
