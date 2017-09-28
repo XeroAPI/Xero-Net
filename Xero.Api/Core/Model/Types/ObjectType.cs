@@ -50,6 +50,8 @@ namespace Xero.Api.Core.Model.Types
         SalesPrepaymentPayment,
         [EnumMember(Value = "ARPREPAYMENTSOURCEPAYMENT")]
         BankPartOfSalesPrepayment,
+        [EnumMember(Value = "BUSINESS")]
+        Business,
         [EnumMember(Value = "CASHPAID")]
         SpendMoneyTransaction,
         [EnumMember(Value = "CASHREC")]
