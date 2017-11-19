@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 
@@ -21,7 +23,14 @@ namespace Xero.Api.Infrastructure.Http
                 stream.CopyTo(Stream);
                 // rewind
                 Stream.Seek(0, SeekOrigin.Begin);
-            }            
+            }
+
+            Headers = new Dictionary<string, string>();
+
+            foreach (var item in inner.Headers.AllKeys)
+            {
+                Headers[item] = inner.Headers[item];
+            }
         }
 
         public string Body
@@ -52,5 +61,7 @@ namespace Xero.Api.Infrastructure.Http
         public int ContentLength { get; private set; }
 
         public string ContentType { get; private set; }
+
+        public IDictionary<string,string> Headers { get; private set; }
     }
 }
