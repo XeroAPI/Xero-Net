@@ -25,7 +25,7 @@ namespace Xero.Api.Core.Endpoints
         Report BankSummary(DateTime? from = null, DateTime? to = null);
         Report BudgetSummary(DateTime? date = null, int? periods = null, BudgetSummaryTimeframeType? timeFrame = null);
         Report ExecutiveSummary(DateTime? date = null);
-        Report ProfitAndLoss(DateTime? from = null, DateTime? to = null,
+        Report ProfitAndLoss(DateTime? date = null, DateTime? from = null, DateTime? to = null,
             Guid? trackingCategory = null, Guid? trackingOption = null, Guid? trackingCategory2 = null,
             Guid? trackingOption2 = null, bool? standardLayout = null, bool? paymentsOnly = null, string timeframe = null, int? periods = null);
         Report TrailBalance(DateTime? date = null, bool? paymentsOnly = null);
@@ -156,12 +156,13 @@ namespace Xero.Api.Core.Endpoints
             return Find(NamedReportType.ExecutiveSummary.ToString());
         }
 
-        public Report ProfitAndLoss(DateTime? from = null, DateTime? to = null,
+        public Report ProfitAndLoss(DateTime? date = null, DateTime? from = null, DateTime? to = null,
             Guid? trackingCategory = null, Guid? trackingOption = null, Guid? trackingCategory2 = null,
             Guid? trackingOption2 = null, bool? standardLayout = null, bool? paymentsOnly = null, string timeframe = null, int? periods = null)
         {
             var parameters = new NameValueCollection();
 
+            parameters.Add("date", from);
             parameters.Add("fromDate", from);
             parameters.Add("toDate", to);
             parameters.Add("trackingCategoryID", trackingCategory);
