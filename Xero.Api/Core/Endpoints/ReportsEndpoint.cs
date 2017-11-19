@@ -162,7 +162,7 @@ namespace Xero.Api.Core.Endpoints
         {
             var parameters = new NameValueCollection();
 
-            parameters.Add("date", from);
+            parameters.Add("date", date);
             parameters.Add("fromDate", from);
             parameters.Add("toDate", to);
             parameters.Add("trackingCategoryID", trackingCategory);
