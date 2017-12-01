@@ -17,6 +17,19 @@ namespace CoreTests.Integration.Invoices
             
             Assert.Greater(invoices.Count(), 0);
         }
+        
+        [Test]
+        [TestCase(true, "unitdp=4&page=1")]
+        [TestCase(false, "page=1")]
+        public void find_by_page_reset_query(bool resetQuery, string expectedQuery)
+        {
+            Given_an_invoice();
+
+            var api = Api.Invoices.UseFourDecimalPlaces(false).Page(1);
+            
+            Assert.True(api.Find(resetQuery: resetQuery).Any());
+            Assert.That(api.QueryString, Is.EqualTo(expectedQuery));
+        }
 
         [Test]
         public void find_by_id()
@@ -25,6 +38,20 @@ namespace CoreTests.Integration.Invoices
             var id = Api.Invoices.Find(expected).Id;
 
             Assert.AreEqual(expected, id);
+        }
+
+        [Test]
+        [TestCase(true, "unitdp=4&page=1")]
+        [TestCase(false, "page=1")]
+        public void find_by_id_reset_query(bool resetQuery, string expectedQuery)
+        {
+            var expected  = Given_an_invoice().Id;
+            
+            var api = Api.Invoices.UseFourDecimalPlaces(false);
+                
+            api.Find(expected, resetQuery: resetQuery);
+
+            Assert.That(api.QueryString, Is.EqualTo(expectedQuery));
         }
 
         [Test]

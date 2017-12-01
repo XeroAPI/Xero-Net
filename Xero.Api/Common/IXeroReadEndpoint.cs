@@ -17,8 +17,11 @@ namespace Xero.Api.Common
         T OrderByDescending(string query);
         T UseFourDecimalPlaces(bool use4Dp);
         IEnumerable<TResult> Find();
+        IEnumerable<TResult> Find(bool resetQuery);
         TResult Find(Guid child);
+        TResult Find(Guid child, bool resetQuery);
         TResult Find(string child);
+        TResult Find(string child, bool resetQuery);
         void ClearQueryString();
     }
 }

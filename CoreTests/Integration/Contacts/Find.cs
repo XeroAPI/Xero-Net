@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using NUnit.Framework;
 using Xero.Api.Core.Model.Status;
 
@@ -15,6 +16,19 @@ namespace CoreTests.Integration.Contacts
 
             Assert.True(Api.Contacts.Page(1).Find().Any());
         }
+        
+        [Test]
+        [TestCase(true, "page=1")]
+        [TestCase(false, "page=1&includeArchived=true")]
+        public void find_by_page_reset_query(bool resetQuery, string expectedQuery)
+        {
+            Given_a_contact();
+
+            var api = Api.Contacts.IncludeArchived(true).Page(1);
+            
+            Assert.True(api.Find(resetQuery: resetQuery).Any());
+            Assert.That(api.QueryString, Is.EqualTo(expectedQuery));
+        }
 
         [Test]
         public void find_by_id()
@@ -26,6 +40,20 @@ namespace CoreTests.Integration.Contacts
                 .Id;
 
             Assert.AreEqual(expected, id);
+        }
+
+        [Test]
+        [TestCase(true, "page=1")]
+        [TestCase(false, "page=1&includeArchived=true")]
+        public void find_by_id_reset_query(bool resetQuery, string expectedQuery)
+        {
+            var expected = Given_a_contact().Id;
+            
+            var api = Api.Contacts.IncludeArchived(true);
+            
+            api.Find(expected, resetQuery: resetQuery);
+
+            Assert.That(api.QueryString, Is.EqualTo(expectedQuery));
         }
 
         [Test]

@@ -71,17 +71,32 @@ namespace Xero.Api.Common
 
         public virtual IEnumerable<TResult> Find()
         {
-            return Get(ApiEndpointUrl, null);
+            return Find(true);
+        }
+
+        public virtual IEnumerable<TResult> Find(bool resetQuery)
+        {
+            return Get(ApiEndpointUrl, null, resetQuery);
         }
 
         public virtual TResult Find(Guid child)
         {
-            return Find(child.ToString("D"));
+            return Find(child, true);
+        }
+
+        public virtual TResult Find(Guid child, bool resetQuery)
+        {
+            return Find(child.ToString("D"), resetQuery);
         }
 
         public TResult Find(string child)
         {
-            return Get(ApiEndpointUrl, "/" + child).FirstOrDefault();
+            return Find(child, true);
+        }
+
+        public TResult Find(string child, bool resetQuery)
+        {
+            return Get(ApiEndpointUrl, "/" + child, resetQuery).FirstOrDefault();
         }
 
         public virtual void ClearQueryString()
@@ -158,7 +173,7 @@ namespace Xero.Api.Common
             return (T)this;
         }
 
-        private IEnumerable<TResult> Get(string endpoint, string child)
+        private IEnumerable<TResult> Get(string endpoint, string child, bool resetQuery)
         {
             try
             {
@@ -176,7 +191,10 @@ namespace Xero.Api.Common
             }
             finally
             {
-                ClearQueryString();
+                if (resetQuery)
+                {
+                    ClearQueryString();
+                }
             }
         }
     }
