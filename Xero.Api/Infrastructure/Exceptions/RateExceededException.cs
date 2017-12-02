@@ -9,8 +9,16 @@ namespace Xero.Api.Infrastructure.Exceptions
     {
         public RateExceededException() { }
 
+        public string RateLimitProblem { get; set; }
+
         public RateExceededException(string message) : base(HttpStatusCode.ServiceUnavailable, message)
-        {            
+        {
+
+        }
+
+        public RateExceededException(string message, string rateLimitProblem) : this(message)
+        {
+            RateLimitProblem = rateLimitProblem;
         }
     }
 }
