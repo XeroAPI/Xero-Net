@@ -32,6 +32,9 @@ namespace Xero.Api.Payroll.Australia.Model
         [DataMember]
         public bool IsExemptFromSuper { get; set; }
 
+        [DataMember]
+        public bool IsReportableAsW1 { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
         public decimal? RatePerUnit { get; set; }
 
