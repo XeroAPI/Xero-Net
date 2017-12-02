@@ -272,6 +272,7 @@
     <Compile Include="Payroll\Australia\Model\Settings.cs" />
     <Compile Include="Payroll\Australia\Model\Timesheet.cs" />
     <Compile Include="Payroll\Australia\Model\TimesheetLine.cs" />
+    <Compile Include="Payroll\Australia\Model\Status\ResidencyStatusType.cs" />
     <Compile Include="Payroll\Australia\Request\TimesheetsRequest.cs" />
     <Compile Include="Payroll\Australia\Response\SettingsResponse.cs" />
     <Compile Include="Payroll\Australia\Response\TimesheetsResponse.cs" />
