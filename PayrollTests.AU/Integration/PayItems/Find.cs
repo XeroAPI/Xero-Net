@@ -18,5 +18,16 @@ namespace PayrollTests.AU.Integration.PayItems
             var items = Api.PayItems.Page(1).Find();
             Assert.IsNotNull(items);
         }
+
+        [Test]
+        public void Find_EarningRates()
+        {
+            var items = Api.PayItems.Find();
+
+            foreach(var payItem in items)
+            {
+                Assert.IsNotNull(payItem.EarningsRates);
+            }
+        }
     }
 }
