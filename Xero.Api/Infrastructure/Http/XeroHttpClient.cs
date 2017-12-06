@@ -139,9 +139,16 @@ namespace Xero.Api.Infrastructure.Http
                 throw new XeroApiException(response.StatusCode, response.Body);
             }
 
+            if (response.Headers.ContainsKey("X-Rate-Limit-Problem"))
+            {
+                var body = response.Body;
+                throw new RateExceededException(body, response.Headers["X-Rate-Limit-Problem"]);
+            }
+
             if (response.StatusCode == HttpStatusCode.ServiceUnavailable)
             {
                 var body = response.Body;
+
                 if (body.Contains("oauth_problem"))
                 {
                     throw new RateExceededException(body);

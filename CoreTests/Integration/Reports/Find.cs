@@ -27,7 +27,7 @@ namespace CoreTests.Integration.Reports
         [Test]
         public void find_PL_report()
         {
-            var reports = Api.Reports.ProfitAndLoss(DateTime.Now.AddDays(-50));
+            var reports = Api.Reports.ProfitAndLoss();
             Assert.IsNotNull(reports);
         }
 

@@ -22,28 +22,28 @@ namespace Xero.Api.Core.Endpoints
         {
             var endpoint = string.Format("/api.xro/2.0/CreditNotes/{0}/Allocations", allocation.CreditNote.Id);
 
-            return (Allocation)Add(allocation, endpoint);
+            return Add(allocation, endpoint);
         }
 
         public CreditNoteAllocation Add(CreditNoteAllocation allocation)
         {
             var endpoint = string.Format("/api.xro/2.0/CreditNotes/{0}/Allocations", allocation.CreditNote.Id);
 
-            return (CreditNoteAllocation)Add(allocation, endpoint);
+            return Add(allocation, endpoint);
         }
 
         public PrepaymentAllocation Add(PrepaymentAllocation allocation)
         {
             var endpoint = string.Format("/api.xro/2.0/Prepayments/{0}/Allocations", allocation.Prepayment.Id);
 
-            return (PrepaymentAllocation)Add(allocation, endpoint);
+            return Add(allocation, endpoint);
         }
 
         public OverpaymentAllocation Add(OverpaymentAllocation allocation)
         {
             var endpoint = string.Format("/api.xro/2.0/Overpayments/{0}/Allocations", allocation.Overpayment.Id);
 
-            return (OverpaymentAllocation)Add(allocation, endpoint);
+            return Add(allocation, endpoint);
         }
 
         private AllocationsResponse<T> HandleResponse<T>(Infrastructure.Http.Response response)
@@ -60,7 +60,7 @@ namespace Xero.Api.Core.Endpoints
             return null;
         }
 
-        public AllocationBase Add<T>(T allocation, string endpoint)
+        public T Add<T>(T allocation, string endpoint)
             where T : AllocationBase
         {
             var allocations = HandleResponse<T>(_client

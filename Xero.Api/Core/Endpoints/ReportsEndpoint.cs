@@ -20,14 +20,14 @@ namespace Xero.Api.Core.Endpoints
         Report AgedReceivables(Guid contact, DateTime? date = null, DateTime? from = null, DateTime? to = null);
         Report TenNinetyNine(DateTime? year);
         Report BalanceSheet(DateTime date, Guid? tracking1 = null, Guid? tracking2 = null,
-            bool standardLayout = false);
+            bool standardLayout = false, bool? paymentsOnly = null, string timeframe = null, int? periods = null);
         Report BankStatement(Guid account, DateTime? from = null, DateTime? to = null);
         Report BankSummary(DateTime? from = null, DateTime? to = null);
         Report BudgetSummary(DateTime? date = null, int? periods = null, BudgetSummaryTimeframeType? timeFrame = null);
         Report ExecutiveSummary(DateTime? date = null);
-        Report ProfitAndLoss(DateTime? date, DateTime? from = null, DateTime? to = null,
+        Report ProfitAndLoss(DateTime? date = null, DateTime? from = null, DateTime? to = null,
             Guid? trackingCategory = null, Guid? trackingOption = null, Guid? trackingCategory2 = null,
-            Guid? trackingOption2 = null, bool? standardLayout = null);
+            Guid? trackingOption2 = null, bool? standardLayout = null, bool? paymentsOnly = null, string timeframe = null, int? periods = null);
         Report TrailBalance(DateTime? date = null, bool? paymentsOnly = null);
     }
 
@@ -90,7 +90,7 @@ namespace Xero.Api.Core.Endpoints
         }
 
         public Report BalanceSheet(DateTime date, Guid? tracking1 = null, Guid? tracking2 = null,
-            bool standardLayout = false)
+            bool standardLayout = false, bool? paymentsOnly = null, string timeframe = null, int? periods = null)
         {
             var parameters = new NameValueCollection();
 
@@ -98,6 +98,9 @@ namespace Xero.Api.Core.Endpoints
             parameters.Add("trackingOptionID1", tracking1);
             parameters.Add("trackingOptionID2", tracking2);
             parameters.Add("standardLayout", standardLayout);
+            parameters.Add("paymentsOnly", paymentsOnly);
+            parameters.Add("timeframe", timeframe);
+            parameters.Add("periods", periods);
 
             AddParameters(parameters);
 
@@ -153,9 +156,9 @@ namespace Xero.Api.Core.Endpoints
             return Find(NamedReportType.ExecutiveSummary.ToString());
         }
 
-        public Report ProfitAndLoss(DateTime? date, DateTime? from = null, DateTime? to = null,
+        public Report ProfitAndLoss(DateTime? date = null, DateTime? from = null, DateTime? to = null,
             Guid? trackingCategory = null, Guid? trackingOption = null, Guid? trackingCategory2 = null,
-            Guid? trackingOption2 = null, bool? standardLayout = null)
+            Guid? trackingOption2 = null, bool? standardLayout = null, bool? paymentsOnly = null, string timeframe = null, int? periods = null)
         {
             var parameters = new NameValueCollection();
 
@@ -167,6 +170,9 @@ namespace Xero.Api.Core.Endpoints
             parameters.Add("trackingCategoryID2", trackingCategory2);
             parameters.Add("trackingOptionID2", trackingOption2);
             parameters.Add("standardLayout", standardLayout);
+            parameters.Add("paymentsOnly", paymentsOnly);
+            parameters.Add("timeframe", timeframe);
+            parameters.Add("periods", periods);
 
             AddParameters(parameters);
 
