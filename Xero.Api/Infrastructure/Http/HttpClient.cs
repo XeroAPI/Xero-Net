@@ -104,7 +104,8 @@ namespace Xero.Api.Infrastructure.Http
             try
             {
                 var request = CreateRequest(endpoint, "GET", query: query);
-                return new Response((HttpWebResponse)request.GetResponse());
+                using (var response = request.GetResponse())
+                    return new Response((HttpWebResponse)response);
             }
             catch (WebException we)
             {
@@ -122,7 +123,8 @@ namespace Xero.Api.Infrastructure.Http
             try
             {
                 var request = CreateRequest(endpoint, "GET", mimeType, query);
-                return new Response((HttpWebResponse)request.GetResponse());
+                using (var response = request.GetResponse())
+                    return new Response((HttpWebResponse)response);
             }
             catch (WebException we)
             {
@@ -140,14 +142,15 @@ namespace Xero.Api.Infrastructure.Http
 	        try
 	        {
 		        var request = CreateRequest(endpoint, "DELETE");
-		        return new Response((HttpWebResponse) request.GetResponse());
-	        }
+                using (var response = request.GetResponse())
+                    return new Response((HttpWebResponse)response);
+            }
 	        catch (WebException we)
 	        {
 		        if (we.Response != null)
 		        {
 			        return new Response((HttpWebResponse) we.Response);
-			}
+			    }
 
 		        throw;
 	        }
@@ -225,8 +228,9 @@ namespace Xero.Api.Infrastructure.Http
             var request = CreateRequest(endpoint, "POST");
 
             WriteMultipartData(payload, request, contentType,name, filename);
-            
-            return new Response((HttpWebResponse)request.GetResponse());
+
+            using (var response = request.GetResponse())
+                return new Response((HttpWebResponse)response);
         }
 
         private void WriteMultipartData(byte[] bytes, HttpWebRequest request, string contentType, string name, string filename)
@@ -255,7 +259,8 @@ namespace Xero.Api.Infrastructure.Http
             var request = CreateRequest(endpoint, method, query: query);
             WriteData(data, request, contentType);
 
-            return new Response((HttpWebResponse)request.GetResponse());
+            using (var response = request.GetResponse())
+                return new Response((HttpWebResponse)response);
         }        
     }
 }

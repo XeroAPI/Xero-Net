@@ -13,16 +13,18 @@ namespace Xero.Api.Infrastructure.Http
         internal Response(HttpWebResponse inner)
         {
             StatusCode = inner.StatusCode;
-            ContentLength = (int) inner.ContentLength;
+            ContentLength = (int)inner.ContentLength;
             ContentType = inner.ContentType;
-			HttpWebRequest.DefaultMaximumErrorResponseLength = ContentLength;
-			var stream = inner.GetResponseStream();
-            if (stream != null)
+            HttpWebRequest.DefaultMaximumErrorResponseLength = ContentLength;
+            using (var stream = inner.GetResponseStream())
             {
-                Stream = new MemoryStream();
-                stream.CopyTo(Stream);
-                // rewind
-                Stream.Seek(0, SeekOrigin.Begin);
+                if (stream != null)
+                {
+                    Stream = new MemoryStream();
+                    stream.CopyTo(Stream);
+                    // rewind
+                    Stream.Seek(0, SeekOrigin.Begin);
+                }
             }
 
             Headers = new Dictionary<string, string>();
