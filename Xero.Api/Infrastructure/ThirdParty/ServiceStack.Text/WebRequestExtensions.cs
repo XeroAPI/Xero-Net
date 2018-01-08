@@ -173,7 +173,6 @@ namespace Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text
                 webReq.ContentType = contentType;
 
             webReq.Accept = acceptContentType;
-            webReq.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
             webReq.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
             if (requestFilter != null)
@@ -236,7 +235,6 @@ namespace Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text
                 webReq.ContentType = contentType;
 
             webReq.Accept = acceptContentType;
-            webReq.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
             webReq.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
             if (requestFilter != null)
