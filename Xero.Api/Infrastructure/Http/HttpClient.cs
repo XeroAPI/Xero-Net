@@ -122,7 +122,7 @@ namespace Xero.Api.Infrastructure.Http
         {
             try
             {
-                var request = CreateRequest(endpoint, "GET", mimeType, query);
+                var request = CreateRequest(endpoint, "GET", mimeType, query, false);
                 using (var response = request.GetResponse())
                     return new Response((HttpWebResponse)response);
             }
@@ -156,7 +156,7 @@ namespace Xero.Api.Infrastructure.Http
 	        }
         }
 
-        private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null)
+        private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null, bool enableCompression = true)
         {
             var uri = new UriBuilder(_baseUri)
             {
@@ -172,7 +172,8 @@ namespace Xero.Api.Infrastructure.Http
 
             request.Timeout = defaultTimeout;
 
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            if (enableCompression)
+                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
             
             request.Accept = accept;
             request.Method = method;
