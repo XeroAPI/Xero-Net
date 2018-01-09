@@ -8,7 +8,7 @@ namespace Xero.Api.Core.Endpoints
 {
     public interface IJournalsEndpoint : IXeroReadEndpoint<JournalsEndpoint, Journal, JournalsResponse>
     {
-        JournalsEndpoint Offset(int offset);
+        IJournalsEndpoint Offset(int offset);
         
         JournalsEndpoint PaymentsOnly(bool value);
     }
@@ -20,7 +20,7 @@ namespace Xero.Api.Core.Endpoints
         {
         }
 
-        public JournalsEndpoint Offset(int offset)
+        public IJournalsEndpoint Offset(int offset)
         {
             AddParameter("offset", offset);
             return this;
