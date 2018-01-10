@@ -10,10 +10,10 @@ namespace Xero.Api.Payroll.Australia.Model
         [DataMember(Name = "SuperMembershipID")]
         public Guid SuperMembershipId { get; set; }
 
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember]
         public SuperannuationCalculationType CalculationType { get; set; }
 
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember]
         public SuperannuationContributionType ContributionType { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
