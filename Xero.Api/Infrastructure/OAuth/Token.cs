@@ -32,7 +32,7 @@ namespace Xero.Api.Infrastructure.OAuth
         {
             get
             {
-                return ExpiresAt < DateTime.UtcNow;
+                return ExpiresAt < DateTime.UtcNow.AddSeconds(10);
             }
         }
 
@@ -40,7 +40,7 @@ namespace Xero.Api.Infrastructure.OAuth
         {
             get
             {
-                return SessionExpiresAt < DateTime.UtcNow;
+                return SessionExpiresAt < DateTime.UtcNow.AddSeconds(10);
             }
         }
     }
