@@ -73,6 +73,8 @@ namespace Xero.Api.Core.Model.Types
         [EnumMember(Value = "RECEIPT")]
         ExpenseReceipt,
         [EnumMember(Value = "TRANSFER")]
-        BankTransfer
+        BankTransfer,
+        [EnumMember(Value = "REVENUE")]
+        Revenue
     }
 }
