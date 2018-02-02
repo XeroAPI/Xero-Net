@@ -75,6 +75,8 @@ namespace Xero.Api.Core.Model.Types
         [EnumMember(Value = "TRANSFER")]
         BankTransfer,
         [EnumMember(Value = "REVENUE")]
-        Revenue
+        Revenue,
+        [EnumMember(Value = "TERMLIAB")]
+        Termliab
     }
 }
