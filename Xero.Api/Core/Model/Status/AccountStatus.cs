@@ -6,8 +6,8 @@ namespace Xero.Api.Core.Model.Status
     public enum AccountStatus
     {
         [EnumMember(Value = "ACTIVE")]
-        Active,
+        Active = 1,
         [EnumMember(Value = "ARCHIVED")]
-        Archived
+        Archived = 2
     }
 }
