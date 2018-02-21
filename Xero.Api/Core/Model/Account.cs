@@ -19,7 +19,7 @@ namespace Xero.Api.Core.Model
         public string Name { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public AccountStatus Status { get; set; }
+        public AccountStatus? Status { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public AccountType Type { get; set; }
