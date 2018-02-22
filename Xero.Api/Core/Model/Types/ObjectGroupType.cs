@@ -17,6 +17,8 @@ namespace Xero.Api.Core.Model.Types
         CreditNote,
         [EnumMember(Value = "FixedAssets")]
         FixedAssets,
+        [EnumMember(Value = "FixedAsset")]
+        FixedAsset,
         [EnumMember(Value = "Invoice")]
         Invoice,
         [EnumMember(Value = "Item")]
