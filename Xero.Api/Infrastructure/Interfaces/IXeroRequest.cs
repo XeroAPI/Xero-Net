@@ -7,5 +7,6 @@ namespace Xero.Api.Infrastructure.Interfaces
         IList<T> Items { get; }
         void Add(T value);
         void AddRange(IEnumerable<T> value);
+        bool ContainsItems();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using Xero.Api.Core.Model.Setup;
 using Xero.Api.Infrastructure.Interfaces;
@@ -19,6 +20,11 @@ namespace Xero.Api.Core.Request
         public void AddRange(IEnumerable<Setup> value)
         {
             throw new NotImplementedException();
+        }
+
+        public bool ContainsItems()
+        {
+            return Items.Any();
         }
     }
 }

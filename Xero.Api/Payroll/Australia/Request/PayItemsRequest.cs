@@ -34,5 +34,10 @@ namespace Xero.Api.Payroll.Australia.Request
         {
             PayItems = value.FirstOrDefault();
         }
+
+        public bool ContainsItems()
+        {
+            return PayItems != null;
+        }
     }
 }

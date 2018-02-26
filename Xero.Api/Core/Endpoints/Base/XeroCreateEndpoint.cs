@@ -22,7 +22,10 @@ namespace Xero.Api.Core.Endpoints.Base
             var request = new TRequest();
             request.AddRange(items);
 
-            return Put(request);
+            if (request.ContainsItems())
+               return Put(request);
+            else
+                return Enumerable.Empty<TResult>();
         }
 
         public TResult Create(TResult item)
