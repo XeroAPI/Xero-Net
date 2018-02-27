@@ -6,30 +6,36 @@ namespace Xero.Api.Core.Model.Types
     public enum SystemAccountType
     {
         [EnumMember(Value = "DEBTORS")]
-        Debtors,
+        Debtors = 1,
         [EnumMember(Value = "CREDITORS")]
-        Creditors,
+        Creditors = 2,
         [EnumMember(Value = "BANKCURRENCYGAIN")]
-        BankCurrencyGain,
+        BankCurrencyGain = 3,
         [EnumMember(Value = "GST")]
-        GST,
+        GST = 4,
         [EnumMember(Value = "GSTONIMPORTS")]
-        GSTOnImports,
+        GSTOnImports = 5,
         [EnumMember(Value = "HISTORICAL")]
-        Historical,
+        Historical = 6,
         [EnumMember(Value = "REALISEDCURRENCYGAIN")]
-        RealisedCurrencyGain,
+        RealisedCurrencyGain = 7,
         [EnumMember(Value = "RETAINEDEARNINGS")]
-        RetainedEarnings,
+        RetainedEarnings = 8,
         [EnumMember(Value = "ROUNDING")]
-        Rounding,
+        Rounding = 9,
         [EnumMember(Value = "TRACKINGTRANSFERS")]
-        TrackingTransfers,
+        TrackingTransfers = 10,
         [EnumMember(Value = "UNPAIDEXPCLM")]
-        UnpaidExpenseClaim,
+        UnpaidExpenseClaim = 11,
         [EnumMember(Value = "UNREALISEDCURRENCYGAIN")]
-        UnrealisedCurrencyGain,
+        UnrealisedCurrencyGain = 12,
         [EnumMember(Value = "WAGEPAYABLES")]
-        WagePayables,
+        WagePayables = 13,
+        [EnumMember(Value = "CISLIABILITY")]
+        CisLiability = 14,
+        [EnumMember(Value = "CISLABOUR")]
+        CisLabour = 15,
+        [EnumMember(Value = "CISMATERIALS")]
+        CisMaterials = 16
     } 
 }
