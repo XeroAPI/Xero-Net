@@ -2,7 +2,7 @@
 {
     public enum AttachmentEndpointType
     {
-        Accounts,
+        Accounts = 1,
         BankTransactions,
         BankTransfers,
         Contacts,

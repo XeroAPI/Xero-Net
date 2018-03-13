@@ -6,14 +6,14 @@ namespace Xero.Api.Core.Model.Types
     public enum PaymentTermType
     {
         [EnumMember(Value = "OFFOLLOWINGMONTH")]
-        FollowingMonth,
+        FollowingMonth = 1,
         [EnumMember(Value = "DAYSAFTERBILLDATE")]
-        AfterBillDate,
+        AfterBillDate = 2,
         [EnumMember(Value = "OFCURRENTMONTH")]
-        CurrentMonth,
+        CurrentMonth = 3,
         [EnumMember(Value = "DAYSAFTERBILLMONTH")]
-        DaysAfterBillMonth,
+        DaysAfterBillMonth = 4,
         [EnumMember(Value = "DAYSAFTERINVOICEMONTH")]
-        AfterInvoiceMonth
+        AfterInvoiceMonth =5
     }
 }

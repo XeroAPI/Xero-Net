@@ -5,20 +5,20 @@ namespace Xero.Api.Core.Model.Types
     public enum PaymentType
     {
         [EnumMember(Value = "ACCPAYPAYMENT")]
-        AccountsPayable,
+        AccountsPayable = 1,
         [EnumMember(Value = "ACCRECPAYMENT")]
-        AccountsReceivable,
+        AccountsReceivable = 2,
         [EnumMember(Value = "APCREDITPAYMENT")]
-        AccountsPayableCredit,
+        AccountsPayableCredit = 3,
         [EnumMember(Value = "ARCREDITPAYMENT")]
-        AccountsReceivableCredit,
+        AccountsReceivableCredit = 4,
         [EnumMember(Value = "ARPREPAYMENTPAYMENT")]
-        AccountsReceivablePrepayment,
+        AccountsReceivablePrepayment = 5,
         [EnumMember(Value = "APPREPAYMENTPAYMENT")]
-        AccountsPayablePrepayment,
+        AccountsPayablePrepayment = 6,
         [EnumMember(Value = "AROVERPAYMENTPAYMENT")]
-        AccountsReceivableOverpayment,
+        AccountsReceivableOverpayment = 7,
         [EnumMember(Value = "APOVERPAYMENTPAYMENT")]
-        AccountsPayableOverpayment,
+        AccountsPayableOverpayment = 8,
     }
 }

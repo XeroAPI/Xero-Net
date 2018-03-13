@@ -8,7 +8,7 @@ namespace Xero.Api.Core.Model
     public class Terms : CoreData
     {
         [DataMember]
-        public int Day { get; set; }
+        public int? Day { get; set; }
 
         [DataMember(Name = "Type")]
         public PaymentTermType TermType { get; set; }

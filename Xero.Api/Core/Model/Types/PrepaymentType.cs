@@ -6,8 +6,8 @@ namespace Xero.Api.Core.Model.Types
     public enum PrepaymentType
     {
         [EnumMember(Value = "SPEND-PREPAYMENT")]
-        SpendPrepayment,
+        SpendPrepayment = 1,
         [EnumMember(Value = "RECEIVE-PREPAYMENT")]
-        ReceivePrepayment
+        ReceivePrepayment = 2
     }
 }

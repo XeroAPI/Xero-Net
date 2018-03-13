@@ -6,8 +6,8 @@ namespace Xero.Api.Core.Model.Types
     public enum OverpaymentType
     {
         [EnumMember(Value = "SPEND-OVERPAYMENT")]
-        SpendOverpayment,
+        SpendOverpayment = 1,
         [EnumMember(Value = "RECEIVE-OVERPAYMENT")]
-        ReceiveOverpayment
+        ReceiveOverpayment = 2
     }
 }

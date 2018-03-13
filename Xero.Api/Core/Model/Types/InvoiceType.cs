@@ -6,8 +6,8 @@ namespace Xero.Api.Core.Model.Types
     public enum InvoiceType
     {
         [EnumMember(Value = "ACCPAY")]
-        AccountsPayable,
+        AccountsPayable = 1,
         [EnumMember(Value = "ACCREC")]
-        AccountsReceivable        
+        AccountsReceivable
     }
 }

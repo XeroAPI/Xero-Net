@@ -6,7 +6,7 @@ namespace Xero.Api.Core.Model.Types
     public enum CreditNoteType
     {
         [EnumMember(Value = "ACCPAYCREDIT")]
-        AccountsPayable,
+        AccountsPayable = 1,
         [EnumMember(Value = "ACCRECCREDIT")]
         AccountsReceivable        
     }

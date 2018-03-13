@@ -6,16 +6,16 @@ namespace Xero.Api.Core.Model.Types
     public enum UserRole
     {
         [EnumMember(Value = "READONLY")]
-        ReadOnly,
+        ReadOnly = 1,
         [EnumMember(Value = "INVOICEONLY")]
-        InvoiceOnly,
+        InvoiceOnly = 2,
         [EnumMember(Value = "STANDARD")]
-        Standard,
+        Standard = 3,
         [EnumMember(Value = "FINANCIALADVISER")]
-        FinancialAdviser,
+        FinancialAdviser = 4,
         [EnumMember(Value = "MANAGEDCLIENT")]
-        ManagedClient,
+        ManagedClient = 5,
         [EnumMember(Value = "CASHBOOKCLIENT")]
-        CashBookClient
+        CashBookClient = 6
     }
 }

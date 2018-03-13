@@ -10,7 +10,7 @@ namespace Xero.Api.Core.Model.Types
     public enum BankAccountType
     {
         [EnumMember(Value = "BANK")]
-        Bank,
+        Bank = 1,
         [EnumMember(Value = "CREDITCARD")]
         CreditCard,
         [EnumMember(Value = "PAYPAL")]

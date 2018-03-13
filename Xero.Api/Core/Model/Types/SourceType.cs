@@ -10,47 +10,54 @@ namespace Xero.Api.Core.Model.Types
     public enum SourceType
     {
         [EnumMember(Value = "ACCREC")]
-        AccountsReceivableInvoice,
+        AccountsReceivableInvoice = 1,
         [EnumMember(Value = "ACCPAY")]
-        AccountsPayableInvoice,
+        AccountsPayableInvoice = 2,
         [EnumMember(Value = "ACCRECCREDIT")]
-        AccountsReceivableCreditNote,
+        AccountsReceivableCreditNote = 3,
         [EnumMember(Value = "ACCPAYCREDIT")]
-        AccountsPayableCreditNote,
+        AccountsPayableCreditNote = 4,
         [EnumMember(Value = "ACCRECPAYMENT")]
-        PaymentOnAnAccountsReceivableInvoice,
+        PaymentOnAnAccountsReceivableInvoice = 5,
         [EnumMember(Value = "ACCPAYPAYMENT")]
-        PaymentOnAnAccountsPayableInvoice,
+        PaymentOnAnAccountsPayableInvoice = 6,
         [EnumMember(Value = "ARCREDITPAYMENT")]
-        AccountsReceivableCreditNotePayment,
+        AccountsReceivableCreditNotePayment = 7,
         [EnumMember(Value = "APCREDITPAYMENT")]
-        AccountsPayableCreditNotePayment,
+        AccountsPayableCreditNotePayment = 8,
         [EnumMember(Value = "CASHREC")]
-        ReceiveMoneyBankTransaction,
+        ReceiveMoneyBankTransaction = 9,
         [EnumMember(Value = "CASHPAID")]
-        SpendMoneyBankTransaction,
+        SpendMoneyBankTransaction = 10,
         [EnumMember(Value = "TRANSFER")]
-        BankTransfer,
+        BankTransfer = 11,
         [EnumMember(Value = "ARPREPAYMENT")]
-        AccountsReceivablePrepayment,
+        AccountsReceivablePrepayment = 12,
         [EnumMember(Value = "APPREPAYMENT")]
-        AccountsPayablePrepayment,
+        AccountsPayablePrepayment = 13,
         [EnumMember(Value = "AROVERPAYMENT")]
-        AccountsReceivableOverpayment,
+        AccountsReceivableOverpayment = 14,
         [EnumMember(Value = "APOVERPAYMENT")]
-        AccountsPayableOverpayment,
+        AccountsPayableOverpayment = 15,
         [EnumMember(Value = "EXPCLAIM")]
-        ExpenseClaim,
+        ExpenseClaim = 16,
         [EnumMember(Value = "EXPPAYMENT")]
-        ExpenseClaimPayment,
+        ExpenseClaimPayment = 17,
         [EnumMember(Value = "MANJOURNAL")]
-        ManualJournal,
+        ManualJournal = 18,
         [EnumMember(Value = "PAYSLIP")]
-        Payslip,
+        Payslip = 19,
         [EnumMember(Value = "WAGEPAYABLE")]
-        PayrollPayable,
+        PayrollPayable = 20,
         [EnumMember(Value = "INTEGRATEDPAYROLLPE")]
-        PayrollExpense,
-
+        PayrollExpense = 21,
+        [EnumMember(Value = "INTEGRATEDPAYROLLPT")]
+        PayrollPayment = 22,
+        [EnumMember(Value = "EXTERNALSPENDMONEY")]
+        ExternalSpendMoney = 23,
+        [EnumMember(Value = "INTEGRATEDPAYROLLPTPAYMENT")]
+        PayrollTaxPayment = 24,
+        [EnumMember(Value = "INTEGRATEDPAYROLLCN")]
+        PayrollCreditNote = 25
     }
 }

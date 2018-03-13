@@ -6,7 +6,7 @@ namespace Xero.Api.Core.Model.Types
     public enum BankTransactionType
     {
         [EnumMember(Value = "RECEIVE")]
-        Receive,
+        Receive = 1,
         [EnumMember(Value = "SPEND")]
         Spend,
         [EnumMember(Value = "RECEIVE-OVERPAYMENT")]
