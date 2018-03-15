@@ -15,7 +15,7 @@ namespace Xero.Api.Core.Model
         public Guid? BatchPaymentID { get; set; }
 
         [DataMember(Name = "PaymentType", EmitDefaultValue = false)]
-        public PaymentType Type { get; set; }
+        public PaymentType? Type { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public PaymentStatus Status { get; set; }
