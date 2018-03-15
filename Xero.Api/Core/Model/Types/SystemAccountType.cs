@@ -36,6 +36,10 @@ namespace Xero.Api.Core.Model.Types
         [EnumMember(Value = "CISLABOUR")]
         CisLabour = 15,
         [EnumMember(Value = "CISMATERIALS")]
-        CisMaterials = 16
+        CisMaterials = 16,
+        [EnumMember(Value = "CISLABOURINCOME")]
+        CisLabourIncome = 17,
+        [EnumMember(Value = "CISASSET")]
+        CisAsset = 18,
     } 
 }
