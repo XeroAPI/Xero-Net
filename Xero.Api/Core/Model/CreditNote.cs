@@ -17,7 +17,7 @@ namespace Xero.Api.Core.Model
         public string Number { get; set; }
 
         [DataMember]
-        public CreditNoteType Type { get; set; }
+        public CreditNoteType? Type { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public string Reference { get; set; }
