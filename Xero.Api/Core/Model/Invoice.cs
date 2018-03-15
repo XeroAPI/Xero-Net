@@ -20,7 +20,7 @@ namespace Xero.Api.Core.Model
         public Contact Contact { get; set; }
 
         [DataMember(Name = "Type")]
-        public InvoiceType Type { get; set; }
+        public InvoiceType? Type { get; set; }
 
         [DataMember]
         public InvoiceStatus Status { get; set; }

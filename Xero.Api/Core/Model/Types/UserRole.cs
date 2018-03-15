@@ -5,6 +5,8 @@ namespace Xero.Api.Core.Model.Types
     [DataContract(Namespace = "")]
     public enum UserRole
     {
+        [EnumMember(Value = "UNKNOWN")]
+        Unknown = -1,
         [EnumMember(Value = "READONLY")]
         ReadOnly = 1,
         [EnumMember(Value = "INVOICEONLY")]

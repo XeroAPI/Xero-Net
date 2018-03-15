@@ -44,7 +44,7 @@ namespace Xero.Api.Core.Model
         public decimal? CurrencyRate { get; set; }
 
         [DataMember]
-        public PrepaymentType Type { get; set; }
+        public PrepaymentType? Type { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public decimal AppliedAmount { get; set; }
