@@ -7,12 +7,12 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IOrganisationEndpoint : IXeroReadEndpoint<OrganisationEndpoint, Organisation, OrganisationResponse>
+    public interface IOrganisationEndpoint : IXeroReadEndpoint<IOrganisationEndpoint, Organisation, OrganisationResponse>
     {
         OrganisationCisSetting GetCisSettings(Guid id);
     }
 
-    public class OrganisationEndpoint : XeroReadEndpoint<OrganisationEndpoint, Organisation, OrganisationResponse>, IOrganisationEndpoint
+    public class OrganisationEndpoint : XeroReadEndpoint<IOrganisationEndpoint, Organisation, OrganisationResponse>, IOrganisationEndpoint
     {
         internal OrganisationEndpoint(XeroHttpClient client)
             : base(client, "/api.xro/2.0/Organisation")

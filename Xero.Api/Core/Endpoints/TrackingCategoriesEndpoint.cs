@@ -10,7 +10,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface ITrackingCategoriesEndpoint : IXeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
+    public interface ITrackingCategoriesEndpoint : IXeroUpdateEndpoint<ITrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
     {
         IOptionCollection this[Guid id] { get; }
         List<TrackingCategory> GetAll();
@@ -21,7 +21,7 @@ namespace Xero.Api.Core.Endpoints
         TrackingCategory Add(TrackingCategory trackingCategory);
     }
 
-    public class TrackingCategoriesEndpoint : XeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, ITrackingCategoriesEndpoint
+    public class TrackingCategoriesEndpoint : XeroUpdateEndpoint<ITrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, ITrackingCategoriesEndpoint
     {
         public TrackingCategoriesEndpoint(XeroHttpClient client) :
             base(client, "/api.xro/2.0/TrackingCategories")
@@ -147,7 +147,7 @@ namespace Xero.Api.Core.Endpoints
 
     public interface IOptionCollection :
         IXeroUpdateEndpoint
-            <TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
+            <ITrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>
     {
         List<Option> Add(Option option);
         List<Option> Add(List<Option> options);
@@ -155,7 +155,7 @@ namespace Xero.Api.Core.Endpoints
     }
 
     public class OptionCollection :
-        XeroUpdateEndpoint<TrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, IOptionCollection
+        XeroUpdateEndpoint<ITrackingCategoriesEndpoint, TrackingCategory, TrackingCategoriesRequest, TrackingCategoriesResponse>, IOptionCollection
     {
         public TrackingCategory _trackingCat;
         private readonly XeroHttpClient _client;

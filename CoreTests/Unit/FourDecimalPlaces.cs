@@ -15,109 +15,109 @@ namespace CoreTests.Unit
         [Test]
         public void explict_four_decimal_places_invoices()
         {
-            ExplictUse4Dp((FourDecimalPlacesEndpoint<InvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>)Api.Invoices, "unitdp=4&page=1");
+            ExplictUse4Dp((FourDecimalPlacesEndpoint<IInvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>)Api.Invoices, "unitdp=4&page=1");
         }
 
         [Test]
         public void implict_four_decimal_places_invoice()
         {
-            ImplicitUse4Dp((FourDecimalPlacesEndpoint<InvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>)Api.Invoices, "unitdp=4&page=1");
+            ImplicitUse4Dp((FourDecimalPlacesEndpoint<IInvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>)Api.Invoices, "unitdp=4&page=1");
         }
 
         [Test]
         public void no_four_decimal_places_invoice()
         {
-            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<InvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>)Api.Invoices, "page=1");
+            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<IInvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>)Api.Invoices, "page=1");
         }
 
         [Test]
         public void no_four_decimal_places_bank_transactions()
         {
-            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<BankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>)Api.BankTransactions);
+            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<IBankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>)Api.BankTransactions);
         }
 
         [Test]
         public void explict_four_decimal_places_bank_transactions()
         {
-            ExplictUse4Dp((FourDecimalPlacesEndpoint<BankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>)Api.BankTransactions);
+            ExplictUse4Dp((FourDecimalPlacesEndpoint<IBankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>)Api.BankTransactions);
         }
 
         [Test]
         public void implict_four_decimal_places_bank_transactions()
         {
-            ImplicitUse4Dp((FourDecimalPlacesEndpoint<BankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>)Api.BankTransactions);
+            ImplicitUse4Dp((FourDecimalPlacesEndpoint<IBankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>)Api.BankTransactions);
         }
 
         [Test]
         public void no_four_decimal_places_credit_notes()
         {
-            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<CreditNotesEndpoint, CreditNote, CreditNotesRequest, CreditNotesResponse>)Api.CreditNotes);
+            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<ICreditNotesEndpoint, CreditNote, CreditNotesRequest, CreditNotesResponse>)Api.CreditNotes);
         }
 
         [Test]
         public void explict_four_decimal_places_credit_notes()
         {
-            ExplictUse4Dp((FourDecimalPlacesEndpoint<CreditNotesEndpoint, CreditNote, CreditNotesRequest, CreditNotesResponse>)Api.CreditNotes);
+            ExplictUse4Dp((FourDecimalPlacesEndpoint<ICreditNotesEndpoint, CreditNote, CreditNotesRequest, CreditNotesResponse>)Api.CreditNotes);
         }
 
         [Test]
         public void implict_four_decimal_places_credit_notes()
         {
-            ImplicitUse4Dp((FourDecimalPlacesEndpoint<CreditNotesEndpoint, CreditNote, CreditNotesRequest, CreditNotesResponse>)Api.CreditNotes);
+            ImplicitUse4Dp((FourDecimalPlacesEndpoint<ICreditNotesEndpoint, CreditNote, CreditNotesRequest, CreditNotesResponse>)Api.CreditNotes);
         }
 
         [Test]
         public void no_four_decimal_places_reciepts()
         {
-            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<ReceiptsEndpoint, Receipt, ReceiptsRequest, ReceiptsResponse>)Api.Receipts);
+            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<IReceiptsEndpoint, Receipt, ReceiptsRequest, ReceiptsResponse>)Api.Receipts);
         }
 
         [Test]
         public void explict_four_decimal_places_reciepts()
         {
-            ExplictUse4Dp((FourDecimalPlacesEndpoint<ReceiptsEndpoint, Receipt, ReceiptsRequest, ReceiptsResponse>)Api.Receipts);
+            ExplictUse4Dp((FourDecimalPlacesEndpoint<IReceiptsEndpoint, Receipt, ReceiptsRequest, ReceiptsResponse>)Api.Receipts);
         }
 
         [Test]
         public void implict_four_decimal_places_reciepts()
         {
-            ImplicitUse4Dp((FourDecimalPlacesEndpoint<ReceiptsEndpoint, Receipt, ReceiptsRequest, ReceiptsResponse>)Api.Receipts);
+            ImplicitUse4Dp((FourDecimalPlacesEndpoint<IReceiptsEndpoint, Receipt, ReceiptsRequest, ReceiptsResponse>)Api.Receipts);
         }
 
         [Test]
         public void no_four_decimal_places_payments()
         {
-            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<PaymentsEndpoint, Payment, PaymentsRequest, PaymentsResponse>)Api.Payments);
+            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<IPaymentsEndpoint, Payment, PaymentsRequest, PaymentsResponse>)Api.Payments);
         }
 
         [Test]
         public void explict_four_decimal_places_payments()
         {
-            ExplictUse4Dp((FourDecimalPlacesEndpoint<PaymentsEndpoint, Payment, PaymentsRequest, PaymentsResponse>)Api.Payments);
+            ExplictUse4Dp((FourDecimalPlacesEndpoint<IPaymentsEndpoint, Payment, PaymentsRequest, PaymentsResponse>)Api.Payments);
         }
 
         [Test]
         public void implict_four_decimal_places_payments()
         {
-            ImplicitUse4Dp((FourDecimalPlacesEndpoint<PaymentsEndpoint, Payment, PaymentsRequest, PaymentsResponse>)Api.Payments);
+            ImplicitUse4Dp((FourDecimalPlacesEndpoint<IPaymentsEndpoint, Payment, PaymentsRequest, PaymentsResponse>)Api.Payments);
         }
 
         [Test]
         public void no_four_decimal_places_items()
         {
-            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<ItemsEndpoint, Item, ItemsRequest, ItemsResponse>)Api.Items);
+            ExplicitNotUse4Dp((FourDecimalPlacesEndpoint<IItemsEndpoint, Item, ItemsRequest, ItemsResponse>)Api.Items);
         }
 
         [Test]
         public void explict_four_decimal_places_items()
         {
-            ExplictUse4Dp((FourDecimalPlacesEndpoint< ItemsEndpoint, Item, ItemsRequest, ItemsResponse>) Api.Items);
+            ExplictUse4Dp((FourDecimalPlacesEndpoint<IItemsEndpoint, Item, ItemsRequest, ItemsResponse>) Api.Items);
         }
 
         [Test]
         public void implict_four_decimal_places_items()
         {
-            ImplicitUse4Dp((FourDecimalPlacesEndpoint<ItemsEndpoint, Item, ItemsRequest, ItemsResponse>)Api.Items);
+            ImplicitUse4Dp((FourDecimalPlacesEndpoint<IItemsEndpoint, Item, ItemsRequest, ItemsResponse>)Api.Items);
         }
 
         [Test]
@@ -139,7 +139,7 @@ namespace CoreTests.Unit
         }
 
         private void ExplictUse4Dp<T, TResult, TRequest, TResponse>(FourDecimalPlacesEndpoint<T, TResult, TRequest, TResponse> endpoint, string expected = "unitdp=4")
-            where T : XeroReadEndpoint<T, TResult, TResponse>
+            where T : IXeroUpdateEndpoint<T, TResult, TRequest, TResponse>
             where TResponse : IXeroResponse<TResult>, new()
             where TRequest : IXeroRequest<TResult>, new()
         {
@@ -147,7 +147,7 @@ namespace CoreTests.Unit
         }
 
         private void ImplicitUse4Dp<T, TResult, TRequest, TResponse>(FourDecimalPlacesEndpoint<T, TResult, TRequest, TResponse> endpoint, string expected = "unitdp=4")
-            where T : XeroReadEndpoint<T, TResult, TResponse>
+            where T : IXeroUpdateEndpoint<T, TResult, TRequest, TResponse>
             where TResponse : IXeroResponse<TResult>, new()
             where TRequest : IXeroRequest<TResult>, new()
         {
@@ -155,7 +155,7 @@ namespace CoreTests.Unit
         }
 
         private void ExplicitNotUse4Dp<T, TResult, TRequest, TResponse>(FourDecimalPlacesEndpoint<T, TResult, TRequest, TResponse> endpoint, string expected = "")
-            where T : XeroReadEndpoint<T, TResult, TResponse>
+            where T : IXeroUpdateEndpoint<T, TResult, TRequest, TResponse>
             where TResponse : IXeroResponse<TResult>, new()
             where TRequest : IXeroRequest<TResult>, new()
         {

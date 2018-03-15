@@ -8,7 +8,7 @@ using Xero.Api.Infrastructure.Interfaces;
 namespace Xero.Api.Common
 {
     public abstract class XeroReadEndpoint<T, TResult, TResponse> : IXeroReadEndpoint<T, TResult, TResponse> 
-        where T : XeroReadEndpoint<T, TResult, TResponse>
+        where T : IXeroReadEndpoint<T, TResult, TResponse>
         where TResponse : IXeroResponse<TResult>, new()
     {
         private DateTime? _modifiedSince;
@@ -29,44 +29,44 @@ namespace Xero.Api.Common
         public T ModifiedSince(DateTime modified)
         {
             _modifiedSince = modified;
-            return (T)this;
+            return (T)(IXeroReadEndpoint<T, TResult, TResponse>)this;
         }
 
         public T Where(string query)
         {
             _query = query;
-            return (T)this;
+            return (T)(IXeroReadEndpoint<T, TResult, TResponse>)this;
         }
 
         public T Or(string query)
         {
             _query = string.Concat(_query, " OR ", query);
-            return (T)this;
+            return (T)(IXeroReadEndpoint<T, TResult, TResponse>)this;
         }
 
         public T And(string query)
         {
             _query = string.Concat(_query, " AND ", query);
-            return (T)this;
+            return (T)(IXeroReadEndpoint<T, TResult, TResponse>)this;
         }
 
         public T OrderBy(string query)
         {
             _orderBy = query;
-            return (T)this;
+            return (T)(IXeroReadEndpoint<T, TResult, TResponse>)this;
         }
 
         public T OrderByDescending(string query)
         {
             _orderBy = query + " DESC";
-            return (T)this;
+            return (T)(IXeroReadEndpoint<T, TResult, TResponse>)this;
         }
 
         public T UseFourDecimalPlaces(bool use4Dp)
         {
             Apply4Dp(use4Dp);
 
-            return (T)this;
+            return (T)(IXeroReadEndpoint<T, TResult, TResponse>)this;
         }
 
         public virtual IEnumerable<TResult> Find()
@@ -141,7 +141,7 @@ namespace Xero.Api.Common
 
             Parameters[name] = value;
 
-            return (T)this;
+            return (T)(IXeroReadEndpoint<T, TResult, TResponse>)this;
         }
 
         internal protected T AddParameters(NameValueCollection parameters)
@@ -155,7 +155,7 @@ namespace Xero.Api.Common
                 Parameters.Add(parameters);
             }
 
-            return (T)this;
+            return (T)(IXeroReadEndpoint<T, TResult, TResponse>)this;
         }
 
         private IEnumerable<TResult> Get(string endpoint, string child)

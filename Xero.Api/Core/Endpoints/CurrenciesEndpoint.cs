@@ -6,12 +6,12 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface ICurrenciesEndpoint : IXeroCreateEndpoint<CurrenciesEndpoint, Currency, CurrenciesRequest, CurrenciesResponse>
+    public interface ICurrenciesEndpoint : IXeroCreateEndpoint<ICurrenciesEndpoint, Currency, CurrenciesRequest, CurrenciesResponse>
     {
         
     }
 
-    public class CurrenciesEndpoint : XeroCreateEndpoint<CurrenciesEndpoint, Currency, CurrenciesRequest, CurrenciesResponse>,
+    public class CurrenciesEndpoint : XeroCreateEndpoint<ICurrenciesEndpoint, Currency, CurrenciesRequest, CurrenciesResponse>,
         ICurrenciesEndpoint
     {
         internal CurrenciesEndpoint(XeroHttpClient client)

@@ -5,11 +5,11 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IPrepaymentsEndpoint : IXeroReadEndpoint<PrepaymentsEndpoint, Prepayment, PrepaymentsResponse>, IPageableEndpoint<IPrepaymentsEndpoint>
+    public interface IPrepaymentsEndpoint : IXeroReadEndpoint<IPrepaymentsEndpoint, Prepayment, PrepaymentsResponse>, IPageableEndpoint<IPrepaymentsEndpoint>
     {
     }
 
-    public class PrepaymentsEndpoint : XeroReadEndpoint<PrepaymentsEndpoint, Prepayment, PrepaymentsResponse>, IPrepaymentsEndpoint
+    public class PrepaymentsEndpoint : XeroReadEndpoint<IPrepaymentsEndpoint, Prepayment, PrepaymentsResponse>, IPrepaymentsEndpoint
     {
         public PrepaymentsEndpoint(XeroHttpClient client)
             : base(client, "/api.xro/2.0/Prepayments")

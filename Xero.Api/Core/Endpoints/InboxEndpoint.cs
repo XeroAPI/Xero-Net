@@ -9,7 +9,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IInboxEndpoint : IXeroUpdateEndpoint<InboxEndpoint, Model.Folder, FolderRequest, FolderResponse>
+    public interface IInboxEndpoint : IXeroUpdateEndpoint<IInboxEndpoint, Model.Folder, FolderRequest, FolderResponse>
     {
         Model.File this[Guid id] { get; }
         FilesResponse Add(Model.File file, byte[] data);
@@ -17,7 +17,7 @@ namespace Xero.Api.Core.Endpoints
         Folder InboxFolder { get; }
     }
 
-    public class InboxEndpoint : XeroUpdateEndpoint<InboxEndpoint,Model.Folder,FolderRequest,FolderResponse>, IInboxEndpoint
+    public class InboxEndpoint : XeroUpdateEndpoint<IInboxEndpoint,Model.Folder,FolderRequest,FolderResponse>, IInboxEndpoint
     {
 
         internal InboxEndpoint(XeroHttpClient client)

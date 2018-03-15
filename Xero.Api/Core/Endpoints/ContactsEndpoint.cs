@@ -11,7 +11,7 @@ using Xero.Api.Infrastructure.Http;
 namespace Xero.Api.Core.Endpoints
 {
     public interface IContactsEndpoint
-        : IXeroUpdateEndpoint<ContactsEndpoint, Contact, ContactsRequest, ContactsResponse>,
+        : IXeroUpdateEndpoint<IContactsEndpoint, Contact, ContactsRequest, ContactsResponse>,
         IPageableEndpoint<IContactsEndpoint>
     {
         IContactsEndpoint IncludeArchived(bool include);
@@ -20,7 +20,7 @@ namespace Xero.Api.Core.Endpoints
     }
 
     public class ContactsEndpoint
-        : XeroUpdateEndpoint<ContactsEndpoint, Contact, ContactsRequest, ContactsResponse>, IContactsEndpoint
+        : XeroUpdateEndpoint<IContactsEndpoint, Contact, ContactsRequest, ContactsResponse>, IContactsEndpoint
     {
         internal ContactsEndpoint(XeroHttpClient client)
             : base(client, "/api.xro/2.0/Contacts")

@@ -7,12 +7,12 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IBankTransactionsEndpoint : IXeroUpdateEndpoint<BankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>, IPageableEndpoint<IBankTransactionsEndpoint>
+    public interface IBankTransactionsEndpoint : IXeroUpdateEndpoint<IBankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>, IPageableEndpoint<IBankTransactionsEndpoint>
     {
     }
 
     public class BankTransactionsEndpoint : 
-        FourDecimalPlacesEndpoint<BankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>,
+        FourDecimalPlacesEndpoint<IBankTransactionsEndpoint, BankTransaction, BankTransactionsRequest, BankTransactionsResponse>,
         IBankTransactionsEndpoint
     {
         public BankTransactionsEndpoint(XeroHttpClient client)

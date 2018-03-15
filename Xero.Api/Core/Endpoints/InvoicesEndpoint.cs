@@ -13,7 +13,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IInvoicesEndpoint : IXeroUpdateEndpoint<InvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>, IPageableEndpoint<IInvoicesEndpoint>
+    public interface IInvoicesEndpoint : IXeroUpdateEndpoint<IInvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>, IPageableEndpoint<IInvoicesEndpoint>
     {
         OnlineInvoice RetrieveOnlineInvoiceUrl(Guid invoiceId);
         IInvoicesEndpoint Ids(IEnumerable<Guid> ids);
@@ -25,7 +25,7 @@ namespace Xero.Api.Core.Endpoints
     }
 
     public class InvoicesEndpoint
-        : FourDecimalPlacesEndpoint<InvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>, IInvoicesEndpoint
+        : FourDecimalPlacesEndpoint<IInvoicesEndpoint, Invoice, InvoicesRequest, InvoicesResponse>, IInvoicesEndpoint
     {
         internal InvoicesEndpoint(XeroHttpClient client)
             : base(client, "/api.xro/2.0/Invoices")

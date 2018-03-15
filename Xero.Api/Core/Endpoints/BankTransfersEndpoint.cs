@@ -7,11 +7,11 @@ using Xero.Api.Infrastructure.Http;
 namespace Xero.Api.Core.Endpoints
 {
     public interface IBankTransfersEndpoint :
-        IXeroCreateEndpoint<BankTransfersEndpoint, BankTransfer, BankTransfersRequest, BankTransfersResponse>
+        IXeroCreateEndpoint<IBankTransfersEndpoint, BankTransfer, BankTransfersRequest, BankTransfersResponse>
     {
         
     }
-    public class BankTransfersEndpoint : XeroCreateEndpoint<BankTransfersEndpoint, BankTransfer, BankTransfersRequest, BankTransfersResponse>, 
+    public class BankTransfersEndpoint : XeroCreateEndpoint<IBankTransfersEndpoint, BankTransfer, BankTransfersRequest, BankTransfersResponse>, 
         IBankTransfersEndpoint
     {
         public BankTransfersEndpoint(XeroHttpClient client)

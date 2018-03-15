@@ -8,7 +8,7 @@ namespace Xero.Api.Core.Endpoints.Base
 {
     public abstract class XeroCreateEndpoint<T, TResult, TRequest, TResponse>
         : XeroReadEndpoint<T, TResult, TResponse>, IXeroCreateEndpoint<T, TResult, TRequest, TResponse>
-        where T : XeroReadEndpoint<T, TResult, TResponse>
+        where T : IXeroCreateEndpoint<T, TResult, TRequest, TResponse>
         where TResponse : IXeroResponse<TResult>, new()
         where TRequest : IXeroRequest<TResult>, new()
     {
@@ -33,10 +33,10 @@ namespace Xero.Api.Core.Endpoints.Base
             return Create(new[] { item }).First();
         }
 
-        public IXeroCreateEndpoint<T, TResult, TRequest, TResponse> SummarizeErrors(bool summarize)
+        public T SummarizeErrors(bool summarize)
         {
             AddParameter("summarizeErrors", summarize);
-            return this;
+            return (T)(IXeroCreateEndpoint<T, TResult, TRequest, TResponse>)this;
         }
 
         protected IEnumerable<TResult> Put(TRequest data)

@@ -10,7 +10,7 @@ using Xero.Api.Infrastructure.Http;
 
 namespace Xero.Api.Core.Endpoints
 {
-    public interface IReportsEndpoint : IXeroReadEndpoint<ReportsEndpoint, Report, ReportsResponse>
+    public interface IReportsEndpoint : IXeroReadEndpoint<IReportsEndpoint, Report, ReportsResponse>
     {
         Report GetPublishedReport(string id);
         Report GetPublishedReport(Guid id);
@@ -31,7 +31,7 @@ namespace Xero.Api.Core.Endpoints
         Report TrailBalance(DateTime? date = null, bool? paymentsOnly = null);
     }
 
-    public class ReportsEndpoint : XeroReadEndpoint<ReportsEndpoint, Report, ReportsResponse>, IReportsEndpoint
+    public class ReportsEndpoint : XeroReadEndpoint<IReportsEndpoint, Report, ReportsResponse>, IReportsEndpoint
     {
         public ReportsEndpoint(XeroHttpClient client)
             : base(client, "/api.xro/2.0/Reports")
