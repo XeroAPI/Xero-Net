@@ -93,6 +93,8 @@ namespace Xero.Api.Infrastructure.Http
             // this is the 'happy path'
             if (response.StatusCode == HttpStatusCode.OK)
             {
+                if (response.ContentType.Contains("text/xml"))
+                    return XmlMapper.From<TResponse>(response.Body).Values;
                 return JsonMapper.From<TResponse>(response.Body).Values;
             }
 
@@ -105,7 +107,11 @@ namespace Xero.Api.Infrastructure.Http
         {
             if (response.StatusCode == HttpStatusCode.BadRequest)
             {
-                var data = JsonMapper.From<ApiException>(response.Body);
+                ApiException data;
+                if (response.ContentType.Contains("text/xml"))
+                    data = XmlMapper.From<ApiException>(response.Body);
+                else
+                    data = JsonMapper.From<ApiException>(response.Body);
 
                 if (data.Elements != null && data.Elements.Any())
                 {
