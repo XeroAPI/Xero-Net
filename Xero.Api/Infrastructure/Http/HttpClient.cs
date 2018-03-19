@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Text;
 using Xero.Api.Infrastructure.Interfaces;
@@ -156,7 +157,9 @@ namespace Xero.Api.Infrastructure.Http
 	        }
         }
 
-        private HttpWebRequest CreateRequest(string endPoint, string method, string accept = "application/json", string query = null, bool enableCompression = true)
+        static readonly string acceptConfigName = string.Join(".", nameof(Xero), nameof(Api), nameof(Infrastructure), nameof(Http), nameof(HttpClient), "Accept");
+
+        private HttpWebRequest CreateRequest(string endPoint, string method, string accept = null, string query = null, bool enableCompression = true)
         {
             var uri = new UriBuilder(_baseUri)
             {
@@ -174,8 +177,8 @@ namespace Xero.Api.Infrastructure.Http
 
             if (enableCompression)
                 request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            
-            request.Accept = accept;
+
+            request.Accept = accept ?? ConfigurationManager.AppSettings[acceptConfigName] ?? "application/json";
             request.Method = method;
 
             if (ModifiedSince.HasValue)
