@@ -101,6 +101,7 @@
     <Compile Include="Integration\Contacts\Update.cs" />
     <Compile Include="Integration\CreditNotes\Create.cs" />
     <Compile Include="Integration\CreditNotes\CreditNotesTest.cs" />
+    <Compile Include="Integration\CreditNotes\Deserialization.cs" />
     <Compile Include="Integration\CreditNotes\Find.cs" />
     <Compile Include="Integration\CreditNotes\Update.cs" />
     <Compile Include="Integration\ExpenseClaims\ExpenseClaimTest.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Integration\HistoryAndNotes\CreateNotes.cs" />
     <Compile Include="Integration\HistoryAndNotes\Find.cs" />
     <Compile Include="Integration\HistoryAndNotes\HistoryAndNotesTest.cs" />
+    <Compile Include="Integration\Invoices\Deserialization.cs" />
     <Compile Include="Integration\Invoices\Find.cs" />
     <Compile Include="Integration\Invoices\InvoicesTest.cs" />
     <Compile Include="Integration\Invoices\OnlineInvoiceUrl.cs" />
