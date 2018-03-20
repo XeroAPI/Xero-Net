@@ -1,0 +1,48 @@
+﻿{
+  "CreditNoteID": "9f61dcc7-4bea-4267-9ba6-c4842ee0dc89",
+  "CreditNoteNumber": "",
+  "Payments": [],
+  "ID": "9f61dcc7-4bea-4267-9ba6-c4842ee0dc89",
+  "CurrencyRate": 1.000000,
+  "Type": "ACCPAYCREDIT",
+  "Reference": "",
+  "RemainingCredit": 0.00,
+  "Allocations": [
+    {
+      "Amount": 115.20,
+      "Date": "/Date(1464825600000+0000)/",
+      "Invoice": {
+        "InvoiceID": "3d516051-360d-447b-9cd4-632bf34b841b",
+        "InvoiceNumber": "1109194711",
+        "Payments": [],
+        "CreditNotes": [],
+        "Prepayments": [],
+        "Overpayments": [],
+        "HasErrors": false,
+        "IsDiscounted": false,
+        "LineItems": []
+      }
+    }
+  ],
+  "HasAttachments": false,
+  "Contact": {
+    "ContactID": "5371bef4-7d00-4b93-a225-a675ca80ac07",
+    "Name": "Royal Mail",
+    "Addresses": [],
+    "Phones": [],
+    "ContactGroups": [],
+    "ContactPersons": [],
+    "HasValidationErrors": false
+  },
+  "DateString": "2016-06-02T00:00:00",
+  "Date": "/Date(1464825600000+0000)/",
+  "Status": "PAID",
+  "LineAmountTypes": "Exclusive",
+  "LineItems": [],
+  "SubTotal": 96.00,
+  "TotalTax": 19.20,
+  "Total": 115.20,
+  "UpdatedDateUTC": "/Date(1521469430947+0000)/",
+  "CurrencyCode": "GBP",
+  "FullyPaidOnDate": "/Date(1464825600000+0000)/"
+}

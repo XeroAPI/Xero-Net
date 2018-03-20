@@ -8,6 +8,8 @@ using Xero.Api.Core.Model;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Serialization;
 using Xero.Api.Core.Model.Types;
+using System.Reflection;
+using System.IO;
 
 namespace CoreTests.Integration.CreditNotes
 {
@@ -22,6 +24,30 @@ namespace CoreTests.Integration.CreditNotes
         {
             _jsonMapper = new DefaultMapper();
             _xmlMapper = new DefaultMapper();
+        }
+
+        [Test]
+        public void api_payload_json()
+        {
+            var data = getApiData();
+
+            var creditNote = _jsonMapper.From<CreditNote>(data);
+
+            Assert.AreEqual(Guid.Parse("9f61dcc7-4bea-4267-9ba6-c4842ee0dc89"), creditNote.Id);
+            Assert.AreEqual(CreditNoteType.AccountsPayable, creditNote.Type);
+        }
+
+        private string getApiData()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = typeof(Deserialization).Namespace + ".CreditNote.json";
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                string result = reader.ReadToEnd();
+                return result;
+            }
         }
 
         [Test]
