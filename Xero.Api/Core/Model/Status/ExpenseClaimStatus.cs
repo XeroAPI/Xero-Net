@@ -6,12 +6,14 @@ namespace Xero.Api.Core.Model.Status
     public enum ExpenseClaimStatus
     {
         [EnumMember(Value= "SUBMITTED")]
-        Submitted,
+        Submitted = 1,
         [EnumMember(Value = "AUTHORISED")]
         Authorised,
         [EnumMember(Value = "PAID")]
         Paid,
         [EnumMember(Value = "VOIDED")]
-        Voided
+        Voided,
+        [EnumMember(Value = "DELETED")]
+        Deleted
     }
 }
