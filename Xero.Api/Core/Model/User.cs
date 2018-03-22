@@ -27,6 +27,6 @@ namespace Xero.Api.Core.Model
         public bool? IsSubscriber { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public UserRole OrganisationRole { get; set; }
+        public UserRole? OrganisationRole { get; set; }
     }
 }
