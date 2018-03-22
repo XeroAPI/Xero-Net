@@ -18,6 +18,8 @@ namespace Xero.Api.Core.Model.Types
         [EnumMember(Value = "MANAGEDCLIENT")]
         ManagedClient = 5,
         [EnumMember(Value = "CASHBOOKCLIENT")]
-        CashBookClient = 6
+        CashBookClient = 6,
+        [EnumMember(Value = "REMOVED")]
+        Removed = 7
     }
 }
