@@ -207,15 +207,19 @@ namespace Xero.Api.Core.Endpoints
 
         public Option UpdateOption(Option option)
         {
-            var endpoint = string.Format("/api.xro/2.0/trackingcategories/{0}/options/{1}", _trackingCat.Id, option.Id);
-
-
             List<Option> Options = new List<Option>();
             Options.Add(option);
-            
+
+            return UpdateOptions(Options).FirstOrDefault();
+        }
+
+        public IList<Option> UpdateOptions(List<Option> options)
+        {
+            var endpoint = string.Format("/api.xro/2.0/trackingcategories/{0}/options", _trackingCat.Id);
+
             var result = HandleResponse(_client
                  .Client
-                 .Post(endpoint, _client.XmlMapper.To(Options))).Options.FirstOrDefault();
+                 .Post(endpoint, _client.XmlMapper.To(options))).Options;
 
             return result;
         }
