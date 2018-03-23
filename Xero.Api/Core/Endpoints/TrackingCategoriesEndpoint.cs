@@ -152,6 +152,7 @@ namespace Xero.Api.Core.Endpoints
         List<Option> Add(Option option);
         List<Option> Add(List<Option> options);
         Option UpdateOption(Option option);
+        IList<Option> UpdateOptions(List<Option> options);
     }
 
     public class OptionCollection :
