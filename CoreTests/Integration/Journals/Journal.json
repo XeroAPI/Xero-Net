@@ -1,0 +1,49 @@
+﻿{
+  "JournalID": "56f1ed45-c27b-4621-a2b0-7c26e0ead86a",
+  "JournalDate": "/Date(1509494400000+0000)/",
+  "JournalNumber": 2,
+  "CreatedDateUTC": "/Date(1509703417727+0000)/",
+  "Reference": "Customer Limited",
+  "SourceID": "6588a409-9714-4d73-992c-7538199e639c",
+  "SourceType": "ACCREC",
+  "JournalLines": [
+    {
+      "JournalLineID": "dc34c870-cc3c-4b83-8cf4-c8abff8ac226",
+      "AccountID": "f5134244-e862-41a3-95dc-382afdb036bb",
+      "AccountCode": "586",
+      "AccountType": "CURRENT",
+      "AccountName": "Accounts Receivable",
+      "Description": "",
+      "NetAmount": 72.00,
+      "GrossAmount": 72.00,
+      "TaxAmount": 0.00,
+      "TrackingCategories": []
+    },
+    {
+      "JournalLineID": "760b1bb1-04e8-475c-b996-c6176bcce2b4",
+      "AccountID": "1df26170-6b62-4efd-95fc-b9931b2cf78a",
+      "AccountCode": "011",
+      "AccountType": "SALES",
+      "AccountName": "Sales - Movemybooks - Xero",
+      "Description": "Departments converted to Xero",
+      "NetAmount": -60.00,
+      "GrossAmount": -72.00,
+      "TaxAmount": -12.00,
+      "TaxType": "OUTPUT2",
+      "TaxName": "20% (VAT on Income)",
+      "TrackingCategories": []
+    },
+    {
+      "JournalLineID": "d0709798-72f1-4f9b-b8da-fe432db9c54c",
+      "AccountID": "002181dc-8385-4871-b83e-177b54fe8537",
+      "AccountCode": "735",
+      "AccountType": "CURRLIAB",
+      "AccountName": "VAT",
+      "Description": "",
+      "NetAmount": -12.00,
+      "GrossAmount": -12.00,
+      "TaxAmount": 0.00,
+      "TrackingCategories": []
+    }
+  ]
+}

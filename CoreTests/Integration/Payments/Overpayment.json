@@ -1,0 +1,41 @@
+﻿{
+  "PaymentID": "90f3923a-f46a-4588-a004-be9147f8c505",
+  "Date": "/Date(1484265600000+0000)/",
+  "BankAmount": 4430.90,
+  "Amount": 4430.90,
+  "Reference": "Refund Overpayment Check 564",
+  "CurrencyRate": 1.000000,
+  "PaymentType": "AROVERPAYMENTPAYMENT",
+  "Status": "AUTHORISED",
+  "UpdatedDateUTC": "/Date(1485285758263+0000)/",
+  "HasAccount": true,
+  "IsReconciled": true,
+  "Account": {
+    "AccountID": "f961620e-8350-4f5a-a1db-4bd979a422b3",
+    "Code": "10200"
+  },
+  "Invoice": {
+    "Type": "AROVERPAYMENT",
+    "InvoiceID": "dbd446b0-2401-4861-8fae-0f5dfd62f251",
+    "InvoiceNumber": "",
+    "Payments": [],
+    "CreditNotes": [],
+    "Prepayments": [],
+    "Overpayments": [],
+    "HasErrors": false,
+    "IsDiscounted": false,
+    "Contact": {
+      "ContactID": "8af99320-540d-424d-baeb-4c1bf55d3e3f",
+      "ContactNumber": "",
+      "Name": "Jennifer Choe",
+      "Addresses": [],
+      "Phones": [],
+      "ContactGroups": [],
+      "ContactPersons": [],
+      "HasValidationErrors": false
+    },
+    "LineItems": [],
+    "CurrencyCode": "USD"
+  },
+  "HasValidationErrors": false
+}
