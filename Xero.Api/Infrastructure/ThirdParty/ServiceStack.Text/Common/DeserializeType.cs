@@ -229,7 +229,7 @@ namespace Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text.Common
             return new TypeAccessor
             {
                 PropertyType = propertyInfo.PropertyType,
-                GetProperty = serializer.GetParseFn(Nullable.GetUnderlyingType(propertyInfo.PropertyType) ?? propertyInfo.PropertyType),
+                GetProperty = serializer.GetParseFn(propertyInfo.PropertyType),
                 SetProperty = GetSetPropertyMethod(typeConfig, propertyInfo),
             };
         }

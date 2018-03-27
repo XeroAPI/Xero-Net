@@ -86,25 +86,33 @@ namespace Xero.Api.Serialization
             JsConfig<BankTransactionType>.DeSerializeFn = EnumDeserializer<BankTransactionType>;
             JsConfig<BatchPaymentType?>.DeSerializeFn = EnumDeserializerNullable<BatchPaymentType>;
             JsConfig<CreditNoteType>.DeSerializeFn = EnumDeserializer<CreditNoteType>;
+            JsConfig<CreditNoteType?>.DeSerializeFn = EnumDeserializerNullable<CreditNoteType>;
             JsConfig<InvoiceType>.DeSerializeFn = EnumDeserializer<InvoiceType>;
             JsConfig<LineAmountType>.DeSerializeFn = EnumDeserializer<LineAmountType>;
             JsConfig<LineAmountType?>.DeSerializeFn = EnumDeserializerNullable<LineAmountType>;
+            JsConfig<InvoiceType?>.DeSerializeFn = EnumDeserializerNullable<InvoiceType>;
             JsConfig<ObjectGroupType>.DeSerializeFn = EnumDeserializer<ObjectGroupType>;
+            JsConfig<ObjectGroupType?>.DeSerializeFn = EnumDeserializerNullable<ObjectGroupType>;
             JsConfig<ObjectType>.DeSerializeFn = EnumDeserializer<ObjectType>;
+            JsConfig<ObjectType?>.DeSerializeFn = EnumDeserializerNullable<ObjectType>;
             JsConfig<OrganisationType>.DeSerializeFn = EnumDeserializer<OrganisationType>;
             JsConfig<OrganisationVersion>.DeSerializeFn = EnumDeserializer<OrganisationVersion>;
             JsConfig<OverpaymentType>.DeSerializeFn = EnumDeserializer<OverpaymentType>;
+            JsConfig<OverpaymentType?>.DeSerializeFn = EnumDeserializerNullable<OverpaymentType>;
             JsConfig<PaymentTermType>.DeSerializeFn = EnumDeserializer<PaymentTermType>;
             JsConfig<PaymentType>.DeSerializeFn = EnumDeserializer<PaymentType>;
+            JsConfig<PaymentType?>.DeSerializeFn = EnumDeserializerNullable<PaymentType>;
             JsConfig<PhoneType>.DeSerializeFn = EnumDeserializer<PhoneType>;
             JsConfig<PrepaymentType>.DeSerializeFn = EnumDeserializer<PrepaymentType>;
             JsConfig<ReportTaxType>.DeSerializeFn = EnumDeserializer<ReportTaxType>;
             JsConfig<SalesTaxBasisType>.DeSerializeFn = SalesTaxBasis;
             JsConfig<SalesTaxPeriodType>.DeSerializeFn = SalesTaxPeriod;
-            JsConfig<SourceType>.DeSerializeFn = EnumDeserializer<SourceType>;
+            JsConfig<SourceType?>.DeSerializeFn = EnumDeserializerNullable<SourceType>;
             JsConfig<SystemAccountType>.DeSerializeFn = EnumDeserializer<SystemAccountType>;
+            JsConfig<SystemAccountType?>.DeSerializeFn = EnumDeserializerNullable<SystemAccountType>;
             JsConfig<UnitType>.DeSerializeFn = EnumDeserializer<UnitType>;
             JsConfig<UserRole>.DeSerializeFn = EnumDeserializer<UserRole>;
+            JsConfig<UserRole?>.DeSerializeFn = EnumDeserializerNullable<UserRole>;
         }
 
         private void BuildAmericanPayroll()
