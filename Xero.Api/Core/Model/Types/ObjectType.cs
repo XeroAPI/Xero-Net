@@ -77,6 +77,8 @@ namespace Xero.Api.Core.Model.Types
         [EnumMember(Value = "REVENUE")]
         Revenue,
         [EnumMember(Value = "TERMLIAB")]
-        Termliab
+        Termliab,
+        [EnumMember(Value = "OVERHEADS")]
+        Overheads
     }
 }
