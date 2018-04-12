@@ -80,6 +80,7 @@
     <Compile Include="Core\Model\Types\ObjectType.cs" />
     <Compile Include="Core\Model\Types\SourceType.cs" />
     <Compile Include="Core\Request\CurrenciesRequest.cs" />
+    <Compile Include="Core\Request\HistoryRecordsRequest.cs" />
     <Compile Include="Core\Request\LinkedTransactionsRequest.cs" />
     <Compile Include="Core\Request\OnlineInvoicesRequest.cs" />
     <Compile Include="Core\Request\PurchaseOrdersRequest.cs" />
