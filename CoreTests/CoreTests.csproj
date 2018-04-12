@@ -110,6 +110,9 @@
     <Compile Include="Integration\Files\Support\File.cs" />
     <Compile Include="Integration\Files\Support\FilesTest.cs" />
     <Compile Include="Integration\Files\Files\AddFileTest.cs" />
+    <Compile Include="Integration\HistoryAndNotes\CreateNotes.cs" />
+    <Compile Include="Integration\HistoryAndNotes\Find.cs" />
+    <Compile Include="Integration\HistoryAndNotes\HistoryAndNotesTest.cs" />
     <Compile Include="Integration\Invoices\Find.cs" />
     <Compile Include="Integration\Invoices\InvoicesTest.cs" />
     <Compile Include="Integration\Invoices\OnlineInvoiceUrl.cs" />

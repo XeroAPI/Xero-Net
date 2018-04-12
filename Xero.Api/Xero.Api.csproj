@@ -57,10 +57,12 @@
     <Compile Include="Core\Endpoints\Base\IXeroUpdateEndpoint.cs" />
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
+    <Compile Include="Core\Endpoints\HistoryAndNotesEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
     <Compile Include="Core\Endpoints\LinkedTransactionsEndpoint.cs" />
     <Compile Include="Core\Model\ContactCisSetting.cs" />
     <Compile Include="Core\Model\EnumExtensions.cs" />
+    <Compile Include="Core\Model\HistoryRecord.cs" />
     <Compile Include="Core\Model\OnlineInvoice.cs" />
     <Compile Include="Core\IXeroCoreApi.cs" />
     <Compile Include="Core\Endpoints\PurchaseOrdersEndpoint.cs" />
@@ -73,11 +75,14 @@
     <Compile Include="Core\Model\Status\PurchaseOrderStatus.cs" />
     <Compile Include="Core\Model\Status\TrackingOptionStatus.cs" />
     <Compile Include="Core\Model\Types\BankAccountType.cs" />
+    <Compile Include="Core\Model\Types\HistoryAndNotesEndpointCreateType.cs" />
+    <Compile Include="Core\Model\Types\HistoryAndNotesEndpointRetrieveType.cs" />
     <Compile Include="Core\Model\Types\LinkedTransactionType.cs" />
     <Compile Include="Core\Model\Types\ObjectGroupType.cs" />
     <Compile Include="Core\Model\Types\ObjectType.cs" />
     <Compile Include="Core\Model\Types\SourceType.cs" />
     <Compile Include="Core\Request\CurrenciesRequest.cs" />
+    <Compile Include="Core\Request\HistoryRecordsRequest.cs" />
     <Compile Include="Core\Request\LinkedTransactionsRequest.cs" />
     <Compile Include="Core\Request\OnlineInvoicesRequest.cs" />
     <Compile Include="Core\Request\PurchaseOrdersRequest.cs" />
@@ -97,6 +102,7 @@
     <Compile Include="Common\CoreData.cs" />
     <Compile Include="Core\Model\Status\ValidationStatus.cs" />
     <Compile Include="Core\Response\ContactCisSettingsResponse.cs" />
+    <Compile Include="Core\Response\HistoryRecordsResponse.cs" />
     <Compile Include="Core\Response\LinkedTransactionsResponse.cs" />
     <Compile Include="Core\Response\OnlineInvoicesResponse.cs" />
     <Compile Include="Core\Response\OrganisationCisSettingsResponse.cs" />
