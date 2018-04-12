@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
+using Xero.Api.Common;
+using Xero.Api.Core.Model;
 using Xero.Api.Core.Model.Status;
 
 namespace CoreTests.Integration.Contacts
@@ -26,6 +28,22 @@ namespace CoreTests.Integration.Contacts
                 .Id;
 
             Assert.AreEqual(expected, id);
+        }
+
+        [Test]
+        public void find_history_by_contact_id()
+        {
+            Guid expected = Given_a_contact().Id;
+
+            Contact contact = Api.Contacts
+                .Find(expected);
+
+            var history = Api.Contacts.GetHistory(contact);
+
+            Assert.AreEqual(1, history.Count());
+            Assert.AreEqual("System Generated", history.Single().User);
+            Assert.AreEqual(string.Format("{0} has been created.", contact.Name), history.Single().Details);
+            Assert.AreEqual("Created", history.Single().Changes);
         }
 
         [Test]

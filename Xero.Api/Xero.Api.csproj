@@ -56,9 +56,11 @@
     <Compile Include="Core\Endpoints\Base\IXeroCreateEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\IXeroUpdateEndpoint.cs" />
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
+    <Compile Include="Core\Endpoints\HistoryEndpoint.cs" />
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
     <Compile Include="Core\Endpoints\LinkedTransactionsEndpoint.cs" />
+    <Compile Include="Core\Model\History.cs" />
     <Compile Include="Core\Model\EnumExtensions.cs" />
     <Compile Include="Core\Model\OnlineInvoice.cs" />
     <Compile Include="Core\IXeroCoreApi.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="Core\Model\Types\ObjectGroupType.cs" />
     <Compile Include="Core\Model\Types\ObjectType.cs" />
     <Compile Include="Core\Model\Types\SourceType.cs" />
+    <Compile Include="Core\Request\HistoryRequest.cs" />
     <Compile Include="Core\Request\CurrenciesRequest.cs" />
     <Compile Include="Core\Request\LinkedTransactionsRequest.cs" />
     <Compile Include="Core\Request\OnlineInvoicesRequest.cs" />
@@ -94,6 +97,7 @@
     <Compile Include="Core\Model\Types\OverpaymentType.cs" />
     <Compile Include="Common\CoreData.cs" />
     <Compile Include="Core\Model\Status\ValidationStatus.cs" />
+    <Compile Include="Core\Response\HistoryResponse.cs" />
     <Compile Include="Core\Response\LinkedTransactionsResponse.cs" />
     <Compile Include="Core\Response\OnlineInvoicesResponse.cs" />
     <Compile Include="Core\Response\OverpaymentsResponse.cs" />
