@@ -1,4 +1,6 @@
-﻿using Xero.Api.Common;
+﻿using System;
+using System.Linq;
+using Xero.Api.Common;
 using Xero.Api.Core.Endpoints.Base;
 using Xero.Api.Core.Model;
 using Xero.Api.Core.Request;
@@ -12,6 +14,7 @@ namespace Xero.Api.Core.Endpoints
         IPageableEndpoint<IContactsEndpoint>
     {
         IContactsEndpoint IncludeArchived(bool include);
+        ContactCisSetting GetCisSettings(Guid id);
     }
 
     public class ContactsEndpoint
@@ -29,12 +32,6 @@ namespace Xero.Api.Core.Endpoints
             return this;
         }
 
-        public override void ClearQueryString()
-        {
-            base.ClearQueryString();
-            Page(1);
-        }
-
         public IContactsEndpoint IncludeArchived(bool include)
         {
             if (include)
@@ -43,6 +40,18 @@ namespace Xero.Api.Core.Endpoints
             }
 
             return this;
+        }
+
+        public ContactCisSetting GetCisSettings(Guid id)
+        {
+            var contactCisSettings = Client.Get<ContactCisSetting, ContactCisSettingsResponse>(string.Format("/api.xro/2.0/contacts/{0}/cissettings", id));
+            return contactCisSettings.FirstOrDefault();
+        }
+
+        public override void ClearQueryString()
+        {
+            base.ClearQueryString();
+            Page(1);
         }
     }
 }

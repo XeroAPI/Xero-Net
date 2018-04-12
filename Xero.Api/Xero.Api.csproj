@@ -59,6 +59,7 @@
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
     <Compile Include="Core\Endpoints\LinkedTransactionsEndpoint.cs" />
+    <Compile Include="Core\Model\ContactCisSetting.cs" />
     <Compile Include="Core\Model\EnumExtensions.cs" />
     <Compile Include="Core\Model\OnlineInvoice.cs" />
     <Compile Include="Core\IXeroCoreApi.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Core\Model\Association.cs" />
     <Compile Include="Core\Model\ContactTrackingCategory.cs" />
     <Compile Include="Core\Model\LinkedTransaction.cs" />
+    <Compile Include="Core\Model\OrganisationCisSetting.cs" />
     <Compile Include="Core\Model\PurchaseOrder.cs" />
     <Compile Include="Core\Model\Status\LinkedTransactionStatus.cs" />
     <Compile Include="Core\Model\Status\PurchaseOrderStatus.cs" />
@@ -94,8 +96,10 @@
     <Compile Include="Core\Model\Types\OverpaymentType.cs" />
     <Compile Include="Common\CoreData.cs" />
     <Compile Include="Core\Model\Status\ValidationStatus.cs" />
+    <Compile Include="Core\Response\ContactCisSettingsResponse.cs" />
     <Compile Include="Core\Response\LinkedTransactionsResponse.cs" />
     <Compile Include="Core\Response\OnlineInvoicesResponse.cs" />
+    <Compile Include="Core\Response\OrganisationCisSettingsResponse.cs" />
     <Compile Include="Core\Response\OverpaymentsResponse.cs" />
     <Compile Include="Core\Response\PrepaymentsResponse.cs" />
     <Compile Include="Core\Model\Prepayment.cs" />
