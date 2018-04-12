@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Xero.Api.Core.Model;
-using Xero.Api.Core.Model.Status;
+using Xero.Api.Common;
 
 namespace CoreTests.Integration.Contacts
 {
@@ -16,6 +16,17 @@ namespace CoreTests.Integration.Contacts
             var name = Given_a_contact().Name;
 
             Assert.IsTrue(name.StartsWith("Peter"));
+        }
+
+        [Test]
+        public void create_contact_history()
+        {
+            Contact contact = Given_a_contact();
+
+            const string expected = "Test note from API";
+            History history = Api.Contacts.AddNote(contact, expected);
+
+            Assert.AreEqual(expected, history.Details);
         }
 
         [Test]
