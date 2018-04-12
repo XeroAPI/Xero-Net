@@ -4,6 +4,8 @@ Added support for https://developer.xero.com/documentation/api/history-and-notes
 
 Example of usage:
 
+        using using Xero.Api.Common;
+        
         var contact = Api.Contacts.Find(new Guid("..."));
         var allHistory = Api.Contacts.GetHistory(contact);
         var newHistory = Api.Contacts.AddNote(contact, "History was reviewd.");
