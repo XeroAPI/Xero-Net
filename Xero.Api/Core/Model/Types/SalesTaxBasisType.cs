@@ -19,7 +19,7 @@ namespace Xero.Api.Core.Model.Types
         Payments,
         [EnumMember(Value = "FLATRATECASH")]
         FlatRateCash,
-        [EnumMember(Value = "FLATRATEACCURAL")]
+        [EnumMember(Value = "FLATRATEACCRUAL")]
         FlatRateAccrual,
     }
 }
