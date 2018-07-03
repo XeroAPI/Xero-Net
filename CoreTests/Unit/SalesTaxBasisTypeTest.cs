@@ -19,20 +19,20 @@ namespace CoreTests.Unit
         [Test]
         public void is_case_insensitive()
         {
-            const SalesTaxBasisType expected = SalesTaxBasisType.Accural;
+            const SalesTaxBasisType expected = SalesTaxBasisType.Accrual;
 
-            Assert.True(expected == _mapper.From<SalesTaxBasisType>("accural"));
-            Assert.True(expected == _mapper.From<SalesTaxBasisType>("AccuRAL"));
-            Assert.True(expected == _mapper.From<SalesTaxBasisType>("ACCURAL"));
+            Assert.True(expected == _mapper.From<SalesTaxBasisType>("accrual"));
+            Assert.True(expected == _mapper.From<SalesTaxBasisType>("AccRuAL"));
+            Assert.True(expected == _mapper.From<SalesTaxBasisType>("ACCRUAL"));
         }
 
         [Test]
         public void accrual_options()
         {
-            const SalesTaxBasisType expected = SalesTaxBasisType.Accural;
+            const SalesTaxBasisType expected = SalesTaxBasisType.Accrual;
 
-            Assert.True(expected == _mapper.From<SalesTaxBasisType>("ACCURAL"));
-            Assert.True(expected == _mapper.From<SalesTaxBasisType>("ACCURALS"));
+            Assert.True(expected == _mapper.From<SalesTaxBasisType>("ACCRUAL"));
+            Assert.True(expected == _mapper.From<SalesTaxBasisType>("ACCRUALS"));
         }
 
         [Test]

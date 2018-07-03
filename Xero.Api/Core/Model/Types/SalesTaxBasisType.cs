@@ -6,11 +6,11 @@ namespace Xero.Api.Core.Model.Types
     public enum SalesTaxBasisType
     {
         [EnumMember(Value = "NONE")]
-        None,
+        None = 1,
         [EnumMember(Value = "ACCRUALS")]
-        Accurals=1,
+        Accruals = 2,
         [EnumMember(Value = "ACCRUAL")]
-        Accural = 1,
+        Accrual = 2,
         [EnumMember(Value = "CASH")]
         Cash,
         [EnumMember(Value = "INVOICE")]

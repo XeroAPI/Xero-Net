@@ -195,10 +195,10 @@ namespace Xero.Api.Serialization
         {
             switch (s.ToUpper())
             {
-                case "ACCURAL":
-                case "ACCURALS":
+                case "ACCRUAL":
+                case "ACCRUALS":
                 {
-                    return SalesTaxBasisType.Accural;
+                    return SalesTaxBasisType.Accrual;
                 }
 
                 default:
