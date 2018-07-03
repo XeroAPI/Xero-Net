@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Response xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>bcd0dfe1-e51e-43e8-aeb9-c551dfcce2c7</Id>
+  <Status>OK</Status>
+  <ProviderName>Xero API Previewer</ProviderName>
+  <DateTimeUTC>2018-07-03T13:37:11.6954246Z</DateTimeUTC>
+  <Organisations>
+    <Organisation>
+      <APIKey>3XMMPIDTQ22JUAOYCZGUXUWRBAMGVD</APIKey>
+      <Name>De Boer Ltd  Restore Test 26/06</Name>
+      <LegalName>De Boer Ltd  Restore Test 26/06</LegalName>
+      <PaysTax>true</PaysTax>
+      <Version>UK</Version>
+      <OrganisationType>COMPANY</OrganisationType>
+      <BaseCurrency>GBP</BaseCurrency>
+      <CountryCode>GB</CountryCode>
+      <IsDemoCompany>false</IsDemoCompany>
+      <OrganisationStatus>ACTIVE</OrganisationStatus>
+      <FinancialYearEndDay>31</FinancialYearEndDay>
+      <FinancialYearEndMonth>10</FinancialYearEndMonth>
+      <SalesTaxBasis>ACCRUAL</SalesTaxBasis>
+      <DefaultSalesTax>Tax Exclusive</DefaultSalesTax>
+      <DefaultPurchasesTax>Tax Exclusive</DefaultPurchasesTax>
+      <CreatedDateUTC>2018-06-29T11:26:50.107Z</CreatedDateUTC>
+      <OrganisationEntityType>COMPANY</OrganisationEntityType>
+      <Timezone>GMTSTANDARDTIME</Timezone>
+      <ShortCode>!wld2B</ShortCode>
+      <OrganisationID>b1a33437-1024-4f13-85ce-eac7c2414456</OrganisationID>
+    </Organisation>
+  </Organisations>
+</Response>

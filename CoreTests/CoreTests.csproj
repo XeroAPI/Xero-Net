@@ -40,6 +40,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Integration\OrganisationDetails\Organisation.xml" />
     <Content Include="Resources\cert\public_privatekey.txt" />
     <Content Include="Resources\images\connect_xero_button_blue - Copy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -53,6 +54,7 @@
     <EmbeddedResource Include="Integration\CreditNotes\CreditNote.json" />
     <EmbeddedResource Include="Integration\Payments\Overpayment.json" />
     <EmbeddedResource Include="Integration\Journals\Journal.json" />
+    <EmbeddedResource Include="Integration\OrganisationDetails\Organisation.json" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
@@ -145,7 +147,8 @@
     <Compile Include="Integration\ManualJournals\Find.cs" />
     <Compile Include="Integration\ManualJournals\ManualJournalsTest.cs" />
     <Compile Include="Integration\ManualJournals\Update.cs" />
-    <Compile Include="Integration\Organisation\Find.cs" />
+    <Compile Include="Integration\OrganisationDetails\Deserialization.cs" />
+    <Compile Include="Integration\OrganisationDetails\Find.cs" />
     <Compile Include="Integration\Payments\Create.cs" />
     <Compile Include="Integration\Payments\CreateForeignCurrency.cs" />
     <Compile Include="Integration\Payments\Delete.cs" />

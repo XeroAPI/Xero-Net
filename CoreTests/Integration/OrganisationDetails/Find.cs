@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Xero.Api.Core.Model.Types;
 
-namespace CoreTests.Integration.Organisation
+namespace CoreTests.Integration.OrganisationDetails
 {
     [TestFixture]
     public class Find : ApiWrapperTest
@@ -10,7 +10,7 @@ namespace CoreTests.Integration.Organisation
         [Test]
         public void can_get_the_organisation_sales_tax_basis()
         {
-            var test = Api.Organisation.SalesTaxBasisType;
+            var test = Api.Organisation.SalesTaxBasis;
 
             Assert.True(Enum.IsDefined(typeof(SalesTaxBasisType), test));
         }
