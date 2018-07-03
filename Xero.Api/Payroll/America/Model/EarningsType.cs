@@ -30,7 +30,7 @@ namespace Xero.Api.Payroll.America.Model
         public decimal Multiple { get; set; }
 
         [DataMember]
-        public bool DoNotAccureTimeOff { get; set; }
+        public bool DoNotAccrueTimeOff { get; set; }
 
         [DataMember]
         public bool IsSupplemental { get; set; }
