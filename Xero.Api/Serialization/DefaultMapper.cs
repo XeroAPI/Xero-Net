@@ -71,6 +71,7 @@ namespace Xero.Api.Serialization
             JsConfig<ExpenseClaimStatus>.DeSerializeFn = EnumDeserializer<ExpenseClaimStatus>;
             JsConfig<InvoiceStatus>.DeSerializeFn = EnumDeserializer<InvoiceStatus>;
             JsConfig<ManualJournalStatus>.DeSerializeFn = EnumDeserializer<ManualJournalStatus>;
+            JsConfig<ManualJournalStatus?>.DeSerializeFn = EnumDeserializerNullable<ManualJournalStatus>;
             JsConfig<OrganisationStatus>.DeSerializeFn = EnumDeserializer<OrganisationStatus>;
             JsConfig<PaymentStatus>.DeSerializeFn = EnumDeserializer<PaymentStatus>;
             JsConfig<PurchaseOrderStatus>.DeSerializeFn = EnumDeserializer<PurchaseOrderStatus>;
@@ -84,6 +85,8 @@ namespace Xero.Api.Serialization
             JsConfig<BankTransactionType>.DeSerializeFn = EnumDeserializer<BankTransactionType>;
             JsConfig<CreditNoteType>.DeSerializeFn = EnumDeserializer<CreditNoteType>;
             JsConfig<InvoiceType>.DeSerializeFn = EnumDeserializer<InvoiceType>;
+            JsConfig<LineAmountType>.DeSerializeFn = EnumDeserializer<LineAmountType>;
+            JsConfig<LineAmountType?>.DeSerializeFn = EnumDeserializerNullable<LineAmountType>;
             JsConfig<ObjectGroupType>.DeSerializeFn = EnumDeserializer<ObjectGroupType>;
             JsConfig<ObjectGroupType?>.DeSerializeFn = EnumDeserializerNullable<ObjectGroupType>;
             JsConfig<ObjectType>.DeSerializeFn = EnumDeserializer<ObjectType>;
