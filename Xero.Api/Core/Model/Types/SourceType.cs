@@ -58,6 +58,8 @@ namespace Xero.Api.Core.Model.Types
         [EnumMember(Value = "INTEGRATEDPAYROLLPTPAYMENT")]
         PayrollTaxPayment = 24,
         [EnumMember(Value = "INTEGRATEDPAYROLLCN")]
-        PayrollCreditNote = 25
+        PayrollCreditNote = 25,
+        [EnumMember(Value = "INTEGRATEDPAYROLLPLL")]
+        PayrollLeaveLiability = 26
     }
 }
