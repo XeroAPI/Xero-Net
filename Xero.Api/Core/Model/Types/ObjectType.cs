@@ -81,6 +81,8 @@ namespace Xero.Api.Core.Model.Types
         [EnumMember(Value = "OVERHEADS")]
         Overheads,
         [EnumMember(Value = "CURRLIAB")]
-        Currliab
+        Currliab,
+        [EnumMember(Value = "DIRECTCOSTS")]
+        DirectCosts
     }
 }
