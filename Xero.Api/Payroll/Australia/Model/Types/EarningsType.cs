@@ -14,6 +14,8 @@ namespace Xero.Api.Payroll.Australia.Model.Types
         [EnumMember(Value = "ALLOWANCE")]
         Allowance,
         [EnumMember(Value = "LUMPSUMD")]
-        LumpSumD
+        LumpSumD,
+        [EnumMember(Value = "EMPLOYMENTTERMINATIONPAYMENT")]
+        EmploymentTerminationPayment
     }
 }
