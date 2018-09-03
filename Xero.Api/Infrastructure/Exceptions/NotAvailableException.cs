@@ -4,7 +4,7 @@ using System.Net;
 namespace Xero.Api.Infrastructure.Exceptions
 {
     [Serializable]
-    internal class NotAvailableException
+    public class NotAvailableException
         : XeroApiException
     {
         public NotAvailableException() { }
