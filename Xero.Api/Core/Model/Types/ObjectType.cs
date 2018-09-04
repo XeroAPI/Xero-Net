@@ -83,6 +83,8 @@ namespace Xero.Api.Core.Model.Types
         [EnumMember(Value = "CURRLIAB")]
         Currliab,
         [EnumMember(Value = "DIRECTCOSTS")]
-        DirectCosts
+        DirectCosts,
+        [EnumMember(Value = "CURRENT")]
+        Current,
     }
 }
