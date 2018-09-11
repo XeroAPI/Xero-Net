@@ -24,6 +24,7 @@ namespace Xero.Api.Infrastructure.Http
         {
             JsonMapper = jsonMapper;
             XmlMapper = xmlMapper;
+            Parameters = new NameValueCollection();
         }
 
         public XeroHttpClient(string baseUri, IAuthenticator auth, IConsumer consumer, IUser user,
