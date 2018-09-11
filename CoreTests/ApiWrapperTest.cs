@@ -6,6 +6,11 @@ namespace CoreTests
 {
     public class ApiWrapperTest
     {
+        public ApiWrapperTest()
+        {
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+        }
+
         private IXeroCoreApi _api;
 
         protected Account BankAccount { get; set; }
