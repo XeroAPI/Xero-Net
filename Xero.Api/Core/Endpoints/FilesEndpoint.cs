@@ -19,6 +19,9 @@ namespace Xero.Api.Core.Endpoints
         Model.File Remove(Guid fileid);
         byte[] GetContent(Guid id, string contentType);
         Model.File this[Guid id] { get; }
+
+        IFilesEndpoint PageSize(int pageSize);
+        IFilesEndpoint Sort(string sortBy);
     }
 
     public class FilesEndpoint : XeroUpdateEndpoint<IFilesEndpoint, Model.File, FilesRequest, FilesResponse>, IFilesEndpoint
@@ -33,6 +36,18 @@ namespace Xero.Api.Core.Endpoints
         public IFilesEndpoint Page(int page)
         {
             AddParameter("page", page);
+            return this;
+        }
+
+        public IFilesEndpoint PageSize(int pageSize)
+        {
+            AddParameter("pagesize", pageSize);
+            return this;
+        }
+
+        public IFilesEndpoint Sort(string sortBy)
+        {
+            AddParameter("sort", sortBy);
             return this;
         }
 
