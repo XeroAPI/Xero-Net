@@ -58,7 +58,7 @@ There are different way to install this library:
 * Employees - Create and Find
 * Leave Applications - Create and Find
 * Pay Runs - Create and Find
-* Payroll Calenders- Create and Find
+* Payroll Calendars- Create and Find
 * Pay Slips- Create and Find
 * Settings - Find
 * Super Fund Products - Find
