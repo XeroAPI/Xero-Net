@@ -6,7 +6,7 @@ namespace Xero.Api.Core.Model.Types
     public enum ReportTaxType
     {
         [EnumMember(Value = "OUTPUT")]
-        Output,
+        Output = 1,
         [EnumMember(Value = "INPUT")]
         Input,
         [EnumMember(Value = "EXEMPTOUTPUT")]
@@ -28,6 +28,8 @@ namespace Xero.Api.Core.Model.Types
         [EnumMember(Value = "CAPITALSALESOUTPUT")]
         CapitalSalesOutput,
         [EnumMember(Value = "CAPITALEXPENSESINPUT")]
-        CapitalExpensesInput
+        CapitalExpensesInput,
+        [EnumMember(Value = "REVERSECHARGES")]
+        ReverseCharges
     }
 }
