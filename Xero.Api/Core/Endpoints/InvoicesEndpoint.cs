@@ -21,6 +21,7 @@ namespace Xero.Api.Core.Endpoints
         IInvoicesEndpoint Statuses(IEnumerable<InvoiceStatus> statuses);
         IInvoicesEndpoint InvoiceNumbers(IEnumerable<string> invoiceNumbers);
         void EmailInvoice(Guid invoiceId);
+        IInvoicesEndpoint CreatedByMyApp();
     }
 
     public class InvoicesEndpoint
@@ -69,6 +70,11 @@ namespace Xero.Api.Core.Endpoints
             {
                 Client.HandleErrors(response);
             }
+        }
+
+        public IInvoicesEndpoint CreatedByMyApp()
+        {
+            return AddParameter("createdByMyApp", true);
         }
 
         public override void ClearQueryString()
