@@ -13,6 +13,8 @@ namespace Xero.Api.Core.Model.Types
         ClubSociety,
         [EnumMember(Value = "PARTNERSHIP")]
         Partnership,
+        [EnumMember(Value = "PRACTICE")]
+        Practice,
         [EnumMember(Value = "PERSON")]
         Person,
         [EnumMember(Value = "SOLETRADER")]
