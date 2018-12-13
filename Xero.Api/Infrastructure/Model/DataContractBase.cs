@@ -9,6 +9,10 @@ namespace Xero.Api.Infrastructure.Model
         [DataMember(EmitDefaultValue = false)]
         public List<ValidationError> ValidationErrors { get; set; }
 
+        [DataMember(EmitDefaultValue = false)]
+        public string Reference { get; set; }
+
+
 
     }
 }

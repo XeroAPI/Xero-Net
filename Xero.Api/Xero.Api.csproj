@@ -248,6 +248,7 @@
     <Compile Include="Infrastructure\Exceptions\NotAvailableException.cs" />
     <Compile Include="Infrastructure\Model\DataContractBase.cs" />
     <Compile Include="Infrastructure\Model\ValidationError.cs" />
+    <Compile Include="Infrastructure\Model\ValidationExceptionError.cs" />
     <Compile Include="Infrastructure\Model\Warning.cs" />
     <Compile Include="Infrastructure\OAuth\ApiUser.cs" />
     <Compile Include="Infrastructure\OAuth\OAuthException.cs" />

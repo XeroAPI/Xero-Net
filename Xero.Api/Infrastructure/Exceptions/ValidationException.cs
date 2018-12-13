@@ -6,32 +6,17 @@ using Xero.Api.Infrastructure.Model;
 namespace Xero.Api.Infrastructure.Exceptions
 {
     [Serializable]
-    public class ValidationException
-        : BadRequestException
+    public class ValidationException : BadRequestException
     {
-        public ValidationException() { }
+        public List<ValidationExceptionError> Errors { get; set; }
 
         public ValidationException(ApiException apiException)
             : base(apiException)
         {
             if (apiException.Elements != null && apiException.Elements.Any())
             {
-                ValidationErrors = new List<ValidationError>();
-                foreach (var ve in apiException
-                    .Elements
-                    .Where(x => x.ValidationErrors != null)
-                    .SelectMany(e => e.ValidationErrors))
-                {
-                    ValidationErrors.Add(ve);
-                }
+                Errors = apiException.Elements.Select(e => new ValidationExceptionError(e)).ToList();
             }
-        }
-
-        public List<ValidationError> ValidationErrors { get; set; }
-
-        public override string ToString()
-        {
-            return string.Join("\n", ValidationErrors.Select(p => p.Message));
         }
     }
 }
