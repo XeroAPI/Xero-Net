@@ -104,6 +104,7 @@ namespace Xero.Api.Serialization
             JsConfig<PaymentType?>.DeSerializeFn = EnumDeserializerNullable<PaymentType>;
             JsConfig<PhoneType>.DeSerializeFn = EnumDeserializer<PhoneType>;
             JsConfig<PrepaymentType>.DeSerializeFn = EnumDeserializer<PrepaymentType>;
+            JsConfig<PrepaymentType?>.DeSerializeFn = EnumDeserializerNullable<PrepaymentType>;
             JsConfig<ReportTaxType>.DeSerializeFn = EnumDeserializer<ReportTaxType>;
             JsConfig<SalesTaxBasisType>.DeSerializeFn = SalesTaxBasis;
             JsConfig<SalesTaxPeriodType>.DeSerializeFn = SalesTaxPeriod;
