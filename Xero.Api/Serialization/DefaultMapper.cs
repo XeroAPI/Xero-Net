@@ -65,6 +65,7 @@ namespace Xero.Api.Serialization
         private void BuildCore()
         {
             JsConfig<AccountStatus>.DeSerializeFn = EnumDeserializer<AccountStatus>;
+            JsConfig<AccountStatus?>.DeSerializeFn = EnumDeserializerNullable<AccountStatus>;
             JsConfig<BankTransactionStatus>.DeSerializeFn = EnumDeserializer<BankTransactionStatus>;
             JsConfig<BatchPaymentStatus?>.DeSerializeFn = EnumDeserializerNullable<BatchPaymentStatus>;
             JsConfig<ContactStatus>.DeSerializeFn = EnumDeserializer<ContactStatus>;
