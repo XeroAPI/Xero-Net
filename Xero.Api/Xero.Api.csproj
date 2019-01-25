@@ -55,11 +55,14 @@
     <Compile Include="Core\Endpoints\Base\FourDecimalPlacesEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\IXeroCreateEndpoint.cs" />
     <Compile Include="Core\Endpoints\Base\IXeroUpdateEndpoint.cs" />
+    <Compile Include="Core\Endpoints\BatchPaymentsEndpoint.cs" />
     <Compile Include="Core\Endpoints\ContactGroupEndpoint.cs" />
     <Compile Include="Core\Endpoints\FoldersEndpoint.cs" />
     <Compile Include="Core\Endpoints\HistoryAndNotesEndpoint.cs" />
     <Compile Include="Core\Endpoints\InboxEndpoint.cs" />
     <Compile Include="Core\Endpoints\LinkedTransactionsEndpoint.cs" />
+    <Compile Include="Core\Model\BatchPayment.cs" />
+    <Compile Include="Core\Model\BatchPaymentPayment.cs" />
     <Compile Include="Core\Model\ContactCisSetting.cs" />
     <Compile Include="Core\Model\EnumExtensions.cs" />
     <Compile Include="Core\Model\HistoryRecord.cs" />
@@ -71,10 +74,12 @@
     <Compile Include="Core\Model\LinkedTransaction.cs" />
     <Compile Include="Core\Model\OrganisationCisSetting.cs" />
     <Compile Include="Core\Model\PurchaseOrder.cs" />
+    <Compile Include="Core\Model\Status\BatchPaymentStatus.cs" />
     <Compile Include="Core\Model\Status\LinkedTransactionStatus.cs" />
     <Compile Include="Core\Model\Status\PurchaseOrderStatus.cs" />
     <Compile Include="Core\Model\Status\TrackingOptionStatus.cs" />
     <Compile Include="Core\Model\Types\BankAccountType.cs" />
+    <Compile Include="Core\Model\Types\BatchPaymentType.cs" />
     <Compile Include="Core\Model\Types\HistoryAndNotesEndpointCreateType.cs" />
     <Compile Include="Core\Model\Types\HistoryAndNotesEndpointRetrieveType.cs" />
     <Compile Include="Core\Model\Types\LinkedTransactionType.cs" />
@@ -83,6 +88,7 @@
     <Compile Include="Core\Model\Types\OrganisationClass.cs" />
     <Compile Include="Core\Model\Types\OrganisationEdition.cs" />
     <Compile Include="Core\Model\Types\SourceType.cs" />
+    <Compile Include="Core\Request\BatchPaymentsRequest.cs" />
     <Compile Include="Core\Request\CurrenciesRequest.cs" />
     <Compile Include="Core\Request\HistoryRecordsRequest.cs" />
     <Compile Include="Core\Request\LinkedTransactionsRequest.cs" />
@@ -103,6 +109,7 @@
     <Compile Include="Core\Model\Types\OverpaymentType.cs" />
     <Compile Include="Common\CoreData.cs" />
     <Compile Include="Core\Model\Status\ValidationStatus.cs" />
+    <Compile Include="Core\Response\BatchPaymentsResponse.cs" />
     <Compile Include="Core\Response\ContactCisSettingsResponse.cs" />
     <Compile Include="Core\Response\HistoryRecordsResponse.cs" />
     <Compile Include="Core\Response\LinkedTransactionsResponse.cs" />
@@ -296,7 +303,7 @@
     <Compile Include="Core\Model\Types\AddressType.cs" />
     <Compile Include="Core\Model\Balance.cs" />
     <Compile Include="Core\Model\Balances.cs" />
-    <Compile Include="Core\Model\BatchPayments.cs" />
+    <Compile Include="Core\Model\BatchPaymentContactDefaults.cs" />
     <Compile Include="Core\Model\BrandingTheme.cs" />
     <Compile Include="Core\Model\User.cs" />
     <Compile Include="Core\Model\ContactGroup.cs" />
