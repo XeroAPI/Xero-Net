@@ -1,8 +1,10 @@
+using System;
 using System.Runtime.Serialization;
 
 namespace Xero.Api.Core.Model.Reports
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class ReportAttribute
     {
         public string Name;

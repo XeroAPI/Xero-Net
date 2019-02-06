@@ -1,9 +1,11 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using Xero.Api.Common;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "", Name = "BatchPayments")]
+	[Serializable]
+	[DataContract(Namespace = "", Name = "BatchPayments")]
     public class BatchPaymentContactDefaults : CoreData
     {
         [DataMember(EmitDefaultValue = false)]

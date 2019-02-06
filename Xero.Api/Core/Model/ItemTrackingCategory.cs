@@ -4,7 +4,8 @@ using Xero.Api.Common;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "", Name = "TrackingCategory")]
+	[Serializable]
+	[DataContract(Namespace = "", Name = "TrackingCategory")]
     public class ItemTrackingCategory : CoreData, IHasId
     {
         [DataMember(Name = "TrackingCategoryID")]

@@ -4,7 +4,8 @@ using Xero.Api.Common;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public sealed class Item : HasUpdatedDate, IHasId
     {
         [DataMember(Name = "ItemID", EmitDefaultValue = false)]

@@ -4,7 +4,8 @@ using Xero.Api.Common;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "", Name = "Payment")]
+	[Serializable]
+	[DataContract(Namespace = "", Name = "Payment")]
     public class BatchPaymentPayment : CoreData
     {
         [DataMember(Name = "Invoice")]

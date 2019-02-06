@@ -7,7 +7,8 @@ using Xero.Api.Core.Model.Types;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class BankTransaction : HasUpdatedDate, IHasId, IHasAttachment
     {
         [DataMember(Name = "BankTransactionID", EmitDefaultValue = false)]

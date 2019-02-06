@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Xero.Api.Core.Model.Reports
 {
-    [DataContract(Namespace = "", Name = "Cell")]
+	[Serializable]
+	[DataContract(Namespace = "", Name = "Cell")]
     public class ReportCell
     {
         [DataMember]

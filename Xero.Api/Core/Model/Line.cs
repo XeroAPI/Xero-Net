@@ -6,7 +6,8 @@ using Xero.Api.Core.Model.Types;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Name = "JournalLine", Namespace = "")]
+	[Serializable]
+	[DataContract(Name = "JournalLine", Namespace = "")]
     public class Line : CoreData, IHasId
     {
         [DataMember(Name = "JournalLineID", EmitDefaultValue = false)]

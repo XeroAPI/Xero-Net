@@ -8,7 +8,8 @@ using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text.Common;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class BatchPayment : HasUpdatedDate, IHasId
     {
         [DataMember(Name = "BatchPaymentID", EmitDefaultValue = false)]

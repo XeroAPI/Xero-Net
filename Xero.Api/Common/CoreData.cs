@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Xero.Api.Core.Model.Status;
 using Xero.Api.Infrastructure.Model;
 
 namespace Xero.Api.Common
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public abstract class CoreData
     {
         [DataMember(EmitDefaultValue = false, Name = "ValidationErrors")]

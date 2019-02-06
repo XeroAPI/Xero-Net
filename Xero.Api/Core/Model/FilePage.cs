@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class FilePage
     {
         [DataMember(EmitDefaultValue = false)]

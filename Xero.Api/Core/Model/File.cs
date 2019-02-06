@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class File
     {
         [DataMember(EmitDefaultValue = false)]

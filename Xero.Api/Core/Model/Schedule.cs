@@ -5,7 +5,8 @@ using Xero.Api.Core.Model.Types;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class Schedule : CoreData
     {
         [DataMember(EmitDefaultValue = false)]

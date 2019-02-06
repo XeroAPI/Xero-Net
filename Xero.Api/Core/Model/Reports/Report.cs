@@ -5,6 +5,7 @@ using Xero.Api.Core.Model.Types;
 
 namespace Xero.Api.Core.Model.Reports
 {
+	[Serializable]
     [DataContract(Namespace = "")]
     public class Report
     {

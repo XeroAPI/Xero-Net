@@ -6,7 +6,8 @@ using Xero.Api.Core.Model.Types;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class Payment : HasUpdatedDate, IHasId
     {
         [DataMember(Name = "PaymentID", EmitDefaultValue = false)]

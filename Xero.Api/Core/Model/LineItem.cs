@@ -4,7 +4,8 @@ using Xero.Api.Common;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class LineItem : CoreData
     {
         [DataMember(EmitDefaultValue = false)]

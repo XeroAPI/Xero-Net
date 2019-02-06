@@ -6,7 +6,8 @@ using Xero.Api.Core.File;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public sealed class Attachment : BinaryFile, IHasId
     {
         public Attachment(FileInfo fileInfo) : base(fileInfo)

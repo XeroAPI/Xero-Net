@@ -6,7 +6,8 @@ using Xero.Api.Core.Model.Types;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class LinkedTransaction : HasUpdatedDate, IHasId
     {
         [DataMember(Name = "LinkedTransactionID", EmitDefaultValue = false)]

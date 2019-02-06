@@ -5,7 +5,8 @@ using Xero.Api.Common;
 
 namespace Xero.Api.Core.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class ContactGroup : CoreData, IHasId
     {
         [DataMember(Name = "ContactGroupID", EmitDefaultValue = false)]

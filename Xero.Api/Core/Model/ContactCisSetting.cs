@@ -1,8 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace Xero.Api.Core.Model
 {
-    public class ContactCisSetting
+	[Serializable]
+	public class ContactCisSetting
     {
         [DataMember(Name = "CISEnabled")]
         public bool CisEnabled { get; set; }
