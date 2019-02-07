@@ -4,7 +4,8 @@ using Xero.Api.Common;
 
 namespace Xero.Api.Payroll.Common.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public abstract class PayNotice : HasUpdatedDate
     {
         [DataMember(Name = "EmployeeID", EmitDefaultValue = false)]

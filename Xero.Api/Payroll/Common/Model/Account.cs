@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Xero.Api.Payroll.Common.Model
 {
+	[Serializable]
     [DataContract(Namespace = "")]
     public abstract class Account
     {

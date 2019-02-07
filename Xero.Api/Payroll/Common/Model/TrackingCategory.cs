@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 
 namespace Xero.Api.Payroll.Common.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class TrackingCategory
     {
         [DataMember(Name = "TrackingCategoryID")]

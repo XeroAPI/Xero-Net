@@ -14,7 +14,8 @@ namespace Xero.Api.Core.Model
         public String Option { get; set; }
     }
 
-    [DataContract(Namespace = "")]
+    [Serializable]
+	[DataContract(Namespace = "")]
     public class PurchasesTrackingCategory
     {
         [DataMember(Name = "TrackingCategoryName", EmitDefaultValue = false)]

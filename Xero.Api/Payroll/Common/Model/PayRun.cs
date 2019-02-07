@@ -5,7 +5,8 @@ using Xero.Api.Payroll.Common.Model.Status;
 
 namespace Xero.Api.Payroll.Common.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public abstract class PayRun : HasUpdatedDate
     {
         [DataMember(Name = "PayRunID", EmitDefaultValue = false)]

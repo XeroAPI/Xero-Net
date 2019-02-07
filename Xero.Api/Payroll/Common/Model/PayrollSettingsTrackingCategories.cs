@@ -1,8 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace Xero.Api.Payroll.Common.Model
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public class PayrollSettingsTrackingCategories
     {
         [DataMember(EmitDefaultValue = false)]

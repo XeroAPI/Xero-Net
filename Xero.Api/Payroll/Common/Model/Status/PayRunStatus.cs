@@ -1,8 +1,10 @@
+using System;
 using System.Runtime.Serialization;
 
 namespace Xero.Api.Payroll.Common.Model.Status
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public enum PayRunStatus
     {
         [EnumMember(Value= "DRAFT")]
