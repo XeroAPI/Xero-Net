@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 
 namespace Xero.Api.Common
 {
-    [DataContract(Namespace = "")]
+	[Serializable]
+	[DataContract(Namespace = "")]
     public abstract class HasUpdatedDate : CoreData
     {
         [DataMember(Name = "UpdatedDateUTC", EmitDefaultValue = false)]
