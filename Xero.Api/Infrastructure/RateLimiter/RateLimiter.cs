@@ -31,7 +31,7 @@ namespace Xero.Api.Infrastructure.RateLimiter
         /// </summary>
         public void WaitUntilLimit()
         {
-            while (rateLimiter.Count >= _qty)
+            if (rateLimiter.Count >= _qty)
             {
                 var diff = rateLimiter.Peek().Add(_duration) - DateTime.UtcNow;
                 if (diff.TotalMilliseconds > 0)
