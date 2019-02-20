@@ -31,7 +31,7 @@ namespace Xero.Api.Infrastructure.RateLimiter
         /// </summary>
         public void WaitUntilLimit()
         {
-            if (rateLimiter.Count >= _qty)
+            if (rateLimiter.Count == _qty)
             {
                 var diff = rateLimiter.Peek().Add(_duration) - DateTime.UtcNow;
                 if (diff.TotalMilliseconds > 0)
@@ -47,7 +47,7 @@ namespace Xero.Api.Infrastructure.RateLimiter
         /// <returns>True if we're over the limit, false if we've got some allocation left</returns>
         public bool CheckLimit()
         {
-            return (rateLimiter.Count >= _qty && rateLimiter.Peek().Add(_duration) > DateTime.UtcNow);
+            return (rateLimiter.Count == _qty && rateLimiter.Peek().Add(_duration) > DateTime.UtcNow);
         }
     }
 }
