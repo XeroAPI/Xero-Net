@@ -10,7 +10,7 @@ namespace CoreTests.Integration.Organisation
         [Test]
         public void can_get_the_organisation_sales_tax_basis()
         {
-            var test = Api.Organisation.SalesTaxBasis;
+            var test = Api.Organisation.SalesTaxBasisType;
 
             Assert.True(Enum.IsDefined(typeof(SalesTaxBasisType), test));
         }
