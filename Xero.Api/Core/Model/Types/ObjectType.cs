@@ -86,5 +86,7 @@ namespace Xero.Api.Core.Model.Types
         DirectCosts,
         [EnumMember(Value = "CURRENT")]
         Current,
+        [EnumMember(Value = "FIXED")]
+        Fixed,
     }
 }
