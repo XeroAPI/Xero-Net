@@ -13,6 +13,7 @@ namespace Xero.Api.Core
         AttachmentsEndpoint Attachments { get; }
         IBankTransactionsEndpoint BankTransactions { get; }
         IBankTransfersEndpoint BankTransfers { get; }
+        IBatchPaymentsEndpoint BatchPayments { get; }
         IBrandingThemesEndpoint BrandingThemes { get; }
         IContactsEndpoint Contacts { get; }
         IContactGroupsEndpoint ContactGroups { get; }

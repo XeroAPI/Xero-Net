@@ -72,7 +72,7 @@ namespace Xero.Api.Example.Applications.Public
                 GetAuthorization(requestToken, "POST", Tokens.AccessUri, null, verfier));
 
             accessToken.UserId = userId;
-
+            accessToken.OrganisationId = organisationShortCode;
             Store.Add(accessToken);
 
             return accessToken;

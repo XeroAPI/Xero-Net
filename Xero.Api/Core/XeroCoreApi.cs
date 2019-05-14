@@ -40,6 +40,7 @@ namespace Xero.Api.Core
         public AttachmentsEndpoint Attachments { get; private set; }
         public IBankTransactionsEndpoint BankTransactions { get; private set; }
         public IBankTransfersEndpoint BankTransfers { get; private set; }
+        public IBatchPaymentsEndpoint BatchPayments { get; private set; }
         public IBrandingThemesEndpoint BrandingThemes { get; private set; }
         public IContactsEndpoint Contacts { get; private set; }
         public IContactGroupsEndpoint ContactGroups { get; private set;}
@@ -81,6 +82,7 @@ namespace Xero.Api.Core
             Attachments = new AttachmentsEndpoint(Client);
             BankTransactions = new BankTransactionsEndpoint(Client);
             BankTransfers = new BankTransfersEndpoint(Client);
+            BatchPayments = new BatchPaymentsEndpoint(Client);
             BrandingThemes = new BrandingThemesEndpoint(Client);
             Contacts = new ContactsEndpoint(Client);
             ContactGroups = new ContactGroupsEndpoint(Client);
