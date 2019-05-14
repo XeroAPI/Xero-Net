@@ -1,4 +1,4 @@
-## Tests for the Australian Payroll API
+﻿##Tests for the Australian Payroll API
 These are really code snippets in the form of runnable tests. The examples for each of the endpoints in [Developer](http://developer.xero.com/documentation/payroll-api/overview/) have been turned into individual tests.
 
 ## Getting the tests working
