@@ -5,6 +5,7 @@ using Xero.Api.Core.Model;
 
 namespace Xero.Api.Core.Response
 {
+	[DataContract(Namespace = "")]
     public class OrganisationCisSettingsResponse : XeroResponse<OrganisationCisSetting>
     {
 	    [DataMember(Name = "CISSettings")]
