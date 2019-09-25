@@ -31,8 +31,6 @@ namespace Xero.Api.Infrastructure.Http
             {
                 Headers[item] = inner.Headers[item];
             }
-
-            inner.Close();
         }
 
         public string Body
