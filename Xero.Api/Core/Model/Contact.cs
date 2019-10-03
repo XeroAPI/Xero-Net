@@ -46,11 +46,50 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public string AccountsPayableTaxType { get; set; }
 
+        bool? _isSupplier;
         [DataMember(EmitDefaultValue = false)]
-        public bool? IsSupplier { get; set; }
+        public bool? IsSupplier 
+        {
+            get
+            {
+                if (Balances?.AccountsPayable != null)
+                {
+                    if (Balances.AccountsPayable.Outstanding != 0)
+                        return true;
 
+                    if (Balances.AccountsPayable.Overdue != 0)
+                        return true;
+                }
+
+                return _isSupplier;
+            }
+            set
+            {
+                _isSupplier = value;
+            }
+        }
+
+        bool? _isCustomer;
         [DataMember(EmitDefaultValue = false)]
-        public bool? IsCustomer { get; set; }
+        public bool? IsCustomer
+        {
+            get
+            {
+                if (Balances?.AccountsReceivable != null)
+                {
+                    if (Balances.AccountsReceivable.Outstanding != 0)
+                        return true;
+
+                    if (Balances.AccountsReceivable.Overdue != 0)
+                        return true;
+                }
+                return _isCustomer;
+            }
+            set
+            {
+                _isCustomer = value;
+            }
+        }
 
         [DataMember(EmitDefaultValue = false)]
         public string DefaultCurrency { get; set; }
