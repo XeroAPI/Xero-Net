@@ -24,7 +24,7 @@ namespace Xero.Api.Core.Model
         public Guid ToBankTransactionId { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public decimal CurrencyRate { get; set; }
+        public decimal? CurrencyRate { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public decimal Amount { get; set; }
