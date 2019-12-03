@@ -5,6 +5,7 @@ namespace Xero.Api.Core.Model.Status
     [DataContract(Namespace = "")]
     public enum ManualJournalStatus
     {
+        Unknown = 0,
         [EnumMember(Value = "DRAFT")]
         Draft,
         [EnumMember(Value = "POSTED")]
@@ -12,6 +13,8 @@ namespace Xero.Api.Core.Model.Status
         [EnumMember(Value = "DELETED")]
         Deleted,
         [EnumMember(Value = "VOIDED")]
-        Voided
+        Voided,
+        [EnumMember(Value = "ARCHIVED")]
+        Archived
     }
 }
