@@ -1,5 +1,16 @@
 Xero-Net
 ========
+
+## Looking for OAuth 2.0?
+Please checkout [Xero-NetStandard SDK for OAuth 2.0](https://github.com/XeroAPI/Xero-NetStandard) and it's companion [sample app](https://github.com/XeroAPI/xero-netstandard-oauth2-samples)
+
+## What about updating Xero-Net to OAuth 2.0?
+We are devoting resources towards building and improving our new OAuth 2.0 SDKs which don't share a code base with this library. For those using Xero-Net, you have the option of forking the Xero-Net.
+
+Xero-Net maintenance for OAuth 1.0a
+-----------------------
+We will continue to periodically review pull requests to fix small issues and watch for secruity issues until December 2020.  Maintenance **does not** include adding new features, oauth 2 support or large refactoring of the code base. 
+
 [![xero-api-sdk MyGet Build Status](https://www.myget.org/BuildSource/Badge/xero-api-sdk?identifier=045754d8-de3f-4f0c-960a-ae6e16608e24)](https://www.myget.org/)
 [![Build status](https://ci.appveyor.com/api/projects/status/087ia0i385l506bn/branch/master?svg=true)](https://ci.appveyor.com/project/XeroAPI/xero-net/branch/master)
 
