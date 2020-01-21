@@ -171,6 +171,9 @@ namespace Xero.Api.Infrastructure.Http
                 uri.Query = query;
             }
 
+            if (_rateLimiter != null)
+                _rateLimiter.WaitUntilLimit();
+
             var request = (HttpWebRequest)WebRequest.Create(uri.Uri);
 
             request.Timeout = defaultTimeout;
@@ -197,9 +200,6 @@ namespace Xero.Api.Infrastructure.Http
 
             request.UserAgent = !string.IsNullOrWhiteSpace(UserAgent) ? UserAgent : "Xero Api wrapper - " + Consumer.ConsumerKey;
             
-            if (_rateLimiter != null)
-                _rateLimiter.WaitUntilLimit();
-
             return request;
         }
 
