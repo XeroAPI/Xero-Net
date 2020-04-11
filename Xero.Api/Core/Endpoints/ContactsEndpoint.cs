@@ -23,12 +23,15 @@ namespace Xero.Api.Core.Endpoints
         internal ContactsEndpoint(XeroHttpClient client)
             : base(client, "/api.xro/2.0/Contacts")
         {
-            Page(1);
+            Page(0);
         }
 
         public IContactsEndpoint Page(int page)
         {
-            AddParameter("page", page);
+            if (page > 0)
+            {
+                AddParameter("page", page);
+            }
             return this;
         }
 

@@ -24,7 +24,10 @@ namespace Xero.Api.Core.Endpoints
 
         public ICreditNotesEndpoint Page(int page)
         {
-            AddParameter("page", page);
+            if (page > 0)
+            {
+                AddParameter("page", page);
+            }
             return this;
         }
 

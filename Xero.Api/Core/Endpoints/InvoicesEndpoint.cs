@@ -30,12 +30,15 @@ namespace Xero.Api.Core.Endpoints
         internal InvoicesEndpoint(XeroHttpClient client)
             : base(client, "/api.xro/2.0/Invoices")
         {
-            Page(1);
+            Page(0);
         }
 
         public IInvoicesEndpoint Page(int page)
         {
-            AddParameter("page", page);
+            if (page > 0)
+            {
+                AddParameter("page", page);
+            }
             return this;
         }
 
