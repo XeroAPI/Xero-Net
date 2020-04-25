@@ -33,6 +33,9 @@ namespace Xero.Api.Core.Model
 
         [DataMember(EmitDefaultValue = false)]
         public decimal? DiscountRate { get; set; }
+        
+        [DataMember(EmitDefaultValue = false)]
+        public decimal? DiscountAmount { get; set; }
 
         [DataMember(EmitDefaultValue = false, Name = "Tracking")]
         public ItemTracking Tracking { get; set; }
