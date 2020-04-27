@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 using Xero.Api.Common;
 using Xero.Api.Core.Model.Status;
 using Xero.Api.Core.Model.Types;
+using Xero.Api.Infrastructure.ThirdParty.ServiceStack.Text.Common;
 
 namespace Xero.Api.Core.Model
 {
@@ -37,10 +38,21 @@ namespace Xero.Api.Core.Model
         [DataMember(Name = "Narrative", EmitDefaultValue = false)]
         public string Narrative { get; set; }
 
-        [DataMember(Name = "Date", EmitDefaultValue = false)]
-        public DateTime? Date { get; set; }
+		public DateTime? Date { get; set; }
 
-        [DataMember(Name = "Payments")]
+		[DataMember(Name = "Date", EmitDefaultValue = false)]
+		public string DateString {
+			get
+			{
+				return Date.Value.ToString("yyyy-MM-dd");
+			}
+			set
+			{
+				Date = DateTimeSerializer.ParseDateTimeOffset(value).UtcDateTime;
+			}
+		}
+
+		[DataMember(Name = "Payments")]
         public List<BatchPaymentPayment> Payments { get; set; }
 
         [DataMember(Name = "TotalAmount", EmitDefaultValue = false)]
