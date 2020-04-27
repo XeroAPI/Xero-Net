@@ -12,6 +12,8 @@ namespace Xero.Api.Core.Model.Types
         [EnumMember(Value = "MOBILE")]
         Mobile,
         [EnumMember(Value = "FAX")]
-        Fax        
+        Fax,
+        [EnumMember(Value = "OFFICE")]
+        Office        
     }
 }
