@@ -172,7 +172,8 @@ namespace Xero.Api.Common
                 Client.ModifiedSince = _modifiedSince;
                 Client.Parameters = Parameters;
 
-                return Client.Get<TResult, TResponse>(endpoint + (child ?? string.Empty));
+                var result = Client.Get<TResult, TResponse>(endpoint + (child ?? string.Empty));
+                return result;
             }
             finally
             {

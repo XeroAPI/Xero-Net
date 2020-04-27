@@ -55,6 +55,9 @@ namespace Xero.Api.Core.Model
         public int? FinancialYearEndMonth { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
+        public string EmployerIdentificationNumber { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public DateTime? PeriodLockDate { get; set; }
         
         [DataMember(EmitDefaultValue = false)]
@@ -75,7 +78,7 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public PaymentTerms PaymentTerms { get; set; }
 
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(Name = "SalesTaxBasis", EmitDefaultValue = false)]
         public SalesTaxBasisType SalesTaxBasisType { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
