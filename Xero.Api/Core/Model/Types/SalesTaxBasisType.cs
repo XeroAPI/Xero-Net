@@ -7,8 +7,10 @@ namespace Xero.Api.Core.Model.Types
     {
         [EnumMember(Value = "NONE")]
         None,
+        [EnumMember(Value = "ACCRUALS")]
+        Accurals=1,
         [EnumMember(Value = "ACCRUAL")]
-        Accural,
+        Accural = 1,
         [EnumMember(Value = "CASH")]
         Cash,
         [EnumMember(Value = "INVOICE")]

@@ -15,8 +15,8 @@ namespace Xero.Api.Infrastructure.Http
             StatusCode = inner.StatusCode;
             ContentLength = (int) inner.ContentLength;
             ContentType = inner.ContentType;
-
-            var stream = inner.GetResponseStream();
+			HttpWebRequest.DefaultMaximumErrorResponseLength = ContentLength;
+			var stream = inner.GetResponseStream();
             if (stream != null)
             {
                 Stream = new MemoryStream();
