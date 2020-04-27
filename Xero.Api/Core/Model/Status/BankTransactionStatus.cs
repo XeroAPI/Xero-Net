@@ -8,6 +8,8 @@ namespace Xero.Api.Core.Model.Status
         [EnumMember(Value = "AUTHORISED")]
         Authorised,
         [EnumMember(Value = "DELETED")]
-        Deleted
+        Deleted,
+        [EnumMember(Value = "VOIDED")]
+        Voided
     }
 }

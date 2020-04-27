@@ -86,6 +86,8 @@
     <Compile Include="Integration\BankTransfers\BankTransfersTest.cs" />
     <Compile Include="Integration\BankTransfers\Create.cs" />
     <Compile Include="Integration\BankTransfers\Find.cs" />
+    <Compile Include="Integration\BatchPayment\Create.cs" />
+    <Compile Include="Integration\BatchPayment\BatchPaymentsTest.cs" />
     <Compile Include="Integration\ContactGroups\Add_Contact.cs" />
     <Compile Include="Integration\ContactGroups\ContactGroupsTest.cs" />
     <Compile Include="Integration\ContactGroups\Create.cs" />
