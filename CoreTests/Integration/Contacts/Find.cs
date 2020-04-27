@@ -29,6 +29,16 @@ namespace CoreTests.Integration.Contacts
         }
 
         [Test]
+        public void find_by_id_list()
+        {
+            var created = Given_a_contact();
+            var contacts = Api.Contacts.Ids(new[] { created.Id }).Find().ToList();
+
+            Assert.AreEqual(1, contacts.Count());
+            Assert.AreEqual(created.Id, contacts.First().Id);
+        }
+
+        [Test]
         public void find_by_value()
         {
             var expected = Given_a_contact().Name;
