@@ -29,6 +29,9 @@ namespace Xero.Api.Payroll.Australia.Model
 
         [DataMember(EmitDefaultValue = false)]
         public string Gender { get; set; }
+        
+        [DataMember(EmitDefaultValue = false)]
+        public string JobTitle { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public HomeAddress HomeAddress { get; set; }
