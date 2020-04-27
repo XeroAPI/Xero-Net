@@ -75,7 +75,7 @@ namespace Xero.Api.Core.Model
         [DataMember(EmitDefaultValue = false)]
         public PaymentTerms PaymentTerms { get; set; }
 
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(Name = "SalesTaxBasis", EmitDefaultValue = false)]
         public SalesTaxBasisType SalesTaxBasisType { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
