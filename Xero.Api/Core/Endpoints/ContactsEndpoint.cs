@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xero.Api.Common;
 using Xero.Api.Core.Endpoints.Base;
@@ -15,6 +16,7 @@ namespace Xero.Api.Core.Endpoints
     {
         IContactsEndpoint IncludeArchived(bool include);
         ContactCisSetting GetCisSettings(Guid id);
+        IContactsEndpoint Ids(IEnumerable<Guid> ids);
     }
 
     public class ContactsEndpoint
@@ -52,6 +54,13 @@ namespace Xero.Api.Core.Endpoints
         {
             base.ClearQueryString();
             Page(1);
+        }
+
+		public IContactsEndpoint Ids(IEnumerable<Guid> ids)
+        {
+            AddParameter("ids", string.Join(",", ids));
+
+            return this;
         }
     }
 }
