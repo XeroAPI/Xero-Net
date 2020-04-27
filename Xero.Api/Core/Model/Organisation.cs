@@ -55,6 +55,9 @@ namespace Xero.Api.Core.Model
         public int? FinancialYearEndMonth { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
+        public string EmployerIdentificationNumber { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public DateTime? PeriodLockDate { get; set; }
         
         [DataMember(EmitDefaultValue = false)]
