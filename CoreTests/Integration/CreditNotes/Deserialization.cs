@@ -59,6 +59,7 @@ namespace CoreTests.Integration.CreditNotes
 
             var deserialized = _jsonMapper.From<CreditNote>(json);
 
+            Assert.IsFalse(object.ReferenceEquals(creditNote, deserialized));
             Assert.AreEqual(creditNote.Id, deserialized.Id);
             Assert.AreEqual(creditNote.Type, deserialized.Type);
         }
@@ -72,6 +73,7 @@ namespace CoreTests.Integration.CreditNotes
 
             var deserialized = _xmlMapper.From<CreditNote>(xml);
 
+            Assert.IsFalse(object.ReferenceEquals(creditNote, deserialized));
             Assert.AreEqual(creditNote.Id, deserialized.Id);
             Assert.AreEqual(creditNote.Type, deserialized.Type);
         }
