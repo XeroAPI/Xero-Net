@@ -6,7 +6,7 @@ namespace Xero.Api.Core.Model.Status
     public enum TaxRateStatus
     {
         [EnumMember(Value = "ACTIVE")]
-        Active,
+        Active = 1,
         [EnumMember(Value = "DELETED")]
         Deleted,
         [EnumMember(Value = "ARCHIVED")]
