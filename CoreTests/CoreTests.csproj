@@ -140,6 +140,9 @@
     <Compile Include="Integration\ManualJournals\ManualJournalsTest.cs" />
     <Compile Include="Integration\ManualJournals\Update.cs" />
     <Compile Include="Integration\Organisation\Find.cs" />
+    <Compile Include="Integration\PaymentServices\Create.cs" />
+    <Compile Include="Integration\PaymentServices\Find.cs" />
+    <Compile Include="Integration\PaymentServices\PaymentServicesTest.cs" />
     <Compile Include="Integration\Payments\Create.cs" />
     <Compile Include="Integration\Payments\CreateForeignCurrency.cs" />
     <Compile Include="Integration\Payments\Delete.cs" />

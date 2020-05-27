@@ -14,6 +14,7 @@ namespace Xero.Api.Core
         IBankTransactionsEndpoint BankTransactions { get; }
         IBankTransfersEndpoint BankTransfers { get; }
         IBatchPaymentsEndpoint BatchPayments { get; }
+        IPaymentServicesEndpoint PaymentServices { get; }
         IBrandingThemesEndpoint BrandingThemes { get; }
         IContactsEndpoint Contacts { get; }
         IContactGroupsEndpoint ContactGroups { get; }
@@ -126,6 +127,9 @@ namespace Xero.Api.Core
         Payment Create(Payment item);
         Payment Update(Payment item);
         
+        //Payment Services
+        PaymentService Create(PaymentService item);
+
         //PurchaseOrders
         IEnumerable<PurchaseOrder> Create(IEnumerable<PurchaseOrder> items);
         IEnumerable<PurchaseOrder> Update(IEnumerable<PurchaseOrder> items);

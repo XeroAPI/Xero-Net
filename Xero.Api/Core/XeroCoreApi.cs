@@ -61,6 +61,7 @@ namespace Xero.Api.Core
         public IOrganisationEndpoint Organisations { get; private set; }
         public IOverpaymentsEndpoint Overpayments { get; private set; }
         public IPaymentsEndpoint Payments { get; private set; }
+        public IPaymentServicesEndpoint PaymentServices { get; private set; }
         public PdfEndpoint PdfFiles { get; private set; }
         public IPrepaymentsEndpoint Prepayments { get; private set; }
         public IPurchaseOrdersEndpoint PurchaseOrders { get; private set; }
@@ -102,6 +103,7 @@ namespace Xero.Api.Core
             ManualJournals = new ManualJournalsEndpoint(Client);
             Overpayments = new OverpaymentsEndpoint(Client);
             Payments = new PaymentsEndpoint(Client);
+            PaymentServices = new PaymentServicesEndpoint(Client);
             PdfFiles = new PdfEndpoint(Client);
             Prepayments = new PrepaymentsEndpoint(Client);
             PurchaseOrders = new PurchaseOrdersEndpoint(Client);
@@ -208,6 +210,7 @@ namespace Xero.Api.Core
 
         #endregion
         
+
         #region ContactGroups
 
         public IEnumerable<ContactGroup> Create(IEnumerable<ContactGroup> items)
@@ -422,9 +425,30 @@ namespace Xero.Api.Core
             return Payments.Update(item);
         }
 
-        #endregion
+		#endregion
 
-        #region PurchaseOrders
+		#region PaymentServices
+
+		/// <summary>
+		/// Add a Custom Payment Service
+		/// </summary>
+		public PaymentService Create(PaymentService item)
+		{
+			return PaymentServices.Create(item);
+
+		}
+
+		/// <summary>
+		/// Add a Payment Service to a Branding Theme
+		/// </summary>
+		public void AddPaymentServiceToBrandingTheme(System.Guid brandingThemeId, System.Guid paymentServiceId)
+		{
+			PaymentServices.AddPaymentServiceToBrandingTheme(brandingThemeId, paymentServiceId);
+		}
+
+		#endregion
+
+		#region PurchaseOrders
 
         public IEnumerable<PurchaseOrder> Create(IEnumerable<PurchaseOrder> items)
         {
