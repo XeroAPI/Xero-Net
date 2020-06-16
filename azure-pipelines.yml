@@ -1,5 +1,11 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+
 pool:
-  name: Azure Pipelines
+  vmImage: 'windows-latest'
 
 steps:
 - template: ImportSigningCertificate.yml
