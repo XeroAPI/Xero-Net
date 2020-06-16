@@ -1,0 +1,31 @@
+pool:
+  name: Azure Pipelines
+
+steps:
+- template: ImportSigningCertificate.yml
+  parameters:
+    "PasswordForPFXfile": ${{ variables.PasswordForPFXfile }}
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+
+- task: VSBuild@1
+  displayName: 'Build solution **\*.sln'
+  inputs:
+    configuration: Release
+
+- task: NuGetCommand@2
+  displayName: 'NuGet pack'
+  inputs:
+    command: pack
+    packagesToPack: minimal.nuspec
+    versioningScheme: byPrereleaseNumber
+    majorVersion: 2
+    minorVersion: 3
+
+- task: NuGetCommand@2
+  displayName: 'NuGet push'
+  inputs:
+    command: push
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    publishVstsFeed: 'aeaa4311-673f-4791-a14d-d19ad82f0603'
