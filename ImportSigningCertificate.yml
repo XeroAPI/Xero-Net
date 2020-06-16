@@ -1,0 +1,32 @@
+parameters:
+- name: PasswordForPFXfile
+  type: string
+
+steps:
+- task: DownloadSecureFile@1
+  displayName: 'Download Code Signing Cert'
+  inputs:
+    secureFile: LedgerscopeCode.pfx
+
+- powershell: |
+   $password = "$(PasswordForPFXfile)" | ConvertTo-SecureString -AsPlainText -Force
+   Import-PfxCertificate -FilePath $(Agent.WorkFolder)\_temp\LedgerscopeCode.pfx -CertStoreLocation Cert:\CurrentUser\My -Password $password
+  displayName: 'Import PFX'
+
+- task: DeleteFiles@1
+  displayName: 'Delete Certificate'
+  inputs:
+    SourceFolder: '$(Agent.WorkFolder)\_temp'
+    Contents: '*.pfx'
+
+- task: DownloadSecureFile@1
+  displayName: 'Download Directory Props'
+  inputs:
+    secureFile: Directory.Build.props
+
+- task: CopyFiles@2
+  displayName: 'Copy Directory Props'
+  inputs:
+    SourceFolder: '$(Agent.WorkFolder)\_temp'
+    Contents: Directory.Build.props
+    TargetFolder: '$(Agent.BuildDirectory)'
