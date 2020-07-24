@@ -36,7 +36,8 @@ namespace Xero.Api.Infrastructure.ThirdParty.Dust
 
         private byte[] Sign(SHA1CryptoServiceProvider hash)
         {
-            var formatter = new RSAPKCS1SignatureFormatter(_certificate.PrivateKey).
+            var pk = _certificate.GetRSAPrivateKey();
+            var formatter = new RSAPKCS1SignatureFormatter(pk).
                 Tap(it => it.SetHashAlgorithm("MD5"));
 
             return formatter.CreateSignature(hash);
