@@ -184,6 +184,12 @@ namespace Xero.Api.Infrastructure.Http
                 var oauthSignature = _auth.GetSignature(Consumer, User, request.RequestUri, method, Consumer);
 
                 AddHeader("Authorization", oauthSignature);
+
+                if (_auth.RequestHeaders != null) {
+                    foreach (var header in _auth.RequestHeaders) {
+                        this.AddHeader(header.Key, header.Value);
+                    }
+                }
             }
             
             AddHeaders(request);

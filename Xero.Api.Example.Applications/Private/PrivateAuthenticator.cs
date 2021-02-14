@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth;
@@ -47,5 +48,7 @@ namespace Xero.Api.Example.Applications.Private
         }
 
         public IUser User { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> RequestHeaders { get; set; }
     }
 }

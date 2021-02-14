@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Xero.Api.Infrastructure.Interfaces
 {
@@ -6,7 +7,7 @@ namespace Xero.Api.Infrastructure.Interfaces
     {
         string GetSignature(IConsumer consumer, IUser user, Uri uri, string verb, IConsumer consumer1);
         IToken GetToken(IConsumer consumer, IUser user);
-
+        IEnumerable<KeyValuePair<string, string>> RequestHeaders { get; set; }
         IUser User { get; set; }
     }
 }

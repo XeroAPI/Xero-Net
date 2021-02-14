@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xero.Api.Infrastructure.Interfaces;
 using Xero.Api.Infrastructure.OAuth;
 
@@ -74,6 +75,8 @@ namespace Xero.Api.Example.Applications
         }
 
         public IUser User { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> RequestHeaders { get; set; }
 
         protected abstract string AuthorizeUser(IToken oauthToken);
         protected abstract string CreateSignature(IToken token, string verb, Uri uri, string verifier,
