@@ -2,14 +2,15 @@ Xero-Net
 ========
 
 ## Looking for OAuth 2.0?
-Please checkout [Xero-NetStandard SDK for OAuth 2.0](https://github.com/XeroAPI/Xero-NetStandard) and it's companion [sample app](https://github.com/XeroAPI/xero-netstandard-oauth2-samples)
+Please checkout [Xero-NetStandard SDK for OAuth 2.0](https://github.com/XeroAPI/Xero-NetStandard) and one of it's starter projects.
+[Xero-NetStandard starter for .NET Core](https://github.com/XeroAPI/xero-netstandard-oauth2-starter-dotnet-core) or [Xero-NetStandard starter for .NET Framework 4.6.1 and higher](https://github.com/XeroAPI/xero-netstandard-oauth2-starter-app-dotnet-framework)
 
-## What about updating Xero-Net to OAuth 2.0?
-We are devoting resources towards building and improving our new OAuth 2.0 SDKs which don't share a code base with this library. For those using Xero-Net, you have the option of forking the Xero-Net.
 
-Xero-Net maintenance for OAuth 1.0a
------------------------
-We will continue to periodically review pull requests to fix small issues and watch for secruity issues until December 2020.  Maintenance **does not** include adding new features, oauth 2 support or large refactoring of the code base. 
+## Xero-Net to OAuth 2.0 Deprecated as of April 2021
+As of April 2021, Xero is deprecating support for OAuth 1.0a.  If you need more time to complete your migration to OAuth 2, please contact api@xero.com for assistance.  
+
+We are archiving this repository.  For those wishing to use Xero-Net going forward you have the option of forking the Xero-Net repository.  We recommend moving to [Xero-NetStandard SDK for OAuth 2.0](https://github.com/XeroAPI/Xero-NetStandard) as it will be supported and maintained going forward.
+
 
 [![xero-api-sdk MyGet Build Status](https://www.myget.org/BuildSource/Badge/xero-api-sdk?identifier=045754d8-de3f-4f0c-960a-ae6e16608e24)](https://www.myget.org/)
 [![Build status](https://ci.appveyor.com/api/projects/status/087ia0i385l506bn/branch/master?svg=true)](https://ci.appveyor.com/project/XeroAPI/xero-net/branch/master)
